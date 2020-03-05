@@ -1,0 +1,44 @@
+.center {
+    margin-left: 150px;
+    margin-right: 150px;
+    padding: 50px;
+  }
+
+.center-text{
+    text-align: center;
+    margin-top: 2%;
+    font-size: xx-large;
+}
+
+.button-form{
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 30%;
+}
+
+.right{
+    float:right
+}
+
+button{
+    font-size: x-large;
+}
+.center-text button{
+    font-size: xxx-large;
+    margin-top: 1%;
+}
+
+img{
+    width: 20%;
+}
+  
+.card-title {
+    font-size: 80px;
+    text-align: center;
+    font-style: oblique;
+}
+form {
+    font-size: x-large;
+    padding-left: 20%;
+    padding-right: 20%;
+  }

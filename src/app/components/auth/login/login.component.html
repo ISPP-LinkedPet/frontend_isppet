@@ -1,0 +1,31 @@
+<div class="center">
+    <div class="card border-primary mb-3">
+    <div class="card-body">
+        <p class="card-title">Inicie sesión en <img src="../../../assets/name1.png"></p>
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <fieldset>
+            <div class="form-group" *ngIf="isValid">
+                <label for="username">Nombre de usuario</label>
+                <input type="text" class="form-control" id="username" required formControlName="username">
+            </div>
+            <div class="form-group has-danger"*ngIf="!isValid">
+                <label class="form-control-label" for="inputDanger1">Nombre de usuario</label>
+                <input type="text" value="wrong value" class="form-control is-invalid" id="username" required formControlName="username">
+                <div class="invalid-feedback">Parece que se ha equivocado</div>
+            </div>
+            <div class="form-group">
+                <label for="password">Contrseña</label>
+                <input type="password" class="form-control" id="password" required formControlName="password">
+            </div>
+                <button type="submit" class="btn btn-primary btn-lg button-form">Iniciar sesión</button>
+                <button type="submit" class="btn btn-secondary btn-lg button-form right">Cancelar</button>
+   
+            </fieldset>
+        </form>
+        <div class="center-text">
+        <h4>¿No tiene cuenta?</h4> 
+        <button type="submit" class="btn btn-primary btn-lg">Registrese</button>
+        </div>
+    </div>
+    </div>
+</div>
