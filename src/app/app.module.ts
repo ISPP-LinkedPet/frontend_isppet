@@ -14,6 +14,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import {AdoptionService} from './services/adoption/adoption.service';
 import {BreedingService} from './services/breeding/breeding.service';
 import {ConfigService} from './services/config/config.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import {ConfigService} from './services/config/config.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     AdoptionService,
