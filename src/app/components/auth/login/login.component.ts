@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
-
 import {UserAccount} from '../../../models/user_account/user-account'
+
+import {LoginService} from '../../../services/login/login.service'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,7 +11,7 @@ import {UserAccount} from '../../../models/user_account/user-account'
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
   isValid = true;
   user_account = new UserAccount();
   ngOnInit(): void {
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
     console.log(this.profileForm.value); 
     this.isValid = this.profileForm.valid;
     console.log(this.isValid) 
+    console.log(this.loginService.sendCredentials(this.profileForm))
   }
 
 

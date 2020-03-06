@@ -8,6 +8,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { HttpClientModule } from '@angular/common/http';
+
 
 //Components
 import { HeaderComponent } from './components/header/header.component';
@@ -19,6 +21,7 @@ import { RegisterComponent } from './components/auth/register/register.component
 import {AdoptionService} from './services/adoption/adoption.service';
 import {BreedingService} from './services/breeding/breeding.service';
 import {ConfigService} from './services/config/config.service';
+import {LoginService} from './services/login/login.service'
 
 
 @NgModule({
@@ -35,12 +38,14 @@ import {ConfigService} from './services/config/config.service';
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     AdoptionService,
     BreedingService,
-    ConfigService],
+    ConfigService,
+    LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
