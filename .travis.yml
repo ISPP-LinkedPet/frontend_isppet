@@ -1,0 +1,11 @@
+dist: trusty
+sudo: required
+language: node_js
+node_js:
+  - '12'
+branches:
+  only:
+    - master
+script:
+  - npm install
+  - npm run build
