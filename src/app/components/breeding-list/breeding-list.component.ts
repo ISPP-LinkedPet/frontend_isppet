@@ -12,5 +12,4 @@ export class BreedingListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
 }

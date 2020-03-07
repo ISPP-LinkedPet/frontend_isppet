@@ -1,21 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BreedingListComponent } from './breeding-list.component';
+import { BreedingListPageComponent } from './breeding-list-page.component';
 
-describe('BreedingListComponent', () => {
-  let component: BreedingListComponent;
-  let fixture: ComponentFixture<BreedingListComponent>;
+describe('BreedingListPageComponent', () => {
+  let component: BreedingListPageComponent;
+  let fixture: ComponentFixture<BreedingListPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BreedingListComponent ]
+      declarations: [ BreedingListPageComponent ]
     })
-    
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BreedingListComponent);
+    fixture = TestBed.createComponent(BreedingListPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
