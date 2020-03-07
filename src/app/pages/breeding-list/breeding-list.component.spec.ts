@@ -10,6 +10,7 @@ describe('BreedingListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ BreedingListComponent ]
     })
+    
     .compileComponents();
   }));
 
