@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
+import { BreedingListComponent } from './pages/breeding-list/breeding-list.component';
 import { RouterModule } from '@angular/router';
 
 //Components
@@ -26,6 +27,7 @@ import { environment } from '../environments/environment';
     HeaderComponent,
     FooterComponent,
     ListComponent,
+    BreedingListComponent,
   ],
   imports: [
     BrowserModule,
