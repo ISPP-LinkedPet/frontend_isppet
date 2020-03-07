@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule,  ReactiveFormsModule }   from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import {BreedingService} from './services/breeding/breeding.service';
 import {ConfigService} from './services/config/config.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { BreedingCreateComponent } from './components/breeding/breeding-create/breeding-create.component';
 
 @NgModule({
   declarations: [
@@ -23,11 +25,14 @@ import { environment } from '../environments/environment';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    BreedingCreateComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     AdoptionService,
