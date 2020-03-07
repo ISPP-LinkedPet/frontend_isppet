@@ -38,6 +38,7 @@ import { environment } from '../environments/environment';
     AdoptionService,
     BreedingService,
     ConfigService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent] 
+  
 })
 export class AppModule { }
