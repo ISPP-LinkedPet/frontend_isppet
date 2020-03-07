@@ -16,6 +16,7 @@ import {BreedingService} from './services/breeding/breeding.service';
 import {ConfigService} from './services/config/config.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { ListComponent } from './list/list.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { environment } from '../environments/environment';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    ListComponent,
   ],
   imports: [
     BrowserModule,
