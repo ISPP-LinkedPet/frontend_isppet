@@ -6,8 +6,8 @@ import { BreedingService } from 'src/app/services/breeding/breeding.service'
 
 @Component({
   selector: 'app-breeding-create',
-  templateUrl: './breeding-create.component.html',
-  styleUrls: ['./breeding-create.component.css']
+  templateUrl: './breeding-form.component.html',
+  styleUrls: ['./breeding-form.component.css']
 })
 export class BreedingCreateComponent implements OnInit {
 
