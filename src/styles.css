@@ -27,13 +27,13 @@
    --gray: #888;
    --gray-dark: #343a40;
    --primary: #009c68;
-   --secondary: #F3969A;
-   --success: #56CC9D;
-   --info: #6CC3D5;
+   --secondary: #29735B;
+   --success: #74CFAB;
+   --info: #63B4D1;
    --warning: #FFCE67;
-   --danger: #FF7851;
-   --light: #f8f9fa;
-   --dark: #343a40;
+   --danger: #FF8552;
+   --light: #E6E6E6;
+   --dark: #1C2321;
    --breakpoint-xs: 0;
    --breakpoint-sm: 576px;
    --breakpoint-md: 768px;
@@ -7169,7 +7169,7 @@
  }
  
  .bg-light {
-   background-color: #f8f9fa !important;
+   background-color: #D5DCD4 !important;
  }
  
  a.bg-light:hover, a.bg-light:focus,
@@ -10756,7 +10756,7 @@
  }
  
  .navbar {
-   font-family: "Montserrat", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+   font-family: "Avenir Next LT Pro Light", "Avenir Next LT Pro","Montserrat", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
  }
  
  .bg-dark {
