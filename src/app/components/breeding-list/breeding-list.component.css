@@ -1,3 +1,17 @@
-.breeding-add-element{
 
+h1{
+    margin: 10px 10px 10px 10px;
+}
+
+div{
+    margin: 20px 60px 0px 60px;
+}
+
+img{
+    width: 20%;
+    height: 20%;
+    float: right;
+    border-radius: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
