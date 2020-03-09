@@ -6,6 +6,11 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RouterModule } from '@angular/router';
 
+
+//Pages
+import { AdoptionListPageComponent } from './pages/adoption-list-page/adoption-list-page.component';
+
+
 //Components
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -16,6 +21,7 @@ import {BreedingService} from './services/breeding/breeding.service';
 import {ConfigService} from './services/config/config.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AdoptionListComponent } from './components/adoption-list/adoption-list.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +29,8 @@ import { environment } from '../environments/environment';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    AdoptionListComponent,
+    AdoptionListPageComponent,
   ],
   imports: [
     BrowserModule,
