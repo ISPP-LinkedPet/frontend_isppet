@@ -1,4 +1,4 @@
-<div class="center">
+<div class="container">
     <div class="card border-primary mb-3">
     <div class="card-body">
         <h1 class="card-title">Crear nueva publicacion</h1>
@@ -7,16 +7,17 @@
                 <legend class="card-title">Información básica</legend>
                 <div class="form-group">
                     <label for="age">Raza</label>
-                    <input type="text" class="form-control" id="breed" required formControlName="breed">
+                    <input type="text" class="form-control" id="breed" [readOnly]="!document_verified" formControlName="breed">
                 </div>
                 <div class="form-group has-danger"*ngIf="!isValid">
                   <app-error [variable]="'breed'" [text]="'Raza'"></app-error>
                 </div>
                 <div class="form-group">
                     <label for="genre">Genero</label>
-                    <select class="custom-select" id="genre" formControlName="genre">
-                        <option value='Male'>Male</option>
-                        <option value='Female'>Female</option>
+                    <select class="form-control" id="genre" [attr.disabled]="!document_verified" formControlName="genre">
+                        <option value='' [defaultSelected]=true>Seleccione genero</option>
+                        <option value='Male'>Macho</option>
+                        <option value='Female'>Hembra</option>
                     </select> 
                 </div>
                 <div class="form-group has-danger"*ngIf="!isValid">
@@ -24,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <label for="age">Edad</label>
-                    <input type="date" class="form-control" id="age" required formControlName="age">
+                    <input type="date" class="form-control" id="age" [readOnly]="!document_verified" formControlName="age">
                 </div>
                 <div class="form-group has-danger"*ngIf="!isValid">
                   <app-error [variable]="'age'" [text]="'Edad'"></app-error>
@@ -35,7 +36,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
                       </div>
-                      <input type="text" class="form-control" required formControlName="price" aria-label="Amount (to the nearest dollar)">
+                      <input type="text" class="form-control" formControlName="price" aria-label="Amount (to the nearest dollar)">
                       <div class="input-group-append">
                         <span class="input-group-text">.00</span>
                       </div>

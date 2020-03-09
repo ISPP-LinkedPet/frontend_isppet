@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 
 import { Breeding } from 'src/app/models/breeding/breeding'
@@ -15,7 +15,11 @@ export class BreedingCreateComponent implements OnInit {
   isValid = true;
   breeding = new Breeding();
 
+  @Input()
+  document_verified: boolean;
+
   ngOnInit(): void {
+    this.document_verified = false;
   }
 
   breedingForm = new FormGroup({
