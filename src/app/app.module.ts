@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 //Components
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { BreedingDisplayComponent } from './components/breeding-display/breeding-display.component';
 
 //Services
 import {AdoptionService} from './services/adoption/adoption.service';
@@ -23,6 +24,7 @@ import { environment } from '../environments/environment';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    BreedingDisplayComponent,
   ],
   imports: [
     BrowserModule,
