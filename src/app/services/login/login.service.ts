@@ -14,7 +14,7 @@ export class LoginService {
   ) { }
 
   sendCredentials(profileForm: FormGroup){
-    return this.requestService.request("POST", `${environment.endpoint}/login`, 
+    return this.requestService.request("POST", `${environment.endpoint}/auth/login`, 
     {
       'userName': profileForm.value.username,
       'password': profileForm.value.password

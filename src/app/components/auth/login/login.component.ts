@@ -27,8 +27,11 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     console.log(this.profileForm.value); 
     this.isValid = this.profileForm.valid;
-    console.log(this.isValid) 
-    console.log(this.loginService.sendCredentials(this.profileForm))
+    console.log(this.isValid)
+
+    // send credential to backend
+    this.loginService.sendCredentials(this.profileForm);
+
   }
 
 
