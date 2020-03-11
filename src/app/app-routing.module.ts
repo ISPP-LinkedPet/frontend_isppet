@@ -13,10 +13,10 @@ import { BreedingDisplayComponent } from './components/breeding-display/breeding
 const routes: Routes = [
 {path: '', component: HomeComponent},
 {path: 'breeding-display', component: BreedingDisplayComponent},
-{path: 'breedingList', component:BreedingListPageComponent},
+{path: 'breeding-list', component:BreedingListPageComponent},
 {path: 'adoption-display', component: AdoptionDisplayComponent},
 {path: 'breeding', component:CreateComponent},
-{path: 'adoptionList', component: AdoptionListPageComponent}
+{path: 'adoption-list', component: AdoptionListPageComponent}
 ];
 
 @NgModule({
