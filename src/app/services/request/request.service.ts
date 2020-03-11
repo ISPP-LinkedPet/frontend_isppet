@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -17,39 +17,38 @@ export class RequestService {
     headers: any,
     auth: boolean = true,
   ) {
-    if (["POST", "PUT", "DELETE"].includes(method)) {
+    if (['POST', 'PUT', 'DELETE'].includes(method)) {
       auth = true;
     }
-    if (auth){
-      let access_token = localStorage.getItem('access_token');
-      headers.Authorization = 'Bearer ' + access_token;
+    if (auth) {
+      const accessToken = localStorage.getItem('access_token');
+      headers.Authorization = 'Bearer ' + accessToken;
     }
 
-    headers = {headers}
-       
+    headers = {headers};
     try {
       let httpResponse: Promise<any>;
       switch (method) {
-        case "GET":
+        case 'GET':
           uri = this.serializeUrl(uri, data);
           httpResponse = this.httpClient.get(uri, headers).toPromise();
           break;
-        case "POST":
+        case 'POST':
           httpResponse = this.httpClient.post(uri, data, headers).toPromise();
           break;
-        case "PUT":
+        case 'PUT':
           httpResponse = this.httpClient.put(uri, data, headers).toPromise();
           break;
-        case "DELETE":
+        case 'DELETE':
           uri = this.serializeUrl(uri, data);
           httpResponse = this.httpClient.delete(uri, headers).toPromise();
           break;
       }
 
-      let response = await httpResponse;
+      const response = await httpResponse;
 
-      //Unauthorized Error 401
-      if (response.status == 401) {
+      // Unauthorized Error 401
+      if (response.status === 401) {
         localStorage.removeItem('access_token');
       }
 
@@ -61,16 +60,16 @@ export class RequestService {
   }
 
   serializeUrl(uri, params) {
-    var str = [];
+    const str = [];
 
-    for (var p in params) {
+    for (const p in params) {
       if (params.hasOwnProperty(p) && params[p] !== null) {
-        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p]));
+        str.push(encodeURIComponent(p) + '=' + encodeURIComponent(params[p]));
       }
     }
 
     if (str.length) {
-      return uri + '?' + str.join("&");
+      return uri + '?' + str.join('&');
     } else {
       return uri;
     }
