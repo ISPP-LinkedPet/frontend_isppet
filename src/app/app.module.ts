@@ -28,10 +28,13 @@ import { BreedingDisplayComponent } from './components/breeding-display/breeding
 import {AdoptionService} from './services/adoption/adoption.service';
 import {BreedingService} from './services/breeding/breeding.service';
 import {ConfigService} from './services/config/config.service';
+import { BreedingCreateComponent } from './components/breeding/breeding-form/breeding-form.component';
+import { ErrorComponent } from './components/error/error.component';
+import { CreateComponent } from './pages/breeding/create/create.component';
+import {LoginService} from './services/login/login.service'
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { PopoverModule } from 'ngx-smart-popover';
-import {LoginService} from './services/login/login.service';
 
 
 @NgModule({
@@ -40,6 +43,9 @@ import {LoginService} from './services/login/login.service';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    BreedingCreateComponent,
+    ErrorComponent,
+    CreateComponent,
     BreedingDisplayComponent,
     LoginComponent,
     RegisterComponent,
