@@ -8,6 +8,8 @@ img {
     width: 100%;
     height: 8%;
     z-index:9999999;
+    box-shadow: 4px 4px 10px 4px #b3b3b3;
+    border-bottom: 1px solid #29735B;
   }
 
   .nav-item{
@@ -47,3 +49,6 @@ img {
     transform: scaleX(1);
   }
   
+  .bg-light {
+    background-color: #D5DCD4 !important;
+  }
