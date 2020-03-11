@@ -1,6 +1,7 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
+import { AdoptionListPageComponent } from './pages/adoption-list-page/adoption-list-page.component';
 import { CreateComponent } from './pages/breeding/create/create.component';
 import { BreedingListPageComponent } from './pages/breeding-list-page/breeding-list-page.component';
 import { from } from 'rxjs';
@@ -14,7 +15,8 @@ const routes: Routes = [
 {path: 'breeding-display', component: BreedingDisplayComponent},
 {path: 'breedingList', component:BreedingListPageComponent},
 {path: 'adoption-display', component: AdoptionDisplayComponent},
-{path: 'breeding', component:CreateComponent}
+{path: 'breeding', component:CreateComponent},
+{path: 'adoptionList', component: AdoptionListPageComponent}
 ];
 
 @NgModule({

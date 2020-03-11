@@ -11,6 +11,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
+
+//Pages
+import { AdoptionListPageComponent } from './pages/adoption-list-page/adoption-list-page.component';
+
+
 //Components
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -34,6 +39,7 @@ import { CreateComponent } from './pages/breeding/create/create.component';
 import {LoginService} from './services/login/login.service'
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AdoptionListComponent } from './components/adoption-list/adoption-list.component';
 import { PopoverModule } from 'ngx-smart-popover';
 
 
@@ -52,6 +58,8 @@ import { PopoverModule } from 'ngx-smart-popover';
     AdoptionDisplayComponent,
     BreedingListComponent,
     BreedingListPageComponent
+    AdoptionListComponent,
+    AdoptionListPageComponent,
   ],
   imports: [
     BrowserModule,
