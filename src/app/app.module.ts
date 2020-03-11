@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //Components
 import { HeaderComponent } from './components/header/header.component';
@@ -39,6 +39,7 @@ import {LoginService} from './services/login/login.service'
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     HttpClientModule
   ],
   providers: [
