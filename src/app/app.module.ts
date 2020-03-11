@@ -16,12 +16,14 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
+import { AdoptionDisplayComponent} from './components/adoption-display/adoption-display.component';
+
 
 //Services
 import {AdoptionService} from './services/adoption/adoption.service';
 import {BreedingService} from './services/breeding/breeding.service';
 import {ConfigService} from './services/config/config.service';
-import {LoginService} from './services/login/login.service'
+import {LoginService} from './services/login/login.service';
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import {LoginService} from './services/login/login.service'
     FooterComponent,
     LoginComponent,
     RegisterComponent,
+    AdoptionDisplayComponent,
   ],
   imports: [
     BrowserModule,
