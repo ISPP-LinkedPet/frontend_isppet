@@ -4,7 +4,6 @@ import { FormsModule,  ReactiveFormsModule }   from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
 import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
@@ -17,6 +16,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { AdoptionDisplayComponent} from './components/adoption-display/adoption-display.component';
+import { BreedingListComponent } from './components/breeding-list/breeding-list.component';
+
+//Pages
+import { HomeComponent } from './pages/home/home.component';
+import { BreedingListPageComponent } from './pages/breeding-list-page/breeding-list-page.component';
 
 
 //Services
@@ -35,6 +39,8 @@ import {LoginService} from './services/login/login.service';
     LoginComponent,
     RegisterComponent,
     AdoptionDisplayComponent,
+    BreedingListComponent,
+    BreedingListPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,5 +57,6 @@ import {LoginService} from './services/login/login.service';
     ConfigService,
     LoginService],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }
