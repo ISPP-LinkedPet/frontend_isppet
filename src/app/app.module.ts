@@ -10,6 +10,7 @@ import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 //Components
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -21,12 +22,15 @@ import { BreedingListComponent } from './components/breeding-list/breeding-list.
 //Pages
 import { HomeComponent } from './pages/home/home.component';
 import { BreedingListPageComponent } from './pages/breeding-list-page/breeding-list-page.component';
-
+import { BreedingDisplayComponent } from './components/breeding-display/breeding-display.component';
 
 //Services
 import {AdoptionService} from './services/adoption/adoption.service';
 import {BreedingService} from './services/breeding/breeding.service';
 import {ConfigService} from './services/config/config.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { PopoverModule } from 'ngx-smart-popover';
 import {LoginService} from './services/login/login.service';
 
 
@@ -36,15 +40,17 @@ import {LoginService} from './services/login/login.service';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    BreedingDisplayComponent,
     LoginComponent,
     RegisterComponent,
     AdoptionDisplayComponent,
     BreedingListComponent,
-    BreedingListPageComponent,
+    BreedingListPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    PopoverModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     FormsModule,
     ReactiveFormsModule,
