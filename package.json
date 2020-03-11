@@ -25,11 +25,12 @@
     "@angular/platform-browser-dynamic": "~9.0.1",
     "@angular/router": "~9.0.1",
     "@angular/service-worker": "~9.0.1",
+    "component": "^1.1.0",
+    "express": "^4.17.1",
     "ngx-smart-popover": "^1.1.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.11.1",
-    "component": "^1.1.0",
-    "express": "^4.17.1",
+    "typescript-tslint-plugin": "^0.5.5",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
