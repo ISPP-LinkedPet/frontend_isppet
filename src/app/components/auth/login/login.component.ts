@@ -25,15 +25,14 @@ export class LoginComponent implements OnInit {
   });
 
   onSubmit() {
-    console.log(this.profileForm.value); 
     this.isValid = this.profileForm.valid;
-    console.log(this.isValid)
 
     // send credential to backend
-    this.loginService.sendCredentials(this.profileForm);
+    this.loginService.sendCredentials(this.profileForm).then(p=>
+      localStorage.setItem("access_token",p.access_token)
+    ).catch( error => {
 
+    });
   }
-
-
 
 }

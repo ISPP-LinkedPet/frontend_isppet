@@ -17,7 +17,6 @@ export class RequestService {
     headers: any,
     auth: boolean = true,
   ) {
-    console.log(uri)
     if (["POST", "PUT", "DELETE"].includes(method)) {
       auth = true;
     }
@@ -48,6 +47,12 @@ export class RequestService {
       }
 
       let response = await httpResponse;
+
+      //Unauthorized Error 401
+      if (response.status == 401) {
+        localStorage.removeItem('access_token');
+      }
+
       return response;
     } catch (error) {
       throw error;
