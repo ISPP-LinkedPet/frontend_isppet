@@ -1,12 +1,12 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { AdoptionListPageComponent } from './pages/adoption-list-page/adoption-list-page.component';
+import { AdoptionListPageComponent } from './pages/adoption/list/adoption-list-page.component';
 import { CreateComponent } from './pages/breeding/create/create.component';
-import { BreedingListPageComponent } from './pages/breeding-list-page/breeding-list-page.component';
+import { BreedingListPageComponent } from './pages/breeding/list/breeding-list-page.component';
 import { from } from 'rxjs';
-import { AdoptionDisplayComponent } from './components/adoption-display/adoption-display.component';
-import { BreedingDisplayComponent } from './components/breeding-display/breeding-display.component';
+import { AdoptionDisplayComponent } from './components/adoption/adoption-display/adoption-display.component';
+import { BreedingDisplayComponent } from './components/breeding/breeding-display/breeding-display.component';
 
 
 

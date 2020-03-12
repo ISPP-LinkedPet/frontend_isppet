@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BreedingService } from '../../services/breeding/breeding.service';
-import { Breeding } from '../../models/breeding/breeding';
+import { BreedingService } from '../../../services/breeding/breeding.service';
+import { Breeding } from '../../../models/breeding/breeding';
 
 @Component({
   selector: 'app-breeding-list',

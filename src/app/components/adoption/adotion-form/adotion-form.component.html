@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="card border-primary mb-3">
+    <div class="card-body">
+        <h1 class="card-title">Crear nueva publicacion</h1>
+        <form [formGroup]="adoptionForm" (ngSubmit)="onSubmit()">
+            <fieldset>
+                <legend class="card-title">Información básica</legend>
+                <div class="form-group">
+                    <label for="age">Raza</label>
+                    <input type="text" class="form-control" id="breed" [readOnly]="!documentVerified" formControlName="breed">
+                </div>
+                <div class="form-group has-danger"*ngIf="!isValid">
+                  <app-error [variable]="'breed'" [text]="'Raza'"></app-error>
+                </div>
+                <div class="form-group">
+                    <label for="genre">Genero</label>
+                    <select class="form-control" id="genre" [attr.disabled]="!documentVerified" formControlName="genre">
+                        <option value='' [defaultSelected]=true>Seleccione genero</option>
+                        <option value='Male'>Macho</option>
+                        <option value='Female'>Hembra</option>
+                    </select> 
+                </div>
+                <div class="form-group has-danger"*ngIf="!isValid">
+                    <app-error [variable]="'genre'" [text]="'Genero'"></app-error>
+                </div>
+                <div class="form-group">
+                    <label for="age">Edad</label>
+                    <input type="date" class="form-control" id="age" [readOnly]="!documentVerified" formControlName="age">
+                </div>
+                <div class="form-group has-danger"*ngIf="!isValid">
+                  <app-error [variable]="'age'" [text]="'Edad'"></app-error>
+                </div>
+                <div class="form-group">
+                    <label for="animal_foto">Imagenes</label>
+                    <div class="input-group mb-3">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" formControlName="animal_foto" id="animal_foto">
+                        <label class="custom-file-label" for="animal_foto">Seleccionar imagenes</label>
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="">Subir</span>
+                      </div>
+                    </div>
+                </div>
+                <div class="form-group has-danger"*ngIf="!isValid">
+                  <app-error [variable]="'animal_foto'" [text]="'Genero'"></app-error>
+                </div>
+            </fieldset>
+            <hr>
+            <fieldset>
+                <legend class="card-title">Documentación de la mascota</legend>
+                <div class="form-group">
+                    <label for="identification_foto">Identificacion de mascota</label>
+                    <div class="input-group mb-3">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" formControlName="identification_foto" id="identification_foto">
+                        <label class="custom-file-label" for="identification">Seleccionar imagenes</label>
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="">Subir</span>
+                      </div>
+                    </div>
+                </div>
+                <div class="form-group has-danger"*ngIf="!isValid">
+                  <app-error [variable]="'identification_foto'" [text]="'Identificacion de mascota'"></app-error>
+                </div>
+                <div class="form-group">
+                    <label for="vaccine_passaport">Cartilla de vacunacion</label>
+                    <div class="input-group mb-3">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" formControlName="vaccine_passaport" id="vaccine_passaport">
+                        <label class="custom-file-label" for="vaccine_passaport">Seleccionar imagenes</label>
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="">Subir</span>
+                      </div>
+                    </div>
+                </div>
+                <div class="form-group has-danger"*ngIf="!isValid">
+                  <app-error [variable]="'vaccine_passaport'" [text]="'Cartilla de vacunacion'"></app-error>
+                </div>
+            </fieldset>
+                <button type="submit" class="btn btn-primary btn-lg button-form">Crear</button>
+                <button type="button" class="btn btn-secondary btn-lg button-form right">Cancelar</button>
+        </form>
+    </div>
+    </div>
+</div>

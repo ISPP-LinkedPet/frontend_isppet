@@ -18,10 +18,6 @@ export class BreedingCreateComponent implements OnInit {
   @Input()
   document_verified: boolean;
 
-  ngOnInit(): void {
-    this.document_verified = false;
-  }
-
   breedingForm = new FormGroup({
     title: new FormControl(this.breeding.title, [
       Validators.required]),
@@ -39,7 +35,11 @@ export class BreedingCreateComponent implements OnInit {
       Validators.required]),
     vaccine_passaport: new FormControl(this.breeding.vaccine_passaport, [
       Validators.required])
-  })
+  });
+
+  ngOnInit(): void {
+    this.document_verified = false;
+  }
 
   onSubmit() {
     console.log(this.breedingForm.value);
