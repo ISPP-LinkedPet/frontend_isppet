@@ -13,9 +13,9 @@ import { BreedingDisplayComponent } from './components/breeding-display/breeding
 const routes: Routes = [
 {path: '', component: HomeComponent},
 {path: 'breeding-display', component: BreedingDisplayComponent},
-{path: 'breeding-list', component:BreedingListPageComponent},
+{path: 'breeding-list', component: BreedingListPageComponent},
 {path: 'adoption-display', component: AdoptionDisplayComponent},
-{path: 'breeding', component:CreateComponent},
+{path: 'breeding', component: CreateComponent},
 {path: 'adoption-list', component: AdoptionListPageComponent}
 ];
 
