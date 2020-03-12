@@ -31,18 +31,17 @@ export class BreedingCreateComponent implements OnInit {
       Validators.required]),
     breed: new FormControl(this.breeding.breed, [
       Validators.required]),
-    animal_foto: new FormControl(this.breeding.animal_foto, [
+    animal_foto: new FormControl(this.breeding.animal_photo, [
       Validators.required]),
     price: new FormControl(this.breeding.price, [
       Validators.required]),
-    identification_foto: new FormControl(this.breeding.identification_foto, [
+    identification_foto: new FormControl(this.breeding.identification_photo, [
       Validators.required]),
     vaccine_passaport: new FormControl(this.breeding.vaccine_passaport, [
       Validators.required])
   })
 
   onSubmit() {
-    console.log(this.breedingForm.value);
   }
 
 }
