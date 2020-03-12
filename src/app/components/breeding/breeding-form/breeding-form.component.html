@@ -46,11 +46,11 @@
                   <app-error [variable]="'price'" [text]="'Precio'"></app-error>
                 </div>
                 <div class="form-group">
-                    <label for="animal_foto">Imagenes</label>
+                    <label for="animal_photo">Imagenes</label>
                     <div class="input-group mb-3">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" formControlName="animal_foto" id="animal_foto">
-                        <label class="custom-file-label" for="animal_foto">Seleccionar imagenes</label>
+                        <input type="file" class="custom-file-input" formControlName="animal_photo" id="animal_photo">
+                        <label class="custom-file-label" for="animal_photo">Seleccionar imagenes</label>
                       </div>
                       <div class="input-group-append">
                         <span class="input-group-text" id="">Subir</span>
@@ -58,17 +58,17 @@
                     </div>
                 </div>
                 <div class="form-group has-danger"*ngIf="!isValid">
-                  <app-error [variable]="'animal_foto'" [text]="'Genero'"></app-error>
+                  <app-error [variable]="'animal_photo'" [text]="'Genero'"></app-error>
                 </div>
             </fieldset>
             <hr>
             <fieldset>
                 <legend class="card-title">Documentación de la mascota</legend>
                 <div class="form-group">
-                    <label for="identification_foto">Identificacion de mascota</label>
+                    <label for="identification_photo">Identificacion de mascota</label>
                     <div class="input-group mb-3">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" formControlName="identification_foto" id="identification_foto">
+                        <input type="file" class="custom-file-input" formControlName="identification_photo" id="identification_photo">
                         <label class="custom-file-label" for="identification">Seleccionar imagenes</label>
                       </div>
                       <div class="input-group-append">
@@ -77,7 +77,7 @@
                     </div>
                 </div>
                 <div class="form-group has-danger"*ngIf="!isValid">
-                  <app-error [variable]="'identification_foto'" [text]="'Identificacion de mascota'"></app-error>
+                  <app-error [variable]="'identification_photo'" [text]="'Identificacion de mascota'"></app-error>
                 </div>
                 <div class="form-group">
                     <label for="vaccine_passaport">Cartilla de vacunacion</label>

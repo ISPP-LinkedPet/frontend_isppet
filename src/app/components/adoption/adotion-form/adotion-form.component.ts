@@ -25,9 +25,9 @@ export class AdotionFormComponent implements OnInit {
       Validators.required]),
     breed: new FormControl(this.adoption.breed, [
       Validators.required]),
-    animal_foto: new FormControl(this.adoption.animal_foto, [
+    animal_photo: new FormControl(this.adoption.animal_photo, [
       Validators.required]),
-    identification_foto: new FormControl(this.adoption.identification_foto, [
+    identification_photo: new FormControl(this.adoption.identification_photo, [
       Validators.required]),
     vaccine_passaport: new FormControl(this.adoption.vaccine_passaport, [
       Validators.required])
