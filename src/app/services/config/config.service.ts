@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 
-import {UserAccount} from "../../models/user_account/user-account"
 
 import { environment } from '../../../environments/environment';
-import {RequestService} from '../request/request.service'
+import {RequestService} from '../request/request.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigService {
+  loginRegisterView: string;
 
   constructor(
     private requestService: RequestService,

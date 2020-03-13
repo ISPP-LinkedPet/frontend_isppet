@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import {UserAccount} from '../../../models/user_account/user-account';
 import {LoginService} from '../../../services/login/login.service';
+import {HomeComponent} from '../../../pages/home/home.component';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import {LoginService} from '../../../services/login/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, public homeComponent: HomeComponent) { }
   isValid = true;
   userAccount = new UserAccount();
   profileForm = new FormGroup({
@@ -20,8 +21,13 @@ export class LoginComponent implements OnInit {
     [Validators.required]),
   });
   ngOnInit(): void {
+    this.homeComponent.viewMode = 'login';
   }
 
+  register() {
+    this.homeComponent.viewMode = 'register';
+
+  }
 
   onSubmit() {
     this.isValid = this.profileForm.valid;
@@ -33,5 +39,7 @@ export class LoginComponent implements OnInit {
 
     });
   }
+
+
 
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import {HomeComponent} from '../../../pages/home/home.component';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(public homeComponent: HomeComponent) { }
 
   ngOnInit(): void {
   }

@@ -16,6 +16,7 @@ import {LoginComponent} from './components/auth/login/login.component';
 import {RegisterComponent} from './components/auth/register/register.component';
 import {AdoptionDisplayComponent} from './components/adoption/adoption-display/adoption-display.component';
 import {BreedingListComponent} from './components/breeding/breeding-list/breeding-list.component';
+import {SlidePanelComponent} from './components/auxiliar/slide-panel/slide-panel.component';
 
 // Pages
 import {HomeComponent} from './pages/home/home.component';
@@ -52,6 +53,7 @@ import { AdotionFormComponent } from './components/adoption/adotion-form/adotion
     AdoptionListComponent,
     AdoptionListPageComponent,
     AdotionFormComponent,
+    SlidePanelComponent
   ],
   imports: [
     BrowserModule,
