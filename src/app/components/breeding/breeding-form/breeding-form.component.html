@@ -5,32 +5,47 @@
         <form [formGroup]="breedingForm" (ngSubmit)="onSubmit()">
             <fieldset>
                 <legend class="card-title">Información básica</legend>
-                <div class="form-group">
-                    <label for="age">Raza</label>
-                    <input type="text" class="form-control" id="breed" [readOnly]="!document_verified" formControlName="breed">
+                <div class="row">
+                  <div class="form-group col-sm">
+                      <label for="age">Raza</label>
+                      <input type="text" class="form-control" id="breed" [readOnly]="!document_verified" formControlName="breed">
+                  </div>
+                  <div class="form-group has-danger col-sm" *ngIf="!isValid">
+                    <app-error [variable]="'breed'" [text]="'Raza'"></app-error>
+                  </div>
+                  <div class="form-group col-sm">
+                      <label for="genre">Genero</label>
+                      <select class="form-control" id="genre" [attr.disabled]="!document_verified" formControlName="genre">
+                          <option value='' [defaultSelected]=true>Seleccione genero</option>
+                          <option value='Male'>Macho</option>
+                          <option value='Female'>Hembra</option>
+                      </select> 
+                  </div>
+                  <div class="form-group has-danger col-sm" *ngIf="!isValid">
+                      <app-error [variable]="'genre'" [text]="'Genero'"></app-error>
+                  </div>
+                  <div class="form-group col-sm">
+                      <label for="age">Edad</label>
+                      <input type="date" class="form-control" id="age" [readOnly]="!document_verified" formControlName="age">
+                  </div>
+                  <div class="form-group has-danger col-sm" *ngIf="!isValid">
+                    <app-error [variable]="'age'" [text]="'Edad'"></app-error>
+                  </div>
                 </div>
-                <div class="form-group has-danger"*ngIf="!isValid">
-                  <app-error [variable]="'breed'" [text]="'Raza'"></app-error>
-                </div>
-                <div class="form-group">
-                    <label for="genre">Genero</label>
-                    <select class="form-control" id="genre" [attr.disabled]="!document_verified" formControlName="genre">
-                        <option value='' [defaultSelected]=true>Seleccione genero</option>
-                        <option value='Male'>Macho</option>
-                        <option value='Female'>Hembra</option>
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label for="type">Tipo animal</label>
+                    <select class="form-control" id="type" [attr.disabled]="!document_verified" formControlName="type">
+                        <option value='' [defaultSelected]=true>Seleccione tipo animal</option>
+                        <option value='Dog'>Perro</option>
+                        <option value='Cat'>Gato</option>
+                        <option value='Horse'>Caballo</option>
                     </select> 
-                </div>
-                <div class="form-group has-danger"*ngIf="!isValid">
-                    <app-error [variable]="'genre'" [text]="'Genero'"></app-error>
-                </div>
-                <div class="form-group">
-                    <label for="age">Edad</label>
-                    <input type="date" class="form-control" id="age" [readOnly]="!document_verified" formControlName="age">
-                </div>
-                <div class="form-group has-danger"*ngIf="!isValid">
-                  <app-error [variable]="'age'" [text]="'Edad'"></app-error>
-                </div>
-                <div class="form-group">
+                  </div>
+                  <div class="form-group has-danger col-sm" *ngIf="!isValid">
+                      <app-error [variable]="'type'" [text]="'Tipo animal'"></app-error>
+                  </div>
+                  <div class="form-group col-sm">
                     <label for="age">Precio</label>
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
@@ -42,29 +57,43 @@
                       </div>
                     </div>
                   </div>
-                <div class="form-group has-danger"*ngIf="!isValid">
-                  <app-error [variable]="'price'" [text]="'Precio'"></app-error>
-                </div>
-                <div class="form-group">
-                    <label for="animal_photo">Imagenes</label>
-                    <div class="input-group mb-3">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" formControlName="animal_photo" id="animal_photo">
-                        <label class="custom-file-label" for="animal_photo">Seleccionar imagenes</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text" id="">Subir</span>
-                      </div>
+                  <div class="form-group has-danger col-sm" *ngIf="!isValid">
+                    <app-error [variable]="'price'" [text]="'Precio'"></app-error>
+                  </div>
+                  <div class="form-group col-sm">
+                    <label for="pedigree">Pedigrí</label>
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" [attr.disabled]="!document_verified" id="pedigree">
+                      <label class="custom-control-label" for="pedigree">Posee pedigrí</label>
                     </div>
+                  </div>
+                  <div class="form-group has-danger col-sm" *ngIf="!isValid">
+                      <app-error [variable]="'pedigree'" [text]="'Pedigrí'"></app-error>
+                  </div>
                 </div>
-                <div class="form-group has-danger"*ngIf="!isValid">
-                  <app-error [variable]="'animal_photo'" [text]="'Genero'"></app-error>
+              <div class="row">
+                <div class="form-group col-4">
+                  <label for="animal_photo">Imagenes</label>
+                  <div class="input-group mb-3">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" formControlName="animal_photo" id="animal_photo">
+                      <label class="custom-file-label" for="animal_photo">Seleccionar imagenes</label>
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text" id="">Subir</span>
+                    </div>
+                  </div>
                 </div>
+                <div class="form-group has-danger col-sm" *ngIf="!isValid">
+                  <app-error [variable]="'animal_photo'" [text]="'Imagenes'"></app-error>
+                </div>
+              </div>
             </fieldset>
             <hr>
             <fieldset>
-                <legend class="card-title">Documentación de la mascota</legend>
-                <div class="form-group">
+              <legend class="card-title">Documentación de la mascota</legend>
+              <div class="row">
+                <div class="form-group col-5">
                     <label for="identification_photo">Identificacion de mascota</label>
                     <div class="input-group mb-3">
                       <div class="custom-file">
@@ -76,10 +105,12 @@
                       </div>
                     </div>
                 </div>
-                <div class="form-group has-danger"*ngIf="!isValid">
+                <div class="form-group has-danger col-5" *ngIf="!isValid">
                   <app-error [variable]="'identification_photo'" [text]="'Identificacion de mascota'"></app-error>
                 </div>
-                <div class="form-group">
+              </div>
+              <div class="row">
+                <div class="form-group col-6">
                     <label for="vaccine_passaport">Cartilla de vacunacion</label>
                     <div class="input-group mb-3">
                       <div class="custom-file">
@@ -91,9 +122,10 @@
                       </div>
                     </div>
                 </div>
-                <div class="form-group has-danger"*ngIf="!isValid">
+                <div class="form-group has-danger col-6" *ngIf="!isValid">
                   <app-error [variable]="'vaccine_passaport'" [text]="'Cartilla de vacunacion'"></app-error>
                 </div>
+              </div>
             </fieldset>
                 <button type="submit" class="btn btn-primary btn-lg button-form">Crear</button>
                 <button type="button" class="btn btn-secondary btn-lg button-form right">Cancelar</button>
