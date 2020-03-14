@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
 
   register() {
     this.homeComponent.viewMode = 'register';
-
   }
 
   onSubmit() {
