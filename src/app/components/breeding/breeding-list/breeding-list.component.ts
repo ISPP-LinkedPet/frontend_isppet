@@ -8,7 +8,6 @@ import { Breeding } from '../../../models/breeding/breeding';
   styleUrls: ['./breeding-list.component.css']
 })
 export class BreedingListComponent implements OnInit {
-
   breedings: Breeding[] = [];
   prueba: any = null;
 
@@ -19,8 +18,9 @@ export class BreedingListComponent implements OnInit {
 
   ngOnInit(): void {
       const token = localStorage.getItem('access_token');
-      this.breedingService.getAllBreedings(token).then(res => console.log(res));
+      this.breedingService.getAllBreedings(localStorage.getItem('access_token')).then(res => res.forEach(breedingAd => {
+        this.breedings.push(breedingAd);
+      }));
       console.log(this.breedings);
   }
-
 }
