@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Breeding } from 'src/app/models/breeding/breeding';
+import { BreedingService } from 'src/app/services/breeding/breeding.service';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-breeding-list-page',
@@ -6,9 +9,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./breeding-list-page.component.css']
 })
 export class BreedingListPageComponent implements OnInit {
-
-  constructor() { }
-
   ngOnInit(): void {
   }
 
