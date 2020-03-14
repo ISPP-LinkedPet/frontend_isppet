@@ -19,17 +19,17 @@ export class BreedingCreateComponent implements OnInit {
   document_verified: boolean;
 
   breedingForm = new FormGroup({
-    title: new FormControl(this.breeding.title, [
-      Validators.required]),
-    age: new FormControl(this.breeding.age, [
-      Validators.required]),
-    genre: new FormControl(this.breeding.genre, [
-      Validators.required]),
-    breed: new FormControl(this.breeding.breed, [
-      Validators.required]),
-    animal_photo: new FormControl(this.breeding.animal_photo, [
+    title: new FormControl(this.breeding.title),
+    age: new FormControl(this.breeding.age),
+    genre: new FormControl(this.breeding.genre),
+    breed: new FormControl(this.breeding.breed),
+    type: new FormControl(this.breeding.type),
+    pedigree: new FormControl(this.breeding.pedigree),
+    location: new FormControl(this.breeding.location, [
       Validators.required]),
     price: new FormControl(this.breeding.price, [
+      Validators.required]),
+    animal_photo: new FormControl(this.breeding.animal_photo, [
       Validators.required]),
     identification_photo: new FormControl(this.breeding.identification_photo, [
       Validators.required]),

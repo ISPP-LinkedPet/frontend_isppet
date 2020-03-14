@@ -1,20 +1,23 @@
 import { Particular } from '../particular/particular'
 
 export class Publication {
+    // Only moderator
     title: string;
-    animal_photo: string;
     age: number;
     genre: Genres;
     breed: string;
-    create_date: Date;
+    type: string;
+    pedigree: boolean;
+    // Particular must fill
     identification_photo: string;
     vaccine_passaport: string;
+    location: string;
+    animal_photo: string[];
+    // Internal assignation
+    particular: Particular;
+    create_date: Date;
     document_status: DocumentStatus;
     transaction_status: TransactionStatus;
-    type: string;
-    location: string;
-    pedigree: boolean;
-    particular: Particular;
 }
 
 const enum Genres{
