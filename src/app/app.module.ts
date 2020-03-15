@@ -29,7 +29,8 @@ import {BreedingService} from './services/breeding/breeding.service';
 import {ConfigService} from './services/config/config.service';
 import {BreedingCreateComponent} from './components/breeding/breeding-form/breeding-form.component';
 import {ErrorComponent} from './components/error/error.component';
-import {CreateComponent} from './pages/breeding/create/create.component';
+import {CreateComponent as CreateBreedingComponent} from './pages/breeding/create/create.component';
+import {CreateComponent as CreateAdoptionComponent} from './pages/adoption/create/create.component';
 import {LoginService} from './services/login/login.service';
 import {AdoptionListComponent} from './components/adoption/adoption-list/adoption-list.component';
 import { AdotionFormComponent } from './components/adoption/adotion-form/adotion-form.component';
@@ -43,7 +44,7 @@ import { AdotionFormComponent } from './components/adoption/adotion-form/adotion
     FooterComponent,
     BreedingCreateComponent,
     ErrorComponent,
-    CreateComponent,
+    CreateBreedingComponent,
     BreedingDisplayComponent,
     LoginComponent,
     RegisterComponent,
@@ -53,7 +54,8 @@ import { AdotionFormComponent } from './components/adoption/adotion-form/adotion
     AdoptionListComponent,
     AdoptionListPageComponent,
     AdotionFormComponent,
-    SlidePanelComponent
+    SlidePanelComponent,
+    CreateAdoptionComponent
   ],
   imports: [
     BrowserModule,
