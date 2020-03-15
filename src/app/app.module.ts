@@ -21,7 +21,6 @@ import {SlidePanelComponent} from './components/auxiliar/slide-panel/slide-panel
 // Pages
 import {HomeComponent} from './pages/home/home.component';
 import {BreedingListPageComponent} from './pages/breeding/list/breeding-list-page.component';
-import {BreedingDisplayPageComponent} from './pages/breeding/display/breeding-display-page.component';
 import {BreedingDisplayComponent} from './components/breeding/breeding-display/breeding-display.component';
 import {AdoptionListPageComponent} from './pages/adoption/list/adoption-list-page.component';
 // Services
@@ -57,7 +56,6 @@ import { LoginRegisterComponent } from './pages/login-register/login-register.co
     AdoptionListPageComponent,
     AdotionFormComponent,
     SlidePanelComponent,
-    BreedingDisplayPageComponent,
     CreateAdoptionComponent,
     LoginRegisterComponent
   ],
