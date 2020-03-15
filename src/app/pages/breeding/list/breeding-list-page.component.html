@@ -1,5 +1,8 @@
 <app-header></app-header>
-<app-breeding-list></app-breeding-list>
+<slide-panel [activePane]="isLeftVisible ? 'left' : 'right'">
+    <div leftPane><app-adoption-list></app-adoption-list></div>
+    <div rightPane><app-adoption-display></app-adoption-display></div>
+</slide-panel>
 <app-footer></app-footer>
 
 

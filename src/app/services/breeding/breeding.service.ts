@@ -14,5 +14,10 @@ export class BreedingService {
 
   getAllBreedings(token: string) {
     return this.requestService.request('GET', `${environment.endpoint}/breeding/offers`, {}, {access_token: token}, true);
+  }
 
-}}
+  getBreedingById(token: string, id: string) {
+      return this.requestService.request('GET', `${environment.endpoint}/breeding/${id}`, {}, {access_token: token}, true);
+  }
+
+}

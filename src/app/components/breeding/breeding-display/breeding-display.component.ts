@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {BreedingListPageComponent} from '../../../pages/breeding/list/breeding-list-page.component'
+import {BreedingService} from 'src/app/services/breeding/breeding.service'
 import {PopoverModule} from "ngx-smart-popover";
 
 @Component({
@@ -10,7 +12,7 @@ import {PopoverModule} from "ngx-smart-popover";
 
 export class BreedingDisplayComponent implements OnInit {
 
-  constructor() { }
+  constructor(public breedingListPageComponent: BreedingListPageComponent, public breedingService: BreedingService ) { }
 
   ngOnInit(): void {
   }

@@ -9,7 +9,17 @@ import { element } from 'protractor';
   styleUrls: ['./breeding-list-page.component.css']
 })
 export class BreedingListPageComponent implements OnInit {
+
+  isLeftVisible = true;
+  selectedBreeding:any;
+  constructor(private breedingService: BreedingService) { }
+
   ngOnInit(): void {
+  }
+
+  loadBreeding(id: string){
+    this.breedingService.getBreedingById(localStorage.getItem('access_token'), id).then(res => this.selectedBreeding = res.breeding)
+    console.log(this.selectedBreeding)
   }
 
 }
