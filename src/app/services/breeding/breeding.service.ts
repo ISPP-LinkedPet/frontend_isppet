@@ -1,4 +1,3 @@
-
 import {Injectable} from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {RequestService} from '../request/request.service';
@@ -12,7 +11,11 @@ export class BreedingService {
       private requestService: RequestService,
   ) { }
 
-  getAllBreedings(token: string) {
-    return this.requestService.request('GET', `${environment.endpoint}/breeding/offers`, {}, {access_token: token}, true);
+  getAllBreedings() {
+    return this.requestService.request('GET', `${environment.endpoint}/breeding/offers`, {}, {}, true);
+  }
 
-}}
+  createBreeding(data: any) {
+    return this.requestService.request('POST', `${environment.endpoint}/breeding`, data, {}, true);
+  }
+}

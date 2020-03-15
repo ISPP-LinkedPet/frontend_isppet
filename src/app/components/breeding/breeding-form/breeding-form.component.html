@@ -19,7 +19,7 @@
                           <option value='' [defaultSelected]=true>Seleccione genero</option>
                           <option value='Male'>Macho</option>
                           <option value='Female'>Hembra</option>
-                      </select> 
+                      </select>
                   </div>
                   <div class="form-group has-danger col-sm" *ngIf="!isValid">
                       <app-error [variable]="'genre'" [text]="'Genero'"></app-error>
@@ -40,7 +40,7 @@
                         <option value='Dog'>Perro</option>
                         <option value='Cat'>Gato</option>
                         <option value='Horse'>Caballo</option>
-                    </select> 
+                    </select>
                   </div>
                   <div class="form-group has-danger col-sm" *ngIf="!isValid">
                       <app-error [variable]="'type'" [text]="'Tipo animal'"></app-error>
@@ -76,7 +76,7 @@
                   <label for="animal_photo">Imagenes</label>
                   <div class="input-group mb-3">
                     <div class="custom-file">
-                      <input type="file" class="custom-file-input" formControlName="animal_photo" id="animal_photo" multiple >
+                      <input #animalPhoto type="file" class="custom-file-input" formControlName="animal_photo" id="animal_photo" multiple >
                       <label class="custom-file-label" for="animal_photo">Seleccionar imagenes</label>
                     </div>
                     <div class="input-group-append">
@@ -97,7 +97,7 @@
                     <label for="identification_photo">Identificacion de mascota</label>
                     <div class="input-group mb-3">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" formControlName="identification_photo" id="identification_photo" multiple>
+                        <input #identificationPhoto type="file" class="custom-file-input" formControlName="identification_photo" id="identification_photo" multiple>
                         <label class="custom-file-label" for="identification">Seleccionar imagenes</label>
                       </div>
                       <div class="input-group-append">
@@ -114,7 +114,7 @@
                     <label for="vaccine_passaport">Cartilla de vacunacion</label>
                     <div class="input-group mb-3">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" formControlName="vaccine_passaport" id="vaccine_passaport" multiple>
+                        <input #vaccinePassaport type="file" class="custom-file-input" formControlName="vaccine_passaport" id="vaccine_passaport" multiple>
                         <label class="custom-file-label" for="vaccine_passaport">Seleccionar imagenes</label>
                       </div>
                       <div class="input-group-append">
