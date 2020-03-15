@@ -87,6 +87,13 @@
                 <div class="form-group has-danger col-sm" *ngIf="!isValid">
                   <app-error [variable]="'animal_photo'" [text]="'Imagenes'"></app-error>
                 </div>
+                  <div class="form-group col-sm">
+                      <label for="genre">Zona</label>
+                      <input type="text" class="form-control" id="location" formControlName="location">
+                  </div>
+                  <div class="form-group has-danger col-sm" *ngIf="!isValid">
+                      <app-error [variable]="'genre'" [text]="'Genero'"></app-error>
+                  </div>
               </div>
             </fieldset>
             <hr>

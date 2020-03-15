@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {AdoptionService} from '../../../services/adoption/adoption.service';
 import {AdoptionListPageComponent} from '../../../pages/adoption/list/adoption-list-page.component'
 import {AdoptionDisplayComponent} from '../adoption-display/adoption-display.component';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-adoption-list',
@@ -11,6 +12,7 @@ import {AdoptionDisplayComponent} from '../adoption-display/adoption-display.com
 })
 export class AdoptionListComponent implements OnInit {
   adoptions = new Array();
+  env = environment.endpoint;
   public adoptionDisplayComponent: AdoptionDisplayComponent;
   constructor(private adoptionService: AdoptionService, public adoptionListPageComponent: AdoptionListPageComponent) { }
 

@@ -68,15 +68,16 @@ export class BreedingCreateComponent implements OnInit {
     const vaccinePassaport = this.vaccinePassaport.nativeElement.files;
     const identificationPhoto = this.identificationPhoto.nativeElement.files;
 
-    const formData: FormData = new FormData(); 
+    const formData: FormData = new FormData();
     // photo
     for(let i = 0; i < animalPhoto.length; i++) formData.append('animal_photo', animalPhoto[i], animalPhoto[i].name);
-    for(let i = 0; i < vaccinePassaport.length; i++) formData.append('vaccine_passaport', vaccinePassaport[i], vaccinePassaport[i].name);
+    for(let i = 0; i < vaccinePassaport.length; i++) formData.append('vaccine_passport', vaccinePassaport[i], vaccinePassaport[i].name);
     for(let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
 
     // field
     formData.append('price', this.breedingForm.value.price);
-  
+    formData.append('location', this.breedingForm.value.location);
+
     this.breedingService.createBreeding(formData).then(x => console.log(x));
   }
 
