@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import {UserAccount} from '../../../models/user_account/user-account';
 import {LoginService} from '../../../services/login/login.service';
 import {HomeComponent} from '../../../pages/home/home.component';
+import { LoginRegisterComponent } from 'src/app/pages/login-register/login-register.component';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,7 @@ import {HomeComponent} from '../../../pages/home/home.component';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService: LoginService, public homeComponent: HomeComponent) { }
+  constructor(private loginService: LoginService, public homeComponent: LoginRegisterComponent, private router: Router) { }
   isValid = true;
   userAccount = new UserAccount();
   profileForm = new FormGroup({
@@ -34,8 +36,10 @@ export class LoginComponent implements OnInit {
     // send credential to backend
     this.loginService.sendCredentials(this.profileForm).then(res =>
       localStorage.setItem('access_token', res.access_token)
+    ).then(res=>
+      this.router.navigate(['/'])
     ).catch( error => {
-
+      
     });
   }
 

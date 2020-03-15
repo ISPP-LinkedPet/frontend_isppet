@@ -34,6 +34,7 @@ import {CreateComponent as CreateAdoptionComponent} from './pages/adoption/creat
 import {LoginService} from './services/login/login.service';
 import {AdoptionListComponent} from './components/adoption/adoption-list/adoption-list.component';
 import { AdotionFormComponent } from './components/adoption/adotion-form/adotion-form.component';
+import { LoginRegisterComponent } from './pages/login-register/login-register.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { AdotionFormComponent } from './components/adoption/adotion-form/adotion
     AdoptionListPageComponent,
     AdotionFormComponent,
     SlidePanelComponent,
-    CreateAdoptionComponent
+    CreateAdoptionComponent,
+    LoginRegisterComponent
   ],
   imports: [
     BrowserModule,

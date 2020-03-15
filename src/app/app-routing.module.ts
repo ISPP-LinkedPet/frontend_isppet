@@ -8,6 +8,7 @@ import { BreedingListPageComponent } from './pages/breeding/list/breeding-list-p
 import { from } from 'rxjs';
 import { AdoptionDisplayComponent } from './components/adoption/adoption-display/adoption-display.component';
 import { BreedingDisplayComponent } from './components/breeding/breeding-display/breeding-display.component';
+import { LoginRegisterComponent } from './pages/login-register/login-register.component';
 
 
 
@@ -18,7 +19,8 @@ const routes: Routes = [
 {path: 'adoption-display', component: AdoptionDisplayComponent},
 {path: 'breeding', component: CreateComponentBreeding},
 {path: 'adoption', component: CreateComponentAdoption},
-{path: 'adoption-list', component: AdoptionListPageComponent}
+{path: 'adoption-list', component: AdoptionListPageComponent},
+{path: 'login', component: LoginRegisterComponent}
 ];
 
 @NgModule({
