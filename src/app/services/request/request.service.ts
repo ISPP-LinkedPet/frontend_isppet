@@ -16,13 +16,14 @@ export class RequestService {
     data: any,
     headers: any,
     auth: boolean = true,
+    multipart: boolean = false,
   ) {
     if (['POST', 'PUT', 'DELETE'].includes(method)) {
       auth = true;
     }
     if (auth) {
       const accessToken = localStorage.getItem('access_token');
-      headers.Authorization = 'Bearer ' + accessToken;
+      headers['Authorization'] = 'Bearer ' + accessToken;
     }
 
     headers = {headers};
