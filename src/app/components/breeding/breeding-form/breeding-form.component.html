@@ -5,134 +5,174 @@
         <form [formGroup]="breedingForm" (ngSubmit)="onSubmit()">
             <fieldset>
                 <legend class="card-title">Información básica</legend>
+
                 <div class="row">
-                  <div class="form-group col-sm">
+
+                  <div class="form-group col-sm" *ngIf="isValidBreed">
                       <label for="age">Raza</label>
-                      <input type="text" class="form-control" id="breed" [readOnly]="!document_verified" formControlName="breed">
+                      <input type="text" class="form-control" id="breed" [readOnly]="!documentVerified" formControlName="breed" (change)="validateBreed()">
                   </div>
-                  <div class="form-group has-danger col-sm" *ngIf="!isValid">
-                    <app-error [variable]="'breed'" [text]="'Raza'"></app-error>
+                  <div class="form-group has-danger col-sm" *ngIf="!isValidBreed">
+                      <label class="form-control-label" for="age">Raza</label>
+                      <input type="text" class="form-control is-invalid" id="breed" [readOnly]="!documentVerified" formControlName="breed" (change)="validateBreed()">
+                      <div class="invalid-feedback">Parece que se ha equivocado</div>
                   </div>
-                  <div class="form-group col-sm">
+
+                  <div class="form-group col-sm" *ngIf="isValidGenre">
                       <label for="genre">Genero</label>
-                      <select class="form-control" id="genre" [attr.disabled]="!document_verified" formControlName="genre">
+                      <select class="form-control" id="genre" [attr.disabled]="!documentVerified" formControlName="genre" (change)="validateGenre()">
                           <option value='' [defaultSelected]=true>Seleccione genero</option>
                           <option value='Male'>Macho</option>
                           <option value='Female'>Hembra</option>
                       </select>
                   </div>
-                  <div class="form-group has-danger col-sm" *ngIf="!isValid">
-                      <app-error [variable]="'genre'" [text]="'Genero'"></app-error>
+                  <div class="form-group has-danger col-sm" *ngIf="!isValidGenre">
+                      <label class="form-control-label" for="age">Genero</label>
+                      <select class="form-control is-invalid" id="genre" [attr.disabled]="!documentVerified" formControlName="genre" (change)="validateGenre()">
+                          <option value='' [defaultSelected]=true>Seleccione genero</option>
+                          <option value='Male'>Macho</option>
+                          <option value='Female'>Hembra</option>
+                      </select>
+                      <div class="invalid-feedback">Parece que se ha equivocado</div>
                   </div>
-                  <div class="form-group col-sm">
+
+                  <div class="form-group col-sm" *ngIf="isValidAge">
                       <label for="age">Edad</label>
-                      <input type="date" class="form-control" id="age" [readOnly]="!document_verified" formControlName="age">
+                      <input type="date" class="form-control" id="age" [readOnly]="!documentVerified" formControlName="age" (change)="validateAge()">
                   </div>
-                  <div class="form-group has-danger col-sm" *ngIf="!isValid">
-                    <app-error [variable]="'age'" [text]="'Edad'"></app-error>
+                  <div class="form-group has-danger col-sm" *ngIf="!isValidAge">
+                      <label class="form-control-label" for="age">Edad</label>
+                      <input type="date" class="form-control is-invalid" id="age" [readOnly]="!documentVerified" formControlName="age" (change)="validateAge()">
+                      <div class="invalid-feedback">Parece que se ha equivocado</div>
                   </div>
+
                 </div>
+
                 <div class="row">
-                  <div class="form-group col-sm">
+
+                  <div class="form-group col-sm" *ngIf="isValidType">
                     <label for="type">Tipo animal</label>
-                    <select class="form-control" id="type" [attr.disabled]="!document_verified" formControlName="type">
+                    <select class="form-control" id="type" [attr.disabled]="!documentVerified" formControlName="type" (change)="validateType()">
                         <option value='' [defaultSelected]=true>Seleccione tipo animal</option>
                         <option value='Dog'>Perro</option>
                         <option value='Cat'>Gato</option>
                         <option value='Horse'>Caballo</option>
                     </select>
                   </div>
-                  <div class="form-group has-danger col-sm" *ngIf="!isValid">
-                      <app-error [variable]="'type'" [text]="'Tipo animal'"></app-error>
+                  <div class="form-group has-danger col-sm" *ngIf="!isValidType">
+                      <label class="form-control-label" for="type">Tipo de animal</label>
+                      <select class="form-control is-invalid" id="type" [attr.disabled]="!documentVerified" formControlName="type" (change)="validateType()">
+                          <option value='' [defaultSelected]=true>Seleccione tipo animal</option>
+                          <option value='Dog'>Perro</option>
+                          <option value='Cat'>Gato</option>
+                          <option value='Horse'>Caballo</option>
+                      </select>
+                      <div class="invalid-feedback">Parece que se ha equivocado</div>
                   </div>
-                  <div class="form-group col-sm">
+
+                  <div class="form-group col-sm" *ngIf="isValidPrice">
                     <label for="age">Precio</label>
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
                       </div>
-                      <input type="text" class="form-control" formControlName="price" aria-label="Amount (to the nearest dollar)">
+                      <input type="text" class="form-control" formControlName="price" aria-label="Amount (to the nearest dollar)" (change)="validatePrice()">
                       <div class="input-group-append">
                         <span class="input-group-text">.00</span>
                       </div>
                     </div>
                   </div>
-                  <div class="form-group has-danger col-sm" *ngIf="!isValid">
-                    <app-error [variable]="'price'" [text]="'Precio'"></app-error>
+                  <div class="form-group has-danger col-sm" *ngIf="!isValidPrice">
+                      <label class="form-control-label" for="age">Precio</label>
+                      <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text">$</span>
+                          </div>
+                          <input type="text" class="form-control is-invalid" formControlName="price" aria-label="Amount (to the nearest dollar)" (change)="validatePrice()">
+                          <div class="input-group-append">
+                              <span class="input-group-text">.00</span>
+                          </div>
+                          <div class="invalid-feedback">Parece que se ha equivocado</div>
+                      </div>
                   </div>
-                  <div class="form-group col-sm">
+
+                  <div class="form-group col-sm" *ngIf="isValidPedigri">
                     <label for="pedigree">Pedigrí</label>
                     <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input" [attr.disabled]="!document_verified" id="pedigree">
+                      <input type="checkbox" class="custom-control-input" [attr.disabled]="!documentVerified" id="pedigree" (change)="validatePedigree()">
                       <label class="custom-control-label" for="pedigree">Posee pedigrí</label>
                     </div>
                   </div>
-                  <div class="form-group has-danger col-sm" *ngIf="!isValid">
-                      <app-error [variable]="'pedigree'" [text]="'Pedigrí'"></app-error>
+                  <div class="form-group has-danger col-sm" *ngIf="!isValidPedigri">
+                      <label class="form-control-label" for="age">Pedigrí</label>
+                      <div class="custom-control custom-switch">
+                          <input type="checkbox" class="custom-control-input is-invalid" [attr.disabled]="!documentVerified" id="pedigree" (change)="validatePedigree()">
+                          <label class="custom-control-label" for="pedigree">Posee pedigrí</label>
+                      </div>
+                      <div class="invalid-feedback">Parece que se ha equivocado</div>
                   </div>
+
                 </div>
+
               <div class="row">
+
                 <div class="form-group col-4">
                   <label for="animal_photo">Imagenes</label>
                   <div class="input-group mb-3">
                     <div class="custom-file">
-                      <input #animalPhoto type="file" class="custom-file-input" formControlName="animal_photo" id="animal_photo" multiple >
+                      <input #animalPhoto type="file" class="custom-file-input" formControlName="animal_photo" id="animal_photo" (change)="validateAnimalPhoto()" multiple>
                       <label class="custom-file-label" for="animal_photo">Seleccionar imagenes</label>
                     </div>
-                    <div class="input-group-append">
-                      <span class="input-group-text" id="">Subir</span>
-                    </div>
+                    <div class="invalid-feedback" *ngIf="!isValidAnimalPhoto">Parece que se ha equivocado</div>
                   </div>
                 </div>
-                <div class="form-group has-danger col-sm" *ngIf="!isValid">
-                  <app-error [variable]="'animal_photo'" [text]="'Imagenes'"></app-error>
-                </div>
-                  <div class="form-group col-sm">
+
+                  <div class="form-group col-sm" *ngIf="isValidLocation">
                       <label for="genre">Zona</label>
-                      <input type="text" class="form-control" id="location" formControlName="location">
+                      <input type="text" class="form-control" id="location" formControlName="location" (change)="validateLocation()">
                   </div>
-                  <div class="form-group has-danger col-sm" *ngIf="!isValid">
-                      <app-error [variable]="'genre'" [text]="'Genero'"></app-error>
+                  <div class="form-group has-danger col-sm" *ngIf="!isValidLocation">
+                      <label class="form-control-label" for="age">Zona</label>
+                      <input type="text" class="form-control is-invalid" id="location" formControlName="location" (change)="validateLocation()">
+                      <div class="invalid-feedback">Parece que se ha equivocado</div>
                   </div>
+
               </div>
             </fieldset>
             <hr>
             <fieldset>
               <legend class="card-title">Documentación de la mascota</legend>
+
               <div class="row">
-                <div class="form-group col-5">
+
+                <div class="form-group col-6">
                     <label for="identification_photo">Identificacion de mascota</label>
                     <div class="input-group mb-3">
                       <div class="custom-file">
-                        <input #identificationPhoto type="file" class="custom-file-input" formControlName="identification_photo" id="identification_photo" multiple>
-                        <label class="custom-file-label" for="identification">Seleccionar imagenes</label>
+                        <input #identificationPhoto type="file" class="custom-file-input" formControlName="identification_photo" id="identification_photo" (change)="validateIdentificationPhoto()" multiple>
+                        <label class="custom-file-label" for="identification_photo">Seleccionar imagenes</label>
                       </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text" id="">Subir</span>
-                      </div>
+                      <div class="invalid-feedback" *ngIf="!isValidIdentificationPhoto">Parece que se ha equivocado</div>
                     </div>
                 </div>
-                <div class="form-group has-danger col-5" *ngIf="!isValid">
-                  <app-error [variable]="'identification_photo'" [text]="'Identificacion de mascota'"></app-error>
-                </div>
+
               </div>
+
               <div class="row">
+
                 <div class="form-group col-6">
                     <label for="vaccine_passaport">Cartilla de vacunacion</label>
                     <div class="input-group mb-3">
                       <div class="custom-file">
-                        <input #vaccinePassaport type="file" class="custom-file-input" formControlName="vaccine_passaport" id="vaccine_passaport" multiple>
+                        <input #vaccinePassaport type="file" class="custom-file-input" formControlName="vaccine_passaport" id="vaccine_passaport" (change)="validateVaccinePassaport()" multiple>
                         <label class="custom-file-label" for="vaccine_passaport">Seleccionar imagenes</label>
                       </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text" id="">Subir</span>
-                      </div>
+                      <div class="invalid-feedback" *ngIf="!isValidVaccinePassaport">Parece que se ha equivocado</div>
                     </div>
                 </div>
-                <div class="form-group has-danger col-6" *ngIf="!isValid">
-                  <app-error [variable]="'vaccine_passaport'" [text]="'Cartilla de vacunacion'"></app-error>
-                </div>
+
               </div>
+
             </fieldset>
                 <button type="submit" class="btn btn-primary btn-lg button-form">Crear</button>
                 <button type="button" class="btn btn-secondary btn-lg button-form right">Cancelar</button>
