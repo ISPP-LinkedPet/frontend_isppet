@@ -10,16 +10,16 @@ import {AdoptionService} from '../../../services/adoption/adoption.service';
 export class AdoptionListPageComponent implements OnInit {
   isLeftVisible = true;
   selectedAdoption:any;
-  selectedSelther:any;
+  selectedShelter:any;
   constructor(private adoptionService: AdoptionService) { }
 
   ngOnInit(): void {
   }
 
   loadAdoption(id: string){
-    this.adoptionService.getAdoptionById(localStorage.getItem('access_token'), id).then(res=>this.selectedAdoption = res.adoption)
-    this.adoptionService.getAdoptionById(localStorage.getItem('access_token'), id).then(res=>this.selectedSelther = res.adoption)
-    console.log(this.selectedAdoption)
+    this.adoptionService.getAdoptionById(localStorage.getItem('access_token'), id).then(res=>this.selectedAdoption = res.adoption).then(res=>
+      this.adoptionService.getShelterById(localStorage.getItem('access_token'), this.selectedAdoption.shelter_id).then(res=>this.selectedShelter = res.shelter))
+
   }
 
 }

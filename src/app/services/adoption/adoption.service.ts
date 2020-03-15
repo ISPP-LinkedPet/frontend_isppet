@@ -16,4 +16,8 @@ export class AdoptionService {
   getAdoptionById(token: string, id: string) {
     return this.requestService.request('GET', `${environment.endpoint}/adoption/${id}`, {}, {access_token: token}, true);
   }
+
+  getShelterById(token: string, id: string) {
+    return this.requestService.request('GET', `${environment.endpoint}/shelter/${id}`, {}, {access_token: token}, true);
+  }
 }
