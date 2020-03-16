@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
     // send credential to backend
     this.loginService.sendCredentials(this.profileForm).then(res =>
       localStorage.setItem('access_token', res.access_token)
+      
     ).then(res=>
       this.router.navigate(['/'])
     ).catch( error => {
