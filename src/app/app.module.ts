@@ -35,6 +35,7 @@ import {LoginService} from './services/login/login.service';
 import {AdoptionListComponent} from './components/adoption/adoption-list/adoption-list.component';
 import { AdotionFormComponent } from './components/adoption/adotion-form/adotion-form.component';
 import { LoginRegisterComponent } from './pages/login-register/login-register.component';
+import { VetComponent } from './components/vet/vet.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { LoginRegisterComponent } from './pages/login-register/login-register.co
     AdotionFormComponent,
     SlidePanelComponent,
     CreateAdoptionComponent,
-    LoginRegisterComponent
+    LoginRegisterComponent,
+    VetComponent
   ],
   imports: [
     BrowserModule,
