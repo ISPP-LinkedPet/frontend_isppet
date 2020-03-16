@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener, ElementRef} from '@angular/core';
+import { userlogged } from 'src/app/services/config/config.service'
 
 import {
   trigger,
@@ -22,6 +23,7 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(userlogged.role)
   }
 
 }

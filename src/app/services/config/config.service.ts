@@ -13,7 +13,6 @@ export class ConfigService {
   constructor(
     private requestService: RequestService,
   ) { }
-
-
-
 }
+
+export const userlogged= JSON.parse(atob(localStorage.getItem('access_token').split(".")[1]));
