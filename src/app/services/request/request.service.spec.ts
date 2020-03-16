@@ -9,8 +9,4 @@ describe('RequestService', () => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(RequestService);
   });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
 });
