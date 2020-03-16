@@ -6,6 +6,7 @@ import {RequestService} from '../request/request.service';
   providedIn: 'root'
 })
 export class BreedingService {
+  
 
   constructor(
       private requestService: RequestService,
@@ -25,6 +26,10 @@ export class BreedingService {
 
   getPendingBreedings() {
     return this.requestService.request('GET', `${environment.endpoint}/breeding/pending`, {}, {}, true);
+  }
+
+  getPersonalBreedings(id: string) {
+    return this.requestService.request('GET', `${environment.endpoint}/publication/user/${id}`, {}, {}, true);
   }
 
 
