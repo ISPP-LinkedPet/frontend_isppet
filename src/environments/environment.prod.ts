@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  endpoint: 'http://backend-linkedpet-dev.herokuapp.com'
 };
