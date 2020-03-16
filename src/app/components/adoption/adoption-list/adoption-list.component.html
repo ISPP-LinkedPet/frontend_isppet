@@ -1,6 +1,9 @@
 <h1 class="display-4">Adoption List</h1>
 <!--Foreach Advertisement-->
 
+<button routerLink="/adoption" type="button" class="btn btn-success">Crear Anuncio</button>
+
+
 <div class="card border-success mb-3" *ngFor="let adoption of adoptions;">
 <h3 class="card-header">{{adoption.title}}</h3> <!--Advertisement title-->
 <div class="card-body">
