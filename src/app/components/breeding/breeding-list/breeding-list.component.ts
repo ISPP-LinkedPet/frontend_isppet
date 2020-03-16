@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BreedingService } from '../../../services/breeding/breeding.service';
 import {BreedingListPageComponent} from '../../../pages/breeding/list/breeding-list-page.component'
 import {BreedingDisplayComponent} from 'src/app/components/breeding/breeding-display/breeding-display.component';
+import {environment} from 'src/environments/environment';
 
 @Component({
   selector: 'app-breeding-list',
@@ -10,6 +11,7 @@ import {BreedingDisplayComponent} from 'src/app/components/breeding/breeding-dis
 })
 export class BreedingListComponent implements OnInit {
   breedings= new Array();
+  env = environment.endpoint;
 
   public breedingDisplayComponent: BreedingDisplayComponent;
   constructor(
@@ -21,12 +23,12 @@ export class BreedingListComponent implements OnInit {
       const token = localStorage.getItem('access_token');
       this.breedingService.getAllBreedings().then(res => res.forEach(breedingAd => {
         this.breedings.push(breedingAd);
-      })).catch(error => console.log(error));
+      }));
       console.log(this.breedings);
   }
 
   viewDetails(id: string){
     this.breedingListPageComponent.isLeftVisible = !this.breedingListPageComponent.isLeftVisible;
-    this.breedingListPageComponent.loadBreeding(id)
+    this.breedingListPageComponent.loadBreeding(id);
   }
 }

@@ -18,7 +18,7 @@ export class BreedingListPageComponent implements OnInit {
   }
 
   loadBreeding(id: string){
-    this.breedingService.getBreedingById(localStorage.getItem('access_token'), id).then(res => this.selectedBreeding = res.breeding)
+    this.breedingService.getBreedingById(id).then(res => this.selectedBreeding = res.breeding)
     console.log(this.selectedBreeding)
   }
 

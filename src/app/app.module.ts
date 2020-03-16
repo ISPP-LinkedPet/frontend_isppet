@@ -21,7 +21,6 @@ import {SlidePanelComponent} from './components/auxiliar/slide-panel/slide-panel
 // Pages
 import {HomeComponent} from './pages/home/home.component';
 import {BreedingListPageComponent} from './pages/breeding/list/breeding-list-page.component';
-import {BreedingDisplayPageComponent} from './pages/breeding/display/breeding-display-page.component';
 import {BreedingDisplayComponent} from './components/breeding/breeding-display/breeding-display.component';
 import {AdoptionListPageComponent} from './pages/adoption/list/adoption-list-page.component';
 // Services
@@ -36,6 +35,7 @@ import {LoginService} from './services/login/login.service';
 import {AdoptionListComponent} from './components/adoption/adoption-list/adoption-list.component';
 import { AdotionFormComponent } from './components/adoption/adotion-form/adotion-form.component';
 import { LoginRegisterComponent } from './pages/login-register/login-register.component';
+import { VetComponent } from './components/vet/vet.component';
 
 @NgModule({
   declarations: [
@@ -57,9 +57,9 @@ import { LoginRegisterComponent } from './pages/login-register/login-register.co
     AdoptionListPageComponent,
     AdotionFormComponent,
     SlidePanelComponent,
-    BreedingDisplayPageComponent,
     CreateAdoptionComponent,
-    LoginRegisterComponent
+    LoginRegisterComponent,
+    VetComponent
   ],
   imports: [
     BrowserModule,
