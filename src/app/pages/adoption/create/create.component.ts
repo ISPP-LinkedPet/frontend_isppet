@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from 'src/app/services/config/config.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private configService: ConfigService, private router: Router) { }
+
+  userlogged = this.configService.getUserLogged();
+  rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
 
   ngOnInit(): void {
+    if(this.rol!='shelter'){
+      this.router.navigate(['/'])
+    }
   }
 
 }
