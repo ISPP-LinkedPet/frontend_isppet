@@ -1,7 +1,7 @@
 <h1 class="display-5">Lista de Crianza</h1>
 <!--Foreach Advertisement-->
 
-<button type="button" class="btn btn-success">Crear Anuncio</button>
+<button routerLink="/breeding" type="button" class="btn btn-success">Crear Anuncio</button>
 
 <div class="card border-success mb-3" *ngFor="let breedingAd of breedings">
 <h3 class="card-header">{{breedingAd.breed}} en {{breedingAd.location}}</h3>
