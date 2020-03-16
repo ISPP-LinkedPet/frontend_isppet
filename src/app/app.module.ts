@@ -36,6 +36,8 @@ import {AdoptionListComponent} from './components/adoption/adoption-list/adoptio
 import { AdotionFormComponent } from './components/adoption/adotion-form/adotion-form.component';
 import { LoginRegisterComponent } from './pages/login-register/login-register.component';
 import { VetComponent } from './components/vet/vet.component';
+import { BreedingPendingListComponent } from './components/breeding/breeding-pending-list/breeding-pending-list.component';
+import { BreedingPendingListPageComponent } from './pages/breeding/pending-list/breeding-pending-list-page.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { VetComponent } from './components/vet/vet.component';
     SlidePanelComponent,
     CreateAdoptionComponent,
     LoginRegisterComponent,
-    VetComponent
+    VetComponent,
+    BreedingPendingListComponent,
+    BreedingPendingListPageComponent
   ],
   imports: [
     BrowserModule,

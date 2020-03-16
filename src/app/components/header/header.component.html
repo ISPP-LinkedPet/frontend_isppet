@@ -20,6 +20,9 @@
           <a class="nav-link" *ngIf="rol=='particular'" routerLink="/vet">Veterinarios</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" *ngIf="rol=='moderator'" routerLink="/breeding-pending">Pendientes</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" *ngIf="rol=='disconnected'" routerLink="/login">Login</a>
         </li>
         <li class="nav-item">

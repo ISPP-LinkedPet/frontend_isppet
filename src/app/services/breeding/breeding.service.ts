@@ -21,5 +21,11 @@ export class BreedingService {
 
   getBreedingById(id: string) {
     return this.requestService.request('GET', `${environment.endpoint}/breeding/${id}`, {}, {}, true);
-}
+  }
+
+  getPendingBreedings() {
+    return this.requestService.request('GET', `${environment.endpoint}/breeding/pending`, {}, {}, true);
+  }
+
+
 }

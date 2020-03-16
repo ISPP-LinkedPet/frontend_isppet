@@ -10,6 +10,7 @@ import { AdoptionDisplayComponent } from './components/adoption/adoption-display
 import { BreedingDisplayComponent } from './components/breeding/breeding-display/breeding-display.component';
 import { LoginRegisterComponent } from './pages/login-register/login-register.component';
 import { VetComponent } from './components/vet/vet.component';
+import { BreedingPendingListPageComponent } from './pages/breeding/pending-list/breeding-pending-list-page.component';
 
 
 
@@ -22,7 +23,8 @@ const routes: Routes = [
 {path: 'adoption', component: CreateComponentAdoption},
 {path: 'adoption-list', component: AdoptionListPageComponent},
 {path: 'login', component: LoginRegisterComponent},
-{path: 'vet', component: VetComponent}
+{path: 'vet', component: VetComponent},
+{path: 'breeding-pending', component: BreedingPendingListPageComponent}
 
 ];
 
