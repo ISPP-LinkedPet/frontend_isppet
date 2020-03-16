@@ -13,6 +13,9 @@ export class ConfigService {
   constructor(
     private requestService: RequestService,
   ) { }
+
+  getUserLogged(){
+    return localStorage.getItem('access_token') ? JSON.parse(atob(localStorage.getItem('access_token').split(".")[1])) : null;
+  }
 }
 
-export const userlogged= JSON.parse(atob(localStorage.getItem('access_token').split(".")[1]));

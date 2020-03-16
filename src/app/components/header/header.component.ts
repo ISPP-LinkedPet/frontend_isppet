@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener, ElementRef} from '@angular/core';
-import { userlogged } from 'src/app/services/config/config.service'
+import { ConfigService } from 'src/app/services/config/config.service';
+import {Router} from "@angular/router";
 
 import {
   trigger,
@@ -19,11 +20,21 @@ import {
   ]
 })
 export class HeaderComponent implements OnInit {
+  
+  constructor(private configService: ConfigService,private router: Router) { }
+  
+  userlogged = this.configService.getUserLogged();
+  rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
 
-  constructor() { }
 
   ngOnInit(): void {
-    console.log(userlogged.role)
+    console.log(this.rol)
   }
 
+  disconnect(){
+    localStorage.setItem('access_token', '')
+    this.rol = 'disconnected'
+    console.log('hola')
+    window.location.reload();
+  }
 }
