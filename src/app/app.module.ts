@@ -39,6 +39,7 @@ import { VetComponent } from './components/vet/vet.component';
 import { BreedingPendingListComponent } from './components/breeding/breeding-pending-list/breeding-pending-list.component';
 import { BreedingPendingListPageComponent } from './pages/breeding/pending-list/breeding-pending-list-page.component';
 import { BreedingPersonalListComponent } from './components/breeding/breeding-personal-list/breeding-personal-list.component';
+import { PersonalListComponent } from './pages/breeding/personal-list/personal-list.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { BreedingPersonalListComponent } from './components/breeding/breeding-pe
     BreedingPendingListComponent,
     BreedingPendingListPageComponent,
     BreedingPersonalListComponent,
+    PersonalListComponent,
   ],
   imports: [
     BrowserModule,

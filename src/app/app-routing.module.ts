@@ -12,6 +12,7 @@ import { LoginRegisterComponent } from './pages/login-register/login-register.co
 import { VetComponent } from './components/vet/vet.component';
 import { BreedingPendingListPageComponent } from './pages/breeding/pending-list/breeding-pending-list-page.component';
 import { BreedingPersonalListComponent } from './components/breeding/breeding-personal-list/breeding-personal-list.component';
+import { PersonalListComponent } from './pages/breeding/personal-list/personal-list.component';
 
 
 
@@ -19,7 +20,7 @@ const routes: Routes = [
 {path: '', component: HomeComponent},
 {path: 'breeding-display', component: BreedingDisplayComponent},
 {path: 'breeding-list', component: BreedingListPageComponent},
-{path: 'breeding-personal-list', component: BreedingPersonalListComponent},
+{path: 'breeding-personal-list', component: PersonalListComponent},
 {path: 'adoption-display', component: AdoptionDisplayComponent},
 {path: 'breeding', component: CreateComponentBreeding},
 {path: 'adoption', component: CreateComponentAdoption},
