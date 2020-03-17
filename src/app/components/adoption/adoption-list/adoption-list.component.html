@@ -8,14 +8,15 @@
 <h3 class="card-header">{{adoption.title}}</h3> <!--Advertisement title-->
 <div class="card-body">
 <!--Imagen de prueba-->
-<img src="{{env}}{{adoption.animal_photo.split(',')[0]}}">
+<img src="{{env}}/{{adoption.animal_photo.split(',')[0]}}">
 <p class="card-text"><label><b>Tipo de animal: {{adoption.type}}</b></label>   </p>
 <p class="card-text"><label><b>Pedigree:  {{adoption.pedigree}}</b></label>   </p>
 <p class="card-text"><label><b>Edad:  {{adoption.age}}</b></label>   </p>
 <p class="card-text"><label><b>Raza:  {{adoption.breed}}</b></label>   </p>
 <p class="card-text"><label><b>Ubicación:  {{adoption.location}}</b></label>   </p>
-
-<button type="button" class="btn btn-success" (click)="viewDetails(adoption.shelter_id)" >Ver Detalles</button>
+{{adoption.id}}
+{{adoption.publication_id}}
+<button type="button" class="btn btn-success" (click)="viewDetails(adoption.publication_id)" >Ver Detalles</button>
 </div>
 </div>
 
