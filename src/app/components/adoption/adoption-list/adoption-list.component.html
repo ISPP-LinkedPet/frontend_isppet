@@ -14,9 +14,8 @@
 <p class="card-text"><label><b>Edad:  {{adoption.age}}</b></label>   </p>
 <p class="card-text"><label><b>Raza:  {{adoption.breed}}</b></label>   </p>
 <p class="card-text"><label><b>Ubicación:  {{adoption.location}}</b></label>   </p>
-{{adoption.id}}
-{{adoption.publication_id}}
-<button type="button" class="btn btn-success" (click)="viewDetails(adoption.publication_id)" >Ver Detalles</button>
+
+<button type="button" class="btn btn-success" (click)="viewDetails(adoption.adoption_id)" >Ver Detalles</button>
 </div>
 </div>
 
