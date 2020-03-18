@@ -1,12 +1,15 @@
-<h1 class="display-5">Lista de Crianza</h1>
 <!--Foreach Advertisement-->
 
-<button routerLink="/breeding" type="button" *ngIf="'particular'" class="btn btn-success">Crear Anuncio</button>
+<div class="mb-3">
+    <h1 class="display-5">Lista de crianza</h1>
+    <button routerLink="/breeding" type="button" *ngIf="'particular'" class="btn btn-success">Crear Anuncio</button>
+</div>
+
 
 <div class="card border-success mb-3" *ngFor="let breedingAd of breedings">
 <h3 class="card-header">{{breedingAd.breed}} en {{breedingAd.location}}</h3>
 <div class="card-body">
-<img src="{{breedingAd.animal_photo}}">
+<img src="{{breedingAd.animal_photo.split(',')[0].trim()}}">
 <div class="description-content">
 <li><label><b>Edad: </b></label> {{breedingAd.age}} años</li>
 <li><label><b>Pedigree: </b></label>  </li>
