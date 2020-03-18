@@ -2,7 +2,7 @@ div{
     margin-top: 100px;
 }
 .foot{
-    position: fixed;
+    /*position: fixed;*/
    left: 0;
    bottom: 0;
    width: 100%;
