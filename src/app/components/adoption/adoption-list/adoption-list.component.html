@@ -1,12 +1,13 @@
 <h1 class="display-4">Adoption List</h1>
 <!--Foreach Advertisement-->
 
-<button routerLink="/adoption" *ngIf="rol=='shelter'" type="button" class="btn btn-success">Crear Anuncio</button>
+<button routerLink="/adoption" *ngIf="rol=='shelter' || rol=='particular'" type="button" class="btn btn-success">Crear Anuncio</button>
 
 
 <div class="card border-success mb-3" *ngFor="let adoption of adoptions;">
 <h3 class="card-header">{{adoption.title}}</h3> <!--Advertisement title-->
 <div class="card-body">
+    
 <!--Imagen de prueba-->
 <img src="{{env}}/{{adoption.animal_photo.split(',')[0]}}">
 <p class="card-text"><label><b>Tipo de animal: {{adoption.type}}</b></label>   </p>
