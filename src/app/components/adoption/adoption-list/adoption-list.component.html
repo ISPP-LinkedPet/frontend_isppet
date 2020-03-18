@@ -1,8 +1,9 @@
-<h1 class="display-4">Adoption List</h1>
 <!--Foreach Advertisement-->
 
-<button routerLink="/adoption" *ngIf="rol=='shelter'" type="button" class="btn btn-success">Crear Anuncio</button>
-
+<div class="mb-3">
+    <h1 class="display-4">Lista de adopciones</h1>
+    <button routerLink="/adoption" *ngIf="rol=='shelter'" type="button" class="btn btn-success">Crear Anuncio</button>
+</div>
 
 <div class="card border-success mb-3" *ngFor="let adoption of adoptions;">
 <h3 class="card-header">{{adoption.title}}</h3> <!--Advertisement title-->
