@@ -1,10 +1,14 @@
-<h1 class="display-5">Mis Anuncios de Crianza</h1>
-<!--Foreach Advertisement-->
+
+<div class="mb-3">
+    <h1 class="display-4">Mis anuncios de crianza</h1>
+</div>
 
 <div class="card border-success mb-3" *ngFor="let breedingAd of personalBreedings">
 <h3 class="card-header">{{breedingAd.breed}} en {{breedingAd.location}}</h3>
+<h6 class="card-header bg-success" *ngIf="breedingAd.transaction_status=='Completed'">{{breedingAd.transaction_status}}</h6>
+<h6 class="card-header bg-warning" *ngIf="breedingAd.transaction_status=='In progress'">{{breedingAd.transaction_status}}</h6>
 <div class="card-body">
-<img src="{{breedingAd.animal_photo}}">
+<img src="{{breedingAd.animal_photo.split(',')[0]}}">
 <div class="description-content">
 <li><label><b>Edad: </b></label> {{breedingAd.age}} años</li>
 <li><label><b>Pedigree: </b></label>  </li>
@@ -14,4 +18,4 @@
 </div>
 </div>
 
-<!--End Foreach-->
+

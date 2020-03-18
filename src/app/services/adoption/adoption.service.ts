@@ -8,6 +8,7 @@ import {ConfigService} from '../config/config.service';
   providedIn: 'root'
 })
 export class AdoptionService {
+  push: any;
 
   constructor(private requestService: RequestService, private configService: ConfigService) { }
 
@@ -30,5 +31,9 @@ export class AdoptionService {
 
   createAdoption(data: any) {
     return this.requestService.request('POST', `${environment.endpoint}/adoption`, data, {}, true);
+  }
+
+  getPersonalAdoptions(id: string) {
+    return this.requestService.request('GET', `${environment.endpoint}/adoption/particular`, {}, {}, true);
   }
 }
