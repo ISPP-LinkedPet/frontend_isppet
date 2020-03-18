@@ -12,23 +12,24 @@ import { LoginRegisterComponent } from './pages/login-register/login-register.co
 import { VetComponent } from './components/vet/vet.component';
 import { BreedingPendingListPageComponent } from './pages/breeding/pending-list/breeding-pending-list-page.component';
 import { BreedingPersonalListComponent } from './components/breeding/breeding-personal-list/breeding-personal-list.component';
+import { AdoptionListComponent } from './components/adoption/adoption-list/adoption-list.component';
+import { AdoptionPersonalListComponent } from './components/adoption/adoption-personal-list/adoption-personal-list.component';
 import { PersonalListComponent } from './pages/breeding/personal-list/personal-list.component';
-
-
+import { PersonalListAdoptionComponent } from './pages/adoption/personal-list-adoption/personal-list-adoption.component';
 
 const routes: Routes = [
 {path: '', component: HomeComponent},
 {path: 'breeding-display', component: BreedingDisplayComponent},
-{path: 'breeding-list', component: BreedingListPageComponent},
-{path: 'breeding-personal-list', component: PersonalListComponent},
 {path: 'adoption-display', component: AdoptionDisplayComponent},
+{path: 'breeding-list', component: BreedingListPageComponent},
+{path: 'adoption-list', component: AdoptionListPageComponent},
+{path: 'breeding-personal-list', component: PersonalListComponent},
+{path: 'adoption-personal-list', component: PersonalListAdoptionComponent},
 {path: 'breeding', component: CreateComponentBreeding},
 {path: 'adoption', component: CreateComponentAdoption},
-{path: 'adoption-list', component: AdoptionListPageComponent},
 {path: 'login', component: LoginRegisterComponent},
 {path: 'vet', component: VetComponent},
 {path: 'breeding-pending', component: BreedingPendingListPageComponent}
-
 ];
 
 @NgModule({

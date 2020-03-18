@@ -2,23 +2,22 @@
 
 <div class="mb-3">
     <h1 class="display-4">Lista de adopciones</h1>
-    <button routerLink="/adoption" *ngIf="rol=='shelter'" type="button" class="btn btn-success">Crear Anuncio</button>
+    <button routerLink="/adoption" *ngIf="rol=='shelter' || rol=='particular'"  type="button" class="btn btn-success">Crear Anuncio</button>
 </div>
 
 <div class="card border-success mb-3" *ngFor="let adoption of adoptions;">
 <h3 class="card-header">{{adoption.title}}</h3> <!--Advertisement title-->
 <div class="card-body">
+    
 <!--Imagen de prueba-->
 <img src="{{env}}{{adoption.animal_photo.split(',')[0]}}">
-<div class="description-content">
-<li><label><b>Tipo de animal: {{adoption.type}}</b></label>   </li>
-<li><label><b>Pedigree:  {{adoption.pedigree}}</b></label>   </li>
-<li><label><b>Edad:  {{adoption.age}}</b></label>   </li>
-<li><label><b>Raza:  {{adoption.breed}}</b></label>   </li>
-<li><label><b>Ubicación:  {{adoption.location}}</b></label>   </li>
-</div>
+<p class="card-text"><label><b>Tipo de animal: {{adoption.type}}</b></label>   </p>
+<p class="card-text"><label><b>Pedigree:  {{adoption.pedigree}}</b></label>   </p>
+<p class="card-text"><label><b>Edad:  {{adoption.age}}</b></label>   </p>
+<p class="card-text"><label><b>Raza:  {{adoption.breed}}</b></label>   </p>
+<p class="card-text"><label><b>Ubicación:  {{adoption.location}}</b></label>   </p>
 
-<button type="button" class="btn btn-success" (click)="viewDetails(adoption.shelter_id)" >Ver Detalles</button>
+<button type="button" class="btn btn-success" (click)="viewDetails(adoption.adoption_id)" >Ver Detalles</button>
 </div>
 </div>
 

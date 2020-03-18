@@ -5,7 +5,6 @@
     <button routerLink="/breeding" type="button" *ngIf="'particular'" class="btn btn-success">Crear Anuncio</button>
 </div>
 
-
 <div class="card border-success mb-3" *ngFor="let breedingAd of breedings">
 <h3 class="card-header">{{breedingAd.breed}} en {{breedingAd.location}}</h3>
 <div class="card-body">
@@ -20,4 +19,3 @@
 </div>
 </div>
 
-<!--End Foreach-->

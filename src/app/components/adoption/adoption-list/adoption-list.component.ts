@@ -14,18 +14,27 @@ import { ConfigService } from 'src/app/services/config/config.service';
 export class AdoptionListComponent implements OnInit {
   adoptions = new Array();
   env = environment.endpoint;
+  userlogged = this.configService.getUserLogged();
+  rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
   public adoptionDisplayComponent: AdoptionDisplayComponent;
+
   constructor(private configService: ConfigService,private adoptionService: AdoptionService, public adoptionListPageComponent: AdoptionListPageComponent) { }
 
   ngOnInit(): void {
-    this.adoptionService.getAllAdoptions(localStorage.getItem('access_token')).then(res=>res.forEach(element => {
-      this.adoptions.push(element)
-    }))
+
+    if(this.rol=="shelter"){
+      this.adoptionService.getAdoptionByShelterLogged().then(res=>res.forEach(element=> {
+        this.adoptions.push(element)
+      }))
+    }else{
+      this.adoptionService.getAllAdoptions(localStorage.getItem('access_token')).then(res=>res.forEach(element => {
+        this.adoptions.push(element)
+      }))
+    }
     console.log(this.adoptions)
   }
 
-  userlogged = this.configService.getUserLogged();
-  rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
+
 
   viewDetails(id: string){
     this.adoptionListPageComponent.isLeftVisible = !this.adoptionListPageComponent.isLeftVisible;

@@ -15,7 +15,7 @@ export class CreateComponent implements OnInit {
   rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
 
   ngOnInit(): void {
-    if(this.rol!='shelter'){
+    if(!(this.rol=='shelter' || this.rol=='particular')){
       this.router.navigate(['/'])
     }
   }
