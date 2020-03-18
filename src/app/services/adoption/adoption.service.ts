@@ -6,6 +6,7 @@ import {RequestService} from '../request/request.service';
   providedIn: 'root'
 })
 export class AdoptionService {
+  push: any;
 
   constructor(private requestService: RequestService) { }
 
@@ -19,5 +20,9 @@ export class AdoptionService {
 
   getShelterById(token: string, id: string) {
     return this.requestService.request('GET', `${environment.endpoint}/shelter/${id}`, {}, {access_token: token}, true);
+  }
+
+  getPersonalAdoptions(id: string) {
+    return this.requestService.request('GET', `${environment.endpoint}/adoption/particular`, {}, {}, true);
   }
 }
