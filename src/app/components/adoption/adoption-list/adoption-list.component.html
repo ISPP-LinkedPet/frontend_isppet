@@ -10,11 +10,13 @@
 <div class="card-body">
 <!--Imagen de prueba-->
 <img src="{{env}}{{adoption.animal_photo.split(',')[0]}}">
-<p class="card-text"><label><b>Tipo de animal: {{adoption.type}}</b></label>   </p>
-<p class="card-text"><label><b>Pedigree:  {{adoption.pedigree}}</b></label>   </p>
-<p class="card-text"><label><b>Edad:  {{adoption.age}}</b></label>   </p>
-<p class="card-text"><label><b>Raza:  {{adoption.breed}}</b></label>   </p>
-<p class="card-text"><label><b>Ubicación:  {{adoption.location}}</b></label>   </p>
+<div class="description-content">
+<li><label><b>Tipo de animal: {{adoption.type}}</b></label>   </li>
+<li><label><b>Pedigree:  {{adoption.pedigree}}</b></label>   </li>
+<li><label><b>Edad:  {{adoption.age}}</b></label>   </li>
+<li><label><b>Raza:  {{adoption.breed}}</b></label>   </li>
+<li><label><b>Ubicación:  {{adoption.location}}</b></label>   </li>
+</div>
 
 <button type="button" class="btn btn-success" (click)="viewDetails(adoption.shelter_id)" >Ver Detalles</button>
 </div>
