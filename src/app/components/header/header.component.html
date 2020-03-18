@@ -28,7 +28,9 @@
             <a class="nav-link" routerLink="/breeding-personal-list">Mis Anuncios de Crianza</a>
             </div>
         </li>
-
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="rol=='disconnected'" routerLink="/login">Login</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" *ngIf="rol!='disconnected'" routerLink="/" (click)="disconnect()">Logout</a>
         </li>

@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Router} from "@angular/router";
 import { Breeding } from 'src/app/models/breeding/breeding';
 import { BreedingService } from 'src/app/services/breeding/breeding.service';
+import { ConfigService } from '../../../services/config/config.service';
 
 @Component({
   selector: 'app-breeding-form',
@@ -30,27 +31,32 @@ export class BreedingCreateComponent implements OnInit {
   isValidVaccinePassaport = true;
 
   breeding = new Breeding();
-  creating = true;
-  documentVerified: boolean;
+
+  userlogged = this.configService.getUserLogged();
+  rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
+
+  @Input()
+  creating: boolean;
+
   // form
   breedingForm = new FormGroup({
     title: new FormControl(
-      this.breeding.title, []
+      this.breeding.title, [this.requiredInput()]
     ),
     age: new FormControl(
-      this.breeding.age, []
+      this.breeding.age, [this.requiredInput()]
     ),
     genre: new FormControl(
-      this.breeding.genre, []
+      this.breeding.genre, [this.requiredInput()]
     ),
     breed: new FormControl(
-      this.breeding.breed, []
+      this.breeding.breed, [this.requiredInput()]
     ),
     type: new FormControl(
-      this.breeding.type, []
+      this.breeding.type, [this.requiredInput()]
     ),
     pedigree: new FormControl(
-      this.breeding.pedigree, []
+      this.breeding.pedigree, [this.requiredInput()]
     ),
     location: new FormControl(
       this.breeding.location, [Validators.required, Validators.minLength(0)]
@@ -71,15 +77,24 @@ export class BreedingCreateComponent implements OnInit {
 
   constructor(
     private breedingService: BreedingService,
-    private router: Router
+    private router: Router,
+    private configService: ConfigService
   ) { }
 
   ngOnInit(): void {
-    this.documentVerified = false;
+    console.log(this.rol)
+  }
+
+  requiredInput(){
+    if(!this.creating){
+      return Validators.required
+    }
   }
 
   validateBreed() {
-    this.isValidBreed = this.creating && this.breedingForm.get('breed').valid;
+    if(!this.creating && this.rol=='moderator'){
+      this.isValidBreed = this.breedingForm.get('breed').valid;
+    }
   }
   validatePrice() {
     this.isValidPrice = this.breedingForm.get('price').valid;
@@ -90,16 +105,24 @@ export class BreedingCreateComponent implements OnInit {
     }
   }
   validateGenre() {
-    this.isValidGenre = this.creating && this.breedingForm.get('genre').valid;
+    if(!this.creating && this.rol=='moderator'){
+      this.isValidGenre = this.breedingForm.get('genre').valid;
+    }
   }
   validateAge() {
-    this.isValidAge = this.creating && this.breedingForm.get('age').valid;
+    if(!this.creating && this.rol=='moderator'){
+      this.isValidAge = this.breedingForm.get('age').valid;
+    }
   }
   validateType() {
-    this.isValidType = this.creating && this.breedingForm.get('type').valid;
+    if(!this.creating && this.rol=='moderator'){
+      this.isValidType = this.breedingForm.get('type').valid;
+    }
   }
   validatePedigree() {
-    this.isValidPedigri = this.creating && this.breedingForm.get('pedigree').valid;
+    if(!this.creating && this.rol=='moderator'){
+      this.isValidPedigri = this.breedingForm.get('pedigree').valid;
+    }
   }
   validateAnimalPhoto() {
     this.isValidAnimalPhoto = this.breedingForm.get('animal_photo').valid;
