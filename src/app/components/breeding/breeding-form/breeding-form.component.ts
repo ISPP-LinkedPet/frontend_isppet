@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+import {Router} from "@angular/router";
 import { Breeding } from 'src/app/models/breeding/breeding';
 import { BreedingService } from 'src/app/services/breeding/breeding.service';
 
@@ -70,6 +71,7 @@ export class BreedingCreateComponent implements OnInit {
 
   constructor(
     private breedingService: BreedingService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -138,7 +140,8 @@ export class BreedingCreateComponent implements OnInit {
     formData.append('price', this.breedingForm.value.price);
     formData.append('location', this.breedingForm.value.location);
 
-    this.breedingService.createBreeding(formData).then(x => console.log(x));
+    this.breedingService.createBreeding(formData).then(x => console.log(x)).then(x => alert("¡La crianza se ha creado correctamente! \n Ahora debe de revisarlo un moderador"))
+    .then(x=>this.router.navigate(['/breeding-list']));
   }
 
 }
