@@ -33,7 +33,7 @@ const routes: Routes = [
 {path: 'login', component: LoginRegisterComponent},
 {path: 'vet', component: VetComponent},
 {path: 'breeding-pending', component: BreedingPendingListPageComponent},
-{path: 'breeding-edit/:id', component: EditComponentBreeding}
+{path: 'breeding-edit/:id', component: EditComponentBreeding},
 {path: 'request', component: RequestListComponent},
 {path: 'adoption-pending', component: AdoptionPendingListPageComponent}
 ];
