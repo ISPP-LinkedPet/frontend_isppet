@@ -4,10 +4,10 @@
 <div class="card border-success mb-3" *ngFor="let adoption of pendingAdoptions">
 <h3 class="card-header">{{adoption.breed}} en {{adoption.location}}</h3>
 <div class="card-body">
-<img src="{{env}}{{adoption.animal_photo.split(',')[0]}}">
+<img src="{{env}}/{{adoption.animal_photo.split(',')[0]}}">
 <div class="description-content">
-<li><label><b>Foto de identificación:</b><img src="{{env}}{{adoption.identification_photo.split(',')[0]}}"></label> </li>
-<li><label><b>Documento de vacunas:</b><img src="{{env}}{{adoption.vaccine_passport.split(',')[0]}}"></label> </li>
+<li><label><b>Foto de identificación:</b><img src="{{env}}/{{adoption.identification_photo.split(',')[0]}}"></label> </li>
+<li><label><b>Documento de vacunas:</b><img src="{{env}}/{{adoption.vaccine_passport.split(',')[0]}}"></label> </li>
 <li><label><b>Pedigree:</b> {{adoption.pedigree}}</label>   </li>
 <li><label><b>Edad: </b></label> {{adoption.age}} años</li>
 <li><label><b>Pedigree: </b></label>  </li>
