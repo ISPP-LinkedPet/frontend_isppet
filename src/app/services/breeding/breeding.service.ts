@@ -21,5 +21,13 @@ export class BreedingService {
 
   getBreedingById(id: string) {
     return this.requestService.request('GET', `${environment.endpoint}/breeding/${id}`, {}, {}, true);
-}
+  }
+
+  createRequest(id: string) {
+    return this.requestService.request('POST', `${environment.endpoint}/breeding/interested/${id}`, {}, {}, true);
+  }
+
+  hasRequest(id: string){
+    return this.requestService.request('GET', `${environment.endpoint}/breeding/hasRequest/${id}`, {}, {}, true);
+  }
 }

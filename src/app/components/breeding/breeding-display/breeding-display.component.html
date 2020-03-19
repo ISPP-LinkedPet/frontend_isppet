@@ -17,10 +17,11 @@
             <li class="list-group-item">Edad:{{breedingListPageComponent.selectedBreeding.age}}</li>
             <li class="list-group-item">Genéro: {{breedingListPageComponent.selectedBreeding.genre}}</li>
             <li class="list-group-item">Fecha de publicación: {{breedingListPageComponent.selectedBreeding.creation_date}}</li>
+
           </ul>
           <div class="card-body">
-              <button popover="Necesitara añadir un metodo de pago para continuar"
-              [popoverOnHover]="true"  type="button" class="btn btn-primary">Me interesa</button>
+              <button popover="Necesitara añadir un metodo de pago para continuar" *ngIf="!breedingListPageComponent.hasreq"
+              [popoverOnHover]="true"  type="button" class="btn btn-primary" (click)="onSubmit(breedingListPageComponent.selectedBreeding.id)" >Me interesa</button>
               <button type="button" class="btn btn-primary mx-3" (click)="breedingListPageComponent.isLeftVisible = !breedingListPageComponent.isLeftVisible">Volver a anuncios</button>
               <button type="button" class="btn btn-primary mx-10">
                   <span class="glyphicon glyphicon-star">Añadir a favoritos</span>           

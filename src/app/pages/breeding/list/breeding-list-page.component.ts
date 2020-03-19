@@ -12,14 +12,17 @@ export class BreedingListPageComponent implements OnInit {
 
   isLeftVisible = true;
   selectedBreeding:any;
+  hasreq:any;
   constructor(private breedingService: BreedingService) { }
 
   ngOnInit(): void {
   }
 
   loadBreeding(id: string){
-    this.breedingService.getBreedingById(id).then(res => this.selectedBreeding = res.breeding)
-    console.log(this.selectedBreeding)
+    this.breedingService.getBreedingById(id).then(res => this.selectedBreeding = res.breeding);
+    this.breedingService.hasRequest(id).then(res => this.hasreq);
   }
+
+
 
 }
