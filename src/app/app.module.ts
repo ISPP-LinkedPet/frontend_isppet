@@ -42,6 +42,9 @@ import { BreedingPersonalListComponent } from './components/breeding/breeding-pe
 import { PersonalListComponent } from './pages/breeding/personal-list/personal-list.component';
 import { AdoptionPersonalListComponent } from './components/adoption/adoption-personal-list/adoption-personal-list.component';
 import { PersonalListAdoptionComponent } from './pages/adoption/personal-list-adoption/personal-list-adoption.component';
+import { AdoptionPendingListComponent } from './components/adoption/adoption-pending-list/adoption-pending-list.component';
+
+import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-pending-list-page/adoption-pending-list-page.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +75,8 @@ import { PersonalListAdoptionComponent } from './pages/adoption/personal-list-ad
     PersonalListComponent,
     AdoptionPersonalListComponent,
     PersonalListAdoptionComponent,
+    AdoptionPendingListPageComponent,
+    AdoptionPendingListComponent
   ],
   imports: [
     BrowserModule,
