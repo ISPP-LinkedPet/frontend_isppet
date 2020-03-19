@@ -5,7 +5,7 @@
           <h3 class="card-header">{{breedingListPageComponent.selectedBreeding.title}}</h3>
           <div class="card-body">
           <p class="card-text">Fotos subidas por el publicante:</p>
-          <img style="height: 150px; width: 20%; display: block;" src="{{env}}{{breedingListPageComponent.selectedBreeding.animal_photo.split(',')[0]}}" alt="Card image">
+          <img style="height: 150px; width: 20%; display: block;" src="{{env}}/{{breedingListPageComponent.selectedBreeding.animal_photo.split(',')[0]}}" alt="Card image">
           </div>
           <div class="card-body">
             <p class="card-text">Precio: {{breedingListPageComponent.selectedBreeding.price}} </p>
@@ -20,11 +20,10 @@
 
           </ul>
           <div class="card-body">
-              <button popover="Necesitara añadir un metodo de pago para continuar" *ngIf="!breedingListPageComponent.hasreq"
-              [popoverOnHover]="true"  type="button" class="btn btn-primary" (click)="onSubmit(breedingListPageComponent.selectedBreeding.id)" >Me interesa</button>
+              <button *ngIf="!breedingListPageComponent.hasreq" type="button" class="btn btn-primary" (click)="onSubmit(breedingListPageComponent.selectedBreeding.id)" >Me interesa</button>
               <button type="button" class="btn btn-primary mx-3" (click)="breedingListPageComponent.isLeftVisible = !breedingListPageComponent.isLeftVisible">Volver a anuncios</button>
               <button type="button" class="btn btn-primary mx-10">
-                  <span class="glyphicon glyphicon-star">Añadir a favoritos</span>           
+                  <span class="glyphicon glyphicon-star">Añadir a favoritos</span>
               </button>
 
           </div>

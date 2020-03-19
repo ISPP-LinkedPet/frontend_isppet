@@ -5,7 +5,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {PopoverModule} from 'ngx-smart-popover';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 
@@ -43,6 +42,10 @@ import { PersonalListComponent } from './pages/breeding/personal-list/personal-l
 import { AdoptionPersonalListComponent } from './components/adoption/adoption-personal-list/adoption-personal-list.component';
 import { PersonalListAdoptionComponent } from './pages/adoption/personal-list-adoption/personal-list-adoption.component';
 import { EditComponent } from './pages/breeding/edit/edit.component';
+import { RequestListComponent } from './components/request/request-list/request-list.component';
+import { AdoptionPendingListComponent } from './components/adoption/adoption-pending-list/adoption-pending-list.component';
+
+import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-pending-list-page/adoption-pending-list-page.component';
 
 @NgModule({
   declarations: [
@@ -74,11 +77,13 @@ import { EditComponent } from './pages/breeding/edit/edit.component';
     AdoptionPersonalListComponent,
     PersonalListAdoptionComponent,
     EditComponent,
+    RequestListComponent,
+    AdoptionPendingListPageComponent,
+    AdoptionPendingListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PopoverModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     FormsModule,
     ReactiveFormsModule,

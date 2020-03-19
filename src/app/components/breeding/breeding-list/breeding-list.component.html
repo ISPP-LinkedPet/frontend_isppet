@@ -8,14 +8,14 @@
 <div class="card border-success mb-3" *ngFor="let breedingAd of breedings">
 <h3 class="card-header">{{breedingAd.breed}} en {{breedingAd.location}}</h3>
 <div class="card-body">
-<img src="{{env}}{{breedingAd.animal_photo.split(',')[0]}}">
+<img src="{{env}}/{{breedingAd.animal_photo.split(',')[0]}}">
 <div class="description-content">
 <li><label><b>Edad: </b></label> {{breedingAd.age}} años</li>
 <li><label><b>Pedigree: </b></label>  </li>
 <li><label><b>Ubicación: </b></label> {{breedingAd.location}} </li>
 <li><label><b>Precio: </b></label> {{breedingAd.price}} euros </li>
 </div>
-<button type="button" class="btn btn-success" (click) ="viewDetails(breedingAd.id)">Ver Detalles</button>
+<button type="button" class="btn btn-success" (click) ="viewDetails(breedingAd.breeding_id)">Ver Detalles</button>
 </div>
 </div>
 

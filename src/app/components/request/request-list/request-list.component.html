@@ -1,0 +1,13 @@
+<app-header></app-header>
+<div class="mb-3">
+    <h1 class="display-4">Lista de crianza</h1>
+</div>
+<div class="card border-success mb-3" *ngFor="let request of requests">
+<h3 class="card-header">Oferta en su anuncio {{request.publication_id}} en {{request.breeding_id}}</h3>
+<div class="card-body">
+    <p>Estado: {{request.status}}</p>
+</div>
+    <button type="button" class="btn btn-primary mx-3">Aceptar</button>
+    <button type="button" class="btn btn-danger mx-3">Rechazar</button>
+</div>
+<app-footer></app-footer>
