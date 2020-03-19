@@ -20,6 +20,16 @@
           <a class="nav-link" *ngIf="rol=='particular'" routerLink="/vet">Veterinarios</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" *ngIf="rol=='moderator'" routerLink="/breeding-pending">Pendientes</a>
+        </li>
+        <li class="nav-item" class="dropdown">
+            <a class="nav-link" *ngIf="rol=='particular'">Panel</a>
+            <div class="dropdown-content">
+            <a class="nav-link" routerLink="/breeding-personal-list">Mis Anuncios de Crianza</a>
+            <a class="nav-link" routerLink="/adoption-personal-list">Mis Anuncios de Adopciones</a>
+            </div>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" *ngIf="rol=='disconnected'" routerLink="/login">Login</a>
         </li>
         <li class="nav-item">

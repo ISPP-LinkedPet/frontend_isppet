@@ -11,7 +11,7 @@ import { ConfigService } from 'src/app/services/config/config.service';
   styleUrls: ['./breeding-list.component.css']
 })
 export class BreedingListComponent implements OnInit {
-  breedings= new Array();
+  breedings = new Array();
   env = environment.endpoint;
 
   public breedingDisplayComponent: BreedingDisplayComponent;

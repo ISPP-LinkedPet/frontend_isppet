@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {trigger, transition, animate, style, state} from '@angular/animations';
+import { ConfigService } from 'src/app/services/config/config.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-register',
@@ -25,10 +27,16 @@ export class LoginRegisterComponent implements OnInit {
   isLeftVisible = true;
   @Input() activePane = 'login';
   viewMode = 'login';
-  constructor() {
+  constructor(private configService: ConfigService, private router: Router) {
   }
 
+  userlogged = this.configService.getUserLogged();
+  rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
+
   ngOnInit(): void {
+    if(this.rol!='disconnected'){
+      this.router.navigate(['/'])
+    }
   }
 
 }

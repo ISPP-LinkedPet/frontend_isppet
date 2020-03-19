@@ -36,6 +36,12 @@ import {AdoptionListComponent} from './components/adoption/adoption-list/adoptio
 import { AdotionFormComponent } from './components/adoption/adotion-form/adotion-form.component';
 import { LoginRegisterComponent } from './pages/login-register/login-register.component';
 import { VetComponent } from './components/vet/vet.component';
+import { BreedingPendingListComponent } from './components/breeding/breeding-pending-list/breeding-pending-list.component';
+import { BreedingPendingListPageComponent } from './pages/breeding/pending-list/breeding-pending-list-page.component';
+import { BreedingPersonalListComponent } from './components/breeding/breeding-personal-list/breeding-personal-list.component';
+import { PersonalListComponent } from './pages/breeding/personal-list/personal-list.component';
+import { AdoptionPersonalListComponent } from './components/adoption/adoption-personal-list/adoption-personal-list.component';
+import { PersonalListAdoptionComponent } from './pages/adoption/personal-list-adoption/personal-list-adoption.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +65,13 @@ import { VetComponent } from './components/vet/vet.component';
     SlidePanelComponent,
     CreateAdoptionComponent,
     LoginRegisterComponent,
-    VetComponent
+    VetComponent,
+    BreedingPendingListComponent,
+    BreedingPendingListPageComponent,
+    BreedingPersonalListComponent,
+    PersonalListComponent,
+    AdoptionPersonalListComponent,
+    PersonalListAdoptionComponent,
   ],
   imports: [
     BrowserModule,

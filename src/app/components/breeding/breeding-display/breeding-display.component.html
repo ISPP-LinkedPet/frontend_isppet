@@ -5,7 +5,7 @@
           <h3 class="card-header">{{breedingListPageComponent.selectedBreeding.title}}</h3>
           <div class="card-body">
           <p class="card-text">Fotos subidas por el publicante:</p>
-          <img style="height: 150px; width: 20%; display: block;" src="{{breedingListPageComponent.selectedBreeding.animal_photo}}" alt="Card image">
+          <img style="height: 150px; width: 20%; display: block;" src="{{env}}{{breedingListPageComponent.selectedBreeding.animal_photo.split(',')[0]}}" alt="Card image">
           </div>
           <div class="card-body">
             <p class="card-text">Precio: {{breedingListPageComponent.selectedBreeding.price}} </p>

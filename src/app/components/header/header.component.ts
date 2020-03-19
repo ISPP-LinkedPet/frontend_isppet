@@ -34,7 +34,6 @@ export class HeaderComponent implements OnInit {
   disconnect(){
     localStorage.setItem('access_token', '')
     this.rol = 'disconnected'
-    console.log('hola')
-    window.location.reload();
+    this.router.navigate(['/'])
   }
 }
