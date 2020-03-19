@@ -8,9 +8,9 @@
 <div class="card border-success mb-3" *ngFor="let adoption of adoptions;">
 <h3 class="card-header">{{adoption.title}}</h3> <!--Advertisement title-->
 <div class="card-body">
-    
+
 <!--Imagen de prueba-->
-<img src="{{env}}{{adoption.animal_photo.split(',')[0]}}">
+<img src="{{env}}/{{adoption.animal_photo.split(',')[0]}}">
 <p class="card-text"><label><b>Tipo de animal: {{adoption.type}}</b></label>   </p>
 <p class="card-text"><label><b>Pedigree:  {{adoption.pedigree}}</b></label>   </p>
 <p class="card-text"><label><b>Edad:  {{adoption.age}}</b></label>   </p>
