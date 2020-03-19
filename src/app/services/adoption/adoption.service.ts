@@ -13,7 +13,7 @@ export class AdoptionService {
   constructor(private requestService: RequestService, private configService: ConfigService) { }
 
   getAllAdoptions(token: string) {
-    return this.requestService.request('GET', `${environment.endpoint}/adoption/particular`, {}, {access_token: token}, true);
+    return this.requestService.request('GET', `${environment.endpoint}/adoption/available`, {}, {access_token: token}, true);
   }
 
   getAdoptionById(token: string, id: string) {
