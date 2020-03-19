@@ -17,7 +17,6 @@ export class VetComponent implements OnInit {
   ngOnInit(): void {
     this.vetService.getAllVets().then(res=>res.forEach(vet => {this.vets.push(vet)
     }))
-    console.log(this.vets);
   }
 
 }

@@ -17,6 +17,8 @@ import { AdoptionPersonalListComponent } from './components/adoption/adoption-pe
 import { PersonalListComponent } from './pages/breeding/personal-list/personal-list.component';
 import { PersonalListAdoptionComponent } from './pages/adoption/personal-list-adoption/personal-list-adoption.component';
 import { RequestListComponent } from './components/request/request-list/request-list.component'
+import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-pending-list-page/adoption-pending-list-page.component';
+
 const routes: Routes = [
 {path: '', component: HomeComponent},
 {path: 'breeding-display', component: BreedingDisplayComponent},
@@ -30,7 +32,8 @@ const routes: Routes = [
 {path: 'login', component: LoginRegisterComponent},
 {path: 'vet', component: VetComponent},
 {path: 'breeding-pending', component: BreedingPendingListPageComponent},
-{path: 'request', component: RequestListComponent}
+{path: 'request', component: RequestListComponent},
+{path: 'adoption-pending', component: AdoptionPendingListPageComponent}
 ];
 
 @NgModule({
