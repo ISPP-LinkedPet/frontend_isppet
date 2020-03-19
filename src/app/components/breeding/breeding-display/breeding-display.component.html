@@ -20,12 +20,8 @@
 
           </ul>
           <div class="card-body">
-              <button popover="Necesitara añadir un metodo de pago para continuar" *ngIf="!breedingListPageComponent.hasreq"
-              [popoverOnHover]="true"  type="button" class="btn btn-primary" (click)="onSubmit(breedingListPageComponent.selectedBreeding.id)" >Me interesa</button>
+              <button *ngIf="!breedingListPageComponent.hasreq" type="button" class="btn btn-primary" (click)="onSubmit(breedingListPageComponent.selectedBreeding.id)" >Me interesa</button>
               <button type="button" class="btn btn-primary mx-3" (click)="breedingListPageComponent.isLeftVisible = !breedingListPageComponent.isLeftVisible">Volver a anuncios</button>
-              <button type="button" class="btn btn-primary mx-10">
-                  <span class="glyphicon glyphicon-star">Añadir a favoritos</span>           
-              </button>
 
           </div>
           <div class="card-footer text-muted">

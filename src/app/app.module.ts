@@ -5,7 +5,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {PopoverModule} from 'ngx-smart-popover';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 
@@ -42,6 +41,7 @@ import { BreedingPersonalListComponent } from './components/breeding/breeding-pe
 import { PersonalListComponent } from './pages/breeding/personal-list/personal-list.component';
 import { AdoptionPersonalListComponent } from './components/adoption/adoption-personal-list/adoption-personal-list.component';
 import { PersonalListAdoptionComponent } from './pages/adoption/personal-list-adoption/personal-list-adoption.component';
+import { RequestListComponent } from './components/request/request-list/request-list.component';
 
 @NgModule({
   declarations: [
@@ -72,11 +72,11 @@ import { PersonalListAdoptionComponent } from './pages/adoption/personal-list-ad
     PersonalListComponent,
     AdoptionPersonalListComponent,
     PersonalListAdoptionComponent,
+    RequestListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PopoverModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     FormsModule,
     ReactiveFormsModule,
