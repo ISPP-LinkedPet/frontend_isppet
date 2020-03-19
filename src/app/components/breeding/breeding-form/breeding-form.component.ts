@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {environment} from '../../../../environments/environment';
 
 import {Router} from "@angular/router";
 import { Breeding } from 'src/app/models/breeding/breeding';
@@ -37,6 +38,9 @@ export class BreedingCreateComponent implements OnInit {
 
   @Input()
   creating: boolean;
+
+  @Input()
+  editBreeding: Breeding;
 
   // form
   breedingForm = new FormGroup({
@@ -81,8 +85,15 @@ export class BreedingCreateComponent implements OnInit {
     private configService: ConfigService
   ) { }
 
+  env = environment.endpoint
+
   ngOnInit(): void {
-    console.log(this.rol)
+    if(this.rol=='moderator'){
+      if(this.editBreeding!=null){
+        this.breedingForm.controls['location'].setValue(this.editBreeding.location)
+        this.breedingForm.controls['price'].setValue(this.editBreeding.price)
+      }
+    }
   }
 
   requiredInput(){
@@ -159,12 +170,19 @@ export class BreedingCreateComponent implements OnInit {
     for(let i = 0; i < vaccinePassaport.length; i++) formData.append('vaccine_passport', vaccinePassaport[i], vaccinePassaport[i].name);
     for(let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
 
-    // field
-    formData.append('price', this.breedingForm.value.price);
-    formData.append('location', this.breedingForm.value.location);
+    // si se está creando
+    if(this.creating){
+      // field
+      formData.append('price', this.breedingForm.value.price);
+      formData.append('location', this.breedingForm.value.location);
 
-    this.breedingService.createBreeding(formData).then(x => console.log(x)).then(x => alert("¡La crianza se ha creado correctamente! \n Ahora debe de revisarlo un moderador"))
-    .then(x=>this.router.navigate(['/breeding-list']));
+      this.breedingService.createBreeding(formData).then(x => console.log(x)).then(x => alert("¡La crianza se ha creado correctamente! \n Ahora debe de revisarlo un moderador"))
+      .then(x=>this.router.navigate(['/breeding-list']));
+
+      // si lo está editando un moderador
+    } else if(!this.creating && this.rol=='moderator'){
+
+    }
   }
 
 }

@@ -11,7 +11,7 @@
 <li><label><b>Ubicación: </b></label> {{breedingAd.location}} </li>
 <li><label><b>Precio: </b></label> {{breedingAd.price}} euros </li>
 </div>
-<button type="button" class="btn btn-success">Moderar</button>
+<button type="button" class="btn btn-success" [routerLink]="['/breeding-edit', breedingAd.id]">Moderar</button>
 </div>
 </div>
 
