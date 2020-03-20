@@ -4,7 +4,8 @@
   <p class="lead">Tu página de mascotas favorita</p>
   <hr class="my-4">
   <p>Podrás crear ofertas para crianza o encontrar mascotas que necesitan adopción en esta primera versión de la aplicación.</p>
-  <p class="lead">
+
+  <p class="lead" *ngIf="!logged">
     <a class="btn btn-primary btn-lg" href="/login" role="button">Conectarse</a>
   </p>
 </div>

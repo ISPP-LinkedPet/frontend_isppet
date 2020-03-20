@@ -35,7 +35,7 @@ export class AdotionFormComponent implements OnInit {
   adoption = new Adoption();
 
 
-  constructor(private adoptionService: AdoptionService,  private configService : ConfigService ) {
+  constructor(private adoptionService: AdoptionService,  public configService : ConfigService ) {
     var acho = "acdsafafdsafsafdsfdsfho";
    }
 
@@ -71,7 +71,7 @@ export class AdotionFormComponent implements OnInit {
     animal_photo: new FormControl(
       this.adoption.animal_photo, [
       Validators.required]),
-      
+
     identification_photo: new FormControl(
       this.adoption.identification_photo, [
       ]),
@@ -133,13 +133,11 @@ export class AdotionFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.adoptionForm.value);
-    console.log(this.adoptionForm.get('pedigree').value)
     this.validateBreed();
     this.validateGenre();
     this.validateAge();
     this.validatePedigree();
-    this.validateLocation(); 
+    this.validateLocation();
     this.validateAnimalPhoto();
     this.validateIdentificationPhoto();
     this.validateVaccinePassaport();
@@ -170,6 +168,6 @@ export class AdotionFormComponent implements OnInit {
     formData.append('pedigree', this.adoptionForm.value.pedigree);
     formData.append('age', this.adoptionForm.value.age);
 
-    this.adoptionService.createAdoption(formData).then(x => console.log(x));
+    this.adoptionService.createAdoption(formData);
   }
 }

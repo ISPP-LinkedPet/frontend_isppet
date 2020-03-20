@@ -20,7 +20,7 @@
             <li class="list-group-item">Animal: {{adoptionListPageComponent.selectedAdoption.type}}</li>
             <li class="list-group-item">Raza: {{adoptionListPageComponent.selectedAdoption.breed}}</li>
             <li class="list-group-item">Pedigree: {{adoptionListPageComponent.selectedAdoption.pedigree}}</li>
-            <li class="list-group-item">Edad: {{adoptionListPageComponent.selectedAdoption.age}}</li>
+            <li class="list-group-item">Edad: {{adoptionListPageComponent.configService.calculateAge(adoptionListPageComponent.selectedAdoption.birth_date)}}</li>
             <li class="list-group-item">Genéro: {{adoptionListPageComponent.selectedAdoption.genre}}</li>
           </ul>
           <div class="card-body">

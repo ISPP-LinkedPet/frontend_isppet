@@ -18,7 +18,7 @@ export class BreedingListComponent implements OnInit {
   constructor(
       private breedingService: BreedingService,
       public breedingListPageComponent: BreedingListPageComponent,
-      private configService: ConfigService
+      public configService: ConfigService
   ) {}
 
   ngOnInit(): void {
@@ -26,7 +26,6 @@ export class BreedingListComponent implements OnInit {
       this.breedingService.getAllBreedings().then(res => res.forEach(breedingAd => {
         this.breedings.push(breedingAd);
       }));
-      console.log(this.breedings);
   }
 
   userlogged = this.configService.getUserLogged();
