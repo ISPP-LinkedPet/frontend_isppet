@@ -92,6 +92,9 @@ export class BreedingCreateComponent implements OnInit {
       if(this.editBreeding!=null){
         this.breedingForm.controls['location'].setValue(this.editBreeding.location)
         this.breedingForm.controls['price'].setValue(this.editBreeding.price)
+        this.breedingForm.controls['animal_photo'].setValue(this.editBreeding.animal_photo)
+        this.breedingForm.controls['identification_photo'].setValue(this.editBreeding.identification_photo)
+        this.breedingForm.controls['vaccine_passaport'].setValue(this.editBreeding.vaccine_passaport)
       }
     }
   }
