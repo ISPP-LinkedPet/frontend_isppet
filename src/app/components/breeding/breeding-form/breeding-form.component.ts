@@ -82,7 +82,7 @@ export class BreedingCreateComponent implements OnInit {
   constructor(
     private breedingService: BreedingService,
     private router: Router,
-    private configService: ConfigService
+    public configService: ConfigService
   ) { }
 
   env = environment.endpoint
@@ -92,6 +92,9 @@ export class BreedingCreateComponent implements OnInit {
       if(this.editBreeding!=null){
         this.breedingForm.controls['location'].setValue(this.editBreeding.location)
         this.breedingForm.controls['price'].setValue(this.editBreeding.price)
+        this.breedingForm.controls['animal_photo'].setValue(this.editBreeding.animal_photo)
+        this.breedingForm.controls['identification_photo'].setValue(this.editBreeding.identification_photo)
+        this.breedingForm.controls['vaccine_passaport'].setValue(this.editBreeding.vaccine_passaport)
       }
     }
   }
@@ -177,7 +180,7 @@ export class BreedingCreateComponent implements OnInit {
     // si se está creando
     if(this.creating){
 
-      this.breedingService.createBreeding(formData).then(x => console.log(x)).then(x => alert("¡La crianza se ha creado correctamente! \n Ahora debe de revisarlo un moderador"))
+      this.breedingService.createBreeding(formData).then(x => alert("¡La crianza se ha creado correctamente! \n Ahora debe de revisarlo un moderador"))
       .then(x=>this.router.navigate(['/breeding-list']));
 
       // si lo está editando un moderador
@@ -188,8 +191,8 @@ export class BreedingCreateComponent implements OnInit {
       formData.append('age', this.breedingForm.value.age);
       formData.append('type', this.breedingForm.value.type);
       formData.append('pedeegri', this.breedingForm.value.pedeegri);
-      
-      this.breedingService.acceptBreeding(formData, this.editBreeding.id).then(x => console.log(x)).then(x => alert("¡La crianza se ha aceptado correctamente! \n Se ha publicado en la lista de crianzas"))
+
+      this.breedingService.acceptBreeding(formData, this.editBreeding.id).then(x => alert("¡La crianza se ha aceptado correctamente! \n Se ha publicado en la lista de crianzas"))
       .then(x=>this.router.navigate(['/breeding-pending-list']));
     }
   }

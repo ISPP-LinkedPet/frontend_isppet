@@ -10,7 +10,7 @@ import {ConfigService} from '../config/config.service';
 export class AdoptionService {
   push: any;
 
-  constructor(private requestService: RequestService, private configService: ConfigService) { }
+  constructor(private requestService: RequestService, public configService: ConfigService) { }
 
   getAllAdoptions(token: string) {
     return this.requestService.request('GET', `${environment.endpoint}/adoption/available`, {}, {access_token: token}, true);

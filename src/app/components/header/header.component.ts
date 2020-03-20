@@ -16,24 +16,24 @@ import {
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
   animations: [
-   
+
   ]
 })
 export class HeaderComponent implements OnInit {
-  
-  constructor(private configService: ConfigService,private router: Router) { }
-  
+
+  constructor(public  configService: ConfigService,private router: Router) { }
+
   userlogged = this.configService.getUserLogged();
   rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
 
 
   ngOnInit(): void {
-    console.log(this.rol)
   }
 
   disconnect(){
     localStorage.setItem('access_token', '')
     this.rol = 'disconnected'
     this.router.navigate(['/'])
+    location.reload()
   }
 }

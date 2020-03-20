@@ -47,16 +47,23 @@ export class RequestListAcceptedComponent implements OnInit {
       this.requestPublicationService
         .getCreatedAndAccepted()
         .then(requests => {
+          console.log(requests);
           requests.forEach(request => this.requests.push(request));
         })
-        .catch(this.navigateToMainPage);
+        .catch(error => {
+          // console.log(error);
+          this.navigateToMainPage();
+        });
     } else {
       this.requestPublicationService
         .getReceivedAndAccepted()
         .then(requests => {
           requests.forEach(request => this.requests.push(request));
         })
-        .catch(this.navigateToMainPage);
+        .catch(error => {
+          // console.log(error);
+          this.navigateToMainPage();
+        });
     }
   }
 }

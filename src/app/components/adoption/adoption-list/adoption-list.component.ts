@@ -18,7 +18,7 @@ export class AdoptionListComponent implements OnInit {
   rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
   public adoptionDisplayComponent: AdoptionDisplayComponent;
 
-  constructor(private configService: ConfigService,private adoptionService: AdoptionService, public adoptionListPageComponent: AdoptionListPageComponent) { }
+  constructor(public configService: ConfigService,private adoptionService: AdoptionService, public adoptionListPageComponent: AdoptionListPageComponent) { }
 
   ngOnInit(): void {
 
@@ -31,12 +31,9 @@ export class AdoptionListComponent implements OnInit {
         this.adoptions.push(element)
       }))
     }
-    console.log(this.adoptions)
   }
 
-
-
-  viewDetails(id: string){
+  viewDetails(id: string) {
     this.adoptionListPageComponent.isLeftVisible = !this.adoptionListPageComponent.isLeftVisible;
     this.adoptionListPageComponent.loadAdoption(id)
   }

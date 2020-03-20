@@ -10,7 +10,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 export class AdoptionPendingListPageComponent implements OnInit {
 
 
-  constructor(private configService: ConfigService, private router: Router) { }
+  constructor(public configService: ConfigService, private router: Router) { }
 
   userlogged = this.configService.getUserLogged();
   rol: string = this.userlogged ? this.userlogged.role : 'disconnected';

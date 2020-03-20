@@ -19,17 +19,21 @@ export class RequestListAcceptedItemComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.request);
     this.photo = `${environment.endpoint}/${
       this.request.animal_photo.split(',')[0]
     }`;
     this.publicationType =
-      'Petición de ' + (this.request.publicationType === 'breeding'
-        ? 'crianza'
-        : 'adopción');
-    this.name = `${this.request.contactData.name || '' } ${this.request.contactData.surname}`;
+      'Petición de ' +
+      (this.request.publicationType === 'breeding' ? 'crianza' : 'adopción');
+    this.name = `${this.request.contactData.name || ''} ${this.request
+      .contactData.surname || ''}`;
     this.phone = this.request.contactData.telephone;
     this.email = this.request.contactData.email;
     this.address = this.request.contactData.address;
+  }
+
+  // de momento no hace nada
+  onClick(e: Event) {
+    e.preventDefault();
   }
 }

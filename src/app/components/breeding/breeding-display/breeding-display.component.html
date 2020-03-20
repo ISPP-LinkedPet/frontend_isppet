@@ -14,7 +14,7 @@
             <li class="list-group-item">Animal:{{breedingListPageComponent.selectedBreeding.type}}</li>
             <li class="list-group-item">Raza: {{breedingListPageComponent.selectedBreeding.breed}}</li>
             <li class="list-group-item">Pedigree:{{breedingListPageComponent.selectedBreeding.pedigree}}</li>
-            <li class="list-group-item">Edad:{{breedingListPageComponent.selectedBreeding.age}}</li>
+            <li class="list-group-item">Edad:{{breedingListPageComponent.configService.calculateAge(breedingListPageComponent.selectedBreeding.birth_date)}}</li>
             <li class="list-group-item">Genéro: {{breedingListPageComponent.selectedBreeding.genre}}</li>
             <li class="list-group-item">Fecha de publicación: {{breedingListPageComponent.selectedBreeding.creation_date}}</li>
 
