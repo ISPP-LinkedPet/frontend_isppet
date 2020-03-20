@@ -6,23 +6,10 @@ import {RequestService} from '../request/request.service';
   providedIn: 'root'
 })
 export class BreedingService {
-  
-
   constructor(
       private requestService: RequestService,
   ) { }
 
-  getAllBreedings() {
-    return this.requestService.request('GET', `${environment.endpoint}/breeding/offers`, {}, {}, true);
-  }
-
-  createBreeding(data: any) {
-    return this.requestService.request('POST', `${environment.endpoint}/breeding`, data, {}, true);
-  }
-
-  getBreedingById(id: string) {
-    return this.requestService.request('GET', `${environment.endpoint}/breeding/${id}`, {}, {}, true);
-  }
 
   createRequest(id: string) {
     return this.requestService.request('POST', `${environment.endpoint}/breeding/interested/${id}`, {}, {}, true);
@@ -31,17 +18,30 @@ export class BreedingService {
   hasRequest(id: string) {
     return this.requestService.request('GET', `${environment.endpoint}/breeding/hasRequest/${id}`, {}, {}, true);
   }
+
+  acceptBreeding(data: any, id: number){
+    return this.requestService.request('PUT', `${environment.endpoint}/breeding/accept/${id}`, data, {}, true);
+  }
+
+  createBreeding(data: any) {
+    return this.requestService.request('POST', `${environment.endpoint}/breeding`, data, {}, true);
+  }
+
+  getAllBreedings() {
+    return this.requestService.request('GET', `${environment.endpoint}/breeding/offers`, {}, {}, true);
+  }
+
   getPendingBreedings() {
     return this.requestService.request('GET', `${environment.endpoint}/breeding/pending`, {}, {}, true);
   }
 
+  getBreedingById(id: string) {
+    return this.requestService.request('GET', `${environment.endpoint}/breeding/${id}`, {}, {}, true);
+  }
+
+  /*url correcta???*/
   getPersonalBreedings(id: string) {
     return this.requestService.request('GET', `${environment.endpoint}/publication/user/${id}`, {}, {}, true);
   }
-
-  acceptBreeding(data: any, id: number){
-    return this.requestService.request('PUT', `${environment.endpoint}/breeding/accept/${id}`, data, {}, true)
-  }
-
 
 }
