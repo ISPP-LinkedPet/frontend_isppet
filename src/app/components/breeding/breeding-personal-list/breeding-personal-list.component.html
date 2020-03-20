@@ -3,7 +3,7 @@
     <h1 class="display-4">Mis anuncios de crianza</h1>
 </div>
 
-<div class="card border-success mb-3" *ngFor="let breedingAd of personalBreedings" >
+<div class="card border-success mb-3" *ngFor="let breedingAd of personalBreedings">
 <h3  class="card-header" *ngIf="breedingAd.breeding_id!='NULL'">{{breedingAd.breed}} en {{breedingAd.location}}</h3>
 <h6  class="card-header bg-success" *ngIf="breedingAd.transaction_status=='Completed' && breedingAd.breeding_id!='NULL' ">{{breedingAd.transaction_status}}</h6>
 <h6  class="card-header bg-warning" *ngIf="breedingAd.transaction_status=='In progress' && breedingAd.breeding_id!='NULL'">{{breedingAd.transaction_status}}</h6>
@@ -15,8 +15,7 @@
 <li><label><b>Pedigree: </b></label>  </li>
 <li><label><b>Ubicación: </b></label> {{breedingAd.location}} </li>
 <li><label><b>Precio: </b></label> {{breedingAd.price}} euros </li>
-<button routerLink="breeding-edit-particular/{{breedingAd.breeding_id}}">Editar Anuncio</button>
-</div>
+<button  type="button" class="btn btn-success">Editar Anuncio</button><!--Link-->
 </div>
 </div>
 
