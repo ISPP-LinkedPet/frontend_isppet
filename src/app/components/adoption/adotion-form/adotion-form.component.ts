@@ -3,6 +3,11 @@ import { Adoption } from 'src/app/models/adoption/adoption';
 import { AdoptionService } from '../../../services/adoption/adoption.service';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { ConfigService } from 'src/app/services/config/config.service';
+import { ActivatedRoute } from '@angular/router';
+import { registerLocaleData } from '@angular/common';
+import localeES from "@angular/common/locales/es";
+registerLocaleData(localeES, "es");
+import { formatDate } from "@angular/common";
 
 @Component({
   selector: 'app-adotion-form',
@@ -29,26 +34,20 @@ export class AdotionFormComponent implements OnInit {
   isValidIdentificationPhoto = true;
   isValidVaccinePassaport = true;
   isValidTaxes = true;
-  acho = "acdsafafdsafsafdsfdsfho";
   documentVerified: boolean;
   adoption = new Adoption();
 
 
-  constructor(private adoptionService: AdoptionService,  private configService : ConfigService ) {
-    var acho = "acdsafafdsafsafdsfdsfho";
-   }
+  constructor(private route: ActivatedRoute, private adoptionService: AdoptionService, private configService: ConfigService) {
+  }
 
-   @Input()
-   creating: boolean;
- 
-   @Input()
-   editAdoption: any;
+  @Input()
+  creating: boolean;
+
+  @Input()
+  editAdoption: any;
 
   adoptionForm = new FormGroup({
-    title: new FormControl(
-      this.adoption.title, [
-      Validators.required]),
-
     name: new FormControl(
       this.adoption.name, [
       Validators.pattern("^[A-Za-z ]+$"),
@@ -62,7 +61,7 @@ export class AdotionFormComponent implements OnInit {
       this.adoption.taxes, [
       Validators.pattern("^[0-9]*$"),
       Validators.required,
-      Validators.min(0)],),
+      Validators.min(0)]),
 
     genre: new FormControl(
       this.adoption.genre, [
@@ -76,14 +75,14 @@ export class AdotionFormComponent implements OnInit {
     animal_photo: new FormControl(
       this.adoption.animal_photo, [
       Validators.required]),
-      
+
     identification_photo: new FormControl(
       this.adoption.identification_photo, [
-      ]),
+    ]),
 
     vaccine_passaport: new FormControl(
       this.adoption.vaccine_passaport, [
-     ]),
+    ]),
 
     pedigree: new FormControl(
       this.adoption.pedigree, [
@@ -96,36 +95,49 @@ export class AdotionFormComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    if (!this.creating) {
+      this.route.paramMap.subscribe(parameterMap => {
+        const id = parameterMap.get('id');
+        this.adoptionService.getAdoptionById(localStorage.getItem('access_token'), id).then(res => {
+          this.editAdoption = res
+          this.adoptionForm.controls['breed'].setValue(this.editAdoption.adoption.breed);
+          this.adoptionForm.controls['genre'].setValue(this.editAdoption.adoption.genre);
+          const format = 'yyyy-MM-dd';
+          const locale = 'en-US';
+          this.editAdoption.adoption.birth_date = formatDate(this.editAdoption.adoption.birth_date, format, locale);
+          this.adoptionForm.controls['age'].setValue(this.editAdoption.adoption.birth_date);
+          this.adoptionForm.controls['pedigree'].setValue(this.editAdoption.adoption.pedigree === 1);
+        });
+        
+      });
+
+    }
     this.documentVerified = false;
-    if(this.rol=="shelter"){
-      this.adoptionService.getShelterById(localStorage.getItem('access_token'), this.userlogged.id).then(res=>this.adoptionForm.controls['location'].setValue(res.shelter.address))
+    if (this.rol == "shelter") {
+      this.adoptionService.getShelterById(localStorage.getItem('access_token'), this.userlogged.id).then(res => this.adoptionForm.controls['location'].setValue(res.shelter.address))
     }
 
-    console.log('HOLA ' + this.editAdoption);
-    if(this.editAdoption != null){
-      this.adoptionForm.controls['breed'].setValue(this.editAdoption.breed);
-    }
- 
-    
+
+
   }
 
   validateBreed() {
-    this.isValidBreed= this.creating && this.adoptionForm.get('breed').valid;
+    this.isValidBreed = this.adoptionForm.get('breed').valid;
   }
   validateName() {
-    this.isValidName= this.creating && this.adoptionForm.get('name').valid;
+    this.isValidName = this.adoptionForm.get('name').valid;
   }
   validateGenre() {
-    this.isValidGenre = this.creating && this.adoptionForm.get('genre').valid;
+    this.isValidGenre = this.adoptionForm.get('genre').valid;
   }
   validateAge() {
-    this.isValidAge = this.creating && this.adoptionForm.get('age').valid;
+    this.isValidAge = this.adoptionForm.get('age').valid;
   }
   validateType() {
-    this.isValidType = this.creating && this.adoptionForm.get('type').valid;
+    this.isValidType = this.adoptionForm.get('type').valid;
   }
   validatePedigree() {
-    this.isValidPedigri = this.creating && this.adoptionForm.get('pedigree').valid;
+    this.isValidPedigri = this.adoptionForm.get('pedigree').valid;
   }
   validateAnimalPhoto() {
     this.isValidAnimalPhoto = this.adoptionForm.get('animal_photo').valid;
@@ -144,18 +156,16 @@ export class AdotionFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.adoptionForm.value);
-    console.log(this.adoptionForm.get('pedigree').value)
     this.validateBreed();
     this.validateGenre();
     this.validateAge();
     this.validatePedigree();
-    this.validateLocation(); 
+    this.validateLocation();
     this.validateAnimalPhoto();
     this.validateIdentificationPhoto();
     this.validateVaccinePassaport();
     this.validateName();
-    if(this.rol=="shelter"){
+    if (this.rol == "shelter") {
       this.validateTaxes();
     }
 
@@ -165,37 +175,27 @@ export class AdotionFormComponent implements OnInit {
 
     const formData: FormData = new FormData();
     // photo
-    for(let i = 0; i < animalPhoto.length; i++) formData.append('animal_photo', animalPhoto[i], animalPhoto[i].name);
-    for(let i = 0; i < vaccinePassaport.length; i++) formData.append('vaccine_passport', vaccinePassaport[i], vaccinePassaport[i].name);
-    for(let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
+    for (let i = 0; i < animalPhoto.length; i++) formData.append('animal_photo', animalPhoto[i], animalPhoto[i].name);
+    for (let i = 0; i < vaccinePassaport.length; i++) formData.append('vaccine_passport', vaccinePassaport[i], vaccinePassaport[i].name);
+    for (let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
 
     // field
-    if(this.rol=="shelter"){
+    if (this.rol == "shelter") {
       formData.append('taxes', this.adoptionForm.value.taxes);
     }
-    formData.append('location', this.adoptionForm.value.location);
-    formData.append('name', this.adoptionForm.value.name);
     formData.append('breed', this.adoptionForm.value.breed);
     formData.append('genre', this.adoptionForm.value.genre);
+    formData.append('age', this.adoptionForm.value.age);
+    formData.append('name', this.adoptionForm.value.name);
     formData.append('location', this.adoptionForm.value.location);
     formData.append('pedigree', this.adoptionForm.value.pedigree);
-    formData.append('age', this.adoptionForm.value.age);
 
-    this.adoptionService.createAdoption(formData).then(x => console.log(x));
 
-    if(this.creating){
-
+    if (this.creating) {
       this.adoptionService.createAdoption(formData).then(x => console.log(x));
 
-    } else if(!this.creating){
-
-      formData.append('genre', this.adoptionForm.value.genre);
-      formData.append('breed', this.adoptionForm.value.breed);
-      formData.append('age', this.adoptionForm.value.age);
-      formData.append('type', this.adoptionForm.value.type);
-      formData.append('pedeegri', this.adoptionForm.value.pedeegri);
-      
-      this.adoptionService.editAdoption(formData, this.editAdoption.id);
+    } else if (!this.creating) {
+      this.adoptionService.editAdoption(formData, this.editAdoption.id).then(x => console.log(x));
     }
   }
 }

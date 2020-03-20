@@ -14,7 +14,7 @@
 <li><label><b>Ubicación: </b></label> {{adoption.location}} </li>
 <li><label><b>Precio: </b></label> {{adoption.price}} euros </li>
 </div>
-<button type="button" class="btn btn-success">Moderar</button>
+<button type="button" class="btn btn-success" [routerLink]="['/adoption-edit', adoption.id]">Moderar</button>
 </div>
 </div>
 

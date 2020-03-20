@@ -8,14 +8,12 @@
                 <!-- Breed -->
                 <div class="form-group col-sm" *ngIf="isValidBreed">
                     <label for="breed">Raza</label>
-                    <input type="text" class="form-control" id="breed" formControlName="breed">
+                    <input type="text" class="form-control" id="breed" formControlName="breed" (change)="validateBreed()">
                 </div>
-
                 <div class="form-group has-danger col-sm"*ngIf="!isValidBreed">
-
                   <div class="form-group">
                     <label for="breed">Raza</label>
-                    <input type="text" class="form-control is-invalid" id="breed" formControlName="breed">
+                    <input type="text" class="form-control is-invalid" id="breed" formControlName="breed" (change)="validateBreed()">
                     <div class="invalid-feedback">Debe seleccionar una raza</div>
                 </div>
 
@@ -33,45 +31,50 @@
 
                 <div class="form-group has-dange col-sm"*ngIf="!isValidGenre">
                   <label for="genre">Genero</label>
-                  <select class="form-control is-invalid" id="genre" formControlName="genre">
-                      <option value='' [defaultSelected]=true>Seleccione genero</option>
-                      <option value='Male'>Macho</option>
-                      <option value='Female'>Hembra</option>
-                  </select> 
+                  <select class="form-control" id="genre" formControlName="genre" (change)="validateGenre()">
+                    <option value='' [defaultSelected]=true>Seleccione genero</option>
+                    <option value='Male'>Macho</option>
+                    <option value='Female'>Hembra</option>
+                  </select>
                   <div class="invalid-feedback">Debe seleccionar un género</div>
                 </div>
+                
                 <!-- Age -->
                 <div class="form-group col-sm" *ngIf="isValidAge">
                     <label for="age">Edad</label>
-                    <input type="date" class="form-control" id="age" formControlName="age">
+                    <input type="date" class="form-control" id="age" formControlName="age" (change)="validateAge()">
                 </div>
                 <div class="form-group has-danger col-sm"*ngIf="!isValidAge">
                     <label for="age">Edad</label>
-                    <input type="date" class="form-control is-invalid" id="age" formControlName="age">
+                    <input type="date" class="form-control is-invalid" id="age" formControlName="age" (change)="validateAge()">
                     <div class="invalid-feedback">La fecha de nacimiento no puede estar en blanco</div>
                 </div>
 
                 <!-- Nombre -->
-                <div class="form-group col-sm" *ngIf="isValidName">
-                  <label for="name">Nombre</label>
-                  <input type="text" class="form-control" id="name" formControlName="name" (change)="validateName()">
-                </div>
+                <div *ngIf="rol != 'moderator'">
+                  <div class="form-group col-sm" *ngIf="isValidName">
+                    <label for="name">Nombre</label>
+                    <input type="text" class="form-control" id="name" formControlName="name" (change)="validateName()">
+                  </div>
+                
 
-              <div class="form-group has-danger col-sm" *ngIf="!isValidName">
-                  <label class="form-control-label" for="name">Nombre</label>
-                  <input type="text" class="form-control is-invalid" id="name" formControlName="name" (change)="validateName()">
-                  <div class="invalid-feedback">El nombre no puede estar en blanco</div>
-              </div>
+                  <div class="form-group has-danger col-sm" *ngIf="!isValidName">
+                      <label class="form-control-label" for="name">Nombre</label>
+                      <input type="text" class="form-control is-invalid" id="name" formControlName="name" (change)="validateName()">
+                      <div class="invalid-feedback">El nombre no puede estar en blanco</div>
+                  </div>
+                
               <!-- Zona -->
                 <div class="form-group col-sm" *ngIf="isValidLocation">
                   <label for="location">Zona</label>
                   <input type="text" class="form-control" id="location"  formControlName="location" (change)="validateLocation()">
               </div>
               <div class="form-group has-danger col-sm" *ngIf="!isValidLocation">
-                  <label class="form-control-label" for="age">Zona</label>
-                  <input type="text" class="form-control is-invalid" id="location" value="{{acho}}" formControlName="location" (change)="validateLocation()">
+                  <label class="form-control-label" for="location">Zona</label>
+                  <input type="text" class="form-control is-invalid" id="location" formControlName="location" (change)="validateLocation()">
                   <div class="invalid-feedback">Parece que se ha equivocado</div>
               </div>
+            </div>
 
               <!-- Taxes -->
             <div *ngIf="rol=='shelter'">
@@ -107,7 +110,7 @@
             </div>
 
             <!-- Animal images -->
-
+            <div *ngIf="rol != 'moderator'">
                 <div class="form-group col-8" *ngIf="isValidAnimalPhoto">
                   <label for="animal_photo">Imagenes</label>
                   <div class="input-group mb-3">
@@ -127,12 +130,12 @@
                     </div>
                   </div>
                 </div>
-
+            </div>
               <!-- Pedigree-->
 
               <div class="form-group col-6" *ngIf="isValidPedigri">
                 <label for="pedigree">Pedigrí</label>
-                <select class="form-control" id="pedigree" formControlName="pedigree">
+                <select class="form-control" id="pedigree" formControlName="pedigree" (change)="validatePedigree()">
                   <option value='' [defaultSelected]=true></option>
                   <option value='true'>Si</option>
                   <option value='false'>No</option>
@@ -140,7 +143,7 @@
               </div>
               <div class="form-group has-danger col-6" *ngIf="!isValidPedigri">
                   <label class="form-control-label" for="age">Pedigrí</label>
-                  <select class="form-control is-invalid" id="pedigree" formControlName="pedigree">
+                  <select class="form-control is-invalid" id="pedigree" formControlName="pedigree" (change)="validatePedigree()">
                     <option value='' [defaultSelected]=true></option>
                     <option value='true'>Si</option>
                     <option value='false'>No</option>
@@ -154,7 +157,7 @@
             <hr>
 
             <!-- Documentation -->
-
+            <div *ngIf="rol != 'moderator'">
             <fieldset>
 
                 <legend class="card-title">Documentación de la mascota</legend>
@@ -204,9 +207,11 @@
                   </div>
                 </div>
             </div>
-
+          
 
             </fieldset>
+
+          </div>
                 <button type="submit" class="btn btn-primary btn-lg button-form">Crear</button>
                 <button type="button" class="btn btn-secondary btn-lg button-form right" routerLink="/adoption-list">Cancelar</button>
         </form>
