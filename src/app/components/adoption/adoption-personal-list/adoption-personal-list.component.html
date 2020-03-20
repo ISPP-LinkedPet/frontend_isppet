@@ -4,13 +4,14 @@
 </div>
 
 <div class="card border-success mb-3" *ngFor="let adoption of personalAdoptions">
-<h3 class="card-header">{{adoption.title}}</h3> <!--Advertisement title-->
-<h6 class="card-header bg-success" *ngIf="adoption.transaction_status=='Completed'">{{adoption.transaction_status}}</h6>
-<h6 class="card-header bg-warning" *ngIf="adoption.transaction_status=='In progress'">{{adoption.transaction_status}}</h6>
-<div class="card-body">
+<h3 class="card-header" *ngIf="adoption.breeding_id=='NULL'">{{adoption.title}}</h3> <!--Advertisement title-->
+<h6 class="card-header bg-success" *ngIf="adoption.transaction_status=='Completed' && adoption.breeding_id=='NULL'">{{adoption.transaction_status}}</h6>
+<h6 class="card-header bg-warning" *ngIf="adoption.transaction_status=='In progress' && adoption.breeding_id=='NULL'">{{adoption.transaction_status}}</h6>
+<div class="card-body" *ngIf="adoption.breeding_id=='NULL'">
 <!--Imagen de prueba-->
 <img src="{{env}}/{{adoption.animal_photo.split(',')[0]}}">
 <div class="description-content">
+    
 <li><label><b>Tipo de animal:</b>{{adoption.type}}</label>   </li>
 <li><label><b>Pedigree:</b> {{adoption.pedigree}}</label>   </li>
 <li><label><b>Edad:</b>  {{adoption.birth_date}}</label>   </li>

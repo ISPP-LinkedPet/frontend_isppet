@@ -24,7 +24,7 @@ export class AdoptionService {
     return this.requestService.request('GET', `${environment.endpoint}/shelter/${id}`, {}, {access_token: token}, true);
   }
 
-  getAdoptionByShelterLogged(){
+  getAdoptionByShelterLogged() {
     var userlogged = this.configService.getUserLogged();
     return this.requestService.request('GET', `${environment.endpoint}/publication/user/${userlogged.id}`, {}, {}, true);
   }
@@ -34,8 +34,9 @@ export class AdoptionService {
   }
 
   getPersonalAdoptions(id: string) {
-    return this.requestService.request('GET', `${environment.endpoint}/adoption/particular`, {}, {}, true);
+    return this.requestService.request('GET', `${environment.endpoint}/publication/user/${id}`, {}, {}, true);
   }
+
   getPendingAdoptions() {
     return this.requestService.request('GET', `${environment.endpoint}/adoption/pending`, {}, {}, true);
   }

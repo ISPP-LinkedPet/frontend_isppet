@@ -10,7 +10,6 @@ export class BreedingService {
       private requestService: RequestService,
   ) { }
 
-
   createRequest(id: string) {
     return this.requestService.request('POST', `${environment.endpoint}/breeding/interested/${id}`, {}, {}, true);
   }
@@ -19,7 +18,7 @@ export class BreedingService {
     return this.requestService.request('GET', `${environment.endpoint}/breeding/hasRequest/${id}`, {}, {}, true);
   }
 
-  acceptBreeding(data: any, id: number){
+  acceptBreeding(data: any, id: number) {
     return this.requestService.request('PUT', `${environment.endpoint}/breeding/accept/${id}`, data, {}, true);
   }
 
@@ -39,7 +38,6 @@ export class BreedingService {
     return this.requestService.request('GET', `${environment.endpoint}/breeding/${id}`, {}, {}, true);
   }
 
-  /*url correcta???*/
   getPersonalBreedings(id: string) {
     return this.requestService.request('GET', `${environment.endpoint}/publication/user/${id}`, {}, {}, true);
   }
