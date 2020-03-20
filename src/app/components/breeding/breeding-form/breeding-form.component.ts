@@ -48,7 +48,7 @@ export class BreedingCreateComponent implements OnInit {
       this.breeding.title, [this.requiredInput()]
     ),
     age: new FormControl(
-      this.breeding.age, [this.requiredInput()]
+      this.breeding.birth_date, [this.requiredInput()]
     ),
     genre: new FormControl(
       this.breeding.genre, [this.requiredInput()]
@@ -185,7 +185,7 @@ export class BreedingCreateComponent implements OnInit {
 
       formData.append('genre', this.breedingForm.value.genre);
       formData.append('breed', this.breedingForm.value.breed);
-      formData.append('age', this.breedingForm.value.age);
+      formData.append('age', this.breedingForm.value.birth_date);
       formData.append('type', this.breedingForm.value.type);
       formData.append('pedeegri', this.breedingForm.value.pedeegri);
       

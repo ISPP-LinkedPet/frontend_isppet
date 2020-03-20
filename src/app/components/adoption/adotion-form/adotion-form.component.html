@@ -41,13 +41,36 @@
                 
                 <!-- Age -->
                 <div class="form-group col-sm" *ngIf="isValidAge">
-                    <label for="age">Edad</label>
-                    <input type="date" class="form-control" id="age" formControlName="age" (change)="validateAge()">
+                    <label for="birth_date">Edad</label>
+                    <input type="date" class="form-control" id="birth_date" formControlName="birth_date" (change)="validateAge()">
                 </div>
                 <div class="form-group has-danger col-sm"*ngIf="!isValidAge">
-                    <label for="age">Edad</label>
-                    <input type="date" class="form-control is-invalid" id="age" formControlName="age" (change)="validateAge()">
+                    <label for="birth_date">Edad</label>
+                    <input type="date" class="form-control is-invalid" id="birth_date" formControlName="birth_date" (change)="validateAge()">
                     <div class="invalid-feedback">La fecha de nacimiento no puede estar en blanco</div>
+                </div>
+
+                <!-- Type -->
+
+                <div class="form-group has-danger col-sm" *ngIf="isValidType">
+                  <label for="type">Tipo</label>
+                  <select class="form-control" id="type" formControlName="type">
+                      <option value='' [defaultSelected]=true>Seleccione tipo de animal</option>
+                      <option value='Dog'>Perro</option>
+                      <option value='Cat'>Gato</option>
+                      <option value='Horse'>Caballo</option>
+                  </select> 
+              </div>
+
+                <div class="form-group has-dange col-sm"*ngIf="!isValidType">
+                  <label for="genre">Tipo</label>
+                  <select class="form-control" id="genre" formControlName="genre" (change)="validateGenre()">
+                    <option value='' [defaultSelected]=true>Seleccione tipo de animal</option>
+                      <option value='Dog'>Perro</option>
+                      <option value='Cat'>Gato</option>
+                      <option value='Horse'>Caballo</option>
+                  </select>
+                  <div class="invalid-feedback">Debe seleccionar un tipo</div>
                 </div>
 
                 <!-- Nombre -->
@@ -142,7 +165,7 @@
               </select> 
               </div>
               <div class="form-group has-danger col-6" *ngIf="!isValidPedigri">
-                  <label class="form-control-label" for="age">Pedigrí</label>
+                  <label class="form-control-label" for="birth_date">Pedigrí</label>
                   <select class="form-control is-invalid" id="pedigree" formControlName="pedigree" (change)="validatePedigree()">
                     <option value='' [defaultSelected]=true></option>
                     <option value='true'>Si</option>

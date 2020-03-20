@@ -47,14 +47,16 @@ export class AdotionFormComponent implements OnInit {
   @Input()
   editAdoption: any;
 
+  id: string;
+
   adoptionForm = new FormGroup({
     name: new FormControl(
       this.adoption.name, [
       Validators.pattern("^[A-Za-z ]+$"),
       Validators.required]),
 
-    age: new FormControl(
-      this.adoption.age, [
+    birth_date: new FormControl(
+      this.adoption.birth_date, [
       Validators.required]),
 
     taxes: new FormControl(
@@ -65,6 +67,10 @@ export class AdotionFormComponent implements OnInit {
 
     genre: new FormControl(
       this.adoption.genre, [
+      Validators.required]),
+
+    type: new FormControl(
+      this.adoption.type, [
       Validators.required]),
 
     breed: new FormControl(
@@ -97,16 +103,24 @@ export class AdotionFormComponent implements OnInit {
   ngOnInit(): void {
     if (!this.creating) {
       this.route.paramMap.subscribe(parameterMap => {
-        const id = parameterMap.get('id');
-        this.adoptionService.getAdoptionById(localStorage.getItem('access_token'), id).then(res => {
+        this.id = parameterMap.get('id');
+        this.adoptionService.getAdoptionById(localStorage.getItem('access_token'), this.id).then(res => {
           this.editAdoption = res
+          console.log(this.editAdoption.adoption);
           this.adoptionForm.controls['breed'].setValue(this.editAdoption.adoption.breed);
           this.adoptionForm.controls['genre'].setValue(this.editAdoption.adoption.genre);
           const format = 'yyyy-MM-dd';
           const locale = 'en-US';
           this.editAdoption.adoption.birth_date = formatDate(this.editAdoption.adoption.birth_date, format, locale);
-          this.adoptionForm.controls['age'].setValue(this.editAdoption.adoption.birth_date);
+          this.adoptionForm.controls['birth_date'].setValue(this.editAdoption.adoption.birth_date);
           this.adoptionForm.controls['pedigree'].setValue(this.editAdoption.adoption.pedigree === 1);
+          this.adoptionForm.controls['name'].setValue(this.editAdoption.adoption.name);
+          this.adoptionForm.controls['location'].setValue(this.editAdoption.adoption.location);
+          this.adoptionForm.controls['type'].setValue(this.editAdoption.adoption.type);
+          this.adoptionForm.controls['animal_photo'].setValue(this.editAdoption.adoption.animal_photo);
+          this.adoptionForm.controls['vaccine_passaport'].setValue(this.editAdoption.adoption.vaccine_passaport);
+          this.adoptionForm.controls['identification_photo'].setValue(this.editAdoption.adoption.identification_photo);
+          this.adoptionForm.controls['taxes'].setValue(this.editAdoption.adoption.taxes);
         });
         
       });
@@ -131,7 +145,7 @@ export class AdotionFormComponent implements OnInit {
     this.isValidGenre = this.adoptionForm.get('genre').valid;
   }
   validateAge() {
-    this.isValidAge = this.adoptionForm.get('age').valid;
+    this.isValidAge = this.adoptionForm.get('birth_date').valid;
   }
   validateType() {
     this.isValidType = this.adoptionForm.get('type').valid;
@@ -185,7 +199,8 @@ export class AdotionFormComponent implements OnInit {
     }
     formData.append('breed', this.adoptionForm.value.breed);
     formData.append('genre', this.adoptionForm.value.genre);
-    formData.append('age', this.adoptionForm.value.age);
+    formData.append('type', this.adoptionForm.value.type);
+    formData.append('birth_date', this.adoptionForm.value.birth_date);
     formData.append('name', this.adoptionForm.value.name);
     formData.append('location', this.adoptionForm.value.location);
     formData.append('pedigree', this.adoptionForm.value.pedigree);
@@ -195,7 +210,7 @@ export class AdotionFormComponent implements OnInit {
       this.adoptionService.createAdoption(formData).then(x => console.log(x));
 
     } else if (!this.creating) {
-      this.adoptionService.editAdoption(formData, this.editAdoption.id).then(x => console.log(x));
+      this.adoptionService.editAdoption(formData, +this.id).then(x => console.log(x));
     }
   }
 }
