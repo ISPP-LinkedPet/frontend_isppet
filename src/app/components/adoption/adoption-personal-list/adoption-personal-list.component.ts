@@ -18,7 +18,6 @@ export class AdoptionPersonalListComponent implements OnInit {
     this.adoptionService.getPersonalAdoptions(id).then(res => res.forEach(adoptionAd => {
       this.personalAdoptions.push(adoptionAd);
     }));
-    console.log(this.personalAdoptions);
   }
 
 }

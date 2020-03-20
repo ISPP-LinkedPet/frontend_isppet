@@ -18,7 +18,6 @@ export class BreedingPersonalListComponent implements OnInit {
     this.breedingService.getPersonalBreedings(id).then(res => res.forEach(breedingAd => {
       this.personalBreedings.push(breedingAd);
     }));
-    console.log(this.personalBreedings);
   }
 
 }

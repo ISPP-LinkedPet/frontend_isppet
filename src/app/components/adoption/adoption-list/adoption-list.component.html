@@ -6,16 +6,16 @@
 </div>
 
 <div class="card border-success mb-3" *ngFor="let adoption of adoptions;">
-<h3 class="card-header">{{adoption.title}}</h3> <!--Advertisement title-->
+<h3 class="card-header">{{adoption.type}} en {{adoption.location}}</h3> <!--Advertisement title-->
 <div class="card-body">
 
 <!--Imagen de prueba-->
 <img src="{{env}}/{{adoption.animal_photo.split(',')[0]}}">
-<p class="card-text"><label><b>Tipo de animal: {{adoption.type}}</b></label>   </p>
-<p class="card-text"><label><b>Pedigree:  {{adoption.pedigree}}</b></label>   </p>
-<p class="card-text"><label><b>Edad:  {{adoption.age}}</b></label>   </p>
-<p class="card-text"><label><b>Raza:  {{adoption.breed}}</b></label>   </p>
-<p class="card-text"><label><b>Ubicación:  {{adoption.location}}</b></label>   </p>
+<p class="card-text"><label><b>Tipo de animal: </b></label> {{adoption.type}} </p>
+<p class="card-text"><label><b>Pedigree: </b></label> {{adoption.pedigree ? "Sí" : "No"}} </p>
+<p class="card-text"><label><b>Edad: </b></label> {{this.configService.calculateAge(adoption.birth_date)}} </p>
+<p class="card-text"><label><b>Raza: </b></label> {{adoption.breed != null ? adoption.breed : "No"}} </p>
+<p class="card-text"><label><b>Ubicación: </b></label> {{adoption.location}} </p>
 
 <button type="button" class="btn btn-success" (click)="viewDetails(adoption.adoption_id)" >Ver Detalles</button>
 </div>
