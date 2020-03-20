@@ -31,4 +31,9 @@ export class RequestListAcceptedItemComponent implements OnInit {
     this.email = this.request.contactData.email;
     this.address = this.request.contactData.address;
   }
+
+  // de momento no hace nada
+  onClick(e: Event) {
+    e.preventDefault();
+  }
 }
