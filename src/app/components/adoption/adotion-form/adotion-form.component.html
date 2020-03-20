@@ -7,14 +7,14 @@
                 <legend class="card-title">Información básica</legend>
                 <!-- Breed -->
                 <div class="form-group col-sm" *ngIf="isValidBreed">
-                    <label for="age">Raza</label>
+                    <label for="breed">Raza</label>
                     <input type="text" class="form-control" id="breed" formControlName="breed">
                 </div>
 
                 <div class="form-group has-danger col-sm"*ngIf="!isValidBreed">
 
                   <div class="form-group">
-                    <label for="age">Raza</label>
+                    <label for="breed">Raza</label>
                     <input type="text" class="form-control is-invalid" id="breed" formControlName="breed">
                     <div class="invalid-feedback">Debe seleccionar una raza</div>
                 </div>

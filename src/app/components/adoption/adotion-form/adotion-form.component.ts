@@ -31,13 +31,18 @@ export class AdotionFormComponent implements OnInit {
   isValidTaxes = true;
   acho = "acdsafafdsafsafdsfdsfho";
   documentVerified: boolean;
-  creating = true;
   adoption = new Adoption();
 
 
   constructor(private adoptionService: AdoptionService,  private configService : ConfigService ) {
     var acho = "acdsafafdsafsafdsfdsfho";
    }
+
+   @Input()
+   creating: boolean;
+ 
+   @Input()
+   editAdoption: any;
 
   adoptionForm = new FormGroup({
     title: new FormControl(
@@ -94,8 +99,14 @@ export class AdotionFormComponent implements OnInit {
     this.documentVerified = false;
     if(this.rol=="shelter"){
       this.adoptionService.getShelterById(localStorage.getItem('access_token'), this.userlogged.id).then(res=>this.adoptionForm.controls['location'].setValue(res.shelter.address))
-
     }
+
+    console.log('HOLA ' + this.editAdoption);
+    if(this.editAdoption != null){
+      this.adoptionForm.controls['breed'].setValue(this.editAdoption.breed);
+    }
+ 
+    
   }
 
   validateBreed() {
@@ -171,5 +182,20 @@ export class AdotionFormComponent implements OnInit {
     formData.append('age', this.adoptionForm.value.age);
 
     this.adoptionService.createAdoption(formData).then(x => console.log(x));
+
+    if(this.creating){
+
+      this.adoptionService.createAdoption(formData).then(x => console.log(x));
+
+    } else if(!this.creating){
+
+      formData.append('genre', this.adoptionForm.value.genre);
+      formData.append('breed', this.adoptionForm.value.breed);
+      formData.append('age', this.adoptionForm.value.age);
+      formData.append('type', this.adoptionForm.value.type);
+      formData.append('pedeegri', this.adoptionForm.value.pedeegri);
+      
+      this.adoptionService.editAdoption(formData, this.editAdoption.id);
+    }
   }
 }
