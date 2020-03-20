@@ -46,6 +46,8 @@ import { RequestListComponent } from './components/request/request-list/request-
 import { AdoptionPendingListComponent } from './components/adoption/adoption-pending-list/adoption-pending-list.component';
 
 import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-pending-list-page/adoption-pending-list-page.component';
+import { RequestListAcceptedComponent } from './components/request/request-list-accepted/request-list-accepted.component';
+import { RequestListAcceptedItemComponent } from './components/request/request-list-accepted/request-list-accepted-item/request-list-accepted-item.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-pend
     EditComponent,
     RequestListComponent,
     AdoptionPendingListPageComponent,
-    AdoptionPendingListComponent
+    AdoptionPendingListComponent,
+    RequestListAcceptedComponent,
+    RequestListAcceptedItemComponent
   ],
   imports: [
     BrowserModule,
