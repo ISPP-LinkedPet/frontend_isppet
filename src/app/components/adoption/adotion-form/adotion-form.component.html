@@ -21,6 +21,28 @@
 
                 </div>
 
+                <!--Type-->
+                <div class="form-group col-sm" *ngIf="isValidType">
+                  <label for="type">Tipo animal</label>
+                    <select class="form-control" id="type" formControlName="type" (change)="validateType()">
+                        <option value='' [defaultSelected]=true>Seleccione tipo animal</option>
+                        <option value='Dog'>Perro</option>
+                        <option value='Cat'>Gato</option>
+                        <option value='Horse'>Caballo</option>
+                    </select>
+                  </div>
+
+                <div class="form-group has-danger col-sm" *ngIf="!isValidType">
+                    <label class="form-control-label" for="type">Tipo de animal</label>
+                      <select class="form-control" id="type" [attr.disabled]="true" formControlName="type" (change)="validateType()">
+                          <option value='' [defaultSelected]=true>Seleccione tipo animal</option>
+                          <option value='Dog'>Perro</option>
+                          <option value='Cat'>Gato</option>
+                          <option value='Horse'>Caballo</option>
+                      </select>
+                    <div class="invalid-feedback">Parece que se ha equivocado</div>
+                </div>
+
                 <!-- Genre -->
                 <div class="form-group has-danger col-sm" *ngIf="isValidGenre">
                     <label for="genre">Genero</label>
@@ -69,7 +91,7 @@
               </div>
               <div class="form-group has-danger col-sm" *ngIf="!isValidLocation">
                   <label class="form-control-label" for="age">Zona</label>
-                  <input type="text" class="form-control is-invalid" id="location" value="{{acho}}" formControlName="location" (change)="validateLocation()">
+                  <input type="text" class="form-control is-invalid" id="location" formControlName="location" (change)="validateLocation()">
                   <div class="invalid-feedback">Parece que se ha equivocado</div>
               </div>
 
@@ -118,15 +140,7 @@
                   </div>
                 </div>
 
-                <div class="form-group has-danger  col-8" *ngIf="!isValidAnimalPhoto">
-                  <label for="animal_photo">Imagenes</label>
-                  <div class="input-group mb-3">
-                    <div class="custom-file">
-                      <input #animalPhoto type="file" class="custom-file-input form-control is-invalid" formControlName="animal_photo" id="animal_photo" (change)="validateAnimalPhoto()" multiple>
-                      <label class="custom-file-label" for="animal_photo">Debe seleccionar como mínimo 2 imagenes</label>
-                    </div>
-                  </div>
-                </div>
+
 
               <!-- Pedigree-->
 
@@ -134,16 +148,16 @@
                 <label for="pedigree">Pedigrí</label>
                 <select class="form-control" id="pedigree" formControlName="pedigree">
                   <option value='' [defaultSelected]=true></option>
-                  <option value='true'>Si</option>
-                  <option value='false'>No</option>
+                  <option value='1'>Si</option>
+                  <option value='0'>No</option>
               </select> 
               </div>
               <div class="form-group has-danger col-6" *ngIf="!isValidPedigri">
                   <label class="form-control-label" for="age">Pedigrí</label>
                   <select class="form-control is-invalid" id="pedigree" formControlName="pedigree">
                     <option value='' [defaultSelected]=true></option>
-                    <option value='true'>Si</option>
-                    <option value='false'>No</option>
+                    <option value='1'>Si</option>
+                    <option value='0'>No</option>
                 </select> 
                   <div class="invalid-feedback">Debe indicar si es pedigrí</div>
               </div>
@@ -172,16 +186,7 @@
                   </div>
                 </div>
 
-                <div class="form-group has-danger col-8" *ngIf="!isValidIdentificationPhoto">
 
-                  <label for="identification_photo">Identificacion de mascota</label>
-                  <div class="input-group mb-3">
-                    <div class="custom-file" *ngIf="!isValidIdentificationPhoto">
-                      <input #identificationPhoto type="file" class="custom-file-input form-control is-invalid" formControlName="identification_photo" id="identification_photo" (change)="validateIdentificationPhoto()" multiple>
-                      <label class="custom-file-label" for="identification_photo">Debe selccionar una imagen como mínimo una imagen</label>
-                    </div>
-                  </div>
-                </div>
               
               <!-- Vaccine passaport-->
 
@@ -195,16 +200,7 @@
                   </div>
               </div>
 
-              <div class="form-group has-danger col-8" *ngIf="!isValidVaccinePassaport">
-                <label for="vaccine_passaport" class="form-control-label" >Cartilla de vacunacion</label>
-                <div class="input-group mb-3">
-                  <div class="custom-file">
-                    <input #vaccinePassaport type="file" class="custom-file-input form-control is-invalid" formControlName="vaccine_passaport" id="vaccine_passaport" (change)="validateVaccinePassaport()" multiple>
-                    <label class="custom-file-label" for="vaccine_passaport">Debe selccionar una imagen como mínimo</label>
-                  </div>
-                </div>
-            </div>
-
+   
 
             </fieldset>
                 <button type="submit" class="btn btn-primary btn-lg button-form">Crear</button>

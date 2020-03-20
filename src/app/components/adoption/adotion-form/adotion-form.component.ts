@@ -29,14 +29,12 @@ export class AdotionFormComponent implements OnInit {
   isValidIdentificationPhoto = true;
   isValidVaccinePassaport = true;
   isValidTaxes = true;
-  acho = "acdsafafdsafsafdsfdsfho";
   documentVerified: boolean;
   creating = true;
   adoption = new Adoption();
 
 
   constructor(private adoptionService: AdoptionService,  public configService : ConfigService ) {
-    var acho = "acdsafafdsafsafdsfdsfho";
    }
 
   adoptionForm = new FormGroup({
@@ -86,8 +84,11 @@ export class AdotionFormComponent implements OnInit {
 
     location: new FormControl(
       this.adoption.location, [
-      Validators.required])
+      Validators.required]),
 
+      type: new FormControl(
+        this.adoption.type, [
+        Validators.required])
   });
 
   ngOnInit(): void {
@@ -141,6 +142,7 @@ export class AdotionFormComponent implements OnInit {
     this.validateAnimalPhoto();
     this.validateIdentificationPhoto();
     this.validateVaccinePassaport();
+    this.validateType();
     this.validateName();
     if(this.rol=="shelter"){
       this.validateTaxes();
@@ -150,6 +152,7 @@ export class AdotionFormComponent implements OnInit {
     const vaccinePassaport = this.vaccinePassaport.nativeElement.files;
     const identificationPhoto = this.identificationPhoto.nativeElement.files;
 
+    console.log(animalPhoto)
     const formData: FormData = new FormData();
     // photo
     for(let i = 0; i < animalPhoto.length; i++) formData.append('animal_photo', animalPhoto[i], animalPhoto[i].name);
@@ -166,8 +169,10 @@ export class AdotionFormComponent implements OnInit {
     formData.append('genre', this.adoptionForm.value.genre);
     formData.append('location', this.adoptionForm.value.location);
     formData.append('pedigree', this.adoptionForm.value.pedigree);
-    formData.append('age', this.adoptionForm.value.age);
+    formData.append('birth_date', this.adoptionForm.value.age);
+    formData.append('type', this.adoptionForm.value.type);
 
+    console.log(this.adoptionForm)
     this.adoptionService.createAdoption(formData);
   }
 }
