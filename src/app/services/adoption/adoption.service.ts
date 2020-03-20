@@ -36,7 +36,17 @@ export class AdoptionService {
   getPersonalAdoptions(id: string) {
     return this.requestService.request('GET', `${environment.endpoint}/adoption/particular`, {}, {}, true);
   }
+
   getPendingAdoptions() {
     return this.requestService.request('GET', `${environment.endpoint}/adoption/pending`, {}, {}, true);
   }
+
+  acceptAdoption(id: string){
+    return this.requestService.request('PUT', `${environment.endpoint}/adoption/accept/${id}`, {}, {}, true);
+  }
+
+  rejectAdoption(id: string){
+    return this.requestService.request('PUT', `${environment.endpoint}/adoption/accept/${id}`, {}, {}, true);
+  }
+
 }

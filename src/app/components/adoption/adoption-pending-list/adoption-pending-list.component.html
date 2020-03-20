@@ -4,19 +4,53 @@
 <div class="card border-success mb-3" *ngFor="let adoption of pendingAdoptions">
 <h3 class="card-header">{{adoption.breed}} en {{adoption.location}}</h3>
 <div class="card-body">
-<img src="{{env}}/{{adoption.animal_photo.split(',')[0]}}">
 <div class="description-content">
-<li><label><b>Foto de identificación:</b><img src="{{env}}/{{adoption.identification_photo.split(',')[0]}}"></label> </li>
-<li><label><b>Documento de vacunas:</b><img src="{{env}}/{{adoption.vaccine_passport.split(',')[0]}}"></label> </li>
-<li><label><b>Pedigree:</b> {{adoption.pedigree}}</label>   </li>
+
+<!-- Animal Documentation-->
+
+<div class="column">
+
+<div class="gallery">
+    <a target="_blank" href="{{env}}/{{adoption.identification_photo.split(',')[0]}}">
+      <img src="{{env}}/{{adoption.identification_photo.split(',')[0]}}" alt="Foto de identificación" width="800" height="400">
+    </a>
+    <div class="desc">Foto de identificación</div>
+  </div>
+
+<div class="gallery">
+<a target="_blank" href="{{env}}/{{adoption.vaccine_passport.split(',')[0]}}">
+    <img src="{{env}}/{{adoption.vaccine_passport.split(',')[0]}}" alt="Documento de vacunas" width="800" height="400">
+</a>
+<div class="desc">Documento de vacunas</div>
+</div>
+</div>
+
+
+<!-- Animal Documentation-->
+
+<div class="column">
+<b >Datos del animal:</b>
+<hr>
+<li><label><b>Pedigree:</b> {{adoption.pedigree}}</label></li>
+<li><label><b>Nombre:</b> {{adoption.name}}</label></li>
 <li><label><b>Edad: </b></label> {{adoption.age}} años</li>
-<li><label><b>Pedigree: </b></label>  </li>
+<li><label><b>Raza: </b></label>  {{adoption.breed}}  </li>
 <li><label><b>Ubicación: </b></label> {{adoption.location}} </li>
-<li><label><b>Precio: </b></label> {{adoption.price}} euros </li>
+<li><label><b>Tasas: </b></label> {{adoption.taxes}} euros </li>
 </div>
-<button type="button" class="btn btn-success">Moderar</button>
+
+<!-- Animal Photo-->
+
+<div class="column">
+    <img class="animal_photo"src="{{env}}/{{adoption.animal_photo.split(',')[0]}}"> 
+
 </div>
 </div>
+</div>
+<button type="button" class="btn btn-success left" (click)="acceptAdoption(adoption.adoption_id)">Aceptar</button>
+<button type="button" class="btn btn-danger right"(click)="rejectAdoption(adoption.adoption_id)">Rechazar</button>
+</div>
+
 
 <!--End Foreach-->
 
