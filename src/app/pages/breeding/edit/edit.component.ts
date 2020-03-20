@@ -10,7 +10,7 @@ import { ConfigService } from 'src/app/services/config/config.service';
 })
 export class EditComponent implements OnInit {
 
-  constructor(private breedingService: BreedingService, private route: ActivatedRoute, private configService: ConfigService) { }
+  constructor(private breedingService: BreedingService, private route: ActivatedRoute, public configService: ConfigService) { }
 
   id = null;
   breeding = null;
