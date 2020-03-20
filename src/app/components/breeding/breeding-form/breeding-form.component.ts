@@ -170,11 +170,12 @@ export class BreedingCreateComponent implements OnInit {
     for(let i = 0; i < vaccinePassaport.length; i++) formData.append('vaccine_passport', vaccinePassaport[i], vaccinePassaport[i].name);
     for(let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
 
+    // field
+    formData.append('price', this.breedingForm.value.price);
+    formData.append('location', this.breedingForm.value.location);
+
     // si se está creando
     if(this.creating){
-      // field
-      formData.append('price', this.breedingForm.value.price);
-      formData.append('location', this.breedingForm.value.location);
 
       this.breedingService.createBreeding(formData).then(x => console.log(x)).then(x => alert("¡La crianza se ha creado correctamente! \n Ahora debe de revisarlo un moderador"))
       .then(x=>this.router.navigate(['/breeding-list']));
@@ -182,6 +183,14 @@ export class BreedingCreateComponent implements OnInit {
       // si lo está editando un moderador
     } else if(!this.creating && this.rol=='moderator'){
 
+      formData.append('genre', this.breedingForm.value.genre);
+      formData.append('breed', this.breedingForm.value.breed);
+      formData.append('age', this.breedingForm.value.age);
+      formData.append('type', this.breedingForm.value.type);
+      formData.append('pedeegri', this.breedingForm.value.pedeegri);
+      
+      this.breedingService.acceptBreeding(formData, this.editBreeding.id).then(x => console.log(x)).then(x => alert("¡La crianza se ha aceptado correctamente! \n Se ha publicado en la lista de crianzas"))
+      .then(x=>this.router.navigate(['/breeding-pending-list']));
     }
   }
 
