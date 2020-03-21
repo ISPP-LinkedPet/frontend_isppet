@@ -33,7 +33,7 @@ export class AdoptionService {
     return this.requestService.request('POST', `${environment.endpoint}/adoption`, data, {}, true);
   }
 
-  editAdoption(data: any, id: number){
+  editAdoption(data: any, id: number) {
     return this.requestService.request('PUT', `${environment.endpoint}/adoption/edit/${id}`, data, {}, true)
   }
 
