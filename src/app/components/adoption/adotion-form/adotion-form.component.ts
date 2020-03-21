@@ -4,6 +4,7 @@ import { AdoptionService } from '../../../services/adoption/adoption.service';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { ConfigService } from 'src/app/services/config/config.service';
 import { ActivatedRoute } from '@angular/router';
+import {Router} from "@angular/router";
 import { registerLocaleData } from '@angular/common';
 import localeES from "@angular/common/locales/es";
 registerLocaleData(localeES, "es");
@@ -37,7 +38,7 @@ export class AdotionFormComponent implements OnInit {
   documentVerified: boolean;
   adoption = new Adoption();
 
-  constructor(private route: ActivatedRoute, private adoptionService: AdoptionService, private configService: ConfigService) {
+  constructor(private routeA: ActivatedRoute, private router: Router, private adoptionService: AdoptionService, private configService: ConfigService) {
   }
 
   @Input()
@@ -99,116 +100,119 @@ export class AdotionFormComponent implements OnInit {
 
   });
 
+
   ngOnInit(): void {
     if (!this.creating) {
-      this.route.paramMap.subscribe(parameterMap => {
+      this.routeA.paramMap.subscribe(parameterMap => {
         this.id = parameterMap.get('id');
         this.adoptionService.getAdoptionById(localStorage.getItem('access_token'), this.id).then(res => {
           this.editAdoption = res
-          console.log(this.editAdoption.adoption);
+          
           this.adoptionForm.controls['breed'].setValue(this.editAdoption.adoption.breed);
           this.adoptionForm.controls['genre'].setValue(this.editAdoption.adoption.genre);
           const format = 'yyyy-MM-dd';
           const locale = 'en-US';
           this.editAdoption.adoption.birth_date = formatDate(this.editAdoption.adoption.birth_date, format, locale);
           this.adoptionForm.controls['birth_date'].setValue(this.editAdoption.adoption.birth_date);
-          this.adoptionForm.controls['pedigree'].setValue(this.editAdoption.adoption.pedigree === 1);
+          this.adoptionForm.controls['pedigree'].setValue(this.editAdoption.adoption.pedigree);
           this.adoptionForm.controls['name'].setValue(this.editAdoption.adoption.name);
           this.adoptionForm.controls['location'].setValue(this.editAdoption.adoption.location);
           this.adoptionForm.controls['type'].setValue(this.editAdoption.adoption.type);
-          this.adoptionForm.controls['animal_photo'].setValue(this.editAdoption.adoption.animal_photo);
-          this.adoptionForm.controls['vaccine_passaport'].setValue(this.editAdoption.adoption.vaccine_passaport);
-          this.adoptionForm.controls['identification_photo'].setValue(this.editAdoption.adoption.identification_photo);
           this.adoptionForm.controls['taxes'].setValue(this.editAdoption.adoption.taxes);
-        });
-        
       });
 
-    }
+    });
+
+  }
     this.documentVerified = false;
-    if (this.rol == "shelter") {
-      this.adoptionService.getShelterById(localStorage.getItem('access_token'), this.userlogged.id).then(res => this.adoptionForm.controls['location'].setValue(res.shelter.address))
-    }
+if (this.rol == "shelter") {
+  this.adoptionService.getShelterById(localStorage.getItem('access_token'), this.userlogged.id).then(res => this.adoptionForm.controls['location'].setValue(res.shelter.address))
+}
 
 
 
   }
 
-  validateBreed() {
-    this.isValidBreed = this.adoptionForm.get('breed').valid;
-  }
-  validateName() {
-    this.isValidName = this.adoptionForm.get('name').valid;
-  }
-  validateGenre() {
-    this.isValidGenre = this.adoptionForm.get('genre').valid;
-  }
-  validateAge() {
-    this.isValidAge = this.adoptionForm.get('birth_date').valid;
-  }
-  validateType() {
-    this.isValidType = this.adoptionForm.get('type').valid;
-  }
-  validatePedigree() {
-    this.isValidPedigri = this.adoptionForm.get('pedigree').valid;
-  }
-  validateAnimalPhoto() {
-    this.isValidAnimalPhoto = this.adoptionForm.get('animal_photo').valid;
-  }
-  validateLocation() {
-    this.isValidLocation = this.adoptionForm.get('location').valid;
-  }
-  validateIdentificationPhoto() {
-    this.isValidIdentificationPhoto = this.adoptionForm.get('identification_photo').valid;
-  }
-  validateVaccinePassaport() {
-    this.isValidVaccinePassaport = this.adoptionForm.get('vaccine_passaport').valid;
-  }
-  validateTaxes() {
-    this.isValidTaxes = this.adoptionForm.get('taxes').valid;
+validateBreed() {
+  this.isValidBreed = this.adoptionForm.get('breed').valid;
+}
+validateName() {
+  this.isValidName = this.adoptionForm.get('name').valid;
+}
+validateGenre() {
+  this.isValidGenre = this.adoptionForm.get('genre').valid;
+}
+validateAge() {
+  this.isValidAge = this.adoptionForm.get('birth_date').valid;
+}
+validateType() {
+  this.isValidType = this.adoptionForm.get('type').valid;
+}
+validatePedigree() {
+  this.isValidPedigri = this.adoptionForm.get('pedigree').valid;
+}
+validateAnimalPhoto() {
+  this.isValidAnimalPhoto = this.adoptionForm.get('animal_photo').valid;
+}
+validateLocation() {
+  this.isValidLocation = this.adoptionForm.get('location').valid;
+}
+validateIdentificationPhoto() {
+  this.isValidIdentificationPhoto = this.adoptionForm.get('identification_photo').valid;
+}
+validateVaccinePassaport() {
+  this.isValidVaccinePassaport = this.adoptionForm.get('vaccine_passaport').valid;
+}
+validateTaxes() {
+  this.isValidTaxes = this.adoptionForm.get('taxes').valid;
+}
+
+onSubmit() {
+  this.validateBreed();
+  this.validateGenre();
+  this.validateAge();
+  this.validatePedigree();
+  this.validateLocation();
+  this.validateAnimalPhoto();
+  this.validateIdentificationPhoto();
+  this.validateVaccinePassaport();
+  this.validateName();
+  if (this.rol == "shelter") {
+    this.validateTaxes();
   }
 
-  onSubmit() {
-    this.validateBreed();
-    this.validateGenre();
-    this.validateAge();
-    this.validatePedigree();
-    this.validateLocation();
-    this.validateAnimalPhoto();
-    this.validateIdentificationPhoto();
-    this.validateVaccinePassaport();
-    this.validateName();
-    if (this.rol == "shelter") {
-      this.validateTaxes();
-    }
+  const animalPhoto = this.animalPhoto.nativeElement.files;
+  const vaccinePassaport = this.vaccinePassaport.nativeElement.files;
+  const identificationPhoto = this.identificationPhoto.nativeElement.files;
 
-    const animalPhoto = this.animalPhoto.nativeElement.files;
-    const vaccinePassaport = this.vaccinePassaport.nativeElement.files;
-    const identificationPhoto = this.identificationPhoto.nativeElement.files;
+  const formData: FormData = new FormData();
+  // photo
+  for (let i = 0; i < animalPhoto.length; i++) formData.append('animal_photo', animalPhoto[i], animalPhoto[i].name);
+  for (let i = 0; i < vaccinePassaport.length; i++) formData.append('vaccine_passport', vaccinePassaport[i], vaccinePassaport[i].name);
+  for (let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
 
-    const formData: FormData = new FormData();
-    // photo
-    for (let i = 0; i < animalPhoto.length; i++) formData.append('animal_photo', animalPhoto[i], animalPhoto[i].name);
-    for (let i = 0; i < vaccinePassaport.length; i++) formData.append('vaccine_passport', vaccinePassaport[i], vaccinePassaport[i].name);
-    for (let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
-
-    // field
-    if (this.rol == "shelter") {
-      formData.append('taxes', this.adoptionForm.value.taxes);
-    }
-    formData.append('breed', this.adoptionForm.value.breed);
-    formData.append('genre', this.adoptionForm.value.genre);
-    formData.append('type', this.adoptionForm.value.type);
-    formData.append('birth_date', this.adoptionForm.value.birth_date);
-    formData.append('name', this.adoptionForm.value.name);
-    formData.append('location', this.adoptionForm.value.location);
-    formData.append('pedigree', this.adoptionForm.value.pedigree);
-
-    if (this.creating) {
-      this.adoptionService.createAdoption(formData).then(x => console.log(x));
-
-    } else if (!this.creating) {
-      this.adoptionService.editAdoption(formData, +this.id).then(x => console.log(x));
-    }
+  // field
+  if (this.rol == "shelter") {
+    formData.append('taxes', this.adoptionForm.value.taxes);
   }
+  formData.append('breed', this.adoptionForm.value.breed);
+  formData.append('genre', this.adoptionForm.value.genre);
+  formData.append('type', this.adoptionForm.value.type);
+  formData.append('birth_date', this.adoptionForm.value.birth_date);
+  formData.append('name', this.adoptionForm.value.name);
+  formData.append('location', this.adoptionForm.value.location);
+  formData.append('pedigree', this.adoptionForm.value.pedigree);
+
+  if (this.creating) {
+    this.adoptionService.createAdoption(formData).then(x => console.log(x));
+
+  } else if (!this.creating) {
+    this.adoptionService.editAdoption(formData, +this.id).then(x => {
+      alert("¡La adopción se ha editado correctamente!")
+      this.router.navigate(['/adoption-list'])
+    }).catch(error => {
+      console.log(error);
+    });;
+  }
+}
 }

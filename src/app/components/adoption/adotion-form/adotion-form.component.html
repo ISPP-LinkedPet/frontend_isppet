@@ -22,7 +22,7 @@
                 <!-- Genre -->
                 <div class="form-group has-danger col-sm" *ngIf="isValidGenre">
                     <label for="genre">Genero</label>
-                    <select class="form-control" id="genre" formControlName="genre">
+                    <select class="form-control" id="genre" formControlName="genre" (change)="validateGenre()">
                         <option value='' [defaultSelected]=true>Seleccione genero</option>
                         <option value='Male'>Macho</option>
                         <option value='Female'>Hembra</option>
@@ -51,10 +51,9 @@
                 </div>
 
                 <!-- Type -->
-
                 <div class="form-group has-danger col-sm" *ngIf="isValidType">
                   <label for="type">Tipo</label>
-                  <select class="form-control" id="type" formControlName="type">
+                  <select class="form-control" id="type" formControlName="type" (change)="validateType()">
                       <option value='' [defaultSelected]=true>Seleccione tipo de animal</option>
                       <option value='Dog'>Perro</option>
                       <option value='Cat'>Gato</option>
@@ -63,8 +62,8 @@
               </div>
 
                 <div class="form-group has-dange col-sm"*ngIf="!isValidType">
-                  <label for="genre">Tipo</label>
-                  <select class="form-control" id="genre" formControlName="genre" (change)="validateGenre()">
+                  <label for="type">Tipo</label>
+                  <select class="form-control" id="type" formControlName="type" (change)="validateType()">
                     <option value='' [defaultSelected]=true>Seleccione tipo de animal</option>
                       <option value='Dog'>Perro</option>
                       <option value='Cat'>Gato</option>
@@ -108,7 +107,7 @@
                       <div class="input-group-prepend">
                           <span class="input-group-text">$</span>
                       </div>
-                      <input type="text" class="form-control" formControlName="taxes" aria-label="Amount (to the nearest dollar)" (change)="validateTaxes()">
+                      <input type="number" class="form-control" formControlName="taxes" aria-label="Amount (to the nearest dollar)" (change)="validateTaxes()">
                       <div class="input-group-append">
                           <span class="input-group-text">.00</span>
                       </div>
@@ -123,7 +122,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
                     </div>
-                    <input type="text" class="form-control is-invalid" formControlName="taxes" aria-label="Amount (to the nearest dollar)" (change)="validateTaxes()">
+                    <input type="number" class="form-control is-invalid" formControlName="taxes" aria-label="Amount (to the nearest dollar)" (change)="validateTaxes()">
                     <div class="input-group-append">
                         <span class="input-group-text">.00</span>
                     </div>
@@ -160,16 +159,16 @@
                 <label for="pedigree">Pedigrí</label>
                 <select class="form-control" id="pedigree" formControlName="pedigree" (change)="validatePedigree()">
                   <option value='' [defaultSelected]=true></option>
-                  <option value='true'>Si</option>
-                  <option value='false'>No</option>
+                  <option value='1'>Si</option>
+                  <option value='0'>No</option>
               </select> 
               </div>
               <div class="form-group has-danger col-6" *ngIf="!isValidPedigri">
                   <label class="form-control-label" for="birth_date">Pedigrí</label>
                   <select class="form-control is-invalid" id="pedigree" formControlName="pedigree" (change)="validatePedigree()">
                     <option value='' [defaultSelected]=true></option>
-                    <option value='true'>Si</option>
-                    <option value='false'>No</option>
+                    <option value='1'>Si</option>
+                    <option value='0'>No</option>
                 </select> 
                   <div class="invalid-feedback">Debe indicar si es pedigrí</div>
               </div>
