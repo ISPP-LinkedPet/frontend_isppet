@@ -40,6 +40,7 @@ export class BreedingCreateComponent implements OnInit {
   rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
 
   // form
+
   breedingForm: any;
 
   // utils
@@ -178,7 +179,7 @@ export class BreedingCreateComponent implements OnInit {
 
       formData.append('genre', this.breedingForm.value.genre);
       formData.append('breed', this.breedingForm.value.breed);
-      formData.append('age', this.breedingForm.value.age);
+      formData.append('age', this.breedingForm.value.birth_date);
       formData.append('type', this.breedingForm.value.type);
       formData.append('pedeegri', this.breedingForm.value.pedeegri);
 

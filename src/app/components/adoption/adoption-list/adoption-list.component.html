@@ -18,6 +18,7 @@
 <p class="card-text"><label><b>Ubicación: </b></label> {{adoption.location}} </p>
 
 <button type="button" class="btn btn-success" (click)="viewDetails(adoption.adoption_id)" >Ver Detalles</button>
+<button type="button" class="btn btn-success" [routerLink]="['/adoption-edit', adoption.adoption_id]">Editar</button>
 </div>
 </div>
 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from 'src/app/services/config/config.service';
 import {Router} from '@angular/router';
-
 @Component({
   selector: 'app-adoption-pending-list-page',
   templateUrl: './adoption-pending-list-page.component.html',

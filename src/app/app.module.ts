@@ -44,7 +44,7 @@ import { PersonalListAdoptionComponent } from './pages/adoption/personal-list-ad
 import { EditComponent } from './pages/breeding/edit/edit.component';
 import { RequestListComponent } from './components/request/request-list/request-list.component';
 import { AdoptionPendingListComponent } from './components/adoption/adoption-pending-list/adoption-pending-list.component';
-
+import { EditAdoptionComponent } from './pages/adoption/edit-adoption/edit-adoption.component';
 import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-moderator/adoption-pending-list-page.component';
 import { RequestListAcceptedComponent } from './components/request/request-list-accepted/request-list-accepted.component';
 import { RequestListAcceptedItemComponent } from './components/request/request-list-accepted/request-list-accepted-item/request-list-accepted-item.component';
@@ -82,6 +82,7 @@ import { RequestListAcceptedItemComponent } from './components/request/request-l
     RequestListComponent,
     AdoptionPendingListPageComponent,
     AdoptionPendingListComponent,
+    EditAdoptionComponent,
     RequestListAcceptedComponent,
     RequestListAcceptedItemComponent
   ],

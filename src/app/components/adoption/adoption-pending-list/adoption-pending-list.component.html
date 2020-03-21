@@ -38,12 +38,12 @@
 <li><label><b>Ubicación: </b></label> {{adoption.location}} </li>
 <li><label><b>Tasas: </b></label> {{adoption.taxes}} euros </li>
 </div>
+<button type="button" class="btn btn-success" [routerLink]="['/adoption-edit', adoption.id]">Moderar</button>
 
 <!-- Animal Photo-->
 
 <div class="column">
     <img class="animal_photo"src="{{env}}/{{adoption.animal_photo.split(',')[0]}}"> 
-
 </div>
 </div>
 </div>
