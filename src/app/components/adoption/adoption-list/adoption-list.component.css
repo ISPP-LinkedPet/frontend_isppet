@@ -1,31 +1,16 @@
-
 h1{
     margin: 10px 10px 10px 10px;
 }
 
 div{
-    width: 90%;
     margin: 20px 60px 0px 60px;
-    color: black;
 }
 
 img{
-    width: 27%;
+    width: 20%;
+    height: 20%;
     float: right;
     border-radius: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
-}
-
-.card-body{
-    margin-top: auto;
-}
-
-.description-content{
-    margin: 0;
-    list-style-type: none;
-}
-
-button{
-    margin: 20px 0px 0px 0px;
 }
