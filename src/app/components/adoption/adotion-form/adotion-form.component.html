@@ -63,7 +63,7 @@
 
                 <!-- Age -->
                 <div class="form-group col-sm" *ngIf="isValidAge">
-                    <label for="birth_date">Edad</label>
+                    <label for="birth_date">Fecha de nacimiento</label>
                     <input type="date" class="form-control" id="birth_date" formControlName="birth_date" (change)="validateAge()">
                 </div>
                 <div class="form-group has-danger col-sm"*ngIf="!isValidAge">

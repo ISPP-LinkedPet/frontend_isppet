@@ -4,8 +4,8 @@
 <div class="card border-success mb-3" *ngFor="let vet of vets;">
 <h3 class="card-header">{{vet.name}}</h3>
 <div class="card-body">
-<img src="{{env}}/{{vet.optional_photo}}">
-<p class="card-text"><label><b>Telefóno: {{vet.phone}}</b></label>   </p>
+<img src="{{env}}/{{vet.optional_photo}}" onerror="this.onerror=null;this.src='../../../assets/icons/simple_icon.png';">
+<p class="card-text"><label><b>Telefóno: {{vet.telephone}}</b></label>   </p>
 <p class="card-text"><label><b>Email: {{vet.email}}</b></label>   </p>
 <p class="card-text"><label><b>Address:  {{vet.address}}</b></label>   </p>
 </div>
