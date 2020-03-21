@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfigService } from 'src/app/services/config/config.service';
+import { ConfigService } from '../../../services/config/config.service';
 import {Router} from "@angular/router";
 
 @Component({
@@ -9,13 +9,16 @@ import {Router} from "@angular/router";
 })
 export class CreateComponent implements OnInit {
 
-  constructor(private configService: ConfigService, private router: Router) { }
+  constructor(
+    private configService: ConfigService,
+    private router: Router
+  ) { }
 
   userlogged = this.configService.getUserLogged();
   rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
 
   ngOnInit(): void {
-    if(this.rol!='particular'){
+    if(this.rol != 'particular'){
       this.router.navigate(['/'])
     }
   }
