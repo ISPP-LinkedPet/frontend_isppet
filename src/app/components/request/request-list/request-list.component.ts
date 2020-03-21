@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RequestBreedingService} from 'src/app/services/requestBreeding/request-breeding.service';
 import {environment} from 'src/environments/environment';
 import { ConfigService } from 'src/app/services/config/config.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-request-list',
@@ -11,10 +12,21 @@ import { ConfigService } from 'src/app/services/config/config.service';
 export class RequestListComponent implements OnInit {
 
   requests = new Array();
+  
 
   constructor(
-    private requestBreedingService: RequestBreedingService
+    private requestBreedingService: RequestBreedingService,
+    private router: Router
   ) { }
+
+  onSubmit(id: string, publicationId: string, accept: boolean){
+    if(accept==true)
+      this.requestBreedingService.acceptRequest(id, publicationId);
+    else
+      this.requestBreedingService.rejectRequest(id);
+
+    location.reload();
+}
 
   ngOnInit(): void {
   this.requestBreedingService.getUserPendingBreedings().then(res => res.forEach(element => {
