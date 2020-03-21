@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {environment} from '../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
@@ -34,6 +34,7 @@ export class BreedingCreateComponent implements OnInit {
   isValidLocation = false;
   isValidIdentificationPhoto = false;
   isValidVaccinePassaport = false;
+  backError: string;
 
   // user data
   userlogged = this.configService.getUserLogged();
@@ -46,7 +47,9 @@ export class BreedingCreateComponent implements OnInit {
   // utils
   title: any;
   env = environment.endpoint
-
+  animalPhotos = new Array();
+  identification_photos = new Array();
+  vaccine_photos = new Array();
   constructor(
     private breedingService: BreedingService,
     private router: Router,
@@ -137,9 +140,11 @@ export class BreedingCreateComponent implements OnInit {
       this.isValidPedigri = ['true','false'].includes(this.breedingForm.get('pedigree').value);
     }
   }
-  validateAnimalPhoto() {
+
+  validateAnimalPhoto(){
     this.isValidAnimalPhoto = this.breedingForm.get('animal_photo').valid;
   }
+
   validateLocation() {
     this.isValidLocation = this.breedingForm.get('location').valid;
   }
@@ -149,6 +154,33 @@ export class BreedingCreateComponent implements OnInit {
   validateVaccinePassaport() {
     this.isValidVaccinePassaport = this.breedingForm.get('vaccine_passaport').valid;
   }
+
+  // If the input has changed(file picked) we project the file into the img previewer
+  getAnimalPhotoAndValidate($event: Event) {
+    // We access he file with $event.target['files'][0]
+    Array.from($event.target['files']).forEach(element => {
+      this.animalPhotos.push(element)
+    });
+    this.validateAnimalPhoto();
+  }
+
+  // If the input has changed(file picked) we project the file into the img previewer
+  getIdPhotoAndValidate($event: Event) {
+    // We access he file with $event.target['files'][0]
+    Array.from($event.target['files']).forEach(element => {
+      this.identification_photos.push(element)
+    });
+  }
+
+
+  // If the input has changed(file picked) we project the file into the img previewer
+  getVacPhotoAndValidate($event: Event) {
+    // We access he file with $event.target['files'][0]
+    Array.from($event.target['files']).forEach(element => {
+      this.vaccine_photos.push(element)
+    });
+  }
+
 
   // submit form
   onSubmit() {
@@ -171,6 +203,8 @@ export class BreedingCreateComponent implements OnInit {
       this.breedingService.createBreeding(formData).then(x => {
         alert("¡La crianza se ha creado correctamente! \n Ahora debe de revisarlo un moderador")
         this.router.navigate(['/breeding-pending'])
+      }).catch (error => {
+        this.backError = error.error.error
       });
     }
 
@@ -186,9 +220,7 @@ export class BreedingCreateComponent implements OnInit {
       this.breedingService.acceptBreeding(formData, this.editBreeding.breedingId).then(x => {
         alert("¡La crianza se ha aceptado correctamente! \n Se ha publicado en la lista de crianzas")
         this.router.navigate(['/breeding-pending'])
-      }).catch(error => {
-        console.log(error);
-      });
+      }).catch (error => this.backError = error.error.error);
     }
   }
 
@@ -197,7 +229,7 @@ export class BreedingCreateComponent implements OnInit {
       alert("¡La crianza se ha rechazado correctamente!")
 
       this.router.navigate(['/breeding-pending'])
-    });
+    }).catch (error => this.backError = error.error.error);
   }
 
   validationFields(type?:string) {
@@ -225,4 +257,6 @@ export class BreedingCreateComponent implements OnInit {
       this.isValidVaccinePassaport = true;
     }
   }
+
+  
 }

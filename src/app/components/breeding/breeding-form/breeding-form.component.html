@@ -1,3 +1,4 @@
+
 <div class="container" *ngIf="breedingForm != undefined">
     <div class="card border-primary mb-3">
     <div class="card-body">
@@ -99,6 +100,7 @@
                     </div>
                   </div>
 
+
                   <div class="form-group has-danger col-sm" *ngIf="!isValidType">
                       <label class="form-control-label" for="type">Tipo de animal</label>
                       <div *ngIf="rol=='particular'">
@@ -196,11 +198,11 @@
               <div class="row">
 
                 <!-- Animal photo -->
-                <div class="form-group col-6" *ngIf="creating == true && rol != 'moderator'">
+                <div class="form-group col-6" *ngIf="creating && rol != 'moderator'">
                   <label for="animal_photo">Imagenes</label>
                   <div class="input-group mb-3">
                     <div class="custom-file">
-                      <input #animalPhoto type="file" class="custom-file-input" formControlName="animal_photo" id="animal_photo" (change)="validateAnimalPhoto()" multiple>
+                      <input #animalPhoto type="file" class="custom-file-input" formControlName="animal_photo" name="animal_photo" id="animal_photo" (change)="getAnimalPhotoAndValidate($event)" multiple>
                       <label class="custom-file-label" for="animal_photo">Seleccionar imagenes</label>
                     </div>
                   </div>
@@ -218,7 +220,12 @@
                       <input type="text" class="form-control is-invalid" id="location" formControlName="location" (change)="validateLocation()">
                       <div class="invalid-feedback">Debe rellenar este campo</div>
                   </div>
-
+                  <!-- File names -->
+                <ul>
+                  <li *ngFor="let filename of animalPhotos; let i = index">
+                    {{i}} {{filename.name}}
+                  </li>
+                </ul>
               </div>
             </fieldset>
             <hr>
@@ -234,13 +241,20 @@
                     <label for="identification_photo">Identificacion de mascota</label>
                     <div class="input-group mb-3">
                       <div class="custom-file">
-                        <input #identificationPhoto type="file" class="custom-file-input" formControlName="identification_photo" id="identification_photo" (change)="validateIdentificationPhoto()" multiple>
+                        <input #identificationPhoto type="file" class="custom-file-input" formControlName="identification_photo" id="identification_photo" (change)="getIdPhotoAndValidate($event)" multiple>
                         <label class="custom-file-label" for="identification_photo">Seleccionar imagenes</label>
                       </div>
                     </div>
                     <div class="invalid-feedback" *ngIf="!isValidIdentificationPhoto">Debe subir una imagen de la identificación</div>
                 </div>
 
+                   <!-- File names -->
+                   <ul>
+                    <li *ngFor="let filename of identification_photos; let i = index">
+                      {{i}} {{filename.name}}
+                    </li>
+                  </ul>
+                  
                 <div class="form-group col-4" *ngIf="rol=='moderator'">
                   <img style="height: 250px; width: 100%; display: block;" src="{{env}}/{{editBreeding.identification_photo.split(',')[0]}}" alt="Card image">
                 </div>
@@ -254,12 +268,20 @@
                     <label for="vaccine_passaport">Cartilla de vacunacion</label>
                     <div class="input-group mb-3">
                       <div class="custom-file">
-                        <input #vaccinePassaport type="file" class="custom-file-input" formControlName="vaccine_passaport" id="vaccine_passaport" (change)="validateVaccinePassaport()" multiple>
+                        <input #vaccinePassaport type="file" class="custom-file-input" formControlName="vaccine_passaport" id="vaccine_passaport" (change)="getVacPhotoAndValidate($event)" multiple>
                         <label class="custom-file-label" for="vaccine_passaport">Seleccionar imagenes</label>
                       </div>
                     </div>
                     <div class="invalid-feedback"  *ngIf="!isValidVaccinePassaport">Debe subir una imagen de la cartilla de vacunación</div>
                 </div>
+
+                
+                   <!-- File names -->
+                   <ul>
+                    <li *ngFor="let filename of vaccine_photos; let i = index">
+                      {{i}} {{filename.name}}
+                    </li>
+                  </ul>
 
                 <div class="form-group col-4" *ngIf="rol=='moderator'">
                   <img style="height: 150px; width: 100%; display: block;" src="{{env}}/{{editBreeding.vaccine_passport.split(',')[0]}}" alt="Card image">
@@ -271,7 +293,8 @@
                 <button *ngIf="rol == 'moderator'" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Acceptar</button>
                 <button *ngIf="rol != 'moderator'" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Crear</button>
                 <button *ngIf="rol == 'moderator'" (click)="rejectPublication()" class="btn btn-secondary btn-lg button-form right">Rechazar</button>
-        </form>
+            </form>
+            <div class="invalid-feedback">{{backError}}</div>
     </div>
     </div>
 </div>

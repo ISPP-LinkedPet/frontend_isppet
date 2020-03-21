@@ -48,6 +48,7 @@ import { EditAdoptionComponent } from './pages/adoption/edit-adoption/edit-adopt
 import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-moderator/adoption-pending-list-page.component';
 import { RequestListAcceptedComponent } from './components/request/request-list-accepted/request-list-accepted.component';
 import { RequestListAcceptedItemComponent } from './components/request/request-list-accepted/request-list-accepted-item/request-list-accepted-item.component';
+import { EditParticularComponent } from './pages/breeding/edit-particular/edit-particular.component';
 
 //Bootstrap
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -88,7 +89,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     AdoptionPendingListComponent,
     EditAdoptionComponent,
     RequestListAcceptedComponent,
-    RequestListAcceptedItemComponent
+    RequestListAcceptedItemComponent,
+    EditParticularComponent
   ],
   imports: [
     BrowserModule,
