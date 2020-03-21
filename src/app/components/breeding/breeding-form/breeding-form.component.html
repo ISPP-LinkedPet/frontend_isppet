@@ -3,7 +3,7 @@
     <div class="card border-primary mb-3">
     <div class="card-body">
         <h1 class="card-title*n">{{title}} publicacion</h1>
-        <form [formGroup]="breedingForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="breedingForm">
 
           <em *ngIf="creating" class="text-secondary">Los campos en gris están deshabilitados</em>
             <fieldset>
