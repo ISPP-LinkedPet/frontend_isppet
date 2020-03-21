@@ -13,7 +13,7 @@ export class BreedingService {
   ) { }
 
   getAllBreedings() {
-    return this.requestService.request('GET', `${environment.endpoint}/breeding/offers`, {}, {}, true);
+    return this.requestService.request('GET', `${environment.endpoint}/breeding/available`, {}, {}, true);
   }
 
   createBreeding(data: any) {
