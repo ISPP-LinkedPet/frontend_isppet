@@ -23,7 +23,7 @@ export class BreedingListComponent implements OnInit {
 
   ngOnInit(): void {
       const token = localStorage.getItem('access_token');
-      this.breedingService.getAllBreedings().then(res => res.breedings.forEach(breedingAd => {
+      this.breedingService.getAllBreedings().then(res => res.forEach(breedingAd => {
         this.breedings.push(breedingAd);
       })).then(res=>console.log(this.breedings));
   }
