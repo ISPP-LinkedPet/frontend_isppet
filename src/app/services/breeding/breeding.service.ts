@@ -43,5 +43,9 @@ export class BreedingService {
     return this.requestService.request('PUT', `${environment.endpoint}/breeding/accept/${id}`, data, {}, true)
   }
 
+  rejectBreeding(id: number){
+    return this.requestService.request('PUT', `${environment.endpoint}/breeding/reject/${id}`, {}, {}, true)
+  }
+
 
 }

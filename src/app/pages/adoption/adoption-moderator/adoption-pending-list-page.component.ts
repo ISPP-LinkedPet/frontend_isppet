@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 export class AdoptionPendingListPageComponent implements OnInit {
 
 
-  constructor(private configService: ConfigService, private router: Router) { }
+  constructor(public configService: ConfigService, private router: Router) { }
 
   userlogged = this.configService.getUserLogged();
   rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
@@ -19,5 +19,6 @@ export class AdoptionPendingListPageComponent implements OnInit {
     if (this.rol !== 'moderator') {
       this.router.navigate(['/']);
     }
+
   }
 }

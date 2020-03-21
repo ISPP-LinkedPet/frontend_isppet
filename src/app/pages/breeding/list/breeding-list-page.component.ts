@@ -16,7 +16,7 @@ export class BreedingListPageComponent implements OnInit {
   isLeftVisible = true;
   selectedBreeding:any;
   hasreq:any;
-  constructor(private breedingService: BreedingService,private configService: ConfigService, private router: Router) { }
+  constructor(private breedingService: BreedingService,public configService: ConfigService, private router: Router) { }
 
   userlogged = this.configService.getUserLogged();
   rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
@@ -28,7 +28,7 @@ export class BreedingListPageComponent implements OnInit {
   }
 
   loadBreeding(id: string){
-    this.breedingService.getBreedingById(id).then(res => this.selectedBreeding = res.breeding);
+    this.breedingService.getBreedingById(id).then(res => this.selectedBreeding = res);
     this.breedingService.hasRequest(id).then(res => this.hasreq);
   }
 

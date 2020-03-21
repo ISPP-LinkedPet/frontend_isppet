@@ -33,7 +33,6 @@ export class RequestListComponent implements OnInit {
   this.requests.push(element); }));
   this.requestBreedingService.getUserAcceptedBreedings().then(res => res.forEach(element => {
   this.requests.push(element); }));
-  console.log(this.requests);
 
   }
 

@@ -6,12 +6,12 @@
 <div class="card-body">
 <img src="{{env}}/{{breedingAd.animal_photo.split(',')[0]}}">
 <div class="description-content">
-<li><label><b>Edad: </b></label> {{breedingAd.age}} años</li>
+<li><label><b>Edad: </b></label> {{breedingAd.birth_date}} años</li>
 <li><label><b>Pedigree: </b></label>  </li>
 <li><label><b>Ubicación: </b></label> {{breedingAd.location}} </li>
 <li><label><b>Precio: </b></label> {{breedingAd.price}} euros </li>
 </div>
-<button type="button" class="btn btn-success" [routerLink]="['/breeding-edit', breedingAd.id]">Moderar</button>
+<button type="button" class="btn btn-success" [routerLink]="['/breeding-edit', breedingAd.breedingId]">Moderar</button>
 </div>
 </div>
 

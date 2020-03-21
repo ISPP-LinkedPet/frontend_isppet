@@ -9,13 +9,16 @@ import {Router} from "@angular/router";
 })
 export class CreateComponent implements OnInit {
 
-  constructor(private configService: ConfigService, private router: Router) { }
+  constructor(
+    public configService: ConfigService,
+    private router: Router
+  ) { }
 
   userlogged = this.configService.getUserLogged();
   rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
 
   ngOnInit(): void {
-    if(this.rol!='particular'){
+    if(this.rol != 'particular'){
       this.router.navigate(['/'])
     }
   }

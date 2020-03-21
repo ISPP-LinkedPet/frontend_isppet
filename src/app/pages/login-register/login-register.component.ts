@@ -27,7 +27,7 @@ export class LoginRegisterComponent implements OnInit {
   isLeftVisible = true;
   @Input() activePane = 'login';
   viewMode = 'login';
-  constructor(private configService: ConfigService, private router: Router) {
+  constructor(public configService: ConfigService, private router: Router) {
   }
 
   userlogged = this.configService.getUserLogged();
