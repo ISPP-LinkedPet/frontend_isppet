@@ -23,5 +23,10 @@ export class BreedingDisplayComponent implements OnInit {
     this.breedingService.createRequest(id);
   }
 
+  backToTheList(){
+    this.breedingListPageComponent.isLeftVisible = !this.breedingListPageComponent.isLeftVisible;
+    this.breedingListPageComponent.hasreq = false;
+  }
+
 
 }

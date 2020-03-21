@@ -34,16 +34,18 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.isValid = this.profileForm.valid;
 
-    // send credential to backend
-    this.loginService.sendCredentials(this.profileForm).then(res =>
-      localStorage.setItem('access_token', res.access_token)
-    ).then(res => this.loginError = false).then(res=>
-      this.router.navigate(['/'])
-    ).catch( error => {
-      this.loginError = true;
-    });
+    
+    if(this.isValid){
+      // send credential to backend only if the form is valid
+      this.loginService.sendCredentials(this.profileForm).then(res =>
+        localStorage.setItem('access_token', res.access_token)
+      ).then(res => this.loginError = false).then(res=>
+        this.router.navigate(['/'])
+      ).catch( error => {
+        this.loginError = true;
+      });
+    }
   }
-
 
 
 }

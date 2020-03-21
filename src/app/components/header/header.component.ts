@@ -2,6 +2,8 @@ import { Component, OnInit, HostListener, ElementRef} from '@angular/core';
 import { ConfigService } from 'src/app/services/config/config.service';
 import {Router} from "@angular/router";
 
+import {BreedingListPageComponent} from './../../pages/breeding/list/breeding-list-page.component';
+
 import {
   trigger,
   state,
@@ -21,7 +23,7 @@ import {
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public  configService: ConfigService,private router: Router) { }
+  constructor(public  configService: ConfigService,private router: Router, public breedingListPageComponent: BreedingListPageComponent) { }
 
   userlogged = this.configService.getUserLogged();
   rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
@@ -35,5 +37,9 @@ export class HeaderComponent implements OnInit {
     this.rol = 'disconnected'
     this.router.navigate(['/'])
     location.reload()
+  }
+
+  breedingList(){
+    this.breedingListPageComponent.isLeftVisible = true;
   }
 }
