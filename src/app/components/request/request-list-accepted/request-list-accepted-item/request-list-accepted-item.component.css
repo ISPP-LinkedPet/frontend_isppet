@@ -1,5 +1,21 @@
 .card-img-top {
   width: 100%;
-  height: 20vw;
+  height: 15vw;
   object-fit: cover;
+}
+
+@media (max-width: 991px) {
+  .card-img-top {
+    width: 100%;
+    height: 25vw;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 767px) {
+  .card-img-top {
+    width: 100%;
+    height: 50vw;
+    object-fit: cover;
+  }
 }
