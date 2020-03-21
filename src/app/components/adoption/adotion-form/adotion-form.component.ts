@@ -38,6 +38,12 @@ export class AdotionFormComponent implements OnInit {
   documentVerified: boolean;
   adoption = new Adoption();
 
+
+  //utils
+  animalPhotos = new Array();
+  identification_photos = new Array();
+  vaccine_photos = new Array();
+
   constructor(private routeA: ActivatedRoute, private router: Router,
               private adoptionService: AdoptionService, public configService: ConfigService) {
   }
@@ -166,6 +172,29 @@ export class AdotionFormComponent implements OnInit {
     }
     validateTaxes() {
       this.isValidTaxes = this.adoptionForm.get('taxes').valid;
+    }
+
+
+    getAnimalPhotoAndValidate($event: Event) {
+      Array.from($event.target['files']).forEach(element => {
+        this.animalPhotos.push(element)
+      });
+      console.log(this.animalPhotos)
+      this.validateAnimalPhoto();
+    }
+
+    getIdPhotoAndValidate($event: Event) {
+      Array.from($event.target['files']).forEach(element => {
+        this.identification_photos.push(element)
+      });
+      this.validateIdentificationPhoto();
+    }
+
+    getVacPhotoAndValidate($event: Event) {
+      Array.from($event.target['files']).forEach(element => {
+        this.vaccine_photos.push(element)
+      });
+      this.validateVaccinePassaport();
     }
 
     onSubmit() {
