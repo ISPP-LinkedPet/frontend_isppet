@@ -28,7 +28,7 @@ export class BreedingListPageComponent implements OnInit {
   }
 
   loadBreeding(id: string){
-    this.breedingService.getBreedingById(id).then(res => this.selectedBreeding = res.breeding);
+    this.breedingService.getBreedingById(id).then(res => this.selectedBreeding = res);
     this.breedingService.hasRequest(id).then(res => this.hasreq);
   }
 

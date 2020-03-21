@@ -3,7 +3,7 @@ import { Particular } from '../particular/particular'
 export class Publication {
     // Only moderator
     title: string;
-    age: number;
+    birth_date: Date;
     genre: Genres;
     breed: string;
     type: string;

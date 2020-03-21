@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { RequestPublicationService } from '../../../services/requestPublication/request-publication.service';
 
 @Component({
@@ -16,17 +16,17 @@ export class RequestListAcceptedComponent implements OnInit {
     private requestPublicationService: RequestPublicationService,
     private router: Router,
     private route: ActivatedRoute,
-  ) {
-    this.checkCreatedOrReceived();
-    this.loadData();
+  ) {}
+
+  ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      const createdOrReceived = params.createdOrReceived;
+      this.checkCreatedOrReceived(createdOrReceived);
+      this.loadData();
+    });
   }
 
-  ngOnInit(): void {}
-
-  checkCreatedOrReceived() {
-    const createdOrReceived = this.route.snapshot.paramMap.get(
-      'createdOrReceived',
-    );
+  checkCreatedOrReceived(createdOrReceived: string) {
     if (createdOrReceived === 'created') {
       this.created = true;
       this.title = 'Tus peticiones aceptadas';
@@ -43,6 +43,7 @@ export class RequestListAcceptedComponent implements OnInit {
   }
 
   loadData() {
+    this.requests = [];
     if (this.created) {
       this.requestPublicationService
         .getCreatedAndAccepted()

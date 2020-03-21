@@ -19,7 +19,10 @@
 <li><label><b>Ubicación:</b>  {{adoption.location}}</label>   </li>
 <button>Editar Adopción</button><!--Link-->
 </div>
-
+{{adoption.adoption_id}}
+<div *ngIf="adoption.transaction_status != 'Completed'">
+    <button type="button" class="btn btn-success" [routerLink]="['/adoption-edit', adoption.adoption_id]">Editar</button>
+</div>
 </div>
 </div>
 

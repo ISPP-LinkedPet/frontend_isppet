@@ -18,6 +18,7 @@ import { PersonalListComponent } from './pages/breeding/personal-list/personal-l
 import { PersonalListAdoptionComponent } from './pages/adoption/personal-list-adoption/personal-list-adoption.component';
 import { EditComponent as EditComponentBreeding} from './pages/breeding/edit/edit.component';
 import { RequestListComponent } from './components/request/request-list/request-list.component';
+import { EditAdoptionComponent} from './pages/adoption/edit-adoption/edit-adoption.component';
 import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-moderator/adoption-pending-list-page.component';
 import { RequestListAcceptedComponent } from './components/request/request-list-accepted/request-list-accepted.component';
 import { EditParticularComponent } from './pages/breeding/edit-particular/edit-particular.component';
@@ -39,6 +40,7 @@ const routes: Routes = [
 {path: 'breeding-edit-particular/:id', component: EditParticularComponent},
 {path: 'request', component: RequestListComponent},
 {path: 'adoption-pending', component: AdoptionPendingListPageComponent},
+{path: 'adoption-edit/:id', component: EditAdoptionComponent},
 {path: 'request/accepted/:createdOrReceived', component: RequestListAcceptedComponent},
 ];
 

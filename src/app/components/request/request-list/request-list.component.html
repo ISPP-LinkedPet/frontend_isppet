@@ -3,11 +3,13 @@
     <h1 class="display-4">Lista de crianza</h1>
 </div>
 <div class="card border-success mb-3" *ngFor="let request of requests">
-<h3 class="card-header">Oferta en su anuncio {{request.publication_id}} en {{request.breeding_id}}</h3>
+<h3 class="card-header">Oferta recibida en su anuncio {{request.publication_id}}</h3>
 <div class="card-body">
-    <p>Estado: {{request.status}}</p>
-</div>
-    <button type="button" class="btn btn-primary mx-3">Aceptar</button>
-    <button type="button" class="btn btn-danger mx-3">Rechazar</button>
+    <h4>Estado: {{request.status}}</h4>
+    <br>
+    <button *ngIf="request.status=='Pending'" type="button" class="btn btn-primary mx-3 " (click)="onSubmit(request.id,request.publication_id, true)">Aceptar</button>
+    <button *ngIf="request.status=='Pending'" type="button" class="btn btn-danger mx-6" (click)="onSubmit(request.id,request.publication_id, false)">Rechazar</button>
+</div >
+
 </div>
 <app-footer></app-footer>

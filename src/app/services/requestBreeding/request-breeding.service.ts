@@ -18,6 +18,15 @@ export class RequestBreedingService {
   getUserAcceptedBreedings() {
     return this.requestService.request('GET', `${environment.endpoint}/publication/requests/accepted`, {}, {}, true);
   }
+
+  acceptRequest(id: string, publicationId: string) {
+    return this.requestService.request('PUT', `${environment.endpoint}/request/${id}/accept/${publicationId}`, {}, {}, true);
+  }
+
+  rejectRequest(id: string) {
+    return this.requestService.request('PUT', `${environment.endpoint}/request/${id}/reject`, {}, {}, true);
+  }
+
 }
 
 

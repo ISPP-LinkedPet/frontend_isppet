@@ -42,4 +42,9 @@ export class BreedingService {
     return this.requestService.request('GET', `${environment.endpoint}/publication/user/${id}`, {}, {}, true);
   }
 
+  rejectBreeding(id: number){
+    return this.requestService.request('PUT', `${environment.endpoint}/breeding/reject/${id}`, {}, {}, true)
+  }
+
+
 }
