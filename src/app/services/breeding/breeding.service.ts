@@ -39,10 +39,10 @@ export class BreedingService {
   }
 
   getPersonalBreedings(id: string) {
-    return this.requestService.request('GET', `${environment.endpoint}/publication/user/${id}`, {}, {}, true);
+    return this.requestService.request('GET', `${environment.endpoint}/publication/breeding/user/${id}`, {}, {}, true);
   }
 
-  rejectBreeding(id: number){
+  rejectBreeding(id: number) {
     return this.requestService.request('PUT', `${environment.endpoint}/breeding/reject/${id}`, {}, {}, true)
   }
 

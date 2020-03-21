@@ -38,18 +38,18 @@ export class AdoptionService {
   }
 
   getPersonalAdoptions(id: string) {
-    return this.requestService.request('GET', `${environment.endpoint}/publication/user/${id}`, {}, {}, true);
+    return this.requestService.request('GET', `${environment.endpoint}/publication/adoption/user/${id}`, {}, {}, true);
   }
 
   getPendingAdoptions() {
     return this.requestService.request('GET', `${environment.endpoint}/adoption/pending`, {}, {}, true);
   }
 
-  acceptAdoption(id: string){
+  acceptAdoption(id: string) {
     return this.requestService.request('PUT', `${environment.endpoint}/adoption/accept/${id}`, {}, {}, true);
   }
 
-  rejectAdoption(id: string){
+  rejectAdoption(id: string) {
     return this.requestService.request('PUT', `${environment.endpoint}/adoption/accept/${id}`, {}, {}, true);
   }
 
