@@ -8,7 +8,7 @@
           <img style="height: 150px; width: 20%; display: block;" src="{{env}}/{{adoptionListPageComponent.selectedAdoption.animal_photo.split(',')[0]}}"
            alt="Card image">
           </div>
-        <div class="card-body">
+        <div class="card-body" *ngIf="adoptionListPageComponent.selectedShelter != null">
             <h1>Información de contacto</h1>
             <p class="card-text">Dirección: {{adoptionListPageComponent.selectedShelter.address}}</p>
             <p class="card-text">Teléfono: {{adoptionListPageComponent.selectedShelter.telephone}}</p>
