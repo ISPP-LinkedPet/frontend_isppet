@@ -21,6 +21,7 @@ import { RequestListComponent } from './components/request/request-list/request-
 import { EditAdoptionComponent} from './pages/adoption/edit-adoption/edit-adoption.component';
 import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-moderator/adoption-pending-list-page.component';
 import { RequestListAcceptedComponent } from './components/request/request-list-accepted/request-list-accepted.component';
+import { EditParticularComponent } from './pages/breeding/edit-particular/edit-particular.component';
 
 const routes: Routes = [
 {path: '', component: HomeComponent},
@@ -36,6 +37,7 @@ const routes: Routes = [
 {path: 'vet', component: VetComponent},
 {path: 'breeding-pending', component: BreedingPendingListPageComponent},
 {path: 'breeding-edit/:id', component: EditComponentBreeding},
+{path: 'breeding-edit-particular/:id', component: EditParticularComponent},
 {path: 'request', component: RequestListComponent},
 {path: 'adoption-pending', component: AdoptionPendingListPageComponent},
 {path: 'adoption-edit/:id', component: EditAdoptionComponent},
