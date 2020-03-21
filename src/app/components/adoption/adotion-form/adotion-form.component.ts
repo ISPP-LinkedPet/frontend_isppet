@@ -96,11 +96,7 @@ export class AdotionFormComponent implements OnInit {
 
     location: new FormControl(
       this.adoption.location, [
-      Validators.required]),
-
-      type: new FormControl(
-        this.adoption.type, [
-        Validators.required])
+      Validators.required])
   });
 
 
