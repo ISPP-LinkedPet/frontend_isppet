@@ -34,6 +34,7 @@ export class BreedingCreateComponent implements OnInit {
   isValidLocation = false;
   isValidIdentificationPhoto = false;
   isValidVaccinePassaport = false;
+  backError: string;
 
   // user data
   userlogged = this.configService.getUserLogged();
@@ -202,6 +203,8 @@ export class BreedingCreateComponent implements OnInit {
       this.breedingService.createBreeding(formData).then(x => {
         alert("¡La crianza se ha creado correctamente! \n Ahora debe de revisarlo un moderador")
         this.router.navigate(['/breeding-pending'])
+      }).catch (error => {
+        this.backError = error.error.error
       });
     }
 
@@ -217,9 +220,7 @@ export class BreedingCreateComponent implements OnInit {
       this.breedingService.acceptBreeding(formData, this.editBreeding.breedingId).then(x => {
         alert("¡La crianza se ha aceptado correctamente! \n Se ha publicado en la lista de crianzas")
         this.router.navigate(['/breeding-pending'])
-      }).catch(error => {
-        console.log(error);
-      });
+      }).catch (error => this.backError = error.error.error);
     }
   }
 
@@ -228,7 +229,7 @@ export class BreedingCreateComponent implements OnInit {
       alert("¡La crianza se ha rechazado correctamente!")
 
       this.router.navigate(['/breeding-pending'])
-    });
+    }).catch (error => this.backError = error.error.error);
   }
 
   validationFields(type?:string) {

@@ -50,6 +50,10 @@ import { RequestListAcceptedComponent } from './components/request/request-list-
 import { RequestListAcceptedItemComponent } from './components/request/request-list-accepted/request-list-accepted-item/request-list-accepted-item.component';
 import { EditParticularComponent } from './pages/breeding/edit-particular/edit-particular.component';
 
+//Bootstrap
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +99,10 @@ import { EditParticularComponent } from './pages/breeding/edit-particular/edit-p
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [
     AdoptionService,

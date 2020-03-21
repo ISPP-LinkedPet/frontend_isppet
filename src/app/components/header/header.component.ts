@@ -42,4 +42,11 @@ export class HeaderComponent implements OnInit {
   breedingList(){
     this.breedingListPageComponent.isLeftVisible = true;
   }
+
+  navbarOpen = false;
+
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
+
 }
