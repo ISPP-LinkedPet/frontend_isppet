@@ -71,7 +71,7 @@
                     <input type="date" class="form-control is-invalid" id="birth_date" formControlName="birth_date" (change)="validateAge()">
                     <div class="invalid-feedback">La fecha de nacimiento no puede estar en blanco</div>
                 </div>
-                
+
                 <!-- Nombre -->
                 <div *ngIf="rol != 'moderator'">
                   <div class="form-group col-sm" *ngIf="isValidName">
@@ -189,7 +189,6 @@
                 <!-- Identification photo-->
 
                 <div class="form-group col-8" *ngIf="isValidIdentificationPhoto">
-
                   <label for="identification_photo">Identificacion de mascota</label>
                   <div class="input-group mb-3">
                     <div class="custom-file">

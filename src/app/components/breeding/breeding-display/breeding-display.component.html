@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col sm-6" >
       <div class="card border-primary">
-          <h3 class="card-header">{{breedingListPageComponent.selectedBreeding.title}}</h3>
+          <h3 class="card-header">{{breedingListPageComponent.selectedBreeding.breed}} en {{breedingListPageComponent.selectedBreeding.location}}</h3>
           <div class="card-body">
           <p class="card-text">Fotos subidas por el publicante:</p>
           <img style="height: 150px; width: 20%; display: block;" src="{{env}}/{{breedingListPageComponent.selectedBreeding.animal_photo.split(',')[0]}}" alt="Card image">
@@ -11,20 +11,17 @@
             <p class="card-text">Precio: {{breedingListPageComponent.selectedBreeding.price}} </p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Animal:{{breedingListPageComponent.selectedBreeding.type}}</li>
+            <li class="list-group-item">Animal: {{breedingListPageComponent.selectedBreeding.type}}</li>
             <li class="list-group-item">Raza: {{breedingListPageComponent.selectedBreeding.breed}}</li>
-            <li class="list-group-item">Pedigree:{{breedingListPageComponent.selectedBreeding.pedigree}}</li>
-            <li class="list-group-item">Edad:{{breedingListPageComponent.configService.calculateAge(breedingListPageComponent.selectedBreeding.birth_date)}}</li>
+            <li class="list-group-item">Pedigree: {{breedingListPageComponent.selectedBreeding.pedigree}}</li>
+            <li class="list-group-item">Edad: {{breedingListPageComponent.configService.calculateAge(breedingListPageComponent.selectedBreeding.birth_date)}}</li>
             <li class="list-group-item">Genéro: {{breedingListPageComponent.selectedBreeding.genre}}</li>
             <li class="list-group-item">Fecha de publicación: {{breedingListPageComponent.selectedBreeding.creation_date}}</li>
 
           </ul>
           <div class="card-body">
-              <button *ngIf="!breedingListPageComponent.hasreq" type="button" class="btn btn-primary" (click)="onSubmit(breedingListPageComponent.selectedBreeding.id)" >Me interesa</button>
-              <button type="button" class="btn btn-primary mx-3" (click)="breedingListPageComponent.isLeftVisible = !breedingListPageComponent.isLeftVisible">Volver a anuncios</button>
-              <button type="button" class="btn btn-primary mx-10">
-                  <span class="glyphicon glyphicon-star">Añadir a favoritos</span>
-              </button>
+              <button *ngIf="!breedingListPageComponent.hasreq.hasRequest" type="button" class="btn btn-primary" (click)="onSubmit(breedingListPageComponent.selectedBreeding.breedingId)" >Me interesa</button>
+              <button type="button" class="btn btn-primary mx-3" (click)="backToTheList()">Volver a anuncios</button>
 
           </div>
           <div class="card-footer text-muted">

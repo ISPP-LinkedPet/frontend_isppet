@@ -25,7 +25,7 @@ export class BreedingListComponent implements OnInit {
       const token = localStorage.getItem('access_token');
       this.breedingService.getAllBreedings().then(res => res.forEach(breedingAd => {
         this.breedings.push(breedingAd);
-      }));
+      })).then(res=>console.log(this.breedings));
   }
 
   userlogged = this.configService.getUserLogged();

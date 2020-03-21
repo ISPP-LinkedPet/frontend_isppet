@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { Breeding } from 'src/app/models/breeding/breeding';
 import { BreedingService } from 'src/app/services/breeding/breeding.service';
 import { element } from 'protractor';
@@ -10,6 +10,9 @@ import {Router} from "@angular/router";
   selector: 'app-breeding-list-page',
   templateUrl: './breeding-list-page.component.html',
   styleUrls: ['./breeding-list-page.component.css']
+})
+@Injectable({
+  providedIn: 'root'
 })
 export class BreedingListPageComponent implements OnInit {
 
@@ -28,9 +31,11 @@ export class BreedingListPageComponent implements OnInit {
   }
 
   loadBreeding(id: string){
-    this.breedingService.getBreedingById(id).then(res => this.selectedBreeding = res);
-    this.breedingService.hasRequest(id).then(res => this.hasreq);
+    this.breedingService.getBreedingById(id).then(res => this.selectedBreeding = res).then(res=>console.log(this.selectedBreeding));
+    this.breedingService.hasRequest(id).then(res => this.hasreq = res).then(res=> console.log(this.hasreq));
   }
+
+
 
 
 

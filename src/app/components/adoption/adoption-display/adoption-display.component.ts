@@ -17,4 +17,5 @@ export class AdoptionDisplayComponent implements OnInit {
 
   }
 
+
 }
