@@ -142,6 +142,16 @@
                     </div>
                   </div>
                 </div>
+              <div class="form-group has-danger col-6" *ngIf="!isValidAnimalPhoto">
+                  <label class="form-control-label" for="animal_photo">Imagenes</label>
+                  <div class="input-group mb-3">
+                    <div class="custom-file">
+                    <input #animalPhoto type="file" class="custom-file-input" formControlName="animal_photo" id="animal_photo" (change)="validateAnimalPhoto()" multiple>
+                    <label class="custom-file-label" for="animal_photo">Seleccionar imagenes</label>
+                  </div>
+                  </div>
+                  <div class="invalid-feedback">Debe subir al menos 2 imágenes del animal</div>
+              </div>
 
 
             </div>

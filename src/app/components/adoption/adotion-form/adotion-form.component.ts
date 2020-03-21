@@ -211,7 +211,7 @@ export class AdotionFormComponent implements OnInit {
       } else if (!this.creating) {
         this.adoptionService.editAdoption(formData, +this.id).then(x => {
           alert('¡La adopción se ha editado correctamente!')
-          this.router.navigate(['/adoption-list']);
+          this.router.navigate(['/adoption-personal-list']);
         }).catch(error => {
           console.log(error);
         });
