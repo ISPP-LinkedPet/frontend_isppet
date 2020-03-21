@@ -24,12 +24,12 @@ export class AdoptionPendingListComponent implements OnInit {
 
   acceptAdoption(id:string){
     this.pendingAdoptions.splice(this.pendingAdoptions.indexOf(this.mapAdoption.get(id)), 1)
-    this.adoptionService.acceptAdoption(id);  
+    this.adoptionService.acceptAdoption(id);
   }
 
   rejectAdoption(id:string){
     this.pendingAdoptions.splice(this.pendingAdoptions.indexOf(this.mapAdoption.get(id)), 1)
-    this.adoptionService.rejectAdoption(id);  
+    this.adoptionService.rejectAdoption(id);
   }
 
 }

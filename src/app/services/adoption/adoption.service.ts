@@ -50,7 +50,7 @@ export class AdoptionService {
   }
 
   rejectAdoption(id: string) {
-    return this.requestService.request('PUT', `${environment.endpoint}/adoption/accept/${id}`, {}, {}, true);
+    return this.requestService.request('PUT', `${environment.endpoint}/adoption/reject/${id}`, {}, {}, true);
   }
 
 }
