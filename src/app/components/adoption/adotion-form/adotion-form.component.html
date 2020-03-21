@@ -137,22 +137,19 @@
                   <label for="animal_photo">Imagenes</label>
                   <div class="input-group mb-3">
                     <div class="custom-file">
-                      <input #animalPhoto type="file" class="custom-file-input" formControlName="animal_photo" id="animal_photo" (change)="validateAnimalPhoto()" multiple>
+                      <input #animalPhoto type="file" class="custom-file-input" formControlName="animal_photo" id="animal_photo" (change)="getAnimalPhotoAndValidate($event)" multiple>
                       <label class="custom-file-label" for="animal_photo">Seleccionar imagenes</label>
                     </div>
                   </div>
-                </div>
-              <div class="form-group has-danger col-6" *ngIf="!isValidAnimalPhoto">
-                  <label class="form-control-label" for="animal_photo">Imagenes</label>
-                  <div class="input-group mb-3">
-                    <div class="custom-file">
-                    <input #animalPhoto type="file" class="custom-file-input" formControlName="animal_photo" id="animal_photo" (change)="validateAnimalPhoto()" multiple>
-                    <label class="custom-file-label" for="animal_photo">Seleccionar imagenes</label>
-                  </div>
-                  </div>
                   <div class="invalid-feedback">Debe subir al menos 2 imágenes del animal</div>
-              </div>
+                </div>
 
+              <!-- File names -->
+              <ul>
+                <li *ngFor="let filename of animalPhotos; let i = index">
+                  {{i}} {{filename.name}}
+                </li>
+              </ul>
 
             </div>
               <!-- Pedigree-->
@@ -192,13 +189,17 @@
                   <label for="identification_photo">Identificacion de mascota</label>
                   <div class="input-group mb-3">
                     <div class="custom-file">
-                      <input #identificationPhoto type="file" class="custom-file-input" formControlName="identification_photo" id="identification_photo" (change)="validateIdentificationPhoto()" multiple>
+                      <input #identificationPhoto type="file" class="custom-file-input" formControlName="identification_photo" id="identification_photo" (change)="getIdPhotoAndValidate($event)" multiple>
                       <label class="custom-file-label" for="identification_photo">Seleccionar imagenes</label>
                     </div>
                   </div>
                 </div>
-
-
+                   <!-- File names -->
+                   <ul>
+                    <li *ngFor="let filename of identification_photos; let i = index">
+                      {{i}} {{filename.name}}
+                    </li>
+                  </ul>
 
               <!-- Vaccine passaport-->
 
@@ -206,11 +207,18 @@
                   <label for="vaccine_passaport">Cartilla de vacunacion</label>
                   <div class="input-group mb-3">
                     <div class="custom-file">
-                      <input #vaccinePassaport type="file" class="custom-file-input" formControlName="vaccine_passaport" id="vaccine_passaport" (change)="validateVaccinePassaport()" multiple>
+                      <input #vaccinePassaport type="file" class="custom-file-input" formControlName="vaccine_passaport" id="vaccine_passaport" (change)="getVacPhotoAndValidate($event)" multiple>
                       <label class="custom-file-label" for="vaccine_passaport">Seleccionar imagenes</label>
                     </div>
                   </div>
               </div>
+
+                 <!-- File names -->
+                 <ul>
+                  <li *ngFor="let filename of vaccine_photos; let i = index">
+                    {{i}} {{filename.name}}
+                  </li>
+                </ul>
 
 
 
