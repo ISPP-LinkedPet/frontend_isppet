@@ -37,7 +37,6 @@ export class AdotionFormComponent implements OnInit {
   documentVerified: boolean;
   adoption = new Adoption();
 
-
   constructor(private route: ActivatedRoute, private adoptionService: AdoptionService, private configService: ConfigService) {
   }
 
@@ -204,7 +203,6 @@ export class AdotionFormComponent implements OnInit {
     formData.append('name', this.adoptionForm.value.name);
     formData.append('location', this.adoptionForm.value.location);
     formData.append('pedigree', this.adoptionForm.value.pedigree);
-
 
     if (this.creating) {
       this.adoptionService.createAdoption(formData).then(x => console.log(x));

@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container" *ngIf="breedingForm != undefined">
     <div class="card border-primary mb-3">
     <div class="card-body">
-        <h1 class="card-title">Crear nueva publicacion</h1>
+        <h1 class="card-title*n">{{title}} publicacion</h1>
         <form [formGroup]="breedingForm" (ngSubmit)="onSubmit()">
             <fieldset>
                 <legend class="card-title">Información básica</legend>
@@ -51,7 +51,7 @@
                           <option value='Female'>Hembra</option>
                         </select>
                       </div>
-                      <div class="invalid-feedback">Parece que se ha equivocado</div>
+                      <div class="invalid-feedback">No olvide seleccionar un genero</div>
                   </div>
 
                   <div class="form-group col-sm" *ngIf="isValidAge">
@@ -61,7 +61,7 @@
                   <div class="form-group has-danger col-sm" *ngIf="!isValidAge">
                       <label class="form-control-label" for="age">Edad</label>
                       <input type="date" class="form-control is-invalid" id="age" [readOnly]="rol=='particular'" formControlName="age" (change)="validateAge()">
-                      <div class="invalid-feedback">Parece que se ha equivocado</div>
+                      <div class="invalid-feedback">No olvide seleccionar la edad</div>
                   </div>
 
                 </div>
@@ -90,7 +90,7 @@
                   <div class="form-group has-danger col-sm" *ngIf="!isValidType">
                       <label class="form-control-label" for="type">Tipo de animal</label>
                       <div *ngIf="rol=='particular'">
-                        <select class="form-control" id="type" [attr.disabled]="true" formControlName="type" (change)="validateType()">
+                        <select class="form-control is-invalid" id="type" [attr.disabled]="true" formControlName="type" (change)="validateType()">
                             <option value='' [defaultSelected]=true>Seleccione tipo animal</option>
                             <option value='Dog'>Perro</option>
                             <option value='Cat'>Gato</option>
@@ -98,14 +98,14 @@
                         </select>
                       </div>
                       <div *ngIf="rol=='moderator'">
-                        <select class="form-control" id="type" formControlName="type" (change)="validateType()">
+                        <select class="form-control is-invalid" id="type" formControlName="type" (change)="validateType()">
                             <option value='' [defaultSelected]=true>Seleccione tipo animal</option>
                             <option value='Dog'>Perro</option>
                             <option value='Cat'>Gato</option>
                             <option value='Horse'>Caballo</option>
                         </select>
                       </div>
-                      <div class="invalid-feedback">Parece que se ha equivocado</div>
+                      <div class="invalid-feedback">No olvide seleccionar un tipo</div>
                   </div>
 
                   <div class="form-group col-sm" *ngIf="isValidPrice">
@@ -154,15 +154,15 @@
                   <div class="form-group has-danger col-6" *ngIf="!isValidPedigri">
                       <label class="form-control-label" for="age">Pedigrí</label>
                       <div *ngIf="rol=='particular'">
-                        <select class="form-control" id="pedigree" [attr.disabled]="true" formControlName="pedigree">
-                          <option value='' [defaultSelected]=true></option>
+                        <select class="form-control is-invalid" id="pedigree" [attr.disabled]="true" formControlName="pedigree">
+                          <option value='' [defaultSelected]=true>Seleccione un pedigrí</option>
                           <option value='true'>Si</option>
                           <option value='false'>No</option>
                         </select> 
                       </div>
                       <div *ngIf="rol=='moderator'">
-                        <select class="form-control" id="pedigree" formControlName="pedigree">
-                          <option value='' [defaultSelected]=true></option>
+                        <select class="form-control is-invalid" id="pedigree" formControlName="pedigree">
+                          <option value='' [defaultSelected]=true>Seleccione un pedigrí</option>
                           <option value='true'>Si</option>
                           <option value='false'>No</option>
                         </select> 
@@ -174,11 +174,11 @@
 
               <div class="row">
 
-                <div class="form-group col-4">
+                <div class="form-group col-4" *ngIf="creating == true && rol != 'moderator'">
                   <label for="animal_photo">Imagenes</label>
                   <div class="input-group mb-3">
                     <div class="custom-file">
-                      <input #animalPhoto type="file" class="custom-file-input" [readOnly]="rol=='moderator'" formControlName="animal_photo" id="animal_photo" (change)="validateAnimalPhoto()" multiple>
+                      <input #animalPhoto type="file" class="custom-file-input" formControlName="animal_photo" id="animal_photo" (change)="validateAnimalPhoto()" multiple>
                       <label class="custom-file-label" for="animal_photo">Seleccionar imagenes</label>
                     </div>
                     <div class="invalid-feedback" *ngIf="!isValidAnimalPhoto">Parece que se ha equivocado</div>
@@ -203,11 +203,11 @@
 
               <div class="row">
 
-                <div class="form-group col-6">
+                <div class="form-group col-6" *ngIf="creating == true && rol != 'moderator'">
                     <label for="identification_photo">Identificacion de mascota</label>
                     <div class="input-group mb-3">
                       <div class="custom-file">
-                        <input #identificationPhoto type="file" class="custom-file-input" [readOnly]="rol=='moderator'" formControlName="identification_photo" id="identification_photo" (change)="validateIdentificationPhoto()" multiple>
+                        <input #identificationPhoto type="file" class="custom-file-input" formControlName="identification_photo" id="identification_photo" (change)="validateIdentificationPhoto()" multiple>
                         <label class="custom-file-label" for="identification_photo">Seleccionar imagenes</label>
                       </div>
                       <div class="invalid-feedback" *ngIf="!isValidIdentificationPhoto">Parece que se ha equivocado</div>
@@ -222,11 +222,11 @@
 
               <div class="row">
 
-                <div class="form-group col-6">
+                <div class="form-group col-6" *ngIf="creating == true  && rol != 'moderator'">
                     <label for="vaccine_passaport">Cartilla de vacunacion</label>
                     <div class="input-group mb-3">
                       <div class="custom-file">
-                        <input #vaccinePassaport type="file" class="custom-file-input" [readOnly]="rol=='moderator'" formControlName="vaccine_passaport" id="vaccine_passaport" (change)="validateVaccinePassaport()" multiple>
+                        <input #vaccinePassaport type="file" class="custom-file-input" formControlName="vaccine_passaport" id="vaccine_passaport" (change)="validateVaccinePassaport()" multiple>
                         <label class="custom-file-label" for="vaccine_passaport">Seleccionar imagenes</label>
                       </div>
                       <div class="invalid-feedback" *ngIf="!isValidVaccinePassaport">Parece que se ha equivocado</div>
@@ -234,14 +234,15 @@
                 </div>
 
                 <div class="form-group col-4" *ngIf="rol=='moderator'">
-                  <img style="height: 150px; width: 100%; display: block;" src="{{env}}/{{editBreeding.vaccine_passaport.split(',')[0]}}" alt="Card image">
+                  <img style="height: 150px; width: 100%; display: block;" src="{{env}}/{{editBreeding.vaccine_passport.split(',')[0]}}" alt="Card image">
                 </div>
                 
               </div>
 
             </fieldset>
-                <button type="submit" class="btn btn-primary btn-lg button-form">Crear</button>
-                <button type="button" class="btn btn-secondary btn-lg button-form right">Cancelar</button>
+                <button *ngIf="rol == 'moderator'" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Acceptar</button>
+                <button *ngIf="rol != 'moderator'" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Crear</button>
+                <button *ngIf="rol == 'moderator'" (click)="rejectPublication()" class="btn btn-secondary btn-lg button-form right">Rechazar</button>
         </form>
     </div>
     </div>

@@ -1,0 +1,19 @@
+<app-header></app-header>
+
+<div id="main">
+  <div class="container mt-4">
+    <div class="mb-3 text-center">
+      <h1 class="display-4">{{ title }}</h1>
+    </div>
+
+    <div class="row d-flex justify-content-center" style="margin-top: 6em;">
+      <app-request-list-accepted-item
+        *ngFor="let req of requests"
+        [request]="req"
+        [created]="created"
+      ></app-request-list-accepted-item>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

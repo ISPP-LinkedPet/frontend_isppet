@@ -10,19 +10,17 @@ import { ConfigService } from 'src/app/services/config/config.service';
 })
 export class EditComponent implements OnInit {
 
-  constructor(private breedingService: BreedingService, private route: ActivatedRoute, private configService: ConfigService) { }
+  breeding: any;
 
-  id = null;
-  breeding = null;
-  private sub: any;
+  constructor(
+    private breedingService: BreedingService,
+    private route: ActivatedRoute
+  ) { }
 
-  userlogged = this.configService.getUserLogged();
-  rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
 
   ngOnInit(): void {
-    this.sub = this.route.params.subscribe(params => {
-      this.id = +params['id']; // (+) converts string 'id' to a number
+    this.breedingService.getBreedingById(this.route.snapshot.params.id).then(response => {
+      this.breeding = response
     });
-    this.breedingService.getBreedingById(this.id).then(res=>this.breeding=res.breeding)
   }
 }

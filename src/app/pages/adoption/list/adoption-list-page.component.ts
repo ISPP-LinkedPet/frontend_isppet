@@ -13,7 +13,7 @@ export class AdoptionListPageComponent implements OnInit {
   isLeftVisible = true;
   selectedAdoption:any;
   selectedShelter:any;
-  constructor(private adoptionService: AdoptionService, private configService: ConfigService, private router: Router) { }
+  constructor(private adoptionService: AdoptionService, public configService: ConfigService, private router: Router) { }
 
   userlogged = this.configService.getUserLogged();
   rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
