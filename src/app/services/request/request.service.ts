@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ export class RequestService {
 
   constructor(
     private httpClient: HttpClient,
+    private router: Router
   ) { }
 
   async request(
@@ -48,13 +50,14 @@ export class RequestService {
 
       const response = await httpResponse;
 
-      // Unauthorized Error 401
-      if (response.status === 401) {
-        localStorage.removeItem('access_token');
-      }
-
       return response;
     } catch (error) {
+      // Unauthorized Error 401
+      if (error.status === 401) {
+        localStorage.removeItem('access_token');
+        this.router.navigate(['/'])
+      }
+    
       throw error;
     }
 

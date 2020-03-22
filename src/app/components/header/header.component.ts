@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
   }
 
   disconnect(){
-    localStorage.setItem('access_token', '')
+    localStorage.removeItem('access_token')
     this.rol = 'disconnected'
     this.router.navigate(['/'])
     location.reload()
