@@ -9,21 +9,18 @@ import { ConfigService } from 'src/app/services/config/config.service';
   styleUrls: ['./edit-particular.component.css']
 })
 export class EditParticularComponent implements OnInit {
+  breeding: any;
 
-  constructor(private breedingService: BreedingService, private route: ActivatedRoute, public configService: ConfigService) { }
+  constructor(
+    private breedingService: BreedingService,
+    private route: ActivatedRoute
+  ) { }
 
-  id = null;
-  breeding = null;
-  private sub: any;
-
-  userlogged = this.configService.getUserLogged();
-  rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
 
   ngOnInit(): void {
-    this.sub = this.route.params.subscribe(params => {
-      this.id = +params[' id ']; // (+) converts string 'id' to a number
+    this.breedingService.getBreedingById(this.route.snapshot.params.id).then(response => {
+      this.breeding = response;
     });
-    this.breedingService.getBreedingById(this.id).then(res => this.breeding = res.breeding);
   }
 
 }
