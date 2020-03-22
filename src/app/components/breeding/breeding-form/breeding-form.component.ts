@@ -202,7 +202,7 @@ export class BreedingCreateComponent implements OnInit {
 
       this.breedingService.createBreeding(formData).then(x => {
         alert("¡La crianza se ha creado correctamente! \n Ahora debe de revisarlo un moderador")
-        this.router.navigate(['/breeding-pending'])
+        this.router.navigate(['/breeding-personal-list'])
       }).catch (error => {
         this.backError = error.error.error
       });
@@ -222,7 +222,7 @@ export class BreedingCreateComponent implements OnInit {
 
       this.breedingService.editBreeding(this.editBreeding.breedingId, formData).then(x => {
         alert("¡La crianza se ha editado correctamente! \n Ahora debe de revisarlo un moderador")
-        this.router.navigate(['/breeding-pending'])
+        this.router.navigate(['/breeding-personal-list'])
       }).catch (error => {
         this.backError = error.error.error
       });
