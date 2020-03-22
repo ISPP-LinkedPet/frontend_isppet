@@ -373,10 +373,10 @@
               </div>
 
             </fieldset>
-                <button *ngIf="rol == 'particular' && !creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Editar</button>
-                <button *ngIf="rol == 'moderator'" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Acceptar</button>
-                <button *ngIf="rol != 'moderator' " (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Crear</button>
-                <button *ngIf="rol == 'moderator'" (click)="rejectPublication()" class="btn btn-secondary btn-lg button-form right">Rechazar</button>
+                <button *ngIf="!creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Editar</button>
+                <button *ngIf="rol == 'moderator' && creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Acceptar</button>
+                <button *ngIf="rol != 'moderator' && creating " (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Crear</button>
+                <button *ngIf="rol == 'moderator' && creating" (click)="rejectPublication()" class="btn btn-secondary btn-lg button-form right">Rechazar</button>
             </form>
             <div class="invalid-feedback">{{backError}}</div>
     </div>
