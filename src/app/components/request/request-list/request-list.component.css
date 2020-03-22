@@ -1,3 +1,21 @@
+.foot{
+    margin: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+ }
+ 
+ .foot-fixed{
+    margin: 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+ }
+
+
 h1{
     margin: 10px 10px 10px 10px;
 }
@@ -28,3 +46,4 @@ img{
 button{
     margin: 20px 0px 0px 0px;
 }
+

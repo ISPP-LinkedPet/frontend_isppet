@@ -3,7 +3,8 @@
     <div leftPane><app-breeding-list></app-breeding-list></div>
     <div rightPane><app-breeding-display></app-breeding-display></div>
 </slide-panel>
-<div class="foot"><app-footer></app-footer></div>
+<div class="foot-fixed" *ngIf="breedings.length == 2"><app-footer></app-footer></div>
+<div class="foot" *ngIf="breedings.length > 2"><app-footer></app-footer></div>
 
 
 

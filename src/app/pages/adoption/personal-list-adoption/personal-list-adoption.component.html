@@ -3,4 +3,5 @@
 <app-header></app-header>
 <app-adoption-personal-list></app-adoption-personal-list>
 
-<div class="foot-fixed"><app-footer></app-footer></div>
+<div class="foot-fixed" *ngIf="personalAdoptions.length == 0"><app-footer></app-footer></div>
+<div class="foot" *ngIf="personalAdoptions.length > 1"><app-footer></app-footer></div>

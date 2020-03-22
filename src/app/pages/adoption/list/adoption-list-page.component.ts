@@ -11,6 +11,7 @@ import {trimTrailingNulls} from '@angular/compiler/src/render3/view/util';
   styleUrls: ['./adoption-list-page.component.css']
 })
 export class AdoptionListPageComponent implements OnInit {
+  adoptions = new Array();
   isLeftVisible = true;
   selectedAdoption: any;
   selectedShelter: any = null;
@@ -22,6 +23,16 @@ export class AdoptionListPageComponent implements OnInit {
   ngOnInit(): void {
     if (!(this.rol === 'shelter' || this.rol === 'particular')) {
       this.router.navigate(['/']);
+    }
+
+    if(this.rol=="shelter"){
+      this.adoptionService.getAdoptionByShelterLogged().then(res=>res.forEach(element=> {
+        this.adoptions.push(element)
+      }))
+    }else{
+      this.adoptionService.getAllAdoptions(localStorage.getItem('access_token')).then(res=>res.forEach(element => {
+        this.adoptions.push(element)
+      }))
     }
   }
 

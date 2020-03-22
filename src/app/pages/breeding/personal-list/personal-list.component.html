@@ -2,4 +2,5 @@
 
 <app-header></app-header>
 <app-breeding-personal-list></app-breeding-personal-list>
-<div class="foot"><app-footer></app-footer></div>
+<div class="foot-fixed" *ngIf="personalBreedings.length == 1"><app-footer></app-footer></div>
+<div class="foot" *ngIf="personalBreedings.length > 1"><app-footer></app-footer></div>

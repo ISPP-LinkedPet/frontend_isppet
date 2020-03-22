@@ -15,7 +15,7 @@ import {Router} from "@angular/router";
   providedIn: 'root'
 })
 export class BreedingListPageComponent implements OnInit {
-
+  breedings = new Array();
   isLeftVisible = true;
   selectedBreeding:any;
   hasreq:any;
@@ -28,6 +28,10 @@ export class BreedingListPageComponent implements OnInit {
     if(this.rol!='particular'){
       this.router.navigate(['/'])
     }
+    const token = localStorage.getItem('access_token');
+    this.breedingService.getAllBreedings().then(res => res.forEach(breedingAd => {
+      this.breedings.push(breedingAd);
+    }));
   }
 
   loadBreeding(id: string){

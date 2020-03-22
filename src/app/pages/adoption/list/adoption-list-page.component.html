@@ -3,4 +3,5 @@
   <div leftPane><app-adoption-list></app-adoption-list></div>
   <div rightPane><app-adoption-display></app-adoption-display></div>
 </slide-panel>
-<div class="foot"><app-footer></app-footer></div>
+<div class="foot-fixed" *ngIf="adoptions.length == 0"><app-footer></app-footer></div>
+<div class="foot" *ngIf="adoptions.length > 1"><app-footer></app-footer></div>

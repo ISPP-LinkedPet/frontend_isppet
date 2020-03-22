@@ -11,4 +11,5 @@
 </div>
 </div>
 
-<app-footer></app-footer>
+<div class="foot-fixed" *ngIf="vets.length == 0"><app-footer></app-footer></div>
+<div class="foot" *ngIf="vets.length > 1"><app-footer></app-footer></div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { BreedingService } from 'src/app/services/breeding/breeding.service';
 
 @Component({
   selector: 'app-personal-list',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonalListComponent implements OnInit {
 
-  constructor() { }
+  personalBreedings = new Array();
+  env = environment.endpoint;
 
+  constructor(private breedingService: BreedingService) { }
   ngOnInit(): void {
+    const{id, role} = JSON.parse(atob(localStorage.getItem('access_token').split(".")[1]));
+    this.breedingService.getPersonalBreedings(id).then(res => res.forEach(breedingAd => {
+      this.personalBreedings.push(breedingAd);
+    }));
   }
 
 }
