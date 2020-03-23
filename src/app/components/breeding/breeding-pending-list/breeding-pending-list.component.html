@@ -6,7 +6,7 @@
 <div class="card-body">
 <img src="{{env}}/{{breedingAd.animal_photo.split(',')[0]}}">
 <div class="description-content">
-<li><label><b>Edad: </b></label> {{breedingAd.birth_date}} años</li>
+<li><label><b>Edad: </b></label> {{this.configService.calculateAge(breedingAd.birth_date)}} años</li>
 <li><label><b>Pedigree: </b></label>  </li>
 <li><label><b>Ubicación: </b></label> {{breedingAd.location}} </li>
 <li><label><b>Precio: </b></label> {{breedingAd.price}} euros </li>

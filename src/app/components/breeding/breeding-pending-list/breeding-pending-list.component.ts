@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BreedingService } from '../../../services/breeding/breeding.service';
 import {environment} from 'src/environments/environment';
 import {Router} from "@angular/router";
+import { ConfigService } from '../../../services/config/config.service'
 
 @Component({
   selector: 'app-breeding-pending-list',
@@ -12,7 +13,7 @@ export class BreedingPendingListComponent implements OnInit {
   breedings= new Array();
   env = environment.endpoint;
 
-  constructor(private breedingService: BreedingService, private router: Router) { }
+  constructor(private breedingService: BreedingService, private router: Router, public configService:ConfigService) { }
 
   ngOnInit(): void {
     this.breedingService.getPendingBreedings().then(res => res.forEach(breedingAd => {

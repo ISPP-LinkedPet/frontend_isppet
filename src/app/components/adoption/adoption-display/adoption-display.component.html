@@ -4,9 +4,11 @@
       <div class="card border-primary">
           <h3 class="card-header">{{adoptionListPageComponent.selectedAdoption.title}}</h3>
           <div class="card-body">
-
-          <img style="height: 150px; width: 20%; display: block;" src="{{env}}/{{adoptionListPageComponent.selectedAdoption.animal_photo.split(',')[0]}}"
-           alt="Card image">
+            <div class="row">
+              <div clas="col-md3" *ngFor="let img of adoptionListPageComponent.selectedAdoption.animal_photo.replace(' ', '').split(',')">
+                <img class = "img-thumbnail" style="height: 150px; display: block;" src="{{env}}/{{img}}" alt="Card image">
+              </div>
+            </div>
           </div>
         <div class="card-body" *ngIf="adoptionListPageComponent.selectedShelter != null">
             <h1>Información de contacto</h1>
