@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AdoptionService } from 'src/app/services/adoption/adoption.service';
+import { ConfigService } from '../../../services/config/config.service'
 
 @Component({
   selector: 'app-adoption-personal-list',
@@ -12,9 +13,13 @@ export class AdoptionPersonalListComponent implements OnInit {
   personalAdoptions = new Array();
   env = environment.endpoint;
 
-  constructor(private adoptionService: AdoptionService) { }
+  rol = null;
+
+  constructor(private adoptionService: AdoptionService, public configService:ConfigService) { }
   ngOnInit(): void {
-    const{id, role} = JSON.parse(atob(localStorage.getItem('access_token').split(".")[1]));
+    const userLogged = this.configService.getUserLogged()
+    this.rol = userLogged.role;
+    const id = userLogged.id;
     this.adoptionService.getPersonalAdoptions(id).then(res => res.forEach(adoptionAd => {
       this.personalAdoptions.push(adoptionAd);
     }));
