@@ -22,6 +22,15 @@ export class RegisterComponent implements OnInit {
   isValidOptionalPhoto: boolean;
   isValidSurname: boolean;
 
+  optionalPhoto: any;
+
+  // En caso de fallar la llamada
+  showError = false;
+  errorMessage = '';
+
+  // En caso de éxito
+  registerSuccess = false;
+
   registerForm: any;
   role: string;
   constructor(public homeComponent: LoginRegisterComponent, public loginService: LoginService) { }
@@ -59,27 +68,35 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    // if (this.registerForm.value.role === 'particular') {
-    //   this.checkParticular();
-    // } else if (this.registerForm.value.role === 'shelter') {
-    //   this.checkShelter();
-    // } else {
-    //   this.isValid = false;
-    // }
+    this.registerSuccess = false;
+    this.showError = false;
+    this.errorMessage = '';
+    this.isValid = true;
     this.validationFields();
     if (this.isValid) {
+
+      const formData: FormData = new FormData();
+      formData.append('user_name', this.registerForm.value.user_name);
+      formData.append('role', this.registerForm.value.role);
+      formData.append('password', this.registerForm.value.password);
+      formData.append('repeat_password', this.registerForm.value.repeat_password);
+      formData.append('name', this.registerForm.value.name);
+      formData.append('email', this.registerForm.value.email);
+      formData.append('address', this.registerForm.value.address);
+      formData.append('telephone', this.registerForm.value.telephone);
+      formData.append('optional_photo', this.optionalPhoto);
+      formData.append('surname', this.registerForm.value.surname);
+
       this.loginService
-        .register(this.registerForm.value)
-        .then(res => console.log(res))
-        .catch(error => console.log(error));
+        .register(formData)
+        .then(res => {
+          this.registerSuccess = true;
+        })
+        .catch(error => {
+          this.errorMessage = error.error.error || 'Something went wrong';
+          this.showError = true;
+        });
     }
-  }
-  checkParticular() {
-
-  }
-
-  checkShelter() {
-
   }
 
   onChangeRole(e: Event) {
@@ -161,9 +178,15 @@ export class RegisterComponent implements OnInit {
   }
   validateRole() {
     this.isValidRole = ['particular', 'shelter'].includes(this.registerForm.get('role').value);
-    console.log(this.isValidRole);
     if (!this.isValidRole) {
       this.isValid = false;
     }
+  }
+
+  getOptionalPhotoAndValidate($event: Event) {
+    Array.from($event.target['files']).forEach(element => {
+      this.optionalPhoto = element;
+    });
+    // this.validateAnimalPhoto();
   }
 }
