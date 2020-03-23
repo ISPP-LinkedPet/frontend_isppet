@@ -7,6 +7,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
+import {NgxStripeModule} from 'ngx-stripe';
 
 // Components
 import {HeaderComponent} from './components/header/header.component';
@@ -16,6 +17,7 @@ import {RegisterComponent} from './components/auth/register/register.component';
 import {AdoptionDisplayComponent} from './components/adoption/adoption-display/adoption-display.component';
 import {BreedingListComponent} from './components/breeding/breeding-list/breeding-list.component';
 import {SlidePanelComponent} from './components/auxiliar/slide-panel/slide-panel.component';
+import { PaymentComponent } from './components/auxiliar/payment/payment.component';
 
 // Pages
 import {HomeComponent} from './pages/home/home.component';
@@ -54,6 +56,7 @@ import { EditParticularComponent } from './pages/breeding/edit-particular/edit-p
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,7 +93,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     EditAdoptionComponent,
     RequestListAcceptedComponent,
     RequestListAcceptedItemComponent,
-    EditParticularComponent
+    EditParticularComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +106,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     HttpClientModule,
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    NgxStripeModule.forRoot('PublicKey')
   ],
   providers: [
     AdoptionService,

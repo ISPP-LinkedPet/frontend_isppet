@@ -17,6 +17,10 @@
         <div>
           {{ address }}
         </div>
+        <div style="text-align: center" *ngIf="created">
+          <!-- Pay method -->
+        <app-payment></app-payment>
+        </div>
       </div>
     </div>
     <!-- <a href="#" class="btn btn-primary">Ir al anuncio</a> -->
