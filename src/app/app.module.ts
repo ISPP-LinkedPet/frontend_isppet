@@ -7,7 +7,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
-import {NgxStripeModule} from 'ngx-stripe';
 
 // Components
 import {HeaderComponent} from './components/header/header.component';
@@ -107,7 +106,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
-    NgxStripeModule.forRoot('PublicKey')
   ],
   providers: [
     AdoptionService,

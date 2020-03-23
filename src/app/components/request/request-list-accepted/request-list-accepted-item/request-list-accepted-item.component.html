@@ -19,7 +19,7 @@
         </div>
         <div style="text-align: center" *ngIf="created">
           <!-- Pay method -->
-        <app-payment></app-payment>
+        <app-payment [price]="request.contactData.price" [breedingId]="request.contactData.breedingId"></app-payment>
         </div>
       </div>
     </div>

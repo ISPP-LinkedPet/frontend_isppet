@@ -27,7 +27,6 @@
     "bootstrap": "^4.4.1",
     "express": "^4.17.1",
     "ngx-bootstrap": "^5.5.0",
-    "ngx-stripe": "^9.0.1",
     "rxjs": "^6.5.4",
     "tslib": "^1.11.1",
     "typescript": "~3.7.5",

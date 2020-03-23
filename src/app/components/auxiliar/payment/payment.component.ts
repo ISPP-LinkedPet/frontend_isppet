@@ -1,12 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
-import {
-  StripeService,
-  Elements,
-  Element as StripeElement,
-  ElementsOptions
-} from 'ngx-stripe';
+import { environment } from '../../../../environments/environment';
+import { PaymentService } from '../../../services/payment/payment.service';
 
 @Component({
   selector: 'app-payment',
@@ -15,42 +10,44 @@ import {
 })
 export class PaymentComponent implements OnInit {
   
-  elements: Elements;
-  card: StripeElement;
-  elementsOptions: ElementsOptions = {
-    locale: 'es'
-  };
+  @Input() price;
+  @Input() breedingId;
+  successful: boolean = false;
 
-  stripeTest: FormGroup;
+  constructor(
+    private fb: FormBuilder,
+    private paymentService: PaymentService,
+  ) {}
 
-  constructor(private fb: FormBuilder, private stripeSvc: StripeService) {
-    
-  }
-
-  
   ngOnInit() {
-    this.stripeTest = this.fb.group({
-      name: ['', Validators.required]
-    });
+    // verificar si tienes parametro paymentId
+    // Hacer peticion de confirmAccount
+    //this.successful = true;
   }
 
 
   openCheckout() {
     var handler = (<any>window).StripeCheckout.configure({
-      key: 'pk_test_oi0sKPJYLGjdvOXOM8tE8cMa',
+      key: environment.stripe_key,
       image: 'https://cdn.pixabay.com/photo/2017/09/01/00/15/png-2702691_960_720.png',
-      name: '',
+      name: 'LinkedPet',
+      description: 'No se realizará ningún cobro hasta que la otra persona acepte',
       currency: 'eur',
-      locale: "spanish",
-      token: function(token) {
-          console.log(token)
+      locale: 'es',
+      token: (token) => {
+          this.paymentService.createPaymentToMyself({token: token.id, breedingId: this.breedingId, returnUrl: environment.url}).then(response => {
+            if(response.status != 'succeded') {
+              window.location.href = response.url;
+            } else {
+              this.successful = true;
+            }
+          });
       }
     });
 
     handler.open({
-      name: 'LinkedPet',
-      description: 'No se le realziará ningún cobro hasta que la otra persona acepte',
-      amount: 20000
+      amount: this.price + 0.5,
+      email: 'info@linkedpet.com',
     });
 
   }

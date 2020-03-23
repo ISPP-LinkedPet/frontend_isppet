@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  endpoint: 'http://localhost:3000'
+  endpoint: 'http://localhost:3000',
+  stripe_key: 'pk_test_1VBNlqdJTw6mXmdOxxsLbIn400SyJriI9f',
+  url: 'http://localhost:4200/request/accepted/created',
 };
 
 /*
