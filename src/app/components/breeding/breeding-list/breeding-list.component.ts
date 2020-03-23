@@ -34,5 +34,6 @@ export class BreedingListComponent implements OnInit {
   viewDetails(id: string){
     this.breedingListPageComponent.isLeftVisible = !this.breedingListPageComponent.isLeftVisible;
     this.breedingListPageComponent.loadBreeding(id);
+    window.scroll(0,0);
   }
 }
