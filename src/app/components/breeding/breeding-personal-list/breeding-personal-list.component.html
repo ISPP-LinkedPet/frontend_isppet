@@ -11,8 +11,8 @@
 <img src="{{env}}/{{breedingAd.animal_photo.split(',')[0]}}">
 <div class="description-content">
 <!--{{breedingAd.breeding_id}}-->
-<li><label><b>Edad: </b></label> {{breedingAd.birth_date}} años</li>
-<li><label><b>Pedigree: </b></label>  </li>
+<li><label><b>Edad: </b></label> {{ this.configService.calculateAge(breedingAd.birth_date) == 0 ? 'Menos de 1 año' : this.configService.calculateAge(breedingAd.birth_date) + ' años' }}</li>
+<li><label><b>Pedigree: </b></label> {{ breedingAd.pedigree == 1 ? 'Sí' : 'No'}} </li>
 <li><label><b>Ubicación: </b></label> {{breedingAd.location}} </li>
 <li><label><b>Precio: </b></label> {{breedingAd.price}} euros </li>
 

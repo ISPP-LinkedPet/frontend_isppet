@@ -4,6 +4,38 @@
     <h1 class="display-4">Lista de crianza</h1>
     <button routerLink="/breeding" type="button" *ngIf="'particular'" class="btn btn-success">Crear Anuncio</button>
 </div>
+<div class="mb-3">  
+    <form [formGroup]="filterForm">
+        <label for="price">Precio</label>
+        <input type="text" class="form-control" formControlName="price" aria-label="Amount (to the nearest dollar)" (change)="onSubmit()" >
+    
+        <label for="type">Tipo animal</label>
+        <select class="form-control" id="type" formControlName="type" (change)="onSubmit()" >
+            <option value='' [defaultSelected]=true>Seleccione tipo animal</option>
+            <option value='Dog'>Perro</option>
+            <option value='Cat'>Gato</option>
+            <option value='Horse'>Caballo</option>
+        </select>
+
+        <label for="pedigree">Pedigrí</label>
+        <select class="form-control" id="pedigree" formControlName="pedigree" (change)="onSubmit()" >
+            <option value='' [defaultSelected]=true></option>
+            <option value='true'>Si</option>
+            <option value='false'>No</option>
+        </select>
+
+        <label for="breed">Raza</label>
+        <input type="text" class="form-control" id="breed" formControlName="breed" (change)="onSubmit()" >
+
+        <label for="genre">Genero</label>
+        <select class="form-control" id="genre" formControlName="genre" (change)="onSubmit()" >
+            <option value='' [defaultSelected]=true>Seleccione genero</option>
+            <option value='Male'>Macho</option>
+            <option value='Female'>Hembra</option>
+        </select>
+        
+    </form> 
+</div>
 
 <div class="card border-success mb-3" *ngFor="let breedingAd of breedings">
 <h3 class="card-header">{{breedingAd.breed}} en {{breedingAd.location}}</h3>
