@@ -93,7 +93,7 @@ export class RegisterComponent implements OnInit {
           this.registerSuccess = true;
         })
         .catch(error => {
-          this.errorMessage = error.error.error || 'Something went wrong';
+          this.errorMessage = (error.error.error && typeof error.error.error === 'string') ? error.error.error : 'Something went wrong';
           this.showError = true;
         });
     }
@@ -160,7 +160,7 @@ export class RegisterComponent implements OnInit {
   }
 
   validateTelephone() {
-    this.isValidTelephone = this.registerForm.get('telephone').valid;
+    this.isValidTelephone = this.registerForm.get('telephone').valid && !isNaN(Number(this.registerForm.value.telephone));
     if (!this.isValidTelephone) {
       this.isValid = false;
     }
