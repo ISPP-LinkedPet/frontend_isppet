@@ -127,7 +127,7 @@
                       <option value='1'>Si</option>
                       <option value='0'>No</option>
                   </select>
-                    <div class="invalid-feedback">Debe indicar si es pedigrí</div>
+                    <div class="invalid-feedback">Debe indicar si tiene pedigrí</div>
                 </div>
 
                 <!-- Zona -->
@@ -138,7 +138,7 @@
                 <div class="form-group has-danger col-sm" *ngIf="!isValidLocation">
                     <label class="form-control-label" for="location">Zona</label>
                     <input type="text" class="form-control is-invalid" id="location" formControlName="location" (change)="validateLocation()">
-                    <div class="invalid-feedback">Parece que se ha equivocado</div>
+                    <div class="invalid-feedback">No puede estar vacío</div>
                 </div>
               </div>
 
