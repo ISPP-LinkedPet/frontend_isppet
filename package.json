@@ -37,6 +37,7 @@
     "bootstrap": "^4.4.1",
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
+    "mapbox": "^1.0.0-beta10",
     "ngx-bootstrap": "^5.5.0",
     "rxjs": "^6.5.4",
     "tslib": "^1.11.1",
