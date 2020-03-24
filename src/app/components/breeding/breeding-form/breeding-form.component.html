@@ -221,8 +221,8 @@
                       <!-- File names -->
                     <div class="row">
                       <ul>
-                          <li *ngFor="let filename of animalPhotos">
-                              {{filename.name}}
+                          <li *ngFor="let file of animalPhotos">
+                              {{file.name}} <fa-icon [icon]="faTimes" [styles]="{'stroke': 'red', 'color': 'red'}" (click)="deleteImageAnimalPhotos(file)"></fa-icon>
                           </li>
                       </ul>
                     </div>
@@ -253,8 +253,8 @@
                     <!-- File names -->
                     <div class="row">
                         <ul>
-                            <li *ngFor="let filename of identification_photos">
-                                {{filename.name}}
+                            <li *ngFor="let file of identification_photos">
+                                {{file.name}} <fa-icon [icon]="faTimes" [styles]="{'stroke': 'red', 'color': 'red'}" (click)="deleteIDPhotos(file)"></fa-icon>
                             </li>
                         </ul>
                     </div>
@@ -276,12 +276,11 @@
                         <img style="height: 150px; width: 100%; display: block;" src="{{env}}/{{editBreeding.vaccine_passport.split(',')[0]}}" alt="Card image">
                       </div>
                     </div>
-
                       <!-- File names -->
                     <div class="row">
                       <ul>
-                          <li *ngFor="let filename of vaccine_photos">
-                              {{filename.name}}
+                          <li *ngFor="let file of vaccine_photos">
+                            {{file.name}} <fa-icon [icon]="faTimes" [styles]="{'stroke': 'red', 'color': 'red'}" (click)="deleteVetPhoto(file)"></fa-icon>
                           </li>
                       </ul>
                     </div>
