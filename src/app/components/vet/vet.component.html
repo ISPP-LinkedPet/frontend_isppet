@@ -1,13 +1,17 @@
 <app-header></app-header>
-<h2 class="display-4">Vet List</h2>
+<div class="mb-3">
+    <h1 class="display-4">Lista de veterinarios</h1>
+</div>
 
 <div class="card border-success mb-3" *ngFor="let vet of vets;">
 <h3 class="card-header">{{vet.name}}</h3>
 <div class="card-body">
 <img src="{{env}}/{{vet.optional_photo}}" onerror="this.onerror=null;this.src='../../../assets/icons/simple_icon.png';">
-<p class="card-text"><label><b>Telefóno:</b>{{vet.telephone}}</label>   </p>
-<p class="card-text"><label><b>Email: </b>{{vet.email}}</label>   </p>
-<p class="card-text"><label><b>Address: </b> {{vet.address}}</label>   </p>
+<p class="card-text"><label><b>Telefóno: </b>{{vet.telephone}}</label>   </p>
+<p class="card-text"><label><b>Email de contacto: </b>{{vet.email}}</label>   </p>
+<p *ngIf="vet.url==null" class="card-text"><label><b>Enlace: </b> No disponible</label>   </p>
+<p *ngIf="vet.url!=null" class="card-text" ><label><b >Enlace: </b><a href="{{vet.url}}">{{vet.url}}</a>  </label>   </p>
+<p class="card-text"><label><b>Dirección: </b> {{vet.address}}</label>   </p>
 </div>
 </div>
 
