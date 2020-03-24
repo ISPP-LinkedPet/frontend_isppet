@@ -235,7 +235,12 @@ export class AdotionFormComponent implements OnInit {
       formData.append('pedigree', this.adoptionForm.value.pedigree);
 
       if (this.creating) {
-        this.adoptionService.createAdoption(formData).then(x => console.log(x));
+        this.adoptionService.createAdoption(formData).then(x => {
+          console.log(x);
+          this.router.navigate(['/adoption-personal-list']);
+        }).catch(error => {
+          console.log(error);
+        });
 
       } else if (!this.creating) {
         this.adoptionService.editAdoption(formData, +this.id).then(x => {
