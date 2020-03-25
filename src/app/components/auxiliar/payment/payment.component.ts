@@ -23,7 +23,7 @@ export class PaymentComponent implements OnInit {
   openCheckout() {
     var handler = (<any>window).StripeCheckout.configure({
       key: environment.stripe_key,
-      image: 'https://cdn.pixabay.com/photo/2017/09/01/00/15/png-2702691_960_720.png',
+      image: 'https://i.imgur.com/ZgXl1tn.png',
       name: 'LinkedPet',
       description: 'No se realizará ningún cobro hasta que la otra persona acepte',
       currency: 'eur',
