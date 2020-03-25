@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { environment } from '../../../../environments/environment';
 import { PaymentService } from '../../../services/payment/payment.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-payment',
@@ -12,19 +12,13 @@ export class PaymentComponent implements OnInit {
   
   @Input() price;
   @Input() breedingId;
-  successful: boolean = false;
 
   constructor(
-    private fb: FormBuilder,
     private paymentService: PaymentService,
+    private toastr: ToastrService,
   ) {}
 
-  ngOnInit() {
-    // verificar si tienes parametro paymentId
-    // Hacer peticion de confirmAccount
-    //this.successful = true;
-  }
-
+  ngOnInit() {}
 
   openCheckout() {
     var handler = (<any>window).StripeCheckout.configure({
@@ -36,10 +30,10 @@ export class PaymentComponent implements OnInit {
       locale: 'es',
       token: (token) => {
           this.paymentService.createPaymentToMyself({token: token.id, breedingId: this.breedingId, returnUrl: environment.url}).then(response => {
-            if(response.status != 'succeded') {
+            if(response.status != 'succeeded') {
               window.location.href = response.url;
             } else {
-              this.successful = true;
+              this.toastr.success('Payment Completed!');
             }
           });
       }

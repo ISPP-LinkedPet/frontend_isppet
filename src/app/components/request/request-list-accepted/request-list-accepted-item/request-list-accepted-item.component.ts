@@ -36,4 +36,5 @@ export class RequestListAcceptedItemComponent implements OnInit {
   onClick(e: Event) {
     e.preventDefault();
   }
+  
 }
