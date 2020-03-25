@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { RequestPublicationService } from '../../../services/requestPublication/request-publication.service';
+import { PaymentService } from '../../../services/payment/payment.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-request-list-accepted',
@@ -16,6 +18,8 @@ export class RequestListAcceptedComponent implements OnInit {
     private requestPublicationService: RequestPublicationService,
     private router: Router,
     private route: ActivatedRoute,
+    private paymentService: PaymentService,
+    private toastr: ToastrService,
   ) {}
 
   ngOnInit(): void {
@@ -24,6 +28,26 @@ export class RequestListAcceptedComponent implements OnInit {
       this.checkCreatedOrReceived(createdOrReceived);
       this.loadData();
     });
+
+    this.ckeckPayment();
+  }
+
+  ckeckPayment() {
+    // verificar si tienes parametro paymentId
+    const paymentId = this.route.snapshot.queryParamMap.get('payment_intent')
+    const breedingId = this.route.snapshot.queryParamMap.get('breedingId')
+    if (paymentId != undefined) {
+      // Hacer peticion de confirmPayment
+      this.paymentService.confirmPaymentToMyself({paymentId, breedingId: breedingId}).then(response => {
+        if (response.status == 'succeeded') {
+          // abrir modal
+          this.toastr.success('Payment Completed!');
+        } else {
+          // error
+          this.toastr.error('Payment not complete!');
+        }
+      });
+    }
   }
 
   checkCreatedOrReceived(createdOrReceived: string) {

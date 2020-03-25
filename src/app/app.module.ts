@@ -16,6 +16,7 @@ import {RegisterComponent} from './components/auth/register/register.component';
 import {AdoptionDisplayComponent} from './components/adoption/adoption-display/adoption-display.component';
 import {BreedingListComponent} from './components/breeding/breeding-list/breeding-list.component';
 import {SlidePanelComponent} from './components/auxiliar/slide-panel/slide-panel.component';
+import { PaymentComponent } from './components/auxiliar/payment/payment.component';
 
 // Pages
 import {HomeComponent} from './pages/home/home.component';
@@ -54,7 +55,9 @@ import { EditParticularComponent } from './pages/breeding/edit-particular/edit-p
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ToastrModule } from 'ngx-toastr';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,7 +94,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     EditAdoptionComponent,
     RequestListAcceptedComponent,
     RequestListAcceptedItemComponent,
-    EditParticularComponent
+    EditParticularComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -104,6 +108,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
+    ToastrModule.forRoot(),
     FontAwesomeModule
   ],
   providers: [
