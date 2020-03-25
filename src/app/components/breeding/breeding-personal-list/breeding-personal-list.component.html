@@ -12,7 +12,7 @@
 <div class="description-content">
 <!--{{breedingAd.breeding_id}}-->
 <li><label><b>Edad: </b></label> {{ this.configService.calculateAge(breedingAd.birth_date) }}</li>
-<li><label><b>Pedigree: </b></label> {{ breedingAd.pedigree == 1 ? 'Sí' : 'No'}} </li>
+<li><label><b>Pedigree: </b></label> {{this.configService.translatePedigree(breedingAd.pedigree)}} </li>
 <li><label><b>Ubicación: </b></label> {{breedingAd.location}} </li>
 <li><label><b>Precio: </b></label> {{breedingAd.price}} euros </li>
 <li *ngIf="breedingAd.transaction_status=='In progress'"><label><b>Código de confirmación: </b></label> {{breedingAd.codenumber}}</li>
