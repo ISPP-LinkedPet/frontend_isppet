@@ -29,4 +29,16 @@ export class BreedingDisplayComponent implements OnInit {
   }
 
 
+  title = 'angulartoastr';
+  showModal: boolean;
+  show(){
+    this.showModal = true; // Show-Hide Modal Check  
+  }
+
+  //Bootstrap Modal Close event
+  hide(){
+    this.showModal = false;
+  }
+
+
 }

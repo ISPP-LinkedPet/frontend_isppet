@@ -20,6 +20,8 @@
         <div style="text-align: center" *ngIf="created">
           <!-- Pay method -->
         <app-payment [price]="request.contactData.price" [breedingId]="request.contactData.breedingId"></app-payment>
+	    <input type="text">
+	    <button type="button">Enviar Código</button>
         </div>
       </div>
     </div>
