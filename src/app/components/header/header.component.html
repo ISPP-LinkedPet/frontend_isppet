@@ -1,49 +1,108 @@
 <head>
-
+  <title></title>
 </head>
 
 <header>
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
-    <a class="navbar-brand" routerLink="/"><img src="../../../assets/icons/simple_icon.png"></a>
-    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse" data-target="#navbar" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+  <nav
+    class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
+    id="navbar"
+  >
+    <a class="navbar-brand" routerLink="/"
+      ><img src="../../../assets/icons/simple_icon.png" alt="Icono de empresa"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="toggleNavbar()"
+      data-toggle="collapse"
+      data-target="#navbar"
+      aria-controls="navbarColor01"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-  
-    <div class="collapse navbar-collapse" id="navbar" [ngClass]="{ 'show': navbarOpen }">
+
+    <div
+      class="collapse navbar-collapse"
+      id="navbar"
+      [ngClass]="{ show: navbarOpen }"
+    >
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" id="prub" routerLink="/">Inicio<span class="sr-only">(current)</span></a>
+          <a class="nav-link" id="prub" routerLink="/"
+            >Inicio<span class="sr-only">(current)</span></a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" *ngIf="rol=='particular'" routerLink="/breeding-list" (click)="breedingList()">Crianza</a>
+          <a
+            class="nav-link"
+            *ngIf="rol == 'particular'"
+            routerLink="/breeding-list"
+            (click)="breedingList()"
+            >Crianza</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" *ngIf="rol=='particular' || rol =='shelter'" routerLink="/adoption-list">Adopciones</a>
+          <a
+            class="nav-link"
+            *ngIf="rol == 'particular' || rol == 'shelter'"
+            routerLink="/adoption-list"
+            >Adopciones</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" *ngIf="rol=='particular'" routerLink="/vet">Veterinarios</a>
+          <a class="nav-link" *ngIf="rol == 'particular'" routerLink="/vet"
+            >Veterinarios</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" *ngIf="rol=='moderator'" routerLink="/breeding-pending">Crianzas Pendientes</a>
+          <a
+            class="nav-link"
+            *ngIf="rol == 'moderator'"
+            routerLink="/breeding-pending"
+            >Crianzas Pendientes</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" *ngIf="rol=='moderator'" routerLink="/adoption-pending">Adopciones Pendientes</a>
+          <a
+            class="nav-link"
+            *ngIf="rol == 'moderator'"
+            routerLink="/adoption-pending"
+            >Adopciones Pendientes</a
+          >
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link" *ngIf="rol=='particular'">Panel</a>
-            <div class="dropdown-content">
-              <a class="nav-link" routerLink="/breeding-personal-list">Mis Anuncios de Crianza</a>
-              <a class="nav-link" routerLink="/adoption-personal-list">Mis Anuncios de Adopciones</a>
-              <a class="nav-link" routerLink="/request">Ofertas recibidas</a>
-              <a class="nav-link" routerLink="/request/accepted/created">Peticiones que me han aceptado</a>
-              <a class="nav-link" routerLink="/request/accepted/received">Peticiones aceptadas</a>
-            </div>
+          <a class="nav-link" *ngIf="rol == 'particular'">Panel</a>
+          <div class="dropdown-content">
+            <a class="nav-link" routerLink="/breeding-personal-list"
+              >Mis Anuncios de Crianza</a
+            >
+            <a class="nav-link" routerLink="/adoption-personal-list"
+              >Mis Anuncios de Adopciones</a
+            >
+            <a class="nav-link" routerLink="/request">Ofertas recibidas</a>
+            <a class="nav-link" routerLink="/request/accepted/created"
+              >Peticiones que me han aceptado</a
+            >
+            <a class="nav-link" routerLink="/request/accepted/received"
+              >Peticiones aceptadas</a
+            >
+          </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" *ngIf="rol=='disconnected'" routerLink="/login">Login</a>
+          <a class="nav-link" *ngIf="rol == 'disconnected'" routerLink="/login"
+            >Login</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" *ngIf="rol!='disconnected'" routerLink="/" (click)="disconnect()">Logout</a>
+          <a
+            class="nav-link"
+            *ngIf="rol != 'disconnected'"
+            routerLink="/"
+            (click)="disconnect()"
+            >Logout</a
+          >
         </li>
       </ul>
     </div>
