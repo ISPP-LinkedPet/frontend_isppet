@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginRegisterComponent } from 'src/app/pages/login-register/login-register.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService } from '../../../services/login/login.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -33,7 +34,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: any;
   role: string;
-  constructor(public homeComponent: LoginRegisterComponent, public loginService: LoginService) { }
+  constructor(public homeComponent: LoginRegisterComponent, public loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -91,6 +92,7 @@ export class RegisterComponent implements OnInit {
         .register(formData)
         .then(res => {
           this.registerSuccess = true;
+          this.router.navigate(['/login'])
         })
         .catch(error => {
           this.errorMessage = (error.error.error && typeof error.error.error === 'string') ? error.error.error : 'Something went wrong';
