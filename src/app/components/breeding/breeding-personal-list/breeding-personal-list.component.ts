@@ -16,14 +16,22 @@ export class BreedingPersonalListComponent implements OnInit {
 
   constructor(private breedingService: BreedingService, public configService:ConfigService, private paymentService: PaymentService) { }
   ngOnInit(): void {
+    this.getList();
+  }
+
+  acceptMoney(id){
+
+    this.paymentService.makePaypalPayment({breedingId: id}).then(res=>{
+      this.personalBreedings = new Array();
+      this.getList();
+    })
+  }
+
+  getList(){
     const{id, role} = JSON.parse(atob(localStorage.getItem('access_token').split(".")[1]));
     this.breedingService.getPersonalBreedings(id).then(res => res.forEach(breedingAd => {
       this.personalBreedings.push(breedingAd);
     }));
-  }
-
-  acceptMoney(id){
-    this.paymentService.makePaypalPayment({breedingId: id});
   }
 
 }
