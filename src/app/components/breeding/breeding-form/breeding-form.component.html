@@ -31,7 +31,7 @@
                                   <option value='Female'>Hembra</option>
                               </select>
                           </div>
-                          <div *ngIf="rol=='moderator'">
+                          <div *ngIf="rol=='reviewer'">
                               <select class="form-control" id="genre" formControlName="genre" (change)="validateGenre()">
                                   <option value='' [defaultSelected]=true>Seleccione genero</option>
                                   <option value='Male'>Macho</option>
@@ -50,7 +50,7 @@
                               </select>
                           </div>
 
-                          <div *ngIf="rol=='moderator'">
+                          <div *ngIf="rol=='reviewer'">
                               <select class="form-control is-invalid" id="genre" formControlName="genre" (change)="validateGenre()">
                                   <option value='' [defaultSelected]=true>Seleccione genero</option>
                                   <option value='Male'>Macho</option>
@@ -87,7 +87,7 @@
                                   <option value='Horse'>Caballo</option>
                               </select>
                           </div>
-                          <div *ngIf="rol=='moderator'">
+                          <div *ngIf="rol=='reviewer'">
                               <select class="form-control" id="type" formControlName="type" (change)="validateType()">
                                   <option value='' [defaultSelected]=true>Seleccione tipo animal</option>
                                   <option value='Dog'>Perro</option>
@@ -108,7 +108,7 @@
                               </select>
                           </div>
 
-                          <div *ngIf="rol=='moderator'">
+                          <div *ngIf="rol=='reviewer'">
                               <select class="form-control is-invalid" id="type" formControlName="type" (change)="validateType()">
                                   <option value='' [defaultSelected]=true>Seleccione tipo animal</option>
                                   <option value='Dog'>Perro</option>
@@ -127,7 +127,7 @@
                               <div class="input-group-prepend">
                                   <span class="input-group-text">€</span>
                               </div>
-                              <input type="text" class="form-control" [readOnly]="rol=='moderator'" formControlName="price" aria-label="Amount (to the nearest dollar)" (change)="validatePrice()">
+                              <input type="text" class="form-control" [readOnly]="rol=='reviewer'" formControlName="price" aria-label="Amount (to the nearest dollar)" (change)="validatePrice()">
                               <div class="input-group-append">
                                   <span class="input-group-text">.00</span>
                               </div>
@@ -160,7 +160,7 @@
                               </select>
                           </div>
 
-                          <div *ngIf="rol=='moderator'">
+                          <div *ngIf="rol=='reviewer'">
                               <select class="form-control" id="pedigree" formControlName="pedigree">
                                   <option value='' [defaultSelected]=true></option>
                                   <option value='true'>Si</option>
@@ -179,7 +179,7 @@
                               </select>
                           </div>
 
-                          <div *ngIf="rol=='moderator'">
+                          <div *ngIf="rol=='reviewer'">
                               <select class="form-control is-invalid" id="pedigree" formControlName="pedigree">
                                   <option value='' [defaultSelected]=true>Seleccione un pedigrí</option>
                                   <option value='true'>Si</option>
@@ -195,7 +195,7 @@
                       <!-- Location -->
                       <div class="form-group col-sm" *ngIf="isValidLocation">
                         <label for="location">Zona</label>
-                        <input type="text" class="form-control" id="location" [readOnly]="rol=='moderator'" formControlName="location" (change)="validateLocation()">
+                        <input type="text" class="form-control" id="location" [readOnly]="rol=='reviewer'" formControlName="location" (change)="validateLocation()">
                       </div>
                       <div class="form-group has-danger col-sm" *ngIf="!isValidLocation">
                           <label class="form-control-label" for="age">Zona</label>
@@ -206,7 +206,7 @@
 
                     <!-- Animal photo -->
                     <div class="row">
-                      <div class="form-group col-6" *ngIf="rol != 'moderator'">
+                      <div class="form-group col-6" *ngIf="rol != 'reviewer'">
                           <label for="animal_photo">Imagenes</label>
                           <div class="input-group mb-3">
                               <div class="custom-file">
@@ -235,7 +235,7 @@
 
                     <div class="row">
                       <!-- Identification photo -->
-                      <div class="form-group col-6" *ngIf="rol != 'moderator'">
+                      <div class="form-group col-6" *ngIf="rol != 'reviewer'">
                           <label for="identification_photo">Identificacion de mascota</label>
                           <div class="input-group mb-3">
                               <div class="custom-file">
@@ -247,7 +247,7 @@
                       </div>
                     </div>
 
-                    <div class="form-group col-4" *ngIf="rol=='moderator'">
+                    <div class="form-group col-4" *ngIf="rol=='reviewer'">
                         <img style="height: 250px; width: 100%; display: block;" src="{{env}}/{{editBreeding.identification_photo.split(',')[0]}}" alt="Card image">
                     </div>
                     <!-- File names -->
@@ -262,7 +262,7 @@
                   <div class="row">
 
                       <!-- Vaccine passaport -->
-                      <div class="form-group col-6" *ngIf="rol != 'moderator'">
+                      <div class="form-group col-6" *ngIf="rol != 'reviewer'">
                           <label for="vaccine_passaport">Cartilla de vacunacion</label>
                           <div class="input-group mb-3">
                               <div class="custom-file">
@@ -272,7 +272,7 @@
                           </div>
                           <div class="invalid-feedback" *ngIf="!isValidVaccinePassaport">Debe subir una imagen de la cartilla de vacunación</div>
                       </div>
-                      <div class="form-group col-4" *ngIf="rol=='moderator'">
+                      <div class="form-group col-4" *ngIf="rol=='reviewer'">
                         <img style="height: 150px; width: 100%; display: block;" src="{{env}}/{{editBreeding.vaccine_passport.split(',')[0]}}" alt="Card image">
                       </div>
                     </div>
@@ -288,8 +288,8 @@
               </fieldset>
               <button *ngIf="rol == 'particular' && !creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Editar</button>
               <button *ngIf="rol == 'particular' && creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Crear</button>
-              <button *ngIf="rol == 'moderator'" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Acceptar</button>
-              <button *ngIf="rol == 'moderator'" (click)="rejectPublication()" class="btn btn-secondary btn-lg button-form right">Rechazar</button>
+              <button *ngIf="rol == 'reviewer'" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Acceptar</button>
+              <button *ngIf="rol == 'reviewer'" (click)="rejectPublication()" class="btn btn-secondary btn-lg button-form right">Rechazar</button>
           </form>
           <div class="invalid-feedback">{{backError}} {{backError|json}}</div>
       </div>

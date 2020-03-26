@@ -19,7 +19,7 @@ import { PersonalListAdoptionComponent } from './pages/adoption/personal-list-ad
 import { EditComponent as EditComponentBreeding} from './pages/breeding/edit/edit.component';
 import { RequestListComponent } from './components/request/request-list/request-list.component';
 import { EditAdoptionComponent} from './pages/adoption/edit-adoption/edit-adoption.component';
-import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-moderator/adoption-pending-list-page.component';
+import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-reviewer/adoption-pending-list-page.component';
 import { RequestListAcceptedComponent } from './components/request/request-list-accepted/request-list-accepted.component';
 import { EditParticularComponent } from './pages/breeding/edit-particular/edit-particular.component';
 

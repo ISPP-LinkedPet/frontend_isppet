@@ -74,7 +74,7 @@
               </div>
 
               <div class="row">
-                <div *ngIf="rol != 'moderator'">
+                <div *ngIf="rol != 'reviewer'">
                   <!-- Nombre -->
                   <div class="form-group col-sm" *ngIf="isValidName">
                     <label for="name">Nombre</label>
@@ -88,7 +88,7 @@
                 </div>
 
               
-              <div *ngIf="rol != 'moderator'">
+              <div *ngIf="rol != 'reviewer'">
                 <!-- Animal images -->
                 <div class="form-group col-10">
                   <label for="animal_photo">Imagenes</label>
@@ -179,7 +179,7 @@
             <hr>
 
             <!-- Documentation -->
-            <div *ngIf="rol != 'moderator'">
+            <div *ngIf="rol != 'reviewer'">
             <fieldset>
 
               <legend class="card-title">Documentación de la mascota</legend>

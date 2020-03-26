@@ -1,7 +1,7 @@
 import { Particular } from '../particular/particular'
 
 export class Publication {
-    // Only moderator
+    // Only reviewer
     title: string;
     birth_date: Date;
     genre: Genres;

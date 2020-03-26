@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from 'src/app/services/config/config.service';
-import {Router} from "@angular/router";
-
+import {Router} from '@angular/router';
 @Component({
-  selector: 'app-breeding-pending-list-page',
-  templateUrl: './breeding-pending-list-page.component.html',
-  styleUrls: ['./breeding-pending-list-page.component.css']
+  selector: 'app-adoption-pending-list-page',
+  templateUrl: './adoption-pending-list-page.component.html',
+  styleUrls: ['./adoption-pending-list-page.component.css']
 })
-export class BreedingPendingListPageComponent implements OnInit {
+export class AdoptionPendingListPageComponent implements OnInit {
+
 
   constructor(public configService: ConfigService, private router: Router) { }
 
@@ -16,9 +16,9 @@ export class BreedingPendingListPageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if(this.rol!='reviewer'){
-      this.router.navigate(['/'])
+    if (this.rol !== 'reviewer') {
+      this.router.navigate(['/']);
     }
-  }
 
+  }
 }

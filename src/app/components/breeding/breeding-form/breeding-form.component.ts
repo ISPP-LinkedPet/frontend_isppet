@@ -103,7 +103,7 @@ export class BreedingCreateComponent implements OnInit {
 
   // utils
   getTitle(){
-    this.title = this.rol=='moderator' ? 'Moderar' : (this.rol == 'particular' && !this.creating) ? 'Editar' : 'Crear nueva';
+    this.title = this.rol=='reviewer' ? 'Moderar' : (this.rol == 'particular' && !this.creating) ? 'Editar' : 'Crear nueva';
   }
   requiredInput(){
     if(!this.creating){
@@ -114,7 +114,7 @@ export class BreedingCreateComponent implements OnInit {
 
   // validations
   validateBreed() {
-    if(!this.creating && this.rol == 'moderator'){
+    if(!this.creating && this.rol == 'reviewer'){
       this.isValidBreed = this.breedingForm.get('breed').valid;
     }
   }
@@ -127,23 +127,23 @@ export class BreedingCreateComponent implements OnInit {
     }
   }
   validateGenre() {
-    if(!this.creating && this.rol=='moderator'){
+    if(!this.creating && this.rol=='reviewer'){
       this.isValidGenre = ['Male','Female'].includes(this.breedingForm.get('genre').value);
     }
     console.log(this.breedingForm.get('genre').value);
   }
   validateAge() {
-    if(!this.creating && this.rol=='moderator'){
+    if(!this.creating && this.rol=='reviewer'){
       this.isValidAge = this.breedingForm.get('age').valid;
     }
   }
   validateType() {
-    if(!this.creating && this.rol=='moderator'){
+    if(!this.creating && this.rol=='reviewer'){
       this.isValidType = ['Dog','Cat', 'Horse'].includes(this.breedingForm.get('type').value);
     }
   }
   validatePedigree() {
-    if(!this.creating && this.rol=='moderator'){
+    if(!this.creating && this.rol=='reviewer'){
       this.isValidPedigri = ['true','false'].includes(this.breedingForm.get('pedigree').value);
     }
   }
@@ -212,7 +212,7 @@ export class BreedingCreateComponent implements OnInit {
       formData.append('location', this.breedingForm.value.location);
 
       this.breedingService.createBreeding(formData).then(x => {
-        alert("¡La crianza se ha creado correctamente! \n Ahora debe de revisarlo un moderador")
+        alert("¡La crianza se ha creado correctamente! \n Ahora debe de revisarlo un Revisor")
         this.router.navigate(['/breeding-personal-list'])
       }).catch (error => {
         this.backError = error.error.error
@@ -232,15 +232,15 @@ export class BreedingCreateComponent implements OnInit {
       formData.append('location', this.breedingForm.value.location);
 
       this.breedingService.editBreeding(this.editBreeding.breedingId, formData).then(x => {
-        alert("¡La crianza se ha editado correctamente! \n Ahora debe de revisarlo un moderador")
+        alert("¡La crianza se ha editado correctamente! \n Ahora debe de revisarlo un Revisor")
         this.router.navigate(['/breeding-personal-list'])
       }).catch (error => {
         this.backError = error.error.error
       });
     }
 
-    // si lo está editando un moderador
-    if(!this.creating && this.rol == 'moderator' && this.isValidBreed && this.isValidGenre && this.isValidAge && this.isValidType && this.isValidPedigri){
+    // si lo está editando un Revisor
+    if(!this.creating && this.rol == 'reviewer' && this.isValidBreed && this.isValidGenre && this.isValidAge && this.isValidType && this.isValidPedigri){
 
       formData.append('genre', this.breedingForm.value.genre);
       formData.append('breed', this.breedingForm.value.breed);
