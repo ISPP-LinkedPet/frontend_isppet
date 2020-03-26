@@ -15,10 +15,10 @@ export class PaymentService {
   }
 
   confirmPaymentToMyself(data: any) {
-    return this.requestService.request('POST', `${environment.endpoint}/payment/confirm`, 
-    {
-      breedingId: data
-    }, {}, true);
+    return this.requestService.request('POST', `${environment.endpoint}/payment/confirm`, data, {});
   }
 
+  makePaypalPayment(data: any) {
+    return this.requestService.request('POST', `${environment.endpoint}/payment/user`, data, {});
+  }
 }

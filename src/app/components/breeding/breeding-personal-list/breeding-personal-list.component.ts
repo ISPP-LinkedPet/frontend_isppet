@@ -23,7 +23,7 @@ export class BreedingPersonalListComponent implements OnInit {
   }
 
   acceptMoney(id){
-    this.paymentService.confirmPaymentToMyself(id);
+    this.paymentService.makePaypalPayment({breedingId: id});
   }
 
 }
