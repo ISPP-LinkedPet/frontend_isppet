@@ -1,0 +1,5 @@
+.modal-dialog{
+    position: absolute;
+    left: 70%; /* Buscamos el centro vertical (relativo) del navegador */
+    margin-left: -160px;
+}

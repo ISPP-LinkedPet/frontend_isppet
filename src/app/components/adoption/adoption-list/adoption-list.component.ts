@@ -35,7 +35,8 @@ export class AdoptionListComponent implements OnInit {
 
   viewDetails(id: string) {
     this.adoptionListPageComponent.isLeftVisible = !this.adoptionListPageComponent.isLeftVisible;
-    this.adoptionListPageComponent.loadAdoption(id)
+    this.adoptionListPageComponent.loadAdoption(id);
+    window.scroll(0,0);
   }
 
 }

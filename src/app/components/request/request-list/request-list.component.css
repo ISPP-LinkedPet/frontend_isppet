@@ -26,6 +26,10 @@ div{
     color: black;
 }
 
+ #first{
+    margin-top: 100px;
+}
+
 img{
     width: 27%;
     float: right;

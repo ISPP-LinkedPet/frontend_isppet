@@ -11,11 +11,15 @@
 <img src="{{env}}/{{breedingAd.animal_photo.split(',')[0]}}">
 <div class="description-content">
 <!--{{breedingAd.breeding_id}}-->
-<li><label><b>Edad: </b></label> {{breedingAd.birth_date}} años</li>
-<li><label><b>Pedigree: </b></label>  </li>
+<li><label><b>Edad: </b></label> {{ this.configService.calculateAge(breedingAd.birth_date) }}</li>
+<li><label><b>Pedigree: </b></label> {{ breedingAd.pedigree == 1 ? 'Sí' : 'No'}} </li>
 <li><label><b>Ubicación: </b></label> {{breedingAd.location}} </li>
 <li><label><b>Precio: </b></label> {{breedingAd.price}} euros </li>
-
+<li *ngIf="breedingAd.transaction_status=='In progress'"><label><b>Código de confirmación: </b></label>{{breedingAd.codenumber}}</li>
+{{breedingAd.transaction_status}}
+<div *ngIf="breedingAd.transaction_status=='Awaiting payment'">
+    <button type="button" class="btn btn-success" (click)="acceptMoney(breedingAd.breeding_id)">Recibir el pago</button>
+</div>
 <div *ngIf="breedingAd.transaction_status != 'Completed'">
     <button type="button" class="btn btn-success" [routerLink]="['/breeding-edit-particular', breedingAd.breeding_id]">Editar Anuncio</button>
 </div>

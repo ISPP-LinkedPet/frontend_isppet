@@ -50,5 +50,24 @@ export class BreedingService {
     return this.requestService.request('PUT', `${environment.endpoint}/breeding/reject/${id}`, {}, {}, true)
   }
 
+  filterBreedings(price: string = '', type: string = '', pedigree: string = '', breed: string = '', genre: string = '') {
+    let url = `${environment.endpoint}/breeding/offers?`;
+    if (price != '') {
+      url = url + 'price=' + price + '&';
+    }
+    if (type != '') {
+      url = url + 'type=' + type + '&';
+    }
+    if (pedigree != '') {
+      url = url + 'pedigree=' + pedigree + '&';
+    }
+    if (breed != '') {
+      url = url + 'breed=' + breed + '&';
+    }
+    if (genre != '') {
+      url = url + 'genre=' + genre + '&';
+    }
+    return this.requestService.request('GET', url, {}, {}, true);
+  }
 
 }

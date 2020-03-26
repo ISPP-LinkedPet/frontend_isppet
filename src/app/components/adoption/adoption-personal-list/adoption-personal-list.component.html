@@ -1,27 +1,29 @@
+
 <div class="mb-3">
-    <h1 class="display-4">Mis Anuncios de Adopciones</h1>
-    <!--<button routerLink="/adoption" *ngIf="rol=='shelter'" type="button" class="btn btn-success">Crear Anuncio</button>-->
+    <h1 class="display-4">Mis anuncios de adopciones</h1>
 </div>
 
-<div class="card border-success mb-3" *ngFor="let adoption of personalAdoptions">
-<h3 class="card-header" >{{adoption.title}}</h3> <!--Advertisement title-->
-<h6 class="card-header bg-success" *ngIf="adoption.transaction_status=='Completed'">{{adoption.transaction_status}}</h6>
-<h6 class="card-header bg-warning" *ngIf="adoption.transaction_status=='In progress'">{{adoption.transaction_status}}</h6>
-<div class="card-body" *ngIf="adoption.breeding_id=='NULL'">
-<!--Imagen de prueba-->
-<img src="{{env}}/{{adoption.animal_photo.split(',')[0]}}">
+<div class="card border-success mb-3" *ngFor="let adoptionAd of personalAdoptions">
+<h3  class="card-header">{{adoptionAd.breed}} en {{adoptionAd.location}}</h3>
+<h6  class="card-header bg-success" *ngIf="adoptionAd.transaction_status=='Completed'">Revisada</h6>
+<h6  class="card-header bg-warning" *ngIf="adoptionAd.transaction_status=='In progress'">En revisión</h6>
+<div  class="card-body" >
+<img src="{{env}}/{{adoptionAd.animal_photo.split(',')[0]}}">
 <div class="description-content">
-    
-<li><label><b>Tipo de animal:</b>{{adoption.type}}</label>   </li>
-<li><label><b>Pedigree:</b> {{adoption.pedigree}}</label>   </li>
-<li><label><b>Edad:</b>  {{adoption.birth_date}}</label>   </li>
-<li><label><b>Raza:</b>  {{adoption.breed}}</label>   </li>
-<li><label><b>Ubicación:</b>  {{adoption.location}}</label>   </li>
-<button>Editar Adopción</button><!--Link-->
+<!--{{breedingAd.breeding_id}}-->
+<li><label><b>Nombre: </b></label> {{adoptionAd.name == '' ? 'No tiene nombre' : adoptionAd.name }} </li>
+<li><label><b>Edad: </b></label> {{this.configService.calculateAge(adoptionAd.birth_date)}}</li>
+<li><label><b>Pedigree: </b></label> {{ adoptionAd.pedigree == 1 ? 'Sí' : 'No'}} </li>
+<li><label><b>Ubicación: </b></label> {{adoptionAd.location}} </li>
+<li *ngIf="rol=='shelter'"><label><b>Tasas: </b></label> {{adoptionAd.taxes}} euros </li>
+
+<div *ngIf="adoptionAd.transaction_status != 'Completed'">
+    <button type="button" class="btn btn-success" [routerLink]="['/adoption-edit', adoptionAd.adoption_id]">Editar Anuncio</button>
 </div>
-<div *ngIf="adoption.transaction_status != 'Completed'">
-    <button type="button" class="btn btn-success" [routerLink]="['/adoption-edit', adoption.adoption_id]">Editar</button>
+
 </div>
 </div>
-</div>
+
+
+
 

@@ -19,4 +19,14 @@ export class LoginService {
       password: profileForm.value.password
     }, {}, false);
   }
+
+  register(data: any) {
+    return this.requestService.request(
+      'POST',
+      `${environment.endpoint}/auth/register`,
+      data,
+      {},
+      false,
+    );
+  }
 }
