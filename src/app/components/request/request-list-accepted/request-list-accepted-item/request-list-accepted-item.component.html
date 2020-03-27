@@ -19,9 +19,13 @@
         </div>
         <div style="text-align: center" *ngIf="created">
           <!-- Pay method -->
-        <app-payment [price]="request.contactData.price" [breedingId]="request.contactData.breedingId"></app-payment>
-	    <input type="text">
-	    <button type="button">Enviar Código</button>
+          <div class="payment">
+            <app-payment [price]="request.contactData.price" [breedingId]="request.contactData.breedingId"></app-payment>
+          </div>
+          <form [formGroup]="requestForm"  (ngSubmit)="onSubmit()" novalidate> 
+            <input formControlName="confirmationCode" type="text" placeholder="Introduce código">
+            <button type="submit" class="btn btn-primary">Enviar Código</button>
+          </form>
         </div>
       </div>
     </div>
