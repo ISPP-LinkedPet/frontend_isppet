@@ -20,6 +20,8 @@ export class BreedingCreateComponent implements OnInit {
 
   @Input() creating: boolean;
   @Input() editBreeding: any;
+  
+  
 
   // photo
   @ViewChild('animalPhoto', { static: false }) animalPhoto: ElementRef;
@@ -64,6 +66,7 @@ export class BreedingCreateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.editBreeding = this.editBreeding || {};
     this.breedingForm = new FormGroup({
       title: new FormControl(
@@ -76,8 +79,7 @@ export class BreedingCreateComponent implements OnInit {
       breed: new FormControl(
         this.editBreeding.breed || '', this.requiredInput()
       ),
-      type: new FormControl(
-        this.editBreeding.type || '', this.requiredInput()
+      type: new FormControl('', this.requiredInput()
       ),
       pedigree: new FormControl('', this.requiredInput()),
       location: new FormControl(
@@ -96,7 +98,7 @@ export class BreedingCreateComponent implements OnInit {
         this.editBreeding.vaccine_passaport || '', [Validators.required]
       ),
     });
-
+    
     this.getTitle();
     this.validationFields('default');
   }
@@ -130,7 +132,7 @@ export class BreedingCreateComponent implements OnInit {
     if(!this.creating && this.rol=='moderator'){
       this.isValidGenre = ['Male','Female'].includes(this.breedingForm.get('genre').value);
     }
-    console.log(this.breedingForm.get('genre').value);
+    
   }
   validateAge() {
     if(!this.creating && this.rol=='moderator'){
@@ -144,7 +146,7 @@ export class BreedingCreateComponent implements OnInit {
   }
   validatePedigree() {
     if(!this.creating && this.rol=='moderator'){
-      this.isValidPedigri = ['true','false'].includes(this.breedingForm.get('pedigree').value);
+      this.isValidPedigri = ['1','0'].includes(this.breedingForm.get('pedigree').value);
     }
   }
 
@@ -246,7 +248,7 @@ export class BreedingCreateComponent implements OnInit {
       formData.append('breed', this.breedingForm.value.breed);
       formData.append('age', this.breedingForm.value.birth_date);
       formData.append('type', this.breedingForm.value.type);
-      formData.append('pedeegri', this.breedingForm.value.pedeegri);
+      formData.append('pedigree', this.breedingForm.value.pedigree);
 
       this.breedingService.acceptBreeding(formData, this.editBreeding.breedingId).then(x => {
         alert("¡La crianza se ha aceptado correctamente! \n Se ha publicado en la lista de crianzas")
