@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { positionElements } from 'ngx-bootstrap/positioning/public_api';
 
 type PaneType = 'left' | 'right';
 
@@ -10,10 +11,14 @@ type PaneType = 'left' | 'right';
   templateUrl: './slide-panel.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
-    trigger('slide', [
-      state('left', style({ transform: 'translateX(0)' })),
-      state('right', style({ transform: 'translateX(-50%)' })),
-      transition('* => *', animate(600))
+    trigger('enterTrigger', [
+    state('leftPannel', style({
+        opacity: '1',
+    })),
+    state('rightPannel', style({
+      opacity: '1',
+    })),
+    transition('void => *', [style({opacity: '0'}), animate('500ms')])
     ])
   ]
 })
