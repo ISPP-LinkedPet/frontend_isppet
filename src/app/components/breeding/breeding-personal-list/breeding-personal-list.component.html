@@ -43,7 +43,7 @@
         <li>
           <label><strong>Precio: </strong></label> {{ breedingAd.price }} euros
         </li>
-        <li *ngIf="breedingAd.transaction_status == 'In progress'">
+        <li *ngIf="breedingAd.transaction_status == 'In payment'">
           <label><strong>Código de confirmación: </strong></label>
           {{ breedingAd.codenumber }}
         </li>

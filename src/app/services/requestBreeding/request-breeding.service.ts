@@ -27,6 +27,10 @@ export class RequestBreedingService {
     return this.requestService.request('PUT', `${environment.endpoint}/request/${id}/reject`, {}, {}, true);
   }
 
+  finishBreedingConfirmation(id: string, code: any) {
+    return this.requestService.request('PUT', `${environment.endpoint}/breeding/finish/${id}`, code, {}, true);
+  }
+
 }
 
 
