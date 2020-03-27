@@ -25,18 +25,33 @@ export class RegisterComponent implements OnInit {
 
   optionalPhoto: any;
 
-  // En caso de fallar la llamada
   showError = false;
   errorMessage = '';
-
-  // En caso de éxito
   registerSuccess = false;
+  successMessage = '';
 
   registerForm: any;
   role: string;
   constructor(public homeComponent: LoginRegisterComponent, public loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
+    this.initializeForm();
+
+    this.isValid = false;
+    this.isValidUserName = true;
+    this.isValidRole = true;
+    this.isValidPassword = true;
+    this.isValidRepeatPassword = true;
+    this.isValidName = true;
+    this.isValidEmail = true;
+    this.isValidAddress = true;
+    this.isValidTelephone = true;
+    this.isValidOptionalPhoto = true;
+    this.isValidSurname = true;
+    this.showParticularInputs = this.registerForm.value.role === 'particular';
+  }
+
+  initializeForm() {
     this.registerForm = new FormGroup({
       user_name: new FormControl('', [Validators.required, Validators.minLength(4)]),
       role: new FormControl(this.role || ''),
@@ -53,25 +68,11 @@ export class RegisterComponent implements OnInit {
       ]),
       surname: new FormControl('', [Validators.required])
     });
-
-    this.isValid = false;
-    this.isValidUserName = true;
-    this.isValidRole = true;
-    this.isValidPassword = true;
-    this.isValidRepeatPassword = true;
-    this.isValidName = true;
-    this.isValidEmail = true;
-    this.isValidAddress = true;
-    this.isValidTelephone = true;
-    this.isValidOptionalPhoto = true;
-    this.isValidSurname = true;
-    this.showParticularInputs = this.registerForm.value.role === 'particular';
   }
 
   onSubmit() {
-    this.registerSuccess = false;
-    this.showError = false;
-    this.errorMessage = '';
+    this.cleanSuccess();
+    this.cleanError();
     this.isValid = true;
     this.validationFields();
     if (this.isValid) {
@@ -92,7 +93,11 @@ export class RegisterComponent implements OnInit {
         .register(formData)
         .then(res => {
           this.registerSuccess = true;
-          this.router.navigate(['/login'])
+          this.successMessage = 'Registro exitoso. Redirigiendo a la página de login';
+          setTimeout(() => {
+            this.backToLogin();
+            this.cleanData();
+          }, 2000);
         })
         .catch(error => {
           this.errorMessage = (error.error.error && typeof error.error.error === 'string') ? error.error.error : 'Something went wrong';
@@ -190,5 +195,25 @@ export class RegisterComponent implements OnInit {
       this.optionalPhoto = element;
     });
     // this.validateAnimalPhoto();
+  }
+
+  backToLogin() {
+    this.homeComponent.isLeftVisible = !this.homeComponent.isLeftVisible;
+  }
+
+  cleanError() {
+    this.showError = false;
+    this.errorMessage = '';
+  }
+
+  cleanSuccess() {
+    this.registerSuccess = false;
+    this.successMessage = '';
+  }
+
+  cleanData() {
+    this.cleanError();
+    this.cleanSuccess();
+    this.initializeForm();
   }
 }
