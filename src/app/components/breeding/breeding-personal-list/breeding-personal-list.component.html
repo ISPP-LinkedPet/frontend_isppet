@@ -2,26 +2,6 @@
   <h1 class="display-4">Mis anuncios de crianza</h1>
 </div>
 
-<div
-  class="card border-success mb-3"
-  *ngFor="let breedingAd of personalBreedings"
->
-  <h3 class="card-header">
-    {{ breedingAd.breed }} en {{ breedingAd.location }}
-  </h3>
-  <h6
-    class="card-header bg-success"
-    *ngIf="breedingAd.transaction_status == 'Completed'"
-  >
-    Revisada
-  </h6>
-  <h6
-    class="card-header bg-warning"
-    *ngIf="breedingAd.transaction_status == 'In progress'"
-  >
-    En revisión
-  </h6>
-  <div class="card-body">
     <img
       src="{{ env }}/{{ breedingAd.animal_photo.split(',')[0] }}"
       alt="Foto/s del animal"
@@ -43,7 +23,7 @@
         <li>
           <label><strong>Precio: </strong></label> {{ breedingAd.price }} euros
         </li>
-        <li *ngIf="breedingAd.transaction_status == 'In progress'">
+        <li *ngIf="breedingAd.transaction_status == 'In payment'">
           <label><strong>Código de confirmación: </strong></label>
           {{ breedingAd.codenumber }}
         </li>
