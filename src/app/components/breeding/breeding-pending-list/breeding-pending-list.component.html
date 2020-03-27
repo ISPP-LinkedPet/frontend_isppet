@@ -2,17 +2,39 @@
 <!--Foreach Advertisement-->
 
 <div class="card border-success mb-3" *ngFor="let breedingAd of breedings">
-<h3 class="card-header">{{breedingAd.breed}} en {{breedingAd.location}}</h3>
-<div class="card-body">
-<img src="{{env}}/{{breedingAd.animal_photo.split(',')[0]}}">
-<div class="description-content">
-<li><label><b>Edad: </b></label> {{this.configService.calculateAge(breedingAd.birth_date)}}</li>
-<li><label><b>Pedigree: </b></label> {{this.configService.translatePedigree(breedingAd.pedigree)}}  </li>
-<li><label><b>Ubicación: </b></label> {{breedingAd.location}} </li>
-<li><label><b>Precio: </b></label> {{breedingAd.price}} euros </li>
-</div>
-<button type="button" class="btn btn-success" [routerLink]="['/breeding-edit', breedingAd.breedingId]">Moderar</button>
-</div>
+  <h3 class="card-header">
+    {{ breedingAd.breed }} en {{ breedingAd.location }}
+  </h3>
+  <div class="card-body">
+    <img
+      src="{{ env }}/{{ breedingAd.animal_photo.split(',')[0] }}"
+      alt="Foto/s del animal"
+    />
+    <div class="description-content">
+      <ul>
+        <li>
+          <label><strong>Edad: </strong></label>
+          {{ this.configService.calculateAge(breedingAd.birth_date) }} años
+        </li>
+        <li>
+          <label><strong>Pedigree: </strong></label>
+        </li>
+        <li>
+          <label><strong>Ubicación: </strong></label> {{ breedingAd.location }}
+        </li>
+        <li>
+          <label><strong>Precio: </strong></label> {{ breedingAd.price }} euros
+        </li>
+      </ul>
+    </div>
+    <button
+      type="button"
+      class="btn btn-success"
+      [routerLink]="['/breeding-edit', breedingAd.breedingId]"
+    >
+      Moderar
+    </button>
+  </div>
 </div>
 
 <!--End Foreach-->
