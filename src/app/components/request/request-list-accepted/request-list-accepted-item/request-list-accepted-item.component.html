@@ -22,7 +22,7 @@
           <div *ngIf="transactionStatus=='In payment'">
             <app-payment [price]="request.contactData.price" [breedingId]="request.contactData.breedingId"></app-payment>
           </div>
-
+          <hr>
           <!--Confirmation code-->
           <div *ngIf="transactionStatus=='In progress'">
             <form [formGroup]="requestForm"  (ngSubmit)="onSubmitCodeForm()" novalidate> 
@@ -38,7 +38,6 @@
               <button type="submit" class="btn btn-primary">Enviar Review</button>
             </form>
           </div>
-
         </div>
       </div>
     </div>
