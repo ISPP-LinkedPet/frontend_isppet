@@ -48,6 +48,14 @@
           {{ breedingAd.codenumber }}
         </li>
       </ul>
+      
+      <div *ngIf="breedingAd.transaction_status=='Awaiting payment'">
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="acceptMoney(breedingAd.breeding_id)">Recibir el pago
+        </button>
+    </div>
 
       <div *ngIf="breedingAd.transaction_status != 'Completed'">
         <button
