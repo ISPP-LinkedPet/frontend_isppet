@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  endpoint: 'http://localhost:3000'
+  endpoint: 'http://localhost:3000',
+  mapbox_key: 'pk.eyJ1IjoiYWJkbW9oIiwiYSI6ImNrODYzeXJjYjA5enMzbm84Zzg1dDk5cHcifQ.bvP729bcquda2cj-y4fQdQ'
 };
 
 /*

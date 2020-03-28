@@ -2,7 +2,7 @@
 <div class="mb-3">
     <h1 class="display-4">Lista de veterinarios</h1>
 </div>
-
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css" rel="stylesheet" />
 <div class="card border-success mb-3" *ngFor="let vet of vets;">
 <h3 class="card-header">{{vet.name}}</h3>
 <div class="card-body">
@@ -12,6 +12,7 @@
 <p *ngIf="vet.url==null" class="card-text"><label><b>Enlace: </b> No disponible</label>   </p>
 <p *ngIf="vet.url!=null" class="card-text" ><label><b >Enlace: </b><a href="{{vet.url}}">{{vet.url}}</a>  </label>   </p>
 <p class="card-text"><label><b>Dirección: </b> {{vet.address}}</label>   </p>
+<div id="map{{vet.name}}"  style="height: 200px;"><button class="btn btn-success" onclick="style.display = 'none'" (click)="onSubmit(vet.name,vet.longitude,vet.latitude)">Mostrar en mapa</button></div>
 </div>
 </div>
 
