@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreedingService } from 'src/app/services/breeding/breeding.service';
 import { ActivatedRoute } from "@angular/router";
-import { ConfigService } from 'src/app/services/config/config.service';
 
 @Component({
   selector: 'app-edit',
