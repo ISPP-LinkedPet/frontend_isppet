@@ -1,7 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { Breeding } from 'src/app/models/breeding/breeding';
 import { BreedingService } from 'src/app/services/breeding/breeding.service';
-import { element } from 'protractor';
 import { ConfigService } from 'src/app/services/config/config.service';
 import {Router} from "@angular/router";
 

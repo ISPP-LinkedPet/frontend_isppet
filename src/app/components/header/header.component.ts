@@ -1,17 +1,8 @@
-import { Component, OnInit, HostListener, ElementRef} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConfigService } from 'src/app/services/config/config.service';
 import {Router} from "@angular/router";
 
 import {BreedingListPageComponent} from './../../pages/breeding/list/breeding-list-page.component';
-
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-  keyframes
-} from '@angular/animations';
 
 @Component({
   selector: 'app-header',
