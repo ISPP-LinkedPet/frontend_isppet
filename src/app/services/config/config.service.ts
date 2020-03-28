@@ -18,6 +18,14 @@ export class ConfigService {
     return localStorage.getItem('access_token') ? JSON.parse(atob(localStorage.getItem('access_token').split('.')[1])) : null;
   }
 
+  translatePedigree(pedigree): string {
+    if(pedigree == 1){
+      return 'Sí'
+    } else{
+      return 'No'
+    }
+  }
+
   calculateAge(fecha): string {
     const today: Date = new Date();
     const birthDate: Date = new Date(fecha);
