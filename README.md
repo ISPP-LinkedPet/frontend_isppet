@@ -1,3 +1,4 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ISPP-LinkedPet_frontend_isppet&metric=alert_status)](https://sonarcloud.io/dashboard?id=ISPP-LinkedPet_frontend_isppet)
 # frontend_isppet
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
