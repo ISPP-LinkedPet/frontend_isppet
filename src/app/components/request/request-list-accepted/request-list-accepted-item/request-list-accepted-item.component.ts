@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RequestBreedingService } from 'src/app/services/requestBreeding/request-breeding.service';
 import { Identifiers } from '@angular/compiler';
+import { request } from 'http';
 
 @Component({
   selector: 'app-request-list-accepted-item',
@@ -20,13 +21,10 @@ export class RequestListAcceptedItemComponent implements OnInit {
   email: string;
   address: string;
   transactionStatus: string;
-  
-
-  id: string;
- /*form*/
+  breedingId: string;
+  publicationId: string;
+ /*requestForm*/
   requestForm: FormGroup;
-  obtainedCode: string;
-
   /*ReviewForm*/
   reviewForm: FormGroup;
   reviewarea: string;
@@ -35,6 +33,7 @@ export class RequestListAcceptedItemComponent implements OnInit {
               private requestBreedingService: RequestBreedingService) {}
 
   ngOnInit(): void {
+
     this.photo = `${environment.endpoint}/${
       this.request.animal_photo.split(',')[0]
     }`;
@@ -47,49 +46,39 @@ export class RequestListAcceptedItemComponent implements OnInit {
     this.email = this.request.contactData.email;
     this.address = this.request.contactData.address;
 
+    this.breedingId = this.request.contactData.breedingId;
+    this.publicationId = this.request.publication_id;
+
     this.transactionStatus = this.request.transaction_status;
-
-
-      /*Form*/
-
+    /*RequestForm*/
     this.requestForm = new FormGroup({
         confirmationCode: new FormControl('')
       });
 
+    /*Review Form*/
     this.reviewForm = new FormGroup({
       reviewarea: new FormControl('')
     });
 
-
-
+    console.log(this.request);
   }
 
-  // de momento no hace nada
   onClick(e: Event) {
     e.preventDefault();
   }
 
-  onSubmit() {
-    //console.log(this.requestForm.get('confirmationCode'));
-    //console.log(this.id);
-    //console.log(this.transactionStatus);
-    console.log(this.publicationType);
+  onSubmitCodeForm() {
+    const confirmationCode = this.requestForm.get('confirmationCode').value;
+    this.requestBreedingService.finishBreedingConfirmation(this.breedingId, {codenumber: confirmationCode} ).then(x => {
+    alert('Tu código se ha enviado correctamente')} );
+  }
 
-    const code = this.requestForm.get('confirmationCode');
-
-    const reviewarea = this.reviewForm.get('reviewarea').value;
-
-    if (code != null) {
-
-      this.requestBreedingService.finishBreedingConfirmation(this.id, code).then(x => {
-        alert('Tu código se ha enviado correctamente') } );
-      //this.router.navigate(['/']);
-    } else {
-      this.requestBreedingService.writeReview(this.id, reviewarea).then(x => {
-        alert('Tu código se ha enviado correctamente') });
-
-    }
-
+  onSubmitReviewForm() {
+    const review = this.reviewForm.get('reviewarea').value;
+    console.log(review);
+    console.log(this.publicationId);
+    this.requestBreedingService.writeReview({star: 3 , review_description: review, publication_id: this.publicationId}).then(x=> {
+      alert('Tu review se ha enviado correctamente')} );
   }
 
 }

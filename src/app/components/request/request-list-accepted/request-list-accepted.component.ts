@@ -34,8 +34,8 @@ export class RequestListAcceptedComponent implements OnInit {
 
   ckeckPayment() {
     // verificar si tienes parametro paymentId
-    const paymentId = this.route.snapshot.queryParamMap.get('payment_intent')
-    const breedingId = this.route.snapshot.queryParamMap.get('breedingId')
+    const paymentId = this.route.snapshot.queryParamMap.get('payment_intent');
+    const breedingId = this.route.snapshot.queryParamMap.get('breedingId');
     if (paymentId != undefined) {
       // Hacer peticion de confirmPayment
       this.paymentService.confirmPaymentToMyself({paymentId, breedingId: breedingId}).then(response => {

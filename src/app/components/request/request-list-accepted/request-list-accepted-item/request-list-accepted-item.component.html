@@ -25,7 +25,7 @@
 
           <!--Confirmation code-->
           <div *ngIf="transactionStatus=='In progress'">
-            <form [formGroup]="requestForm"  (ngSubmit)="onSubmit()" novalidate> 
+            <form [formGroup]="requestForm"  (ngSubmit)="onSubmitCodeForm()" novalidate> 
               <input formControlName="confirmationCode" type="text" placeholder="Introduce código">
               <button type="submit" class="btn btn-primary">Enviar Código</button>
             </form>
@@ -33,7 +33,7 @@
 
           <!--Review-->
           <div *ngIf="transactionStatus=='Completed'">
-            <form [formGroup]="reviewForm"  (ngSubmit)="onSubmit()" novalidate> 
+            <form [formGroup]="reviewForm"  (ngSubmit)="onSubmitReviewForm()" novalidate> 
               <textarea formControlName="reviewarea" type="" placeholder="Cuéntanos como ha ido" maxlength="200"></textarea>
               <button type="submit" class="btn btn-primary">Enviar Review</button>
             </form>

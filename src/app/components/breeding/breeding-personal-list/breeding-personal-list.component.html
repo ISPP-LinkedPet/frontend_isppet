@@ -43,7 +43,7 @@
         <li>
           <label><strong>Precio: </strong></label> {{ breedingAd.price }} euros
         </li>
-        <li *ngIf="breedingAd.transaction_status == 'In payment'">
+        <li *ngIf="breedingAd.transaction_status == 'In progress'">
           <label><strong>Código de confirmación: </strong></label>
           {{ breedingAd.codenumber }}
         </li>
@@ -53,8 +53,7 @@
         <button
           type="button"
           class="btn btn-success"
-          [routerLink]="['/breeding-edit-particular', breedingAd.breeding_id]"
-        >
+          [routerLink]="['/breeding-edit-particular', breedingAd.breeding_id]">
           Editar Anuncio
         </button>
       </div>
