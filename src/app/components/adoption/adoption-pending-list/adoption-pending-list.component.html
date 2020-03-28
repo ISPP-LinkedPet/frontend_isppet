@@ -1,7 +1,7 @@
 <h1 class="display-5">Lista de adopciones pendientes</h1>
 <!--Foreach Advertisement-->
 
-<div class="card border-success mb-3" *ngFor="let adoption of pendingAdoptions">
+<div class="card border-success mb-3" *ngFor="let adoption of returnedAdoptions">
   <h3 class="card-header">{{ adoption.breed }} en {{ adoption.location }}</h3>
   <div class="card-body">
     <div class="description-content">
@@ -91,3 +91,4 @@
 </div>
 
 <!--End Foreach-->
+<pagination [totalItems]="pendingAdoptions.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>

@@ -70,7 +70,7 @@
   </form>
 </div>
 
-<div class="card border-success mb-3" *ngFor="let breedingAd of breedings">
+<div class="card border-success mb-3" *ngFor="let breedingAd of returnedBreedings">
   <h3 class="card-header">
     {{ breedingAd.breed }} en {{ breedingAd.location }}
   </h3>
@@ -106,3 +106,5 @@
     </button>
   </div>
 </div>
+<pagination [totalItems]="breedings.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)">
+</pagination>
