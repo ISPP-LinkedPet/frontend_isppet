@@ -17,11 +17,28 @@
         <div>
           {{ address }}
         </div>
-        <div style="text-align: center" *ngIf="created">
+        <div style="text-align: center" *ngIf="created && publicationType=='Petición de crianza'">
           <!-- Pay method -->
-        <app-payment [price]="request.contactData.price" [breedingId]="request.contactData.breedingId"></app-payment>
-	    <input type="text">
-	    <button type="button">Enviar Código</button>
+          <div *ngIf="transactionStatus=='In payment'">
+            <app-payment [price]="request.contactData.price" [breedingId]="request.contactData.breedingId"></app-payment>
+          </div>
+
+          <!--Confirmation code-->
+          <div *ngIf="transactionStatus=='In progress'">
+            <form [formGroup]="requestForm"  (ngSubmit)="onSubmit()" novalidate> 
+              <input formControlName="confirmationCode" type="text" placeholder="Introduce código">
+              <button type="submit" class="btn btn-primary">Enviar Código</button>
+            </form>
+          </div>
+
+          <!--Review-->
+          <div *ngIf="transactionStatus=='Completed'">
+            <form [formGroup]="reviewForm"  (ngSubmit)="onSubmit()" novalidate> 
+              <textarea formControlName="reviewarea" type="" placeholder="Cuéntanos como ha ido" maxlength="200"></textarea>
+              <button type="submit" class="btn btn-primary">Enviar Review</button>
+            </form>
+          </div>
+
         </div>
       </div>
     </div>

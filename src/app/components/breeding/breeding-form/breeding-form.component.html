@@ -26,14 +26,14 @@
                           <label for="genre">Genero</label>
                           <div *ngIf="rol == 'particular'">
                               <select class="form-control" id="genre" [attr.disabled]="true" formControlName="genre" (change)="validateGenre()">
-                                  <option value='' [defaultSelected]=true>Seleccione genero</option>
+                                  <option value='' >Seleccione genero</option>
                                   <option value='Male'>Macho</option>
                                   <option value='Female'>Hembra</option>
                               </select>
                           </div>
                           <div *ngIf="rol=='moderator'">
                               <select class="form-control" id="genre" formControlName="genre" (change)="validateGenre()">
-                                  <option value='' [defaultSelected]=true>Seleccione genero</option>
+                                  <option value='' >Seleccione genero</option>
                                   <option value='Male'>Macho</option>
                                   <option value='Female'>Hembra</option>
                               </select>
@@ -44,7 +44,7 @@
                           <label class="form-control-label" for="age">Genero</label>
                           <div *ngIf="rol == 'particular'">
                               <select class="form-control is-invalid" id="genre" [attr.disabled]="true" formControlName="genre" (change)="validateGenre()">
-                                  <option value='' [defaultSelected]=true>Seleccione genero</option>
+                                  <option value=''>Seleccione genero</option>
                                   <option value='Male'>Macho</option>
                                   <option value='Female'>Hembra</option>
                               </select>
@@ -52,7 +52,7 @@
 
                           <div *ngIf="rol=='moderator'">
                               <select class="form-control is-invalid" id="genre" formControlName="genre" (change)="validateGenre()">
-                                  <option value='' [defaultSelected]=true>Seleccione genero</option>
+                                  <option value=''>Seleccione genero</option>
                                   <option value='Male'>Macho</option>
                                   <option value='Female'>Hembra</option>
                               </select>
@@ -78,10 +78,10 @@
                       <!-- Animal type -->
 
                       <div class="form-group col-sm" *ngIf="isValidType">
-                          <label for="type">Tipo animal</label>
+                          <label for="type">Tipo de animal</label>
                           <div *ngIf="rol=='particular'">
                               <select class="form-control" id="type" [attr.disabled]="true" formControlName="type" (change)="validateType()">
-                                  <option value='' [defaultSelected]=true>Seleccione tipo animal</option>
+                                  <option value='' >Seleccione tipo animal</option>
                                   <option value='Dog'>Perro</option>
                                   <option value='Cat'>Gato</option>
                                   <option value='Horse'>Caballo</option>
@@ -89,7 +89,7 @@
                           </div>
                           <div *ngIf="rol=='moderator'">
                               <select class="form-control" id="type" formControlName="type" (change)="validateType()">
-                                  <option value='' [defaultSelected]=true>Seleccione tipo animal</option>
+                                  <option value=''>Seleccione tipo animal</option>
                                   <option value='Dog'>Perro</option>
                                   <option value='Cat'>Gato</option>
                                   <option value='Horse'>Caballo</option>
@@ -101,7 +101,7 @@
                           <label class="form-control-label" for="type">Tipo de animal</label>
                           <div *ngIf="rol=='particular'">
                               <select class="form-control is-invalid" id="type" [attr.disabled]="true" formControlName="type" (change)="validateType()">
-                                  <option value='' [defaultSelected]=true>Seleccione tipo animal</option>
+                                  <option value='' >Seleccione tipo animal</option>
                                   <option value='Dog'>Perro</option>
                                   <option value='Cat'>Gato</option>
                                   <option value='Horse'>Caballo</option>
@@ -110,7 +110,7 @@
 
                           <div *ngIf="rol=='moderator'">
                               <select class="form-control is-invalid" id="type" formControlName="type" (change)="validateType()">
-                                  <option value='' [defaultSelected]=true>Seleccione tipo animal</option>
+                                  <option value=''>Seleccione tipo animal</option>
                                   <option value='Dog'>Perro</option>
                                   <option value='Cat'>Gato</option>
                                   <option value='Horse'>Caballo</option>
@@ -154,17 +154,17 @@
                           <label for="pedigree">Pedigrí</label>
                           <div *ngIf="rol=='particular'">
                               <select class="form-control" id="pedigree" [attr.disabled]="true" formControlName="pedigree">
-                                  <option value='' [defaultSelected]=true></option>
-                                  <option value='true'>Si</option>
-                                  <option value='false'>No</option>
+                                  <option value='' ></option>
+                                  <option value='1'>Si</option>
+                                  <option value='0'>No</option>
                               </select>
                           </div>
 
                           <div *ngIf="rol=='moderator'">
-                              <select class="form-control" id="pedigree" formControlName="pedigree">
-                                  <option value='' [defaultSelected]=true></option>
-                                  <option value='true'>Si</option>
-                                  <option value='false'>No</option>
+                              <select class="form-control" id="pedigree" formControlName="pedigree"  (change)="validatePedigree()">
+                                  <option value=''>Seleccione un pedigrí</option>
+                                  <option value='1'>Si</option>
+                                  <option value='0'>No</option>
                               </select>
                           </div>
                       </div>
@@ -173,17 +173,17 @@
                           <label class="form-control-label" for="age">Pedigrí</label>
                           <div *ngIf="rol=='particular'">
                               <select class="form-control is-invalid" id="pedigree" [attr.disabled]="true" formControlName="pedigree">
-                                  <option value='' [defaultSelected]=true>Seleccione un pedigrí</option>
-                                  <option value='true'>Si</option>
-                                  <option value='false'>No</option>
+                                  <option value=''>Seleccione un pedigrí</option>
+                                  <option value='1'>Si</option>
+                                  <option value='0'>No</option>
                               </select>
                           </div>
 
                           <div *ngIf="rol=='moderator'">
-                              <select class="form-control is-invalid" id="pedigree" formControlName="pedigree">
-                                  <option value='' [defaultSelected]=true>Seleccione un pedigrí</option>
-                                  <option value='true'>Si</option>
-                                  <option value='false'>No</option>
+                              <select class="form-control is-invalid" id="pedigree" formControlName="pedigree"  (change)="validatePedigree()">
+                                  <option value='' >Seleccione un pedigrí</option>
+                                  <option value='1'>Si</option>
+                                  <option value='0'>No</option>
                               </select>
                           </div>
                           <div class="invalid-feedback">Debe indicar si es pedigrí</div>
@@ -210,7 +210,7 @@
                           <label for="animal_photo">Imagenes</label>
                           <div class="input-group mb-3">
                               <div class="custom-file">
-                                  <input #animalPhoto type="file" class="custom-file-input" formControlName="animal_photo" name="animal_photo" id="animal_photo" (change)="getAnimalPhotoAndValidate($event)" multiple>
+                                  <input #animalPhoto type="file" class="custom-file-input" formControlName="animal_photo" name="animal_photo" id="animal_photo" ng-model-options="{ debounce: 50 }" (change)="getAnimalPhotoAndValidate($event)" multiple>
                                   <label class="custom-file-label" for="animal_photo">Seleccionar imagenes</label>
                               </div>
                           </div>
@@ -239,7 +239,7 @@
                           <label for="identification_photo">Identificacion de mascota</label>
                           <div class="input-group mb-3">
                               <div class="custom-file">
-                                  <input #identificationPhoto type="file" class="custom-file-input" formControlName="identification_photo" id="identification_photo" (change)="getIdPhotoAndValidate($event)" multiple>
+                                  <input #identificationPhoto type="file" class="custom-file-input" formControlName="identification_photo" id="identification_photo"  ng-model-options="{ debounce: 50 }" (change)="getIdPhotoAndValidate($event)" multiple>
                                   <label class="custom-file-label" for="identification_photo">Seleccionar imagenes</label>
                               </div>
                           </div>
@@ -266,7 +266,7 @@
                           <label for="vaccine_passaport">Cartilla de vacunacion</label>
                           <div class="input-group mb-3">
                               <div class="custom-file">
-                                  <input #vaccinePassaport type="file" class="custom-file-input" formControlName="vaccine_passaport" id="vaccine_passaport" (change)="getVacPhotoAndValidate($event)" multiple>
+                                  <input #vaccinePassaport type="file" class="custom-file-input" formControlName="vaccine_passaport" id="vaccine_passaport"  ng-model-options="{ debounce: 50 }" (change)="getVacPhotoAndValidate($event)" multiple>
                                   <label class="custom-file-label" for="vaccine_passaport">Seleccionar imagenes</label>
                               </div>
                           </div>
