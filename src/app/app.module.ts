@@ -57,6 +57,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -111,7 +112,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     ModalModule.forRoot(),
     ToastrModule.forRoot(),
     FontAwesomeModule,
-    NgbModule,
+    PaginationModule.forRoot(),
+    NgbModule
   ],
   providers: [
     AdoptionService,

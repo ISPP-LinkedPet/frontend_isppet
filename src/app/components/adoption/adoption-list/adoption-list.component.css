@@ -14,3 +14,8 @@ img{
     margin-right: 20px;
     margin-bottom: 20px;
 }
+
+.center{
+    display: flex;
+    justify-content: center;
+}
