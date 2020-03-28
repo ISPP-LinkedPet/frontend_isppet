@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreedingService } from '../../../services/breeding/breeding.service';
 import {BreedingListPageComponent} from '../../../pages/breeding/list/breeding-list-page.component'
 import {BreedingDisplayComponent} from 'src/app/components/breeding/breeding-display/breeding-display.component';
 import {environment} from 'src/environments/environment';
 import { ConfigService } from 'src/app/services/config/config.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import {Router} from "@angular/router";
 
 @Component({

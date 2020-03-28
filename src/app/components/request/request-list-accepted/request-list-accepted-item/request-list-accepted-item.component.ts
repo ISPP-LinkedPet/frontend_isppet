@@ -3,7 +3,6 @@ import { environment } from 'src/environments/environment';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RequestBreedingService } from 'src/app/services/requestBreeding/request-breeding.service';
-import { Identifiers } from '@angular/compiler';
 
 @Component({
   selector: 'app-request-list-accepted-item',
