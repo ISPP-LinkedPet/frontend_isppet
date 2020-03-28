@@ -1,19 +1,37 @@
 <app-header></app-header>
 <div class="mb-3">
-    <h1 class="display-4">Lista de veterinarios</h1>
+  <h1 class="display-4">Lista de veterinarios</h1>
 </div>
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css" rel="stylesheet" />
-<div class="card border-success mb-3" *ngFor="let vet of vets;">
-<h3 class="card-header">{{vet.name}}</h3>
-<div class="card-body">
-<img src="{{env}}/{{vet.optional_photo}}" onerror="this.onerror=null;this.src='../../../assets/icons/simple_icon.png';">
-<p class="card-text"><label><b>Telefóno: </b>{{vet.telephone}}</label>   </p>
-<p class="card-text"><label><b>Email de contacto: </b>{{vet.email}}</label>   </p>
-<p *ngIf="vet.url==null" class="card-text"><label><b>Enlace: </b> No disponible</label>   </p>
-<p *ngIf="vet.url!=null" class="card-text" ><label><b >Enlace: </b><a href="{{vet.url}}">{{vet.url}}</a>  </label>   </p>
-<p class="card-text"><label><b>Dirección: </b> {{vet.address}}</label>   </p>
-<div id="map{{vet.name}}"  style="height: 200px;"><button class="btn btn-success" onclick="style.display = 'none'" (click)="onSubmit(vet.name,vet.longitude,vet.latitude)">Mostrar en mapa</button></div>
-</div>
+<div class="card border-success mb-3" *ngFor="let vet of vets">
+  <h3 class="card-header">{{ vet.name }}</h3>
+  <div class="card-body">
+    <img
+      src="{{ env }}/{{ vet.optional_photo }}"
+      alt="Foto del veterinario"
+      onerror="this.onerror=null;this.src='../../../assets/icons/simple_icon.png';"
+    />
+    <p class="card-text">
+      <label><strong>Telefóno: </strong>{{ vet.telephone }}</label>
+    </p>
+    <p class="card-text">
+      <label><strong>Email de contacto: </strong>{{ vet.email }}</label>
+    </p>
+    <p *ngIf="vet.url == null" class="card-text">
+      <label><strong>Enlace: </strong> No disponible</label>
+    </p>
+    <p *ngIf="vet.url != null" class="card-text">
+      <label
+        ><strong>Enlace: </strong><a href="{{ vet.url }}">{{ vet.url }}</a>
+      </label>
+    </p>
+    <p class="card-text">
+      <label><strong>Dirección: </strong> {{ vet.address }}</label>
+    </p>
+    <div id="map{{vet.name}}"  style="height: 200px;">
+      <button class="btn btn-success" onclick="style.display = 'none'" (click)="onSubmit(vet.name,vet.longitude,vet.latitude)">Mostrar en mapa</button>
+    </div>
+  </div>
 </div>
 
 <div class="foot-fixed" *ngIf="vets.length == 0"><app-footer></app-footer></div>

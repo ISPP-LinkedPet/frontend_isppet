@@ -1,16 +1,59 @@
 <app-header></app-header>
-<div class="mb-3">
-    <h1 class="display-4">Lista de crianza</h1>
+<div class="mb-3" id="first">
+  <h1 class="display-4">Ofertas de crianza recibidas</h1>
 </div>
-<div class="card border-success mb-3" *ngFor="let request of requests">
-<h3 class="card-header">Oferta recibida en su anuncio {{request.publication_id}}</h3>
-<div class="card-body">
-    <h4>Estado: {{request.status}}</h4>
-    <br>
-    <button *ngIf="request.status=='Pending'" type="button" class="btn btn-primary mx-3 " (click)="onSubmit(request.id,request.publication_id, true)">Aceptar</button>
-    <button *ngIf="request.status=='Pending'" type="button" class="btn btn-danger mx-6" (click)="onSubmit(request.id,request.publication_id, false)">Rechazar</button>
-</div >
 
+<div class="card border-success mb-3" *ngFor="let request of requests">
+  <h3 class="card-header">{{ request.breed }} en {{ request.location }}</h3>
+  <h6 class="card-header bg-success" *ngIf="request.status == 'Accepted'">
+    Aceptada
+  </h6>
+  <h6 class="card-header bg-danger" *ngIf="request.status == 'Rejected'">
+    Rechazada
+  </h6>
+  <h6 class="card-header bg-warning" *ngIf="request.status == 'Pending'">
+    Pendiente
+  </h6>
+  <div class="card-body">
+    <img
+      src="{{ env }}/{{ request.animal_photo.split(',')[0] }}"
+      alt="Foto/s del animal"
+    />
+    <div class="description-content">
+      <!--{{breedingAd.breeding_id}}-->
+      <ul>
+        <li>
+          <label><strong>Edad: </strong></label>
+          {{ this.configService.calculateAge(request.birth_date) }}
+        </li>
+        <li>
+          <label><strong>Pedigree: </strong></label>
+          {{ request.pedigree == 1 ? "Sí" : "No" }}
+        </li>
+        <li>
+          <label><strong>Ubicación: </strong></label> {{ request.location }}
+        </li>
+      </ul>
+
+      <div>
+        <button
+          *ngIf="request.status == 'Pending'"
+          type="button"
+          class="btn btn-primary mx-3 "
+          (click)="onSubmit(request.id, request.publication_id, true)"
+        >
+          Aceptar
+        </button>
+        <button
+          *ngIf="request.status == 'Pending'"
+          type="button"
+          class="btn btn-danger mx-6"
+          (click)="onSubmit(request.id, request.publication_id, false)"
+        >
+          Rechazar
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="foot-fixed" *ngIf="requests.length <3"><app-footer></app-footer></div>
-<div class="foot" *ngIf="requests.length >= 3"><app-footer></app-footer></div>
+<app-footer></app-footer>

@@ -1,24 +1,58 @@
 <!--Foreach Advertisement-->
 
 <div class="mb-3">
-    <h1 class="display-4">Lista de adopciones</h1>
-    <button routerLink="/adoption" *ngIf="rol=='shelter' || rol=='particular'"  type="button" class="btn btn-success">Crear Anuncio</button>
+  <h1 class="display-4">Lista de adopciones</h1>
+  <button
+    routerLink="/adoption"
+    *ngIf="rol == 'shelter' || rol == 'particular'"
+    type="button"
+    class="btn btn-success"
+  >
+    Crear Anuncio
+  </button>
 </div>
 
-<div class="card border-success mb-3" *ngFor="let adoption of adoptions;">
-<h3 class="card-header">{{adoption.type}} en {{adoption.location}}</h3> <!--Advertisement title-->
-<div class="card-body">
+<div class="card border-success mb-3" *ngFor="let adoption of adoptions">
+  <h3 class="card-header">{{ adoption.type }} en {{ adoption.location }}</h3>
+  <!--Advertisement title-->
+  <div class="card-body">
+    <!--Imagen de prueba-->
+    <img
+      src="{{ env }}/{{ adoption.animal_photo.split(',')[0] }}"
+      alt="Foto/s del animal"
+    />
+    <p class="card-text">
+      <label><strong>Tipo de animal: </strong></label>
+      <a [ngSwitch]="adoption.type">
+        <a *ngSwitchCase="'Dog'"> Perro </a>
+        <a *ngSwitchCase="'Cat'"> Gato </a>
+        <a *ngSwitchCase="'Horse'"> Caballo </a>
+      </a>
+    </p>
+    <p class="card-text">
+      <label><strong>Pedigree: </strong></label>
+      {{ adoption.pedigree ? "Sí" : "No" }}
+    </p>
+    <p class="card-text">
+      <label><strong>Edad: </strong></label>
+      {{ this.configService.calculateAge(adoption.birth_date) }}
+    </p>
+    <p class="card-text">
+      <label><strong>Raza: </strong></label>
+      {{ adoption.breed != null ? adoption.breed : "No" }}
+    </p>
+    <p class="card-text">
+      <label><strong>Ubicación: </strong></label> {{ adoption.location }}
+    </p>
 
-<!--Imagen de prueba-->
-<img src="{{env}}/{{adoption.animal_photo.split(',')[0]}}">
-<p class="card-text"><label><b>Tipo de animal: </b></label> {{adoption.type}} </p>
-<p class="card-text"><label><b>Pedigree: </b></label> {{adoption.pedigree ? "Sí" : "No"}} </p>
-<p class="card-text"><label><b>Edad: </b></label> {{this.configService.calculateAge(adoption.birth_date)}} </p>
-<p class="card-text"><label><b>Raza: </b></label> {{adoption.breed != null ? adoption.breed : "No"}} </p>
-<p class="card-text"><label><b>Ubicación: </b></label> {{adoption.location}} </p>
-
-<button type="button" class="btn btn-success" (click)="viewDetails(adoption.adoption_id)" >Ver Detalles</button>
-</div>
+    <button
+      type="button"
+      class="btn btn-success"
+      (click)="viewDetails(adoption.adoption_id)"
+    >
+      Ver Detalles
+    </button>
+  </div>
 </div>
 
 <!--End Foreach-->

@@ -5,8 +5,8 @@
           <h3 class="card-header">{{adoptionListPageComponent.selectedAdoption.title}}</h3>
           <div class="card-body">
             <div class="row">
-              <div clas="col-md3" *ngFor="let img of adoptionListPageComponent.selectedAdoption.animal_photo.replace(' ', '').split(',')">
-                <img class = "img-thumbnail" style="height: 150px; display: block;" src="{{env}}/{{img}}" alt="Card image">
+              <div clas="col-md3" *ngFor="let img of adoptionListPageComponent.selectedAdoption.animal_photo.replace(' ', '').split(','); let i = index">
+                <a href="{{env}}/{{img}}" target="_blank"><img class = "img-thumbnail" id="imagen{{i}}" style="height: 150px; display: block;" src="{{env}}/{{img}}" alt="img{{i}}" ></a>
               </div>
             </div>
           </div>

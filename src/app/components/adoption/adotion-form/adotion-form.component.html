@@ -90,21 +90,22 @@
               
               <div *ngIf="rol != 'moderator'">
                 <!-- Animal images -->
-                <label for="animal_photo">Imagenes</label>
-                <div class="input-group mb-3">
-                  <div class="custom-file">
-                    <input #animalPhoto type="file" class="custom-file-input" formControlName="animal_photo" id="animal_photo" (change)="getAnimalPhotoAndValidate($event)" multiple>
-                    <label class="custom-file-label" for="animal_photo">Seleccionar imagenes</label>
+                <div class="form-group col-10">
+                  <label for="animal_photo">Imagenes</label>
+                  <div class="input-group mb-3">
+                      <div class="custom-file">
+                        <label class="custom-file-label" for="animal_photo">Seleccionar imagenes</label>
+                          <input #animalPhoto type="file" class="custom-file-input" formControlName="animal_photo" name="animal_photo" id="animal_photo" (change)="getAnimalPhotoAndValidate($event)" multiple>
+                      
+                      </div>
                   </div>
-                </div>
-                <div class="form-group col-sm" *ngIf="!isValidAnimalPhoto">
-                  <div class="invalid-feedback">Debe subir al menos 2 imágenes del animal</div>
-                </div>
+                  <div class="invalid-feedback" *ngIf="!isValidAnimalPhoto">Debe subir al menos 2 imágenes del animal</div>
+              </div>
                 <!-- File names -->
                 <div class="row">
                   <ul>
-                    <li *ngFor="let filename of animalPhotos">
-                      {{filename.name}}
+                    <li *ngFor="let file of animalPhotos">
+                      {{file.name}} <fa-icon [icon]="faTimes" [styles]="{'stroke': 'red', 'color': 'red'}" (click)="deleteImageAnimalPhotos(file)"></fa-icon>
                     </li>
                   </ul>
                 </div>
@@ -126,7 +127,7 @@
                       <option value='1'>Si</option>
                       <option value='0'>No</option>
                   </select>
-                    <div class="invalid-feedback">Debe indicar si es pedigrí</div>
+                    <div class="invalid-feedback">Debe indicar si tiene pedigrí</div>
                 </div>
 
                 <!-- Zona -->
@@ -137,7 +138,7 @@
                 <div class="form-group has-danger col-sm" *ngIf="!isValidLocation">
                     <label class="form-control-label" for="location">Zona</label>
                     <input type="text" class="form-control is-invalid" id="location" formControlName="location" (change)="validateLocation()">
-                    <div class="invalid-feedback">Parece que se ha equivocado</div>
+                    <div class="invalid-feedback">No puede estar vacío</div>
                 </div>
               </div>
 
@@ -193,14 +194,14 @@
                       <label class="custom-file-label" for="identification_photo">Seleccionar imagenes</label>
                     </div>
                   </div>
-                </div>
-                   <!-- File names -->
-                <div class="row">
-                   <ul class="col-sm">
-                    <li *ngFor="let filename of identification_photos">
-                      {{filename.name}}
-                    </li>
-                  </ul>
+                    <!-- File names -->
+                    <div class="row">
+                      <ul>
+                      <li *ngFor="let file of identification_photos">
+                        {{file.name}} <fa-icon [icon]="faTimes" [styles]="{'stroke': 'red', 'color': 'red'}" (click)="deleteIDPhotos(file)"></fa-icon>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
 
               <!-- Vaccine passaport-->
@@ -213,16 +214,18 @@
                       <label class="custom-file-label" for="vaccine_passaport">Seleccionar imagenes</label>
                     </div>
                   </div>
+
+                  <!-- File names -->
+                  <div class="row">
+                    <ul>
+                      <li *ngFor="let file of vaccine_photos">
+                        {{file.name}} <fa-icon [icon]="faTimes" [styles]="{'stroke': 'red', 'color': 'red'}" (click)="deleteVetPhoto(file)"></fa-icon>
+                      </li>
+                    </ul>
+                  </div>
               </div>
 
-                 <!-- File names -->
-              <div class="row">
-                <ul>
-                  <li *ngFor="let filename of vaccine_photos">
-                    {{filename.name}}
-                  </li>
-                </ul>
-              </div>
+
 
 
 

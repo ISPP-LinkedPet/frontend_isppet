@@ -10,6 +10,8 @@ import localeES from '@angular/common/locales/es';
 registerLocaleData(localeES, 'es');
 import { formatDate } from '@angular/common';
 
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-adotion-form',
   templateUrl: './adotion-form.component.html',
@@ -40,9 +42,12 @@ export class AdotionFormComponent implements OnInit {
 
 
   //utils
-  animalPhotos = new Array();
-  identification_photos = new Array();
-  vaccine_photos = new Array();
+  animalPhotos: any[] = [];
+  identification_photos: any[] = [];
+  vaccine_photos :any[] = [];
+
+  // Icons
+  faTimes = faTimes;
 
   constructor(private routeA: ActivatedRoute, private router: Router,
               private adoptionService: AdoptionService, public configService: ConfigService) {
@@ -159,6 +164,7 @@ export class AdotionFormComponent implements OnInit {
       this.isValidPedigri = this.adoptionForm.get('pedigree').valid;
     }
     validateAnimalPhoto() {
+      console.log("validating");
       this.isValidAnimalPhoto = this.adoptionForm.get('animal_photo').valid;
     }
     validateLocation() {
@@ -176,14 +182,16 @@ export class AdotionFormComponent implements OnInit {
 
 
     getAnimalPhotoAndValidate($event: Event) {
+      console.log("hola")
+      this.animalPhotos = [];
       Array.from($event.target['files']).forEach(element => {
         this.animalPhotos.push(element)
       });
-      console.log(this.animalPhotos)
       this.validateAnimalPhoto();
     }
 
     getIdPhotoAndValidate($event: Event) {
+      this.identification_photos = [];
       Array.from($event.target['files']).forEach(element => {
         this.identification_photos.push(element)
       });
@@ -191,6 +199,7 @@ export class AdotionFormComponent implements OnInit {
     }
 
     getVacPhotoAndValidate($event: Event) {
+      this.vaccine_photos = [];
       Array.from($event.target['files']).forEach(element => {
         this.vaccine_photos.push(element)
       });
@@ -212,9 +221,9 @@ export class AdotionFormComponent implements OnInit {
         this.validateTaxes();
       }
 
-      const animalPhoto = this.animalPhoto.nativeElement.files;
-      const vaccinePassaport = this.vaccinePassaport.nativeElement.files;
-      const identificationPhoto = this.identificationPhoto.nativeElement.files;
+      const animalPhoto =  this.animalPhotos;
+      const vaccinePassaport = this.vaccine_photos;
+      const identificationPhoto = this.identification_photos;
 
       const formData: FormData = new FormData();
       // photo
@@ -250,5 +259,35 @@ export class AdotionFormComponent implements OnInit {
           console.log(error);
         });
       }
+  }
+
+  deleteImageAnimalPhotos(imageName){
+    for (let index = 0; index < this.animalPhotos.length; index++) {
+      let element = this.animalPhotos[index];
+      if(element==imageName){
+        this.animalPhotos.splice( index, 1 );
+        break;
+      }
+    }
+  }
+
+  deleteIDPhotos(imageName){
+    for (let index = 0; index < this.identification_photos.length; index++) {
+      let element = this.identification_photos[index];
+      if(element==imageName){
+        this.identification_photos.splice( index, 1 );
+        break;
+      }
+    }
+  }
+
+  deleteVetPhoto(imageName){
+    for (let index = 0; index < this.vaccine_photos.length; index++) {
+      let element = this.vaccine_photos[index];
+      if(element==imageName){
+        this.vaccine_photos.splice(index, 1);
+        break;
+      }
+    }
   }
 }

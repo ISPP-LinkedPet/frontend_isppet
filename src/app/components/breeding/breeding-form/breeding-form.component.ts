@@ -1,12 +1,14 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {environment} from '../../../../environments/environment';
-import { ActivatedRoute } from '@angular/router';
 
 import {Router} from "@angular/router";
 import { Breeding } from '../../../models/breeding/breeding';
 import { BreedingService } from '../../../services/breeding/breeding.service';
 import { ConfigService } from '../../../services/config/config.service';
+
+
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-breeding-form',
@@ -17,6 +19,8 @@ export class BreedingCreateComponent implements OnInit {
 
   @Input() creating: boolean;
   @Input() editBreeding: any;
+  
+  
 
   // photo
   @ViewChild('animalPhoto', { static: false }) animalPhoto: ElementRef;
@@ -47,9 +51,13 @@ export class BreedingCreateComponent implements OnInit {
   // utils
   title: any;
   env = environment.endpoint
-  animalPhotos = new Array();
-  identification_photos = new Array();
-  vaccine_photos = new Array();
+  animalPhotos: any[] = [];
+  identification_photos: any[] = [];
+  vaccine_photos :any[] = [];
+
+  // Icons
+  faTimes = faTimes;
+
   constructor(
     private breedingService: BreedingService,
     private router: Router,
@@ -57,6 +65,7 @@ export class BreedingCreateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.editBreeding = this.editBreeding || {};
     this.breedingForm = new FormGroup({
       title: new FormControl(
@@ -69,8 +78,7 @@ export class BreedingCreateComponent implements OnInit {
       breed: new FormControl(
         this.editBreeding.breed || '', this.requiredInput()
       ),
-      type: new FormControl(
-        this.editBreeding.type || '', this.requiredInput()
+      type: new FormControl('', this.requiredInput()
       ),
       pedigree: new FormControl('', this.requiredInput()),
       location: new FormControl(
@@ -89,7 +97,7 @@ export class BreedingCreateComponent implements OnInit {
         this.editBreeding.vaccine_passaport || '', [Validators.required]
       ),
     });
-
+    
     this.getTitle();
     this.validationFields('default');
   }
@@ -123,7 +131,7 @@ export class BreedingCreateComponent implements OnInit {
     if(!this.creating && this.rol=='moderator'){
       this.isValidGenre = ['Male','Female'].includes(this.breedingForm.get('genre').value);
     }
-    console.log(this.breedingForm.get('genre').value);
+    
   }
   validateAge() {
     if(!this.creating && this.rol=='moderator'){
@@ -137,7 +145,7 @@ export class BreedingCreateComponent implements OnInit {
   }
   validatePedigree() {
     if(!this.creating && this.rol=='moderator'){
-      this.isValidPedigri = ['true','false'].includes(this.breedingForm.get('pedigree').value);
+      this.isValidPedigri = ['1','0'].includes(this.breedingForm.get('pedigree').value);
     }
   }
 
@@ -157,28 +165,32 @@ export class BreedingCreateComponent implements OnInit {
 
   // If the input has changed(file picked) we project the file into the img previewer
   getAnimalPhotoAndValidate($event: Event) {
-    // We access he file with $event.target['files'][0]
+    this.animalPhotos = [];
     Array.from($event.target['files']).forEach(element => {
-      this.animalPhotos.push(element)
+      this.animalPhotos.push(element);
     });
     this.validateAnimalPhoto();
   }
 
   // If the input has changed(file picked) we project the file into the img previewer
   getIdPhotoAndValidate($event: Event) {
+    this.identification_photos = [];
     // We access he file with $event.target['files'][0]
     Array.from($event.target['files']).forEach(element => {
       this.identification_photos.push(element)
     });
+    this.validateIdentificationPhoto();
   }
 
 
   // If the input has changed(file picked) we project the file into the img previewer
   getVacPhotoAndValidate($event: Event) {
+    this.vaccine_photos = [];
     // We access he file with $event.target['files'][0]
     Array.from($event.target['files']).forEach(element => {
       this.vaccine_photos.push(element)
     });
+    this.validateVaccinePassaport();
   }
 
 
@@ -190,9 +202,9 @@ export class BreedingCreateComponent implements OnInit {
 
     // si se está creando
     if(this.creating && this.rol == 'particular' && this.isValidPrice && this.isValidAnimalPhoto && this.isValidLocation && this.isValidIdentificationPhoto && this.isValidVaccinePassaport){
-      const animalPhoto = this.animalPhoto.nativeElement.files;
-      const vaccinePassaport = this.vaccinePassaport.nativeElement.files;
-      const identificationPhoto = this.identificationPhoto.nativeElement.files;
+      const animalPhoto = this.animalPhotos
+      const vaccinePassaport = this.vaccine_photos
+      const identificationPhoto = this.identification_photos;
 
       for(let i = 0; i < animalPhoto.length; i++) formData.append('animal_photo', animalPhoto[i], animalPhoto[i].name);
       for(let i = 0; i < vaccinePassaport.length; i++) formData.append('vaccine_passport', vaccinePassaport[i], vaccinePassaport[i].name);
@@ -235,7 +247,7 @@ export class BreedingCreateComponent implements OnInit {
       formData.append('breed', this.breedingForm.value.breed);
       formData.append('age', this.breedingForm.value.birth_date);
       formData.append('type', this.breedingForm.value.type);
-      formData.append('pedeegri', this.breedingForm.value.pedeegri);
+      formData.append('pedigree', this.breedingForm.value.pedigree);
 
       this.breedingService.acceptBreeding(formData, this.editBreeding.breedingId).then(x => {
         alert("¡La crianza se ha aceptado correctamente! \n Se ha publicado en la lista de crianzas")
@@ -278,6 +290,38 @@ export class BreedingCreateComponent implements OnInit {
       this.isValidVaccinePassaport = true;
     }
   }
+
+  deleteImageAnimalPhotos(imageName){
+    for (let index = 0; index < this.animalPhotos.length; index++) {
+      let element = this.animalPhotos[index];
+      if(element==imageName){
+        this.animalPhotos.splice( index, 1 );
+        break;
+      }
+    }
+  }
+
+  deleteIDPhotos(imageName){
+    for (let index = 0; index < this.identification_photos.length; index++) {
+      let element = this.identification_photos[index];
+      if(element==imageName){
+        this.identification_photos.splice( index, 1 );
+        break;
+      }
+    }
+  }
+
+  deleteVetPhoto(imageName){
+    for (let index = 0; index < this.vaccine_photos.length; index++) {
+      let element = this.vaccine_photos[index];
+      if(element==imageName){
+        this.vaccine_photos.splice(index, 1);
+        break;
+      }
+    }
+  }
+
+
 
   
 }

@@ -1,5 +1,163 @@
-<form>
+<div id="main">
+    <div class="text-center">
+        <h1 class="display-4">Registro</h1>
+    </div>
+        <div class="container mt-5">
+            <div class="col-md-8 mx-auto">
+            <form [formGroup]="registerForm">
+                <fieldset>
+                    <div class="row">
+                        <div class="form-group col-md-6" *ngIf="isValidUserName">
+                            <label for="user_name">Nombre de usuario</label>
+                            <input type="text" class="form-control" id="user_name" required formControlName="user_name" (change)="validateUsername()">
+                        </div>
+                        <div class="form-group has-danger col-md-6" *ngIf="!isValidUserName">
+                            <label class="form-control-label" for="user_name">Nombre de usuario</label>
+                            <input type="text" class="form-control is-invalid" id="user_name" formControlName="user_name"
+                                (change)="validateUsername()">
+                            <div class="invalid-feedback">Nombre de usuario no válido</div>
+                        </div>
+        
+                        <div class="form-group col-md-6" *ngIf="isValidRole">
+                            <label for="role">Rol de usuario</label>
+                            <select class="form-control" id="role" formControlName="role"
+                                (change)="onChangeRole($event.target.value)">
+                                <option value=''>Rol de usuario</option>
+                                <option value='particular'>Particular</option>
+                                <option value='shelter'>Refugio</option>
+                            </select>
+                        </div>
+                        <div class="form-group has-danger col-md-6" *ngIf="!isValidRole">     
+                            <label for="role">Rol de usuario</label>
+                            <select class="form-control is-invalid" id="role" formControlName="role"
+                                (change)="onChangeRole($event.target.value)">
+                                <option value=''>Rol de usuario</option>
+                                <option value='particular'>Particular</option>
+                                <option value='shelter'>Refugio</option>
+                            </select>
+                            <div class="invalid-feedback">Rol no válido</div>
+                        </div>
+                    </div>
 
-    <button type="submit" class="btn btn-primary">Registrarse</button>
-    <button type="button" class="btn btn-danger"  (click)="homeComponent.isLeftVisible = !homeComponent.isLeftVisible">Volver</button>
-</form>
+                    <div class="row d-flex">
+                        <div class="form-group col-md-6" *ngIf="isValidPassword">
+                            <label for="password_register">Contraseña</label>
+                            <input type="password" class="form-control" id="password_register" required
+                                formControlName="password" (change)="validatePassword()">
+                        </div>
+                        <div class="form-group has-danger col-md-6" *ngIf="!isValidPassword">
+                            <label class="form-control-label" for="password_register">Contraseña</label>
+                            <input type="password" class="form-control is-invalid" id="password_register"
+                                formControlName="password" (change)="validatePassword()">
+                            <div class="invalid-feedback">Contraseña no válida</div>
+                        </div>
+
+                        <div class="form-group col-md-6" *ngIf="isValidRepeatPassword">
+                            <label for="repeat_password">Repita la contraseña</label>
+                            <input type="password" class="form-control" id="repeat_password" required
+                                formControlName="repeat_password" (change)="validateRepeatPassword()">
+                        </div>
+                        <div class="form-group has-danger col-md-6" *ngIf="!isValidRepeatPassword">
+                            <label class="form-control-label" for="repeat_password">Repita la contraseña</label>
+                            <input type="password" class="form-control is-invalid" id="repeat_password"
+                                formControlName="repeat_password" (change)="validateRepeatPassword()">
+                            <div class="invalid-feedback">Las contraseñas deben coincidir</div>
+                        </div>
+                    </div>
+
+                    <div class="row d-flex">
+                        <div class="form-group col-md-6" *ngIf="isValidName">
+                            <label for="name">Nombre</label>
+                            <input type="text" class="form-control" id="name" required formControlName="name"
+                                (change)="validateName()">
+                        </div>
+                        <div class="form-group has-danger col-md-6" *ngIf="!isValidName">
+                            <label class="form-control-label" for="name">Nombre</label>
+                            <input type="text" class="form-control is-invalid" id="name" formControlName="name"
+                                (change)="validateName()">
+                            <div class="invalid-feedback">Nombre no válido</div>
+                        </div>
+        
+                        <div class="form-group col-md-6" *ngIf="showParticularInputs && isValidSurname">
+                            <label for="surname">Apellido</label>
+                            <input type="text" class="form-control" id="surname" required formControlName="surname"
+                                (change)="validateSurname()">
+                        </div>
+                        <div class="form-group has-danger col-md-6" *ngIf="(!isValidSurname) && showParticularInputs">
+                            <label class="form-control-label" for="surname">Apellido</label>
+                            <input type="text" class="form-control is-invalid" id="surname" formControlName="surname"
+                                (change)="validateSurname()">
+                            <div class="invalid-feedback">Apellido no válido</div>
+                        </div>
+                    </div>
+
+                    <div class="row d-flex">
+                        <div class="form-group col-md-6" *ngIf="isValidEmail">
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" class="form-control" id="email" required formControlName="email"
+                                (change)="validateEmail()">
+                        </div>
+                        <div class="form-group has-danger col-md-6" *ngIf="!isValidEmail">
+                            <label class="form-control-label" for="email">Correo electrónico</label>
+                            <input type="text" class="form-control is-invalid" id="email" formControlName="email"
+                                (change)="validateEmail()">
+                            <div class="invalid-feedback">Email no válido</div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="optional_photo">Foto opcional</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input #optionalPhoto type="file" class="custom-file-input" formControlName="optional_photo" name="optional_photo" id="optional_photo"
+                                        (change)="getOptionalPhotoAndValidate($event)">
+                                    <label class="custom-file-label" for="optional_photo">Seleccionar imagen</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row d-flex">
+                        <div class="form-group col-md-8" *ngIf="isValidAddress">
+                            <label for="address">Dirección</label>
+                            <input type="text" class="form-control" id="address" required formControlName="address"
+                                (change)="validateAddress()">
+                        </div>
+                        <div class="form-group has-danger col-md-8" *ngIf="!isValidAddress">
+                            <label class="form-control-label" for="address">Dirección</label>
+                            <input type="text" class="form-control is-invalid" id="address" formControlName="address"
+                                (change)="validateAddress()">
+                            <div class="invalid-feedback">Dirección no válida</div>
+                        </div>
+        
+                        <div class="form-group col-md-4" *ngIf="isValidTelephone">
+                            <label for="telephone">Teléfono</label>
+                            <input type="text" class="form-control" id="telephone" required formControlName="telephone" maxlength="9"
+                                (change)="validateTelephone()">
+                        </div>
+        
+                        <div class="form-group has-danger col-md-4" *ngIf="!isValidTelephone">
+                            <label class="form-control-label" for="telephone">Teléfono</label>
+                            <input type="text" class="form-control is-invalid" id="telephone" formControlName="telephone" maxlength="9"
+                                (change)="validateTelephone()">
+                            <div class="invalid-feedback">Teléfono no válido</div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="alert alert-danger" role="alert" *ngIf="showError">
+                    {{ errorMessage }}
+                </div>
+
+                <div class="alert alert-success" role="alert" *ngIf="registerSuccess">
+                    {{ successMessage }}
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="onSubmit()">Registrarse</button>
+                    <button type="button" class="btn btn-danger ml-2"
+                        (click)="homeComponent.isLeftVisible = !homeComponent.isLeftVisible">Volver</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

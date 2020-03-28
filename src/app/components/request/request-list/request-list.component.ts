@@ -12,11 +12,12 @@ import { Router } from '@angular/router';
 export class RequestListComponent implements OnInit {
 
   requests = new Array();
-  
+  env = environment.endpoint;
 
   constructor(
     private requestBreedingService: RequestBreedingService,
-    private router: Router
+    private router: Router,
+    public configService : ConfigService
   ) { }
 
   onSubmit(id: string, publicationId: string, accept: boolean){

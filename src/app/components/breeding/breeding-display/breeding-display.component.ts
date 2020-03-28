@@ -3,6 +3,8 @@ import {BreedingListPageComponent} from '../../../pages/breeding/list/breeding-l
 import {BreedingService} from 'src/app/services/breeding/breeding.service'
 import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import { environment } from 'src/environments/environment';
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-breeding-display',
@@ -13,20 +15,26 @@ import { environment } from 'src/environments/environment';
 
 export class BreedingDisplayComponent implements OnInit {
   env = environment.endpoint;
-  constructor(public breedingListPageComponent: BreedingListPageComponent, public breedingService: BreedingService ) { }
+  constructor(public breedingListPageComponent: BreedingListPageComponent, public breedingService: BreedingService, private router: Router ) { }
 
   ngOnInit(): void {
   
   }
 
   onSubmit(id: string){
-    this.breedingService.createRequest(id);
+    this.breedingService
+        .createRequest(id)
+        .then(res => {
+          alert("¡Has realizado una petición a esta oferta! \n En la siguiente página podrás revisar si el usuario la ha aceptado")
+          this.router.navigate(['/request/accepted/created']);
+        })
+        .catch(error => {
+        });
   }
 
   backToTheList(){
     this.breedingListPageComponent.isLeftVisible = !this.breedingListPageComponent.isLeftVisible;
     this.breedingListPageComponent.hasreq = false;
   }
-
 
 }

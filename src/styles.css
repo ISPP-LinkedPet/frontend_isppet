@@ -98,7 +98,7 @@
  abbr[data-original-title] {
    text-decoration: underline;
    -webkit-text-decoration: underline dotted;
-           text-decoration: underline dotted;
+           /* text-decoration: underline dotted; */
    cursor: help;
    border-bottom: 0;
    text-decoration-skip-ink: none;
@@ -2528,7 +2528,6 @@
  }
  
  .invalid-feedback {
-   display: none;
    width: 100%;
    margin-top: 0.25rem;
    font-size: 80%;

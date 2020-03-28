@@ -6,8 +6,8 @@
           <div class="card-body">
           <p class="card-text">Fotos subidas por el publicante:</p>
           <div class="row">
-            <div clas="col-md3" *ngFor="let img of breedingListPageComponent.selectedBreeding.animal_photo.replace(' ', '').split(',')">
-              <img class = "img-thumbnail" style="height: 150px; display: block;" src="{{env}}/{{img}}" alt="Card image">
+            <div clas="col-md3" *ngFor="let img of breedingListPageComponent.selectedBreeding.animal_photo.replace(' ', '').split(','); let i = index">
+              <a href="{{env}}/{{img}}" target="_blank"><img class = "img-thumbnail" id="imagen{{i}}" style="height: 150px; display: block;" src="{{env}}/{{img}}" alt="img{{i}}" ></a>
             </div>
           </div>
           </div>
@@ -25,8 +25,7 @@
           </ul>
           <div class="card-body">
               <button *ngIf="!breedingListPageComponent.hasreq.hasRequest" type="button" class="btn btn-primary" (click)="onSubmit(breedingListPageComponent.selectedBreeding.breedingId)" >Me interesa</button>
-              <button type="button" class="btn btn-primary mx-3" (click)="backToTheList()">Volver a anuncios</button>
-
+              <button type="button" class="btn btn-primary mx-3" (click)="backToTheList()">Volver a anuncios</button>      
           </div>
           <div class="card-footer text-muted">
           </div>
