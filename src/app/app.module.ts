@@ -57,6 +57,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     RequestListAcceptedComponent,
     RequestListAcceptedItemComponent,
     EditParticularComponent,
-    PaymentComponent
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,7 +110,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     ToastrModule.forRoot(),
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgbModule,
   ],
   providers: [
     AdoptionService,
