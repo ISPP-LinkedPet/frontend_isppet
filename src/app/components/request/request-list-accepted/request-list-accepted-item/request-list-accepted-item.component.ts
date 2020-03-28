@@ -25,6 +25,10 @@ export class RequestListAcceptedItemComponent implements OnInit {
   requestForm: FormGroup;
   obtainedCode: string;
 
+  /*ReviewForm*/
+  reviewForm: FormGroup;
+  reviewarea: string;
+
   constructor(private router: Router,
               private requestBreedingService: RequestBreedingService) {}
 
@@ -47,6 +51,13 @@ export class RequestListAcceptedItemComponent implements OnInit {
     this.requestForm = new FormGroup({
         confirmationCode: new FormControl('')
       });
+
+    this.reviewForm = new FormGroup({
+      reviewarea: new FormControl('')
+    });
+
+
+
   }
 
   // de momento no hace nada
@@ -60,12 +71,19 @@ export class RequestListAcceptedItemComponent implements OnInit {
 
     const code = this.requestForm.get('confirmationCode');
 
-    this.requestBreedingService.finishBreedingConfirmation(this.id, code).then(x => {
-      alert('Tu código se ha enviado correctamente') } );
-    this.router.navigate(['/']);
+    const reviewarea = this.reviewForm.get('reviewarea').value;
 
+    if (code != null) {
+
+      this.requestBreedingService.finishBreedingConfirmation(this.id, code).then(x => {
+        alert('Tu código se ha enviado correctamente') } );
+      this.router.navigate(['/']);
+    } else {
+      this.requestBreedingService.writeReview(this.id, reviewarea).then(x => {
+        alert('Tu código se ha enviado correctamente') });
+
+    }
 
   }
-
 
 }
