@@ -19,6 +19,8 @@ export class RequestListAcceptedItemComponent implements OnInit {
   phone: string;
   email: string;
   address: string;
+  transactionStatus: string;
+  
 
   id: string;
  /*form*/
@@ -45,6 +47,8 @@ export class RequestListAcceptedItemComponent implements OnInit {
     this.email = this.request.contactData.email;
     this.address = this.request.contactData.address;
 
+    this.transactionStatus = this.request.transaction_status;
+
 
       /*Form*/
 
@@ -66,8 +70,10 @@ export class RequestListAcceptedItemComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.requestForm.get('confirmationCode'));
-    console.log(this.id);
+    //console.log(this.requestForm.get('confirmationCode'));
+    //console.log(this.id);
+    //console.log(this.transactionStatus);
+    console.log(this.publicationType);
 
     const code = this.requestForm.get('confirmationCode');
 
@@ -77,7 +83,7 @@ export class RequestListAcceptedItemComponent implements OnInit {
 
       this.requestBreedingService.finishBreedingConfirmation(this.id, code).then(x => {
         alert('Tu código se ha enviado correctamente') } );
-      this.router.navigate(['/']);
+      //this.router.navigate(['/']);
     } else {
       this.requestBreedingService.writeReview(this.id, reviewarea).then(x => {
         alert('Tu código se ha enviado correctamente') });
