@@ -11,8 +11,8 @@ cache:
 install:
   - npm install
 script:
-  # npm run ng test --watch=false --no-progress --browsers=ChromeHeadless --exit
-  # npm run build
+  - npm run-script build --force
+  - npm run-script test --force
   - npm run-script lint --force
   # npm run ng e2e
 deploy:
