@@ -249,7 +249,7 @@ export class AdotionFormComponent implements OnInit {
       for (let i = 0; i < vaccinePassaport.length; i++) formData.append('vaccine_passport', vaccinePassaport[i], vaccinePassaport[i].name);
       for (let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
 
-  // field
+      // field
       if (this.rol === 'shelter') {
         formData.append('taxes', this.adoptionForm.value.taxes);
       }
