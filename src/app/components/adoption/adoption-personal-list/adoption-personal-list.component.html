@@ -6,10 +6,16 @@
   <h3 class="card-header">
     {{ adoptionAd.breed }} en {{ adoptionAd.location }}
   </h3>
-  <h6 class="card-header bg-success" *ngIf="adoptionAd.transaction_status == 'Completed'">
+  <h6
+    class="card-header bg-success"
+    *ngIf="adoptionAd.document_status == 'Accepted'"
+  >
     Revisada
   </h6>
-  <h6 class="card-header bg-warning" *ngIf="adoptionAd.transaction_status == 'In progress'">
+  <h6
+    class="card-header bg-warning"
+    *ngIf="adoptionAd.document_status == 'In revision'"
+  >
     En revisión
   </h6>
   <div class="card-body">

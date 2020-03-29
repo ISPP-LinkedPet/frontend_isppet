@@ -6,10 +6,16 @@
   <h3 class="card-header">
     {{ breedingAd.breed }} en {{ breedingAd.location }}
   </h3>
-  <h6 class="card-header bg-success" *ngIf="breedingAd.transaction_status == 'Completed'">
+  <h6
+    class="card-header bg-success"
+    *ngIf="breedingAd.document_status == 'Accepted'"
+  >
     Revisada
   </h6>
-  <h6 class="card-header bg-warning" *ngIf="breedingAd.transaction_status == 'In progress'">
+  <h6
+    class="card-header bg-warning"
+    *ngIf="breedingAd.document_status == 'In revision'"
+  >
     En revisión
   </h6>
   <div class="card-body">
