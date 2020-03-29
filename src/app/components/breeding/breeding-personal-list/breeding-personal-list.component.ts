@@ -2,6 +2,7 @@ import { environment } from 'src/environments/environment';
 import { BreedingService } from 'src/app/services/breeding/breeding.service';
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from './../../../services/config/config.service'
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { PaymentService } from 'src/app/services/payment/payment.service';
 
 @Component({
@@ -10,7 +11,8 @@ import { PaymentService } from 'src/app/services/payment/payment.service';
   styleUrls: ['./breeding-personal-list.component.css']
 })
 export class BreedingPersonalListComponent implements OnInit {
-
+  returnedBreedings = new Array();
+  itemsPerPage = 5;
   personalBreedings = new Array();
   env = environment.endpoint;
 
@@ -32,6 +34,12 @@ export class BreedingPersonalListComponent implements OnInit {
     this.breedingService.getPersonalBreedings(id).then(res => res.forEach(breedingAd => {
       this.personalBreedings.push(breedingAd);
     }));
+    this.returnedBreedings = this.personalBreedings.slice(0, this.itemsPerPage);
   }
 
+  pageChanged(event: PageChangedEvent): void {
+    const startItem = (event.page - 1) * event.itemsPerPage;
+    const endItem = event.page * event.itemsPerPage;
+    this.returnedBreedings = this.personalBreedings.slice(startItem, endItem);
+  }
 }

@@ -58,6 +58,9 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RatingComponent } from './components/rating/rating.component';
 import { VetAdvertisementComponent } from './components/vet-advertisement/vet-advertisement.component';
 // tslint:disable-next-line: max-line-length
@@ -66,6 +69,7 @@ import { HorizontalAdvertisementComponent } from './components/vets-advertisemen
 import { VerticalLeftAdvertisementComponent } from './components/vets-advertisements/vertical-left-advertisement/vertical-left-advertisement.component';
 // tslint:disable-next-line: max-line-length
 import { VerticalRightAdvertisementComponent } from './components/vets-advertisements/vertical-right-advertisement/vertical-right-advertisement.component';
+
 
 @NgModule({
   declarations: [
@@ -123,7 +127,9 @@ import { VerticalRightAdvertisementComponent } from './components/vets-advertise
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     ToastrModule.forRoot(),
-    FontAwesomeModule
+    FontAwesomeModule,
+    PaginationModule.forRoot(),
+    NgbModule
   ],
   providers: [
     AdoptionService,
