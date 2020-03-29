@@ -8,7 +8,7 @@
       <!-- Animal Documentation-->
 
       <div class="column">
-        <div class="gallery">
+        <div class="gallery" *ngIf="adoption.identification_photo">
           <a
             target="_blank"
             href="{{ env }}/{{ adoption.identification_photo.split(',')[0] }}"
@@ -22,8 +22,11 @@
           </a>
           <div class="desc">Foto de identificación</div>
         </div>
+        <div class="gallery" *ngIf="!adoption.identification_photo">
+          <div class="desc">Sin foto de identificación</div>
+        </div>
 
-        <div class="gallery">
+        <div class="gallery" *ngIf="adoption.vaccine_passport">
           <a
             target="_blank"
             href="{{ env }}/{{ adoption.vaccine_passport.split(',')[0] }}"
@@ -37,6 +40,9 @@
           </a>
           <div class="desc">Documento de vacunas</div>
         </div>
+        <div class="gallery" *ngIf="!adoption.vaccine_passport">
+          <div class="desc">Sin foto de cartilla de vacunación</div>
+        </div>
       </div>
 
       <!-- Animal Documentation-->
@@ -46,7 +52,7 @@
         <hr />
         <ul>
           <li>
-            <label><strong>Pedigree:</strong> {{ adoption.pedigree }}</label>
+            <label><strong>Pedigree:</strong> {{ adoption.pedigree==1 ? 'Sí' : 'No' }}</label>
           </li>
           <li>
             <label><strong>Nombre:</strong> {{ adoption.name }}</label>
