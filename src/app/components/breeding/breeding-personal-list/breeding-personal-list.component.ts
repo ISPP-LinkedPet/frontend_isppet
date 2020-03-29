@@ -37,8 +37,6 @@ export class BreedingPersonalListComponent implements OnInit {
     this.returnedBreedings = this.personalBreedings.slice(0, this.itemsPerPage);
   }
 
-    });
-  }
   pageChanged(event: PageChangedEvent): void {
     const startItem = (event.page - 1) * event.itemsPerPage;
     const endItem = event.page * event.itemsPerPage;
