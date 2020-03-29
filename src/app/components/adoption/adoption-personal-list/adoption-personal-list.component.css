@@ -28,3 +28,8 @@ img{
 button{
     margin: 20px 0px 0px 0px;
 }
+
+.center{
+    display: flex;
+    justify-content: center;
+  }
