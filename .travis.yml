@@ -14,7 +14,6 @@ script:
   # npm run ng test --watch=false --no-progress --browsers=ChromeHeadless --exit
   - npm run build
   - npm run ng lint
-  - npm run ng test
   - npm run ng e2e
 deploy:
   provider: heroku
