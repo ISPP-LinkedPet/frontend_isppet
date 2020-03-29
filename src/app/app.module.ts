@@ -57,7 +57,11 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RatingComponent } from './components/rating/rating.component';
+
 
 @NgModule({
   declarations: [
@@ -111,7 +115,9 @@ import { RatingComponent } from './components/rating/rating.component';
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     ToastrModule.forRoot(),
-    FontAwesomeModule
+    FontAwesomeModule,
+    PaginationModule.forRoot(),
+    NgbModule
   ],
   providers: [
     AdoptionService,

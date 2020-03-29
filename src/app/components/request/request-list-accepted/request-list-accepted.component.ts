@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { RequestPublicationService } from '../../../services/requestPublication/request-publication.service';
 import { PaymentService } from '../../../services/payment/payment.service';
 import { ToastrService } from 'ngx-toastr';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 @Component({
   selector: 'app-request-list-accepted',
@@ -13,7 +14,8 @@ export class RequestListAcceptedComponent implements OnInit {
   created: boolean; // created or received
   requests = [];
   title: string;
-
+  returnedRequest = new Array();
+  itemsPerPage = 5;
   constructor(
     private requestPublicationService: RequestPublicationService,
     private router: Router,
@@ -34,12 +36,12 @@ export class RequestListAcceptedComponent implements OnInit {
 
   ckeckPayment() {
     // verificar si tienes parametro paymentId
-    const paymentId = this.route.snapshot.queryParamMap.get('payment_intent');
-    const breedingId = this.route.snapshot.queryParamMap.get('breedingId');
-    if (paymentId != undefined) {
+    const paymentId = this.route.snapshot.queryParamMap.get('payment_intent')
+    const breedingId = this.route.snapshot.queryParamMap.get('breedingId')
+    if (paymentId !== undefined) {
       // Hacer peticion de confirmPayment
       this.paymentService.confirmPaymentToMyself({paymentId, breedingId: breedingId}).then(response => {
-        if (response.status == 'succeeded') {
+        if (response.status === 'succeeded') {
           // abrir modal
           this.toastr.success('Payment Completed!');
         } else {
@@ -74,6 +76,7 @@ export class RequestListAcceptedComponent implements OnInit {
         .then(requests => {
           console.log(requests);
           requests.forEach(request => this.requests.push(request));
+          this.returnedRequest = this.requests.slice(0, this.itemsPerPage);
         })
         .catch(error => {
           // console.log(error);
@@ -84,6 +87,7 @@ export class RequestListAcceptedComponent implements OnInit {
         .getReceivedAndAccepted()
         .then(requests => {
           requests.forEach(request => this.requests.push(request));
+          this.returnedRequest = this.requests.slice(0, this.itemsPerPage);
         })
         .catch(error => {
           // console.log(error);
@@ -91,4 +95,10 @@ export class RequestListAcceptedComponent implements OnInit {
         });
     }
   }
+  pageChanged(event: PageChangedEvent): void {
+    const startItem = (event.page - 1) * event.itemsPerPage;
+    const endItem = event.page * event.itemsPerPage;
+    this.returnedRequest = this.requests.slice(startItem, endItem);
+  }
+
 }

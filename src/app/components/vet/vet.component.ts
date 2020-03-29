@@ -9,14 +9,26 @@ import { VetService } from 'src/app/services/vet/vet.service';
   styleUrls: ['./vet.component.css']
 })
 export class VetComponent implements OnInit {
-  vets = new Array();
+  vets:any = []
+  allVets:any = []
   env = environment.endpoint;
+
+  // pagginations
+  page = 1;
+  pageSize = 5;
+
   constructor(private vetService: VetService) { }
 
 
   ngOnInit(): void {
-    this.vetService.getAllVets().then(res=>res.forEach(vet => {this.vets.push(vet)
-    }))
+    this.vetService.getAllVets().then(res => {
+      this.allVets = res
+      this.pageChange()
+    });
+  }
+
+  pageChange(){
+    this.vets = this.allVets.slice(this.page*this.pageSize - this.pageSize, this.page*this.pageSize);
   }
 
 }
