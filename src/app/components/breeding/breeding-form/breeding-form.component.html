@@ -127,7 +127,7 @@
                               <div class="input-group-prepend">
                                   <span class="input-group-text">€</span>
                               </div>
-                              <input type="text" class="form-control" [readOnly]="rol=='moderator'" formControlName="price" aria-label="Amount (to the nearest dollar)" (change)="validatePrice()">
+                              <input type="number" class="form-control" [readOnly]="rol=='moderator'" formControlName="price" aria-label="Amount (to the nearest dollar)" (change)="validatePrice()">
                               <div class="input-group-append">
                                   <span class="input-group-text">.00</span>
                               </div>
@@ -138,9 +138,9 @@
                           <label class="form-control-label" for="age">Precio</label>
                           <div class="input-group mb-3">
                               <div class="input-group-prepend">
-                                  <span class="input-group-text">$</span>
+                                  <span class="input-group-text">€</span>
                               </div>
-                              <input type="text" class="form-control is-invalid" formControlName="price" aria-label="Amount (to the nearest dollar)" (change)="validatePrice()">
+                              <input type="number" class="form-control is-invalid" formControlName="price" aria-label="Amount (to the nearest dollar)" (change)="validatePrice()">
                               <div class="input-group-append">
                                   <span class="input-group-text">.00</span>
                               </div>

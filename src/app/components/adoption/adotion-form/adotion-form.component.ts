@@ -49,6 +49,8 @@ export class AdotionFormComponent implements OnInit {
   // Icons
   faTimes = faTimes;
 
+  //text
+  title : string;
   constructor(private routeA: ActivatedRoute, private router: Router,
               private adoptionService: AdoptionService, public configService: ConfigService) {
   }
@@ -113,25 +115,41 @@ export class AdotionFormComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.title = "Crear nueva publicación";
     if (!this.creating) {
+
+      this.title = "Editar publicación";
+
+      var myAdoptions = new Array();
+
       this.routeA.paramMap.subscribe(parameterMap => {
         this.id = parameterMap.get('id');
+
+
         this.adoptionService.getAdoptionById(localStorage.getItem('access_token'), this.id).then(res => {
           this.editAdoption = res;
-
-          this.adoptionForm.controls['breed'].setValue(this.editAdoption.adoption.breed);
-          this.adoptionForm.controls['genre'].setValue(this.editAdoption.adoption.genre);
-          const format = 'yyyy-MM-dd';
-          const locale = 'en-US';
-          this.editAdoption.adoption.birth_date = formatDate(this.editAdoption.adoption.birth_date, format, locale);
-          this.adoptionForm.controls['birth_date'].setValue(this.editAdoption.adoption.birth_date);
-          this.adoptionForm.controls['pedigree'].setValue(this.editAdoption.adoption.pedigree);
-          this.adoptionForm.controls['name'].setValue(this.editAdoption.adoption.name);
-          this.adoptionForm.controls['location'].setValue(this.editAdoption.adoption.location);
-          this.adoptionForm.controls['type'].setValue(this.editAdoption.adoption.type);
-          this.adoptionForm.controls['taxes'].setValue(this.editAdoption.adoption.taxes);
+          this.adoptionService.getPersonalAdoptions(this.userlogged.id).then(res=>{
+            if(res.map(o=>o.id).includes(this.editAdoption.adoption.publication_id)){
+              this.adoptionForm.controls['breed'].setValue(this.editAdoption.adoption.breed);
+              this.adoptionForm.controls['genre'].setValue(this.editAdoption.adoption.genre);
+              const format = 'yyyy-MM-dd';
+              const locale = 'en-US';
+              this.editAdoption.adoption.birth_date = formatDate(this.editAdoption.adoption.birth_date, format, locale);
+              this.adoptionForm.controls['birth_date'].setValue(this.editAdoption.adoption.birth_date);
+              this.adoptionForm.controls['pedigree'].setValue(this.editAdoption.adoption.pedigree);
+              this.adoptionForm.controls['name'].setValue(this.editAdoption.adoption.name);
+              this.adoptionForm.controls['location'].setValue(this.editAdoption.adoption.location);
+              this.adoptionForm.controls['type'].setValue(this.editAdoption.adoption.type);
+              this.adoptionForm.controls['taxes'].setValue(this.editAdoption.adoption.taxes);
+            }
+            else{
+              this.router.navigate(['/adoption-personal-list']);
+            }
+          })
+         
       });
-
+    
     });
 
   }
@@ -230,7 +248,7 @@ export class AdotionFormComponent implements OnInit {
       for (let i = 0; i < vaccinePassaport.length; i++) formData.append('vaccine_passport', vaccinePassaport[i], vaccinePassaport[i].name);
       for (let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
 
-  // field
+      // field
       if (this.rol === 'shelter') {
         formData.append('taxes', this.adoptionForm.value.taxes);
       }
