@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreedingService } from '../../../services/breeding/breeding.service';
 import { BreedingListPageComponent } from '../../../pages/breeding/list/breeding-list-page.component'
 import { BreedingDisplayComponent } from 'src/app/components/breeding/breeding-display/breeding-display.component';

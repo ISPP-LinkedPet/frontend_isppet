@@ -31,14 +31,24 @@
         <li>
           <label><strong>Precio: </strong></label> {{ breedingAd.price }} euros
         </li>
-        <li *ngIf="breedingAd.transaction_status == 'In payment'">
+        <li *ngIf="breedingAd.transaction_status == 'In progress'">
           <label><strong>Código de confirmación: </strong></label>
           {{ breedingAd.codenumber }}
         </li>
       </ul>
+      
+      <div *ngIf="breedingAd.transaction_status=='Awaiting payment'">
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="acceptMoney(breedingAd.breeding_id)">Recibir el pago
+        </button>
+    </div>
 
       <div *ngIf="breedingAd.transaction_status != 'Completed'">
-        <button type="button" class="btn btn-success"
+        <button
+          type="button"
+          class="btn btn-success"
           [routerLink]="['/breeding-edit-particular', breedingAd.breeding_id]">
           Editar Anuncio
         </button>

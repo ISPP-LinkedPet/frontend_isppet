@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { positionElements } from 'ngx-bootstrap/positioning/public_api';
 
 type PaneType = 'left' | 'right';
 
