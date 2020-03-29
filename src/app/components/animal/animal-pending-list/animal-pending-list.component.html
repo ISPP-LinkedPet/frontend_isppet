@@ -1,0 +1,40 @@
+<h1 class="display-5">Lista de ofertas pendientes</h1>
+<!--Foreach Advertisement-->
+
+<div class="card border-success mb-3" *ngFor="let animalAd of animals">
+  <h3 class="card-header">
+    {{ animalAd.breed }}
+  </h3>
+  <div class="card-body">
+    <img
+      src="{{ env }}/{{ animalAd.animal_photo.split(',')[0] }}"
+      alt="Foto/s del animal"
+    />
+    <div class="description-content">
+      <ul>
+        <li>
+          <label><strong>Edad: </strong></label>
+          {{ this.configService.calculateAge(animalAd.birth_date) }} años
+        </li>
+        <li>
+          <label><strong>Pedigree: </strong></label>
+        </li>
+        <li>
+          <label><strong>Ubicación: </strong></label> {{ animalAd.location }}
+        </li>
+        <li>
+          <label><strong>Precio: </strong></label> {{ animalAd.price }} euros
+        </li>
+      </ul>
+    </div>
+    <button
+      type="button"
+      class="btn btn-success"
+      [routerLink]="['/animal-edit', animalAd.animalId]"
+    >
+      Moderar
+    </button>
+  </div>
+</div>
+
+<!--End Foreach-->

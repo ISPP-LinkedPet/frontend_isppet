@@ -12,14 +12,25 @@ export class AnimalService {
   ) { }
 
   createAnimal(data: any) {
-    return this.requestService.request('POST', `${environment.endpoint}/animal`, data, {}, true);
+    return this.requestService.request('POST', `${environment.endpoint}/pet`, data, {}, true);
   }
 
   editAnimal(id:number, data: any) {
-    return this.requestService.request('PUT', `${environment.endpoint}/animal/edit/${id}`, data, {}, true);
+    return this.requestService.request('PUT', `${environment.endpoint}/pet/edit/${id}`, data, {}, true);
   }
 
   getAnimalById(id: string) {
-    return this.requestService.request('GET', `${environment.endpoint}/animal/${id}`, {}, {}, true);
+    return this.requestService.request('GET', `${environment.endpoint}/pet/${id}`, {}, {}, true);
+  }
+  getPendingAnimals() {
+    return this.requestService.request('GET', `${environment.endpoint}/pet/pending`, {}, {}, true)
+  }
+
+  acceptAnimal(data: any, id: number) {
+    return this.requestService.request('PUT', `${environment.endpoint}/pet/accept/${id}`, data, {}, true);
+  }
+
+  rejectAnimal(id: number) {
+    return this.requestService.request('PUT', `${environment.endpoint}/pet/reject/${id}`, {}, {}, true)
   }
 }

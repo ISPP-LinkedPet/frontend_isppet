@@ -62,6 +62,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AnimalFormComponent } from './components/animal/animal-form/animal-form.component';
 import { CreateComponent } from './pages/animal/create/create.component';
+import { AnimalPendingListComponent } from './components/animal/animal-pending-list/animal-pending-list.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import { CreateComponent } from './pages/animal/create/create.component';
     AnimalFormComponent,
     CreateComponent,
     CreateAnimalComponent,
-    EditAnimalComponent
+    EditAnimalComponent,
+    AnimalPendingListComponent
   ],
   imports: [
     BrowserModule,

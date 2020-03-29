@@ -201,6 +201,29 @@ export class AnimalFormComponent implements OnInit {
         this.backError = error.error.error
       });
     }
+
+    // si lo está editando un moderador
+    if(!this.creating && this.rol == 'moderator' && this.isValidBreed && this.isValidGenre && this.isValidAge && this.isValidType && this.isValidPedigri){
+
+      formData.append('genre', this.animalForm.value.genre);
+      formData.append('breed', this.animalForm.value.breed);
+      formData.append('age', this.animalForm.value.birth_date);
+      formData.append('type', this.animalForm.value.type);
+      formData.append('pedigree', this.animalForm.value.pedigree);
+
+      this.animalService.acceptAnimal(formData, this.editAnimal.animalId).then(x => {
+        alert("¡El animal a publicar se ha aceptado correctamente! \n Se ha publicado en la lista de crianzas")
+        this.router.navigate(['/animal-pending'])
+      }).catch (error => this.backError = error.error.error);
+    }
+  }
+
+  rejectPublication() {
+    this.animalService.rejectAnimal(this.editAnimal.animalId).then(x => {
+      alert("¡El animal a publicar rechazado correctamente!")
+
+      this.router.navigate(['/animal-pending'])
+    }).catch (error => this.backError = error.error.error);
   }
 
   validationFields(type?:string) {
