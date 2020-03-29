@@ -164,7 +164,6 @@ export class AdotionFormComponent implements OnInit {
       this.isValidPedigri = this.adoptionForm.get('pedigree').valid;
     }
     validateAnimalPhoto() {
-      console.log("validating");
       this.isValidAnimalPhoto = this.adoptionForm.get('animal_photo').valid;
     }
     validateLocation() {
