@@ -10,12 +10,13 @@ cache:
     - ./node_modules
 install:
   - npm install
+  - travis_wait mvn install
 script:
-  - npm run ng test --watch=false --no-progress --browsers=ChromeHeadless
+  # npm run ng test --watch=false --no-progress --browsers=ChromeHeadless
   - npm run build
-  # ng lint
-  # ng test
-  # ng e2e
+  - npm run ng lint
+  - npm run ng test
+  - npm run ng e2e
 deploy:
   provider: heroku
   on:
