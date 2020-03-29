@@ -11,7 +11,7 @@ cache:
 install:
   - npm install
 script:
-  - ng test --watch=false --no-progress --browsers=ChromeHeadless
+  - ng test --watch false --no-progress --browsers=ChromeHeadlessNoSandbox
   - npm run build
   # ng lint
   # ng test
