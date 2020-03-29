@@ -16,25 +16,28 @@ export class BreedingPersonalListComponent implements OnInit {
   personalBreedings = new Array();
   env = environment.endpoint;
 
-  constructor(private breedingService: BreedingService, public configService:ConfigService, private paymentService: PaymentService) { }
+  constructor(private breedingService: BreedingService, public configService: ConfigService, private paymentService: PaymentService) { }
   ngOnInit(): void {
     this.getList();
   }
 
-  acceptMoney(id){
+  acceptMoney(id) {
 
-    this.paymentService.makePaypalPayment({breedingId: id}).then(res=>{
+    this.paymentService.makePaypalPayment({ breedingId: id }).then(res => {
       this.personalBreedings = new Array();
       this.getList();
-    })
+    });
   }
 
-  getList(){
-    const{id, role} = JSON.parse(atob(localStorage.getItem('access_token').split(".")[1]));
-    this.breedingService.getPersonalBreedings(id).then(res => res.forEach(breedingAd => {
-      this.personalBreedings.push(breedingAd);
-    }));
-    this.returnedBreedings = this.personalBreedings.slice(0, this.itemsPerPage);
+  getList() {
+    const { id, role } = JSON.parse(atob(localStorage.getItem('access_token').split('.')[1]));
+    this.breedingService.getPersonalBreedings(id).then(res => {
+      res.forEach(breedingAd => {
+        this.personalBreedings.push(breedingAd);
+      });
+      this.returnedBreedings = this.personalBreedings.slice(0, this.itemsPerPage);
+    });
+
   }
 
   pageChanged(event: PageChangedEvent): void {
