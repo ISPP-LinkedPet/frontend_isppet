@@ -11,9 +11,9 @@ cache:
 install:
   - npm install
 script:
-  - npm run-script build --force
-  - npm run-script test --force
-  - npm run-script lint --force
+  - npm run ng test --browsers=MyHeadlessChrome
+  - npm run build
+  # npm run-script lint --force
   # npm run ng e2e
 deploy:
   provider: heroku
