@@ -11,13 +11,13 @@
   </h3>
   <h6
     class="card-header bg-success"
-    *ngIf="breedingAd.transaction_status == 'Completed'"
+    *ngIf="breedingAd.document_status == 'Accepted'"
   >
     Revisada
   </h6>
   <h6
     class="card-header bg-warning"
-    *ngIf="breedingAd.transaction_status == 'In progress'"
+    *ngIf="breedingAd.document_status == 'In revision'"
   >
     En revisión
   </h6>
