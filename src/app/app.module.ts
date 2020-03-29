@@ -57,6 +57,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RatingComponent } from './components/rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     RequestListAcceptedComponent,
     RequestListAcceptedItemComponent,
     EditParticularComponent,
-    PaymentComponent
+    PaymentComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,

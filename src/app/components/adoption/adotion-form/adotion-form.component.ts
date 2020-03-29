@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Adoption } from 'src/app/models/adoption/adoption';
 import { AdoptionService } from '../../../services/adoption/adoption.service';
-import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ConfigService } from 'src/app/services/config/config.service';
 import { ActivatedRoute } from '@angular/router';
 import {Router} from '@angular/router';

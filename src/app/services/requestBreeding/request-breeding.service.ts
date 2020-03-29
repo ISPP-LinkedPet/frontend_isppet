@@ -6,6 +6,7 @@ import {RequestService} from '../request/request.service';
   providedIn: 'root'
 })
 export class RequestBreedingService {
+ 
   constructor(
     private requestService: RequestService
   ) { }
@@ -25,6 +26,15 @@ export class RequestBreedingService {
 
   rejectRequest(id: string) {
     return this.requestService.request('PUT', `${environment.endpoint}/request/${id}/reject`, {}, {}, true);
+  }
+
+  
+  finishBreedingConfirmation(id: string, data: any) {
+    return this.requestService.request('PUT', `${environment.endpoint}/breeding/finish/${id}`, data, {}, true);
+  }
+
+  writeReview(data: any) {
+    return this.requestService.request('POST', `${environment.endpoint}/review/`, data, {}, true);
   }
 
 }

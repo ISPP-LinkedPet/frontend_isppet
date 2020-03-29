@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {BreedingListPageComponent} from '../../../pages/breeding/list/breeding-list-page.component'
 import {BreedingService} from 'src/app/services/breeding/breeding.service'
-import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import { environment } from 'src/environments/environment';
 
 @Component({
