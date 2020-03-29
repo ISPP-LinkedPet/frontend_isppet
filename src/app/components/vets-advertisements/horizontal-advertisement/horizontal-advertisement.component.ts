@@ -8,13 +8,13 @@ import { VetService } from 'src/app/services/vet/vet.service';
 })
 export class HorizontalAdvertisementComponent implements OnInit {
 
-  topAd: any;
+  topAdvertisement: any;
 
   constructor(private vetService: VetService) { }
 
   ngOnInit(): void {
-    this.vetService.getVetAdvertisements().then(res => this.topAd = res.ads.topAd)
-    .then(res => console.log(this.topAd));
+    this.vetService.getVetAdvertisements().then(res => this.topAdvertisement = res.ads)
+    .then(res => console.log(this.topAdvertisement));
   }
 
 }
