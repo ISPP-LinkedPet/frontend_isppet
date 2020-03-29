@@ -10,8 +10,9 @@ cache:
     - ./node_modules
 install:
   - npm install
+  - npm install @angular/cli -g
 script:
-  - npm run ng test --browsers=MyHeadlessChrome
+  - ng test --browsers=MyHeadlessChrome
   - npm run build
   # npm run-script lint --force
   # npm run ng e2e
