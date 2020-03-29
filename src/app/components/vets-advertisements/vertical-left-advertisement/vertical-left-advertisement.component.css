@@ -1,0 +1,7 @@
+.bl-left{
+    border: 1px solid black;
+    min-height: 50vh;
+    float: left;
+    object-fit: contain;
+}
+

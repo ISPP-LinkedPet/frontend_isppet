@@ -9,7 +9,11 @@ export class VetService {
 
   constructor(private requestService: RequestService) { }
 
-  getAllVets(){
+  getAllVets() {
     return this.requestService.request('GET', `${environment.endpoint}/vet/`, {}, {}, true);
+  }
+
+  getVetAdvertisements() {
+    return this.requestService.request('GET', `${environment.endpoint}/ad/`, {}, {}, true);
   }
 }

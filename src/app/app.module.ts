@@ -48,16 +48,24 @@ import { AdoptionPendingListComponent } from './components/adoption/adoption-pen
 import { EditAdoptionComponent } from './pages/adoption/edit-adoption/edit-adoption.component';
 import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-moderator/adoption-pending-list-page.component';
 import { RequestListAcceptedComponent } from './components/request/request-list-accepted/request-list-accepted.component';
+// tslint:disable-next-line: max-line-length
 import { RequestListAcceptedItemComponent } from './components/request/request-list-accepted/request-list-accepted-item/request-list-accepted-item.component';
 import { EditParticularComponent } from './pages/breeding/edit-particular/edit-particular.component';
 
-//Bootstrap
+/*Bootstrap*/
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RatingComponent } from './components/rating/rating.component';
+import { VetAdvertisementComponent } from './components/vet-advertisement/vet-advertisement.component';
+// tslint:disable-next-line: max-line-length
+import { HorizontalAdvertisementComponent } from './components/vets-advertisements/horizontal-advertisement/horizontal-advertisement.component';
+// tslint:disable-next-line: max-line-length
+import { VerticalLeftAdvertisementComponent } from './components/vets-advertisements/vertical-left-advertisement/vertical-left-advertisement.component';
+// tslint:disable-next-line: max-line-length
+import { VerticalRightAdvertisementComponent } from './components/vets-advertisements/vertical-right-advertisement/vertical-right-advertisement.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +105,11 @@ import { RatingComponent } from './components/rating/rating.component';
     RequestListAcceptedItemComponent,
     EditParticularComponent,
     PaymentComponent,
-    RatingComponent
+    RatingComponent,
+    VetAdvertisementComponent,
+    HorizontalAdvertisementComponent,
+    VerticalLeftAdvertisementComponent,
+    VerticalRightAdvertisementComponent
   ],
   imports: [
     BrowserModule,
