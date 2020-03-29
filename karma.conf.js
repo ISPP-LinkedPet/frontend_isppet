@@ -30,6 +30,10 @@ module.exports = function (config) {
             MyHeadlessChrome: {
                 base: 'ChromeHeadless',
                 flags: ['--disable-translate', '--disable-extensions', '--remote-debugging-port=9223', '--watch=false']
+            },
+            ChromeHeadlessNoSandbox: {
+                base: 'ChromeHeadless',
+                flags: ['--no-sandbox']
             }
         },
         singleRun: false,
