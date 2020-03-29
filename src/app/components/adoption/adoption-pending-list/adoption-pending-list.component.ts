@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { AdoptionService } from 'src/app/services/adoption/adoption.service';
 import { ShelterService } from 'src/app/services/shelter/shelter.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-adoption-pending-list',
   templateUrl: './adoption-pending-list.component.html',
@@ -15,7 +16,7 @@ export class AdoptionPendingListComponent implements OnInit {
   pendingAdoptions = new Array();
   env = environment.endpoint;
 
-  constructor(private adoptionService: AdoptionService, private shelterService: ShelterService) { }
+  constructor(private adoptionService: AdoptionService, private shelterService: ShelterService, private router: Router) { }
   ngOnInit(): void {
     this.adoptionService.getPendingAdoptions().then(res => {
       res.forEach(adoptionAd => {
@@ -27,13 +28,19 @@ export class AdoptionPendingListComponent implements OnInit {
   }
 
   acceptAdoption(id: string) {
-    this.pendingAdoptions.splice(this.pendingAdoptions.indexOf(this.mapAdoption.get(id)), 1)
-    this.adoptionService.acceptAdoption(id);
+    this.adoptionService.acceptAdoption(id).then(res => {
+      this.returnedAdoptions = new Array();
+      this.pendingAdoptions = new Array();
+      this.ngOnInit();
+    });
   }
 
   rejectAdoption(id: string) {
-    this.pendingAdoptions.splice(this.pendingAdoptions.indexOf(this.mapAdoption.get(id)), 1)
-    this.adoptionService.rejectAdoption(id);
+    this.adoptionService.rejectAdoption(id).then(res => {
+      this.returnedAdoptions = new Array();
+      this.pendingAdoptions = new Array();
+      this.ngOnInit();
+    });
   }
 
   pageChanged(event: PageChangedEvent): void {
