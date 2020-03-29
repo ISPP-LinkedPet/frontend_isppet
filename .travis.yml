@@ -12,9 +12,9 @@ install:
   - npm install
 script:
   # npm run ng test --watch=false --no-progress --browsers=ChromeHeadless --exit
-  - npm run build
-  - npm run ng lint
-  - npm run ng e2e
+  # npm run build
+  - npm run-script lint --force
+  # npm run ng e2e
 deploy:
   provider: heroku
   on:
