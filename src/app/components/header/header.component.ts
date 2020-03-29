@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('access_token')
     this.rol = 'disconnected'
     this.router.navigate(['/'])
-    location.reload()
+    // location.reload()
   }
 
   breedingList(){
