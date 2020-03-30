@@ -52,7 +52,7 @@
             <label><strong>Nombre:</strong> {{ adoption.name }}</label>
           </li>
           <li>
-            <label><strong>Edad: </strong></label> {{ adoption.age }} años
+            <label><strong>Edad: </strong></label> {{ this.configService.calculateAge(adoption.birth_date) }}
           </li>
           <li>
             <label><strong>Raza: </strong></label> {{ adoption.breed }}

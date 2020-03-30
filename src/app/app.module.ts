@@ -63,6 +63,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AnimalFormComponent } from './components/animal/animal-form/animal-form.component';
 import { CreateComponent } from './pages/animal/create/create.component';
 import { AnimalPendingListComponent } from './components/animal/animal-pending-list/animal-pending-list.component';
+import { PendingListComponent } from './pages/animal/pending-list/pending-list.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,8 @@ import { AnimalPendingListComponent } from './components/animal/animal-pending-l
     CreateComponent,
     CreateAnimalComponent,
     EditAnimalComponent,
-    AnimalPendingListComponent
+    AnimalPendingListComponent,
+    PendingListComponent
   ],
   imports: [
     BrowserModule,

@@ -24,6 +24,7 @@ import { RequestListAcceptedComponent } from './components/request/request-list-
 import { EditParticularComponent } from './pages/breeding/edit-particular/edit-particular.component';
 import { CreateComponent as CreateComponentAnimal } from './pages/animal/create/create.component';
 import { EditComponent as EditComponentAnimal } from './pages/animal/edit/edit.component';
+import { PendingListComponent } from './pages/animal/pending-list/pending-list.component';
 
 const routes: Routes = [
 {path: '', component: HomeComponent},
@@ -45,7 +46,8 @@ const routes: Routes = [
 {path: 'adoption-edit/:id', component: EditAdoptionComponent},
 {path: 'request/accepted/:createdOrReceived', component: RequestListAcceptedComponent},
 {path: 'animal', component: CreateComponentAnimal},
-{path: 'animal-edit/:id', component: EditComponentAnimal}
+{path: 'animal-edit/:id', component: EditComponentAnimal},
+{path: 'animal-pending', component: PendingListComponent}
 ];
 
 @NgModule({

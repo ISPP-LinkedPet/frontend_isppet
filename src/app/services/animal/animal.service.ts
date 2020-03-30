@@ -22,8 +22,8 @@ export class AnimalService {
   getAnimalById(id: string) {
     return this.requestService.request('GET', `${environment.endpoint}/pet/${id}`, {}, {}, true);
   }
-  getPendingAnimals() {
-    return this.requestService.request('GET', `${environment.endpoint}/pet/pending`, {}, {}, true)
+  getPetsInRevision() {
+    return this.requestService.request('GET', `${environment.endpoint}/pet/revision`, {}, {}, true)
   }
 
   acceptAnimal(data: any, id: number) {

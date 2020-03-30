@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AdoptionService } from 'src/app/services/adoption/adoption.service';
 import { ShelterService } from 'src/app/services/shelter/shelter.service';
+import { ConfigService } from 'src/app/services/config/config.service';
 
 @Component({
   selector: 'app-adoption-pending-list',
@@ -14,7 +15,7 @@ export class AdoptionPendingListComponent implements OnInit {
   pendingAdoptions = new Array();
   env = environment.endpoint;
 
-  constructor(private adoptionService: AdoptionService, private shelterService: ShelterService) { }
+  constructor(private adoptionService: AdoptionService, private shelterService: ShelterService, public configService: ConfigService) { }
   ngOnInit(): void {
     this.adoptionService.getPendingAdoptions().then(res => res.forEach(adoptionAd => {
       this.pendingAdoptions.push(adoptionAd);

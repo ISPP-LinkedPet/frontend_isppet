@@ -12,11 +12,11 @@
   
                         <!-- Breed -->
                         <div class="form-group col-sm" *ngIf="isValidBreed">
-                            <label for="age">Raza</label>
+                            <label for="breed">Raza</label>
                             <input type="text" class="form-control" id="breed" [readOnly]="rol=='particular'" formControlName="breed" (change)="validateBreed()">
                         </div>
                         <div class="form-group has-danger col-sm" *ngIf="!isValidBreed">
-                            <label class="form-control-label" for="age">Raza</label>
+                            <label class="form-control-label" for="breed">Raza</label>
                             <input type="text" class="form-control is-invalid" id="breed" [readOnly]="rol=='particular'" formControlName="breed" (change)="validateBreed()">
                             <div class="invalid-feedback">Parece que se ha equivocado</div>
                         </div>
@@ -41,7 +41,7 @@
                         </div>
   
                         <div class="form-group has-danger col-sm" *ngIf="!isValidGenre">
-                            <label class="form-control-label" for="age">Genero</label>
+                            <label class="form-control-label" for="genre">Genero</label>
                             <div *ngIf="rol == 'particular'">
                                 <select class="form-control is-invalid" id="genre" [attr.disabled]="true" formControlName="genre" (change)="validateGenre()">
                                     <option value='' [defaultSelected]=true>Seleccione genero</option>
@@ -63,12 +63,12 @@
                         <!-- Age -->
   
                         <div class="form-group col-sm" *ngIf="isValidAge">
-                            <label for="age">Edad</label>
-                            <input type="date" class="form-control" id="age" [readOnly]="rol=='particular'" formControlName="age" (change)="validateAge()">
+                            <label for="birth_date">Edad</label>
+                            <input type="date" class="form-control" id="birth_date" [readOnly]="rol=='particular'" formControlName="birth_date" (change)="validateAge()">
                         </div>
                         <div class="form-group has-danger col-sm" *ngIf="!isValidAge">
-                            <label class="form-control-label" for="age">Edad</label>
-                            <input type="date" class="form-control is-invalid" id="age" [readOnly]="rol=='particular'" formControlName="age" (change)="validateAge()">
+                            <label class="form-control-label" for="birth_date">Edad</label>
+                            <input type="date" class="form-control is-invalid" id="birth_date" [readOnly]="rol=='particular'" formControlName="birth_date" (change)="validateAge()">
                             <div class="invalid-feedback">No olvide seleccionar la edad</div>
                         </div>
                     </div>
@@ -124,37 +124,37 @@
                         <div class="form-group col-6" *ngIf="isValidPedigri">
                             <label for="pedigree">Pedigrí</label>
                             <div *ngIf="rol=='particular'">
-                                <select class="form-control" id="pedigree" [attr.disabled]="true" formControlName="pedigree">
+                                <select class="form-control" id="pedigree" [attr.disabled]="true" formControlName="pedigree" (change)="validatePedigree()">
                                     <option value='' [defaultSelected]=true></option>
-                                    <option value='true'>Si</option>
-                                    <option value='false'>No</option>
+                                    <option value='1'>Si</option>
+                                    <option value='0'>No</option>
                                 </select>
                             </div>
   
                             <div *ngIf="rol=='moderator'">
-                                <select class="form-control" id="pedigree" formControlName="pedigree">
+                                <select class="form-control" id="pedigree" formControlName="pedigree" (change)="validatePedigree()">
                                     <option value='' [defaultSelected]=true></option>
-                                    <option value='true'>Si</option>
-                                    <option value='false'>No</option>
+                                    <option value='1'>Si</option>
+                                    <option value='0'>No</option>
                                 </select>
                             </div>
                         </div>
   
                         <div class="form-group has-danger col-6" *ngIf="!isValidPedigri">
-                            <label class="form-control-label" for="age">Pedigrí</label>
+                            <label class="form-control-label" for="pedigree">Pedigrí</label>
                             <div *ngIf="rol=='particular'">
-                                <select class="form-control is-invalid" id="pedigree" [attr.disabled]="true" formControlName="pedigree">
+                                <select class="form-control is-invalid" id="pedigree" [attr.disabled]="true" formControlName="pedigree" (change)="validatePedigree()">
                                     <option value='' [defaultSelected]=true>Seleccione un pedigrí</option>
-                                    <option value='true'>Si</option>
-                                    <option value='false'>No</option>
+                                    <option value='1'>Si</option>
+                                    <option value='0'>No</option>
                                 </select>
                             </div>
   
                             <div *ngIf="rol=='moderator'">
-                                <select class="form-control is-invalid" id="pedigree" formControlName="pedigree">
+                                <select class="form-control is-invalid" id="pedigree" formControlName="pedigree"(change)="validatePedigree()">
                                     <option value='' [defaultSelected]=true>Seleccione un pedigrí</option>
-                                    <option value='true'>Si</option>
-                                    <option value='false'>No</option>
+                                    <option value='1'>Si</option>
+                                    <option value='0'>No</option>
                                 </select>
                             </div>
                             <div class="invalid-feedback">Debe indicar si es pedigrí</div>
@@ -219,16 +219,16 @@
   
                     <div class="row">
   
-                        <!-- Vaccine passaport -->
+                        <!-- Vaccine passport -->
                         <div class="form-group col-6" *ngIf="rol != 'moderator'">
-                            <label for="vaccine_passaport">Cartilla de vacunacion</label>
+                            <label for="vaccine_passport">Cartilla de vacunacion</label>
                             <div class="input-group mb-3">
                                 <div class="custom-file">
-                                    <input #vaccinePassaport type="file" class="custom-file-input" formControlName="vaccine_passaport" id="vaccine_passaport" (change)="getVacPhotoAndValidate($event)" multiple>
-                                    <label class="custom-file-label" for="vaccine_passaport">Seleccionar imagenes</label>
+                                    <input #vaccinePassport type="file" class="custom-file-input" formControlName="vaccine_passport" id="vaccine_passport" (change)="getVacPhotoAndValidate($event)" multiple>
+                                    <label class="custom-file-label" for="vaccine_passport">Seleccionar imagenes</label>
                                 </div>
                             </div>
-                            <div class="invalid-feedback" *ngIf="!isValidVaccinePassaport">Debe subir una imagen de la cartilla de vacunación</div>
+                            <div class="invalid-feedback" *ngIf="!isValidVaccinePassport">Debe subir una imagen de la cartilla de vacunación</div>
                         </div>
                         <div class="form-group col-4" *ngIf="rol=='moderator'">
                           <img style="height: 150px; width: 100%; display: block;" src="{{env}}/{{editAnimal.vaccine_passport.split(',')[0]}}" alt="Card image">
