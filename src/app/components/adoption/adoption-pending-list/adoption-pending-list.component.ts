@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AdoptionService } from 'src/app/services/adoption/adoption.service';
 import { ShelterService } from 'src/app/services/shelter/shelter.service';
+import { ConfigService } from 'src/app/services/config/config.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-adoption-pending-list',
   templateUrl: './adoption-pending-list.component.html',
@@ -16,7 +18,8 @@ export class AdoptionPendingListComponent implements OnInit {
   pendingAdoptions = new Array();
   env = environment.endpoint;
 
-  constructor(private adoptionService: AdoptionService, private shelterService: ShelterService, private router: Router) { }
+  constructor(private adoptionService: AdoptionService, private shelterService: ShelterService, public configService: ConfigService) { }
+
   ngOnInit(): void {
     this.adoptionService.getPendingAdoptions().then(res => {
       res.forEach(adoptionAd => {

@@ -1,0 +1,33 @@
+<h1 class="display-5">Lista de animales pendientes de revision</h1>
+<!--Foreach Advertisement-->
+
+<div class="card border-success mb-3" *ngFor="let animal of animals">
+  <h3 class="card-header">
+    {{ animal.breed }}
+  </h3>
+  <div class="card-body">
+    <img
+      src="{{ env }}/{{ animal.animal_photo.split(',')[0] }}"
+      alt="Foto/s del animal"
+    />
+    <div class="description-content">
+      <img
+      src="{{ env }}/{{ animal.identification_photo.split(',')[0] }}"
+      alt="Foto/s de la identificación"
+    />
+    <img
+      src="{{ env }}/{{ animal.vaccine_passport.split(',')[0] }}"
+      alt="Foto/s de la cartilla"
+    />
+    </div>
+    <button
+      type="button"
+      class="btn btn-success"
+      [routerLink]="['/animal-edit', animal.id]"
+    >
+      Moderar
+    </button>
+  </div>
+</div>
+
+<!--End Foreach-->
