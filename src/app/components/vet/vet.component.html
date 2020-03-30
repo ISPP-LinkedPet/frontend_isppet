@@ -1,5 +1,5 @@
 <app-header></app-header>
-
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css" rel="stylesheet" />
 <div class="banner"><app-horizontal-advertisement></app-horizontal-advertisement></div>
 
 
@@ -32,6 +32,9 @@
     <p class="card-text">
       <label><strong>Dirección: </strong> {{ vet.address }}</label>
     </p>
+    <div id="map{{vet.name}}"  style="height: 200px;">
+      <button class="btn btn-success" onclick="style.display = 'none'" (click)="onSubmit(vet.name,vet.longitude,vet.latitude)">Mostrar en mapa</button>
+    </div>
   </div>
 </div>
 
