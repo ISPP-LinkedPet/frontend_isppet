@@ -121,7 +121,7 @@ import { VerticalRightAdvertisementComponent } from './components/vets-advertise
     CreateAnimalComponent,
     EditAnimalComponent,
     AnimalPendingListComponent,
-    PendingListComponent
+    PendingListComponent,
     RatingComponent,
     VetAdvertisementComponent,
     HorizontalAdvertisementComponent,
