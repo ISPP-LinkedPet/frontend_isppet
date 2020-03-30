@@ -1,5 +1,5 @@
 {
-  "name": "frontend_isppet",
+  "name": "frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -20,6 +20,7 @@
     "@angular/compiler-cli": "^9.0.6",
     "@angular/core": "^9.0.6",
     "@angular/forms": "^9.0.6",
+    "@angular/localize": "^9.1.0",
     "@angular/platform-browser": "^9.0.6",
     "@angular/platform-browser-dynamic": "^9.0.6",
     "@angular/router": "^9.0.6",
@@ -35,6 +36,7 @@
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
     "mapbox": "^1.0.0-beta10",
+    "mapbox-gl": "^1.9.0",
     "ngx-bootstrap": "^5.5.0",
     "ngx-toastr": "^12.0.0",
     "rxjs": "^6.5.4",

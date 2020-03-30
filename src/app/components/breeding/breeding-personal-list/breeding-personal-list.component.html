@@ -2,30 +2,24 @@
   <h1 class="display-4">Mis anuncios de crianza</h1>
 </div>
 
-<div
-  class="card border-success mb-3"
-  *ngFor="let breedingAd of personalBreedings"
->
+<div class="card border-success mb-3" *ngFor="let breedingAd of returnedBreedings">
   <h3 class="card-header">
     {{ breedingAd.breed }} en {{ breedingAd.location }}
   </h3>
   <h6
     class="card-header bg-success"
-    *ngIf="breedingAd.transaction_status == 'Completed'"
+    *ngIf="breedingAd.document_status == 'Accepted'"
   >
     Revisada
   </h6>
   <h6
     class="card-header bg-warning"
-    *ngIf="breedingAd.transaction_status == 'In progress'"
+    *ngIf="breedingAd.document_status == 'In revision'"
   >
     En revisión
   </h6>
   <div class="card-body">
-    <img
-      src="{{ env }}/{{ breedingAd.animal_photo.split(',')[0] }}"
-      alt="Foto/s del animal"
-    />
+    <img src="{{ env }}/{{ breedingAd.animal_photo.split(',')[0] }}" alt="Foto/s del animal" />
     <div class="description-content">
       <!--{{breedingAd.breeding_id}}-->
       <ul>
@@ -68,3 +62,5 @@
     </div>
   </div>
 </div>
+<pagination class="center" [totalItems]="personalBreedings.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)">
+</pagination>
