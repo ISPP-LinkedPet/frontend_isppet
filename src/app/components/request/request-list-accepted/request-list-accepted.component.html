@@ -8,7 +8,7 @@
 
     <div class="row d-flex justify-content-center" style="margin-top: 6em;">
       <app-request-list-accepted-item
-        *ngFor="let req of requests"
+        *ngFor="let req of returnedRequest"
         [request]="req"
         [created]="created"
       ></app-request-list-accepted-item>
@@ -16,4 +16,5 @@
   </div>
 </div>
 
+<pagination class="center" [totalItems]="requests.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
 <app-footer></app-footer>

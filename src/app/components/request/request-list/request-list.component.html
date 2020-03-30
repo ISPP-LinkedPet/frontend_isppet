@@ -1,9 +1,13 @@
 <app-header></app-header>
+
+<div class="banner"><app-horizontal-advertisement></app-horizontal-advertisement></div>
+
+
 <div class="mb-3" id="first">
   <h1 class="display-4">Ofertas de crianza recibidas</h1>
 </div>
 
-<div class="card border-success mb-3" *ngFor="let request of requests">
+<div class="card border-success mb-3" *ngFor="let request of returnedRequest">
   <h3 class="card-header">{{ request.breed }} en {{ request.location }}</h3>
   <h6 class="card-header bg-success" *ngIf="request.status == 'Accepted'">
     Aceptada
@@ -56,4 +60,5 @@
     </div>
   </div>
 </div>
+<pagination class="center" [totalItems]="requests.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
 <app-footer></app-footer>

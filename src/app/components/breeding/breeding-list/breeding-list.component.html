@@ -1,5 +1,4 @@
 <!--Foreach Advertisement-->
-
 <div class="mb-3">
   <h1 class="display-4">Lista de crianza</h1>
   <button
@@ -70,7 +69,7 @@
   </form>
 </div>
 
-<div class="card border-success mb-3" *ngFor="let breedingAd of breedings">
+<div class="card border-success mb-3" *ngFor="let breedingAd of returnedBreedings">
   <h3 class="card-header">
     {{ breedingAd.breed }} en {{ breedingAd.location }}
   </h3>
@@ -106,3 +105,5 @@
     </button>
   </div>
 </div>
+<pagination class="center" [totalItems]="breedings.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)">
+</pagination>

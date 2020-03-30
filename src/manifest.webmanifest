@@ -1,6 +1,6 @@
 {
-  "name": "frontend_isppet",
-  "short_name": "frontend_isppet",
+  "name": "frontend",
+  "short_name": "frontend",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",

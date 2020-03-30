@@ -78,3 +78,8 @@ float: left;
 button.right{
 float: right;
 }
+
+.center{
+  display: flex;
+  justify-content: center;
+}

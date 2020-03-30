@@ -23,6 +23,7 @@ export class RegisterComponent implements OnInit {
   isValidOptionalPhoto: boolean;
   isValidSurname: boolean;
 
+  optionalPhotoUrl: string; // Para la preview
   optionalPhoto: any;
 
   showError = false;
@@ -191,10 +192,31 @@ export class RegisterComponent implements OnInit {
   }
 
   getOptionalPhotoAndValidate($event: Event) {
+    this.isValidOptionalPhoto = true;
+    this.optionalPhotoUrl = '';
     Array.from($event.target['files']).forEach(element => {
-      this.optionalPhoto = element;
+      const fileName = element['name'];
+      if (this.checkExtension(fileName)) {
+        this.optionalPhoto = element;
+        this.showPreview(element);
+      } else {
+        this.isValidOptionalPhoto = false;
+      }
     });
-    // this.validateAnimalPhoto();
+  }
+
+  showPreview(file: any) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.optionalPhotoUrl = reader.result as string;
+    };
+    reader.readAsDataURL(file as any);
+  }
+
+  checkExtension(filename: string) {
+    const validExtensions = ['jpg', 'png', 'jpeg'];
+    const fileExtension = filename.split('.').pop().toLowerCase();
+    return validExtensions.includes(fileExtension);
   }
 
   backToLogin() {
@@ -215,5 +237,6 @@ export class RegisterComponent implements OnInit {
     this.cleanError();
     this.cleanSuccess();
     this.initializeForm();
+    this.optionalPhotoUrl = '';
   }
 }

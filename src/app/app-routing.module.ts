@@ -1,19 +1,15 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { AdoptionListPageComponent } from './pages/adoption/list/adoption-list-page.component';
 import { CreateComponent as  CreateComponentBreeding} from './pages/breeding/create/create.component';
 import { CreateComponent as CreateComponentAdoption} from './pages/adoption/create/create.component';
 import { BreedingListPageComponent } from './pages/breeding/list/breeding-list-page.component';
-import { from } from 'rxjs';
 import { AdoptionDisplayComponent } from './components/adoption/adoption-display/adoption-display.component';
 import { BreedingDisplayComponent } from './components/breeding/breeding-display/breeding-display.component';
 import { LoginRegisterComponent } from './pages/login-register/login-register.component';
 import { VetComponent } from './components/vet/vet.component';
 import { BreedingPendingListPageComponent } from './pages/breeding/pending-list/breeding-pending-list-page.component';
-import { BreedingPersonalListComponent } from './components/breeding/breeding-personal-list/breeding-personal-list.component';
-import { AdoptionListComponent } from './components/adoption/adoption-list/adoption-list.component';
-import { AdoptionPersonalListComponent } from './components/adoption/adoption-personal-list/adoption-personal-list.component';
 import { PersonalListComponent } from './pages/breeding/personal-list/personal-list.component';
 import { PersonalListAdoptionComponent } from './pages/adoption/personal-list-adoption/personal-list-adoption.component';
 import { EditComponent as EditComponentBreeding} from './pages/breeding/edit/edit.component';
@@ -25,6 +21,11 @@ import { EditParticularComponent } from './pages/breeding/edit-particular/edit-p
 import { CreateComponent as CreateComponentAnimal } from './pages/animal/create/create.component';
 import { EditComponent as EditComponentAnimal } from './pages/animal/edit/edit.component';
 import { PendingListComponent } from './pages/animal/pending-list/pending-list.component';
+import { VetAdvertisementComponent } from './components/vet-advertisement/vet-advertisement.component';
+import { HorizontalAdvertisementComponent } from './components/vets-advertisements/horizontal-advertisement/horizontal-advertisement.component';
+import { VerticalLeftAdvertisementComponent } from './components/vets-advertisements/vertical-left-advertisement/vertical-left-advertisement.component';
+import { VerticalRightAdvertisementComponent } from './components/vets-advertisements/vertical-right-advertisement/vertical-right-advertisement.component';
+
 
 const routes: Routes = [
 {path: '', component: HomeComponent},
