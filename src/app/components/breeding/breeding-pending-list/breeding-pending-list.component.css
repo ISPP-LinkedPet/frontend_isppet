@@ -6,7 +6,7 @@ h1{
 
 div{
     width: 90%;
-    margin: 20px 60px 0px 60px;
+    margin: 20px 3% 0px 0px;
     color: black;
 }
 
@@ -16,10 +16,6 @@ img{
     border-radius: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
-}
-
-.card-body{
-    margin-top: auto;
 }
 
 .description-content{
@@ -35,3 +31,5 @@ button{
     display: flex;
     justify-content: center;
   }
+
+  

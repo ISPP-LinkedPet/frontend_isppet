@@ -3,3 +3,11 @@
     left: 70%; /* Buscamos el centro vertical (relativo) del navegador */
     margin-left: -160px;
 }
+
+
+/*@media (max-width: 500px) { 
+
+ .images{
+     margin-left: 10%;
+  }
+}*/

@@ -1,21 +1,22 @@
 
 
 h1{
-    margin: 10px 10px 10px 10px;
+    margin: 0px 10px 10px 10px;
 }
 
 div{
     width: 90%;
-    margin: 20px 60px 0px 60px;
+    margin: 10px 0 0px 0;
     color: black;
+    margin-left: 5%;
 }
 
 img{
     width: 27%;
     float: right;
     border-radius: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
+    margin-right: 5%;
+    margin-bottom: 5%;
 }
 
 .card-body{
@@ -34,4 +35,4 @@ button{
 .center{
     display: flex;
     justify-content: center;
-  }
+}

@@ -65,6 +65,15 @@ export class BreedingCreateComponent implements OnInit {
 
   ngOnInit() {
 
+    //Security 
+    if(!this.creating && this.rol == 'particular'){
+    this.breedingService.getPersonalBreedings(this.userlogged.id).then(res=>{
+      if(!res.map(o=>o.id).includes(this.editBreeding.publication_id)){
+        this.router.navigate(['/breeding-personal-list'])
+      }
+    })
+  }
+
     this.editBreeding = this.editBreeding || {};
     this.breedingForm = new FormGroup({
       title: new FormControl(
@@ -221,6 +230,7 @@ export class BreedingCreateComponent implements OnInit {
 
     // edit prticular
     if(!this.creating && this.rol == 'particular' && this.isValidPrice && this.isValidAnimalPhoto && this.isValidLocation && this.isValidIdentificationPhoto && this.isValidVaccinePassaport){
+      
       const animalPhoto = this.animalPhoto.nativeElement.files;
       const vaccinePassaport = this.vaccinePassaport.nativeElement.files;
       const identificationPhoto = this.identificationPhoto.nativeElement.files;

@@ -61,4 +61,5 @@
   </div>
 </div>
 <pagination class="center" [totalItems]="requests.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
-<app-footer></app-footer>
+<div class="foot-fixed col-sm-13" *ngIf="!(returnedRequest.length >1) "><app-footer></app-footer></div>
+<div class="foot col-sm-13" *ngIf="returnedRequest.length > 1"><app-footer></app-footer></div>
