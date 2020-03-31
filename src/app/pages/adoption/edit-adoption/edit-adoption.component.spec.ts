@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { EditAdoptionComponent } from './edit-adoption.component';
+import { RouterTestingModule } from "@angular/router/testing";
 
 describe('EditAdoptionComponent', () => {
   let component: EditAdoptionComponent;
@@ -8,6 +9,7 @@ describe('EditAdoptionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientModule, RouterTestingModule],
       declarations: [ EditAdoptionComponent ]
     })
     .compileComponents();

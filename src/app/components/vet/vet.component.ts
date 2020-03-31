@@ -3,7 +3,6 @@ import {environment} from 'src/environments/environment';
 import { VetService } from 'src/app/services/vet/vet.service';
 import * as mapboxgl from 'mapbox-gl';
 
-
 @Component({
   selector: 'app-vet',
   templateUrl: './vet.component.html',

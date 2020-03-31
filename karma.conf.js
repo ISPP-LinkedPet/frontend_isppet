@@ -30,9 +30,17 @@ module.exports = function (config) {
             MyHeadlessChrome: {
                 base: 'ChromeHeadless',
                 flags: ['--disable-translate', '--disable-extensions', '--remote-debugging-port=9223', '--watch=false']
+            },
+            ChromeHeadlessNoSandbox: {
+                base: 'ChromeHeadless',
+                flags: ['--no-sandbox']
             }
         },
         singleRun: false,
-        restartOnFileChange: true
+        restartOnFileChange: true,
+        captureTimeout: 210000,
+        browserDisconnectTolerance: 3,
+        browserDisconnectTimeout : 210000,
+        browserNoActivityTimeout : 210000
     });
 };
