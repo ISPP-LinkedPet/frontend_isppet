@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {environment} from '../../../../environments/environment';
-import {Router} from "@angular/router";
+import { environment } from '../../../../environments/environment';
+import { Router } from '@angular/router';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { ConfigService } from '../../../services/config/config.service';
@@ -44,10 +44,14 @@ export class AnimalFormComponent implements OnInit {
   env = environment.endpoint
   animalPhotos: any[] = [];
   identification_photos: any[] = [];
-  vaccine_photos :any[] = [];
+  vaccine_photos: any[] = [];
 
   // Icons
   faTimes = faTimes;
+
+  checkType = true;
+  checkGenre = true;
+  checkPedigree = true;
 
   constructor(
     private animalService: AnimalService,
@@ -83,8 +87,8 @@ export class AnimalFormComponent implements OnInit {
     this.validationFields('default');
   }
 
-  requiredInput(){
-    if(!this.creating){
+  requiredInput() {
+    if (!this.creating) {
       return [Validators.required]
     }
     return []
@@ -92,32 +96,35 @@ export class AnimalFormComponent implements OnInit {
 
   // validations
   validateBreed() {
-    if(!this.creating && this.rol == 'moderator'){
+    if (!this.creating && this.rol == 'moderator') {
       this.isValidBreed = this.animalForm.get('breed').valid;
     }
   }
   validateGenre() {
-    if(!this.creating && this.rol=='moderator'){
-      this.isValidGenre = ['Male','Female'].includes(this.animalForm.get('genre').value);
+    if (!this.creating && this.rol == 'moderator') {
+      this.isValidGenre = ['Male', 'Female'].includes(this.animalForm.get('genre').value);
+      this.checkGenre = this.animalForm.get('genre').value === '';
     }
     console.log(this.animalForm.get('genre').value);
   }
   validateAge() {
-    if(!this.creating && this.rol=='moderator'){
+    if (!this.creating && this.rol == 'moderator') {
       this.isValidAge = this.animalForm.get('birth_date').valid;
     }
   }
   validateType() {
-    if(!this.creating && this.rol=='moderator'){
-      this.isValidType = ['Dog','Cat', 'Horse'].includes(this.animalForm.get('type').value);
+    if (!this.creating && this.rol == 'moderator') {
+      this.isValidType = ['Dog', 'Cat', 'Horse'].includes(this.animalForm.get('type').value);
+      this.checkType = this.animalForm.get('type').value === '';
     }
   }
   validatePedigree() {
-    if(!this.creating && this.rol=='moderator'){
-      this.isValidPedigri = ['1','0'].includes(this.animalForm.get('pedigree').value);
+    if (!this.creating && this.rol == 'moderator') {
+      this.isValidPedigri = ['1', '0'].includes(this.animalForm.get('pedigree').value);
+      this.checkPedigree = this.animalForm.get('pedigree').value === '';
     }
   }
-  validateAnimalPhoto(){
+  validateAnimalPhoto() {
     this.isValidAnimalPhoto = this.animalForm.get('animal_photo').valid;
   }
   validateIdentificationPhoto() {
@@ -164,54 +171,54 @@ export class AnimalFormComponent implements OnInit {
     const formData: FormData = new FormData();
 
     // si se está creando
-    if(this.creating && this.rol == 'particular' && this.isValidAnimalPhoto && this.isValidIdentificationPhoto && this.isValidVaccinePassport){
+    if (this.creating && this.rol == 'particular' && this.isValidAnimalPhoto && this.isValidIdentificationPhoto && this.isValidVaccinePassport) {
       const animalPhoto = this.animalPhotos
       const vaccinePassport = this.vaccine_photos
       const identificationPhoto = this.identification_photos;
 
-      for(let i = 0; i < animalPhoto.length; i++) formData.append('animal_photo', animalPhoto[i], animalPhoto[i].name);
-      for(let i = 0; i < vaccinePassport.length; i++) formData.append('vaccine_passport', vaccinePassport[i], vaccinePassport[i].name);
-      for(let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
+      for (let i = 0; i < animalPhoto.length; i++) formData.append('animal_photo', animalPhoto[i], animalPhoto[i].name);
+      for (let i = 0; i < vaccinePassport.length; i++) formData.append('vaccine_passport', vaccinePassport[i], vaccinePassport[i].name);
+      for (let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
 
       this.animalService.createAnimal(formData).then(x => {
         alert("¡Tu animal se ha creado correctamente! \n Ahora debe de revisarlo un moderador")
         this.router.navigate(['/profile'])
-      }).catch (error => {
+      }).catch(error => {
         this.backError = error.error.error
       });
     }
 
     // edit prticular
-    if(!this.creating && this.rol == 'particular' && this.isValidAnimalPhoto && this.isValidIdentificationPhoto && this.isValidVaccinePassport){
+    if (!this.creating && this.rol == 'particular' && this.isValidAnimalPhoto && this.isValidIdentificationPhoto && this.isValidVaccinePassport) {
       const animalPhoto = this.animalPhoto.nativeElement.files;
       const vaccinePassport = this.vaccinePassport.nativeElement.files;
       const identificationPhoto = this.identificationPhoto.nativeElement.files;
 
-      for(let i = 0; i < animalPhoto.length; i++) formData.append('animal_photo', animalPhoto[i], animalPhoto[i].name);
-      for(let i = 0; i < vaccinePassport.length; i++) formData.append('vaccine_passport', vaccinePassport[i], vaccinePassport[i].name);
-      for(let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
+      for (let i = 0; i < animalPhoto.length; i++) formData.append('animal_photo', animalPhoto[i], animalPhoto[i].name);
+      for (let i = 0; i < vaccinePassport.length; i++) formData.append('vaccine_passport', vaccinePassport[i], vaccinePassport[i].name);
+      for (let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
 
       this.animalService.editAnimal(this.editAnimal.animalId, formData).then(x => {
         alert("¡Tu animal se ha editado correctamente! \n Ahora debe de revisarlo un moderador")
         this.router.navigate(['/profile'])
-      }).catch (error => {
+      }).catch(error => {
         this.backError = error.error.error
       });
     }
 
     // si lo está editando un moderador
-    if(!this.creating && this.rol == 'moderator' && this.isValidBreed && this.isValidGenre && this.isValidAge && this.isValidType && this.isValidPedigri){
+    if (!this.creating && this.rol == 'moderator' && this.isValidBreed && this.isValidGenre && this.isValidAge && this.isValidType && this.isValidPedigri) {
 
       formData.append('genre', this.animalForm.value.genre);
       formData.append('breed', this.animalForm.value.breed);
       formData.append('birth_date', this.animalForm.value.birth_date);
       formData.append('type', this.animalForm.value.type);
       formData.append('pedigree', this.animalForm.value.pedigree);
-      
+
       this.animalService.acceptAnimal(formData, this.editAnimal.id).then(x => {
         alert("¡El animal a publicar se ha aceptado correctamente! \n Se ha publicado en la lista de crianzas")
         this.router.navigate(['/animal-pending'])
-      }).catch (error => this.backError = error.error.error);
+      }).catch(error => this.backError = error.error.error);
     }
   }
 
@@ -220,10 +227,10 @@ export class AnimalFormComponent implements OnInit {
       alert("¡El animal a publicar rechazado correctamente!")
 
       this.router.navigate(['/animal-pending'])
-    }).catch (error => this.backError = error.error.error);
+    }).catch(error => this.backError = error.error.error);
   }
 
-  validationFields(type?:string) {
+  validationFields(type?: string) {
     this.validateAge();
     this.validateAnimalPhoto();
     this.validateBreed();
@@ -246,30 +253,30 @@ export class AnimalFormComponent implements OnInit {
     }
   }
 
-  deleteImageAnimalPhotos(imageName){
+  deleteImageAnimalPhotos(imageName) {
     for (let index = 0; index < this.animalPhotos.length; index++) {
       let element = this.animalPhotos[index];
-      if(element==imageName){
-        this.animalPhotos.splice( index, 1 );
+      if (element == imageName) {
+        this.animalPhotos.splice(index, 1);
         break;
       }
     }
   }
 
-  deleteIDPhotos(imageName){
+  deleteIDPhotos(imageName) {
     for (let index = 0; index < this.identification_photos.length; index++) {
       let element = this.identification_photos[index];
-      if(element==imageName){
-        this.identification_photos.splice( index, 1 );
+      if (element == imageName) {
+        this.identification_photos.splice(index, 1);
         break;
       }
     }
   }
 
-  deleteVetPhoto(imageName){
+  deleteVetPhoto(imageName) {
     for (let index = 0; index < this.vaccine_photos.length; index++) {
       let element = this.vaccine_photos[index];
-      if(element==imageName){
+      if (element == imageName) {
         this.vaccine_photos.splice(index, 1);
         break;
       }
