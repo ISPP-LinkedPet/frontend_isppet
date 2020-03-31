@@ -15,7 +15,7 @@
             <p class="card-text">Precio: {{breedingListPageComponent.selectedBreeding.price}} </p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Animal: {{breedingListPageComponent.selectedBreeding.type}}</li>
+            <li class="list-group-item">Animal: {{configService.translateType(breedingListPageComponent.selectedBreeding.type)}}</li>
             <li class="list-group-item">Raza: {{breedingListPageComponent.selectedBreeding.breed}}</li>
             <li class="list-group-item">Pedigree: {{breedingListPageComponent.selectedBreeding.pedigree == 1 ? 'Sí' : 'No'}}</li>
             <li class="list-group-item">Edad: {{breedingListPageComponent.configService.calculateAge(breedingListPageComponent.selectedBreeding.birth_date)}}</li>

@@ -3,6 +3,7 @@ import {BreedingListPageComponent} from '../../../pages/breeding/list/breeding-l
 import {BreedingService} from 'src/app/services/breeding/breeding.service'
 import { environment } from 'src/environments/environment';
 import {Router} from "@angular/router";
+import { ConfigService } from 'src/app/services/config/config.service';
 
 
 @Component({
@@ -14,7 +15,8 @@ import {Router} from "@angular/router";
 
 export class BreedingDisplayComponent implements OnInit {
   env = environment.endpoint;
-  constructor(public breedingListPageComponent: BreedingListPageComponent, public breedingService: BreedingService, private router: Router ) { }
+  constructor(public breedingListPageComponent: BreedingListPageComponent, public breedingService: BreedingService, private router: Router
+    , public configService: ConfigService ) { }
 
   ngOnInit(): void {
   
