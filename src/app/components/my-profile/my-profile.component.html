@@ -43,9 +43,9 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Tipo de animal: {{pet.type}}</p>
+                            <p class="card-text">Tipo de animal: {{configService.translateType(pet.type)}}</p>
                             <p class="card-text">Raza: {{pet.breed}}</p>
-                            <p class="card-text">Genero: {{pet.genre}} </p>
+                            <p class="card-text">Genero: {{pet.genre == 'Male' ? 'Macho' : 'Hembra'}} </p>
                             <p class="card-text">Edad: {{configService.calculateAge(pet.birth_date)}}</p>
                         </div>
                     </div>
