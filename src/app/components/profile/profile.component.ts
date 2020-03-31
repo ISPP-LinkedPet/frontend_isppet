@@ -3,7 +3,6 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 import { ConfigService } from 'src/app/services/config/config.service';
 import { ActivatedRoute } from "@angular/router";
 import { Router } from '@angular/router';
-
 import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-profile',
@@ -14,7 +13,7 @@ export class ProfileComponent implements OnInit {
   id = null;
   particular: any;
   env = environment.endpoint;
-  reviews = [];
+  reviews : any;
   canSee: boolean;
   numReviews = 0;
   private sub: any;
@@ -36,8 +35,10 @@ export class ProfileComponent implements OnInit {
       this.profileService.getParticularById(this.id).then(res => {
         this.particular = res;
       });
-      this.profileService.getReviewsByParticularId(this.id).then(element => this.reviews.push(element));
-      this.numReviews = this.reviews.length;
+      this.profileService.getReviewsByParticularId(this.id).then(element =>{
+        this.reviews=element;
+        this.numReviews = this.reviews.length;
+      } );
     });
 
   }
