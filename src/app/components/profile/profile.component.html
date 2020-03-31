@@ -25,6 +25,25 @@
             <p class="card-text">Descripción: {{review.review_description}} </p>
           </div>
         </div>
+        <div class="card-body" *ngIf="numPets>0">
+          <h1>Mascotas registradas</h1>
+          <div class="card-body" *ngFor="let pet of pets;">
+              <div class="row">
+                  <div class="col-md-3"
+                      *ngFor="let img of pet.animal_photo.replace(' ', '').split(','); let i = index">
+                      <a href="{{env}}/{{img}}" target="_blank"><img id="imagen{{i}}" src="{{env}}/{{img}}"
+                              alt="img{{i}}">
+                      </a>
+                  </div>
+              </div>
+              <div class="card-body">
+                  <p class="card-text">Tipo de animal: {{pet.type}}</p>
+                  <p class="card-text">Raza: {{pet.breed}}</p>
+                  <p class="card-text">Genero: {{pet.genre}} </p>
+                  <p class="card-text">Edad: {{configService.calculateAge(pet.birth_date)}}</p>
+              </div>
+          </div>
+      </div>
         <div class="card-body">
           <button type="button" class="btn btn-primary" [routerLink]="['/request']">Volver a mis ofertas</button>
         </div>

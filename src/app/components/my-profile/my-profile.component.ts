@@ -24,13 +24,13 @@ export class MyProfileComponent implements OnInit {
   ngOnInit(): void {
     this.profileService.getParticularLogged().then(res => {
       this.particular = res;
+      console.log(this.particular);
       this.profileService.getReviewsByParticularId(this.particular.particular.id).then(element =>{
         this.reviews=element;
         this.numReviews = this.reviews.length;
       } );
       this.profileService.getPetsByParticularId(this.particular.particular.id).then(element =>{
         this.pets=element;
-        console.log(this.pets);
         this.numPets = this.pets.length;
       } );
     });

@@ -16,13 +16,15 @@ export class ProfileComponent implements OnInit {
   reviews : any;
   canSee: boolean;
   numReviews = 0;
+  pets :any;
+  numPets = 0;
   private sub: any;
 
   userlogged = this.configService.getUserLogged();
   rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
 
   constructor(private profileService: ProfileService,
-              private router: Router, private route: ActivatedRoute, private configService: ConfigService) { }
+              private router: Router, private route: ActivatedRoute, public configService: ConfigService) { }
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
@@ -38,6 +40,10 @@ export class ProfileComponent implements OnInit {
       this.profileService.getReviewsByParticularId(this.id).then(element =>{
         this.reviews=element;
         this.numReviews = this.reviews.length;
+      } );
+      this.profileService.getPetsByParticularId(this.particular.particular.id).then(element =>{
+        this.pets=element;
+        this.numPets = this.pets.length;
       } );
     });
 
