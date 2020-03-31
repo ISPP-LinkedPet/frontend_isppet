@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { RequestListAcceptedItemComponent } from './request-list-accepted-item.component';
+import { RouterTestingModule } from "@angular/router/testing";
+import { ToastrModule } from 'ngx-toastr';
 
 describe('RequestListAcceptedItemComponent', () => {
   let component: RequestListAcceptedItemComponent;
@@ -8,6 +10,7 @@ describe('RequestListAcceptedItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientModule, RouterTestingModule, ToastrModule.forRoot()],
       declarations: [ RequestListAcceptedItemComponent ]
     })
     .compileComponents();
@@ -20,6 +23,6 @@ describe('RequestListAcceptedItemComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

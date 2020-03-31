@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { VetAdvertisementComponent } from './vet-advertisement.component';
+import { RouterTestingModule } from "@angular/router/testing";
+import { ToastrModule } from 'ngx-toastr';
 
 describe('VetAdvertisementComponent', () => {
   let component: VetAdvertisementComponent;
@@ -8,7 +10,8 @@ describe('VetAdvertisementComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VetAdvertisementComponent ]
+      imports: [HttpClientModule, RouterTestingModule, ToastrModule.forRoot()],
+      declarations: [ VetAdvertisementComponent ],
     })
     .compileComponents();
   }));
@@ -16,10 +19,11 @@ describe('VetAdvertisementComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(VetAdvertisementComponent);
     component = fixture.componentInstance;
+    component.lateralAds = [{lateral_banner: 'jajaxd.jpg'}, {lateral_banner: 'joserager.jpg'}];
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });
