@@ -6,7 +6,7 @@
           <div class="card-body">
           <p class="card-text">Fotos subidas por el publicante:</p>
           <div class="row">
-            <div clas="col-md3" *ngFor="let img of breedingListPageComponent.selectedBreeding.animal_photo.replace(' ', '').split(','); let i = index">
+            <div clas="col-md3 " *ngFor="let img of breedingListPageComponent.selectedBreeding.animal_photo.replace(' ', '').split(','); let i = index">
               <a href="{{env}}/{{img}}" target="_blank"><img class = "img-thumbnail" id="imagen{{i}}" style="height: 150px; display: block;" src="{{env}}/{{img}}" alt="img{{i}}" ></a>
             </div>
           </div>
@@ -15,7 +15,7 @@
             <p class="card-text">Precio: {{breedingListPageComponent.selectedBreeding.price}} </p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Animal: {{breedingListPageComponent.selectedBreeding.type}}</li>
+            <li class="list-group-item">Animal: {{configService.translateType(breedingListPageComponent.selectedBreeding.type)}}</li>
             <li class="list-group-item">Raza: {{breedingListPageComponent.selectedBreeding.breed}}</li>
             <li class="list-group-item">Pedigree: {{breedingListPageComponent.selectedBreeding.pedigree == 1 ? 'Sí' : 'No'}}</li>
             <li class="list-group-item">Edad: {{breedingListPageComponent.configService.calculateAge(breedingListPageComponent.selectedBreeding.birth_date)}}</li>

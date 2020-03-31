@@ -17,6 +17,7 @@ import {AdoptionDisplayComponent} from './components/adoption/adoption-display/a
 import {BreedingListComponent} from './components/breeding/breeding-list/breeding-list.component';
 import {SlidePanelComponent} from './components/auxiliar/slide-panel/slide-panel.component';
 import { PaymentComponent } from './components/auxiliar/payment/payment.component';
+import { ProfileComponent} from './components/profile/profile.component';
 
 // Pages
 import {HomeComponent} from './pages/home/home.component';
@@ -25,12 +26,14 @@ import {BreedingDisplayComponent} from './components/breeding/breeding-display/b
 import {AdoptionListPageComponent} from './pages/adoption/list/adoption-list-page.component';
 // Services
 import {AdoptionService} from './services/adoption/adoption.service';
+import {AnimalService} from './services/animal/animal.service';
 import {BreedingService} from './services/breeding/breeding.service';
 import {ConfigService} from './services/config/config.service';
 import {BreedingCreateComponent} from './components/breeding/breeding-form/breeding-form.component';
 import {ErrorComponent} from './components/error/error.component';
 import {CreateComponent as CreateBreedingComponent} from './pages/breeding/create/create.component';
 import {CreateComponent as CreateAdoptionComponent} from './pages/adoption/create/create.component';
+import {CreateComponent as CreateAnimalComponent} from './pages/animal/create/create.component';
 import {LoginService} from './services/login/login.service';
 import {AdoptionListComponent} from './components/adoption/adoption-list/adoption-list.component';
 import { AdotionFormComponent } from './components/adoption/adotion-form/adotion-form.component';
@@ -48,16 +51,34 @@ import { AdoptionPendingListComponent } from './components/adoption/adoption-pen
 import { EditAdoptionComponent } from './pages/adoption/edit-adoption/edit-adoption.component';
 import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-moderator/adoption-pending-list-page.component';
 import { RequestListAcceptedComponent } from './components/request/request-list-accepted/request-list-accepted.component';
+// tslint:disable-next-line: max-line-length
 import { RequestListAcceptedItemComponent } from './components/request/request-list-accepted/request-list-accepted-item/request-list-accepted-item.component';
 import { EditParticularComponent } from './pages/breeding/edit-particular/edit-particular.component';
+import {EditComponent as EditAnimalComponent} from './pages/animal/edit/edit.component';
 
-//Bootstrap
+/*Bootstrap*/
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AnimalFormComponent } from './components/animal/animal-form/animal-form.component';
+import { CreateComponent } from './pages/animal/create/create.component';
+import { AnimalPendingListComponent } from './components/animal/animal-pending-list/animal-pending-list.component';
+import { PendingListComponent } from './pages/animal/pending-list/pending-list.component';
+
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RatingComponent } from './components/rating/rating.component';
+import { VetAdvertisementComponent } from './components/vet-advertisement/vet-advertisement.component';
+// tslint:disable-next-line: max-line-length
+import { HorizontalAdvertisementComponent } from './components/vets-advertisements/horizontal-advertisement/horizontal-advertisement.component';
+// tslint:disable-next-line: max-line-length
+import { VerticalLeftAdvertisementComponent } from './components/vets-advertisements/vertical-left-advertisement/vertical-left-advertisement.component';
+// tslint:disable-next-line: max-line-length
+import { VerticalRightAdvertisementComponent } from './components/vets-advertisements/vertical-right-advertisement/vertical-right-advertisement.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -97,7 +118,19 @@ import { RatingComponent } from './components/rating/rating.component';
     RequestListAcceptedItemComponent,
     EditParticularComponent,
     PaymentComponent,
-    RatingComponent
+    AnimalFormComponent,
+    CreateComponent,
+    CreateAnimalComponent,
+    EditAnimalComponent,
+    AnimalPendingListComponent,
+    PendingListComponent,
+    RatingComponent,
+    VetAdvertisementComponent,
+    HorizontalAdvertisementComponent,
+    VerticalLeftAdvertisementComponent,
+    VerticalRightAdvertisementComponent,
+    ProfileComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -111,10 +144,13 @@ import { RatingComponent } from './components/rating/rating.component';
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     ToastrModule.forRoot(),
-    FontAwesomeModule
+    FontAwesomeModule,
+    PaginationModule.forRoot(),
+    NgbModule
   ],
   providers: [
     AdoptionService,
+    AnimalService,
     BreedingService,
     ConfigService,
     LoginService],

@@ -127,7 +127,7 @@
                               <div class="input-group-prepend">
                                   <span class="input-group-text">€</span>
                               </div>
-                              <input type="text" class="form-control" [readOnly]="rol=='moderator'" formControlName="price" aria-label="Amount (to the nearest dollar)" (change)="validatePrice()">
+                              <input type="number" class="form-control" [readOnly]="rol=='moderator'" formControlName="price" aria-label="Amount (to the nearest dollar)" (change)="validatePrice()">
                               <div class="input-group-append">
                                   <span class="input-group-text">.00</span>
                               </div>
@@ -138,9 +138,9 @@
                           <label class="form-control-label" for="age">Precio</label>
                           <div class="input-group mb-3">
                               <div class="input-group-prepend">
-                                  <span class="input-group-text">$</span>
+                                  <span class="input-group-text">€</span>
                               </div>
-                              <input type="text" class="form-control is-invalid" formControlName="price" aria-label="Amount (to the nearest dollar)" (change)="validatePrice()">
+                              <input type="number" class="form-control is-invalid" formControlName="price" aria-label="Amount (to the nearest dollar)" (change)="validatePrice()">
                               <div class="input-group-append">
                                   <span class="input-group-text">.00</span>
                               </div>
@@ -288,7 +288,7 @@
               </fieldset>
               <button *ngIf="rol == 'particular' && !creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Editar</button>
               <button *ngIf="rol == 'particular' && creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Crear</button>
-              <button *ngIf="rol == 'moderator'" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Acceptar</button>
+              <button *ngIf="rol == 'moderator'" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Aceptar</button>
               <button *ngIf="rol == 'moderator'" (click)="rejectPublication()" class="btn btn-secondary btn-lg button-form right">Rechazar</button>
           </form>
           <div class="invalid-feedback">{{backError}} {{backError|json}}</div>

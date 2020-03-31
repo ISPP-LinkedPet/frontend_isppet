@@ -18,6 +18,16 @@ import { EditAdoptionComponent} from './pages/adoption/edit-adoption/edit-adopti
 import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-moderator/adoption-pending-list-page.component';
 import { RequestListAcceptedComponent } from './components/request/request-list-accepted/request-list-accepted.component';
 import { EditParticularComponent } from './pages/breeding/edit-particular/edit-particular.component';
+import { CreateComponent as CreateComponentAnimal } from './pages/animal/create/create.component';
+import { EditComponent as EditComponentAnimal } from './pages/animal/edit/edit.component';
+import { PendingListComponent } from './pages/animal/pending-list/pending-list.component';
+import { VetAdvertisementComponent } from './components/vet-advertisement/vet-advertisement.component';
+import { HorizontalAdvertisementComponent } from './components/vets-advertisements/horizontal-advertisement/horizontal-advertisement.component';
+import { VerticalLeftAdvertisementComponent } from './components/vets-advertisements/vertical-left-advertisement/vertical-left-advertisement.component';
+import { VerticalRightAdvertisementComponent } from './components/vets-advertisements/vertical-right-advertisement/vertical-right-advertisement.component';
+import { ProfileComponent} from './components/profile/profile.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+
 
 const routes: Routes = [
 {path: '', component: HomeComponent},
@@ -38,6 +48,11 @@ const routes: Routes = [
 {path: 'adoption-pending', component: AdoptionPendingListPageComponent},
 {path: 'adoption-edit/:id', component: EditAdoptionComponent},
 {path: 'request/accepted/:createdOrReceived', component: RequestListAcceptedComponent},
+{path: 'profile/:id', component: ProfileComponent},
+{path: 'my-profile', component: MyProfileComponent},
+{path: 'animal', component: CreateComponentAnimal},
+{path: 'animal-edit/:id', component: EditComponentAnimal},
+{path: 'animal-pending', component: PendingListComponent}
 ];
 
 @NgModule({

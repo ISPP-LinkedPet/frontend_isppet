@@ -61,5 +61,16 @@ export class ConfigService {
 
     return totalAge;
   }
+
+  translateType(type){
+    if(type=="Horse"){
+      return "Caballo"
+    }else if(type=="Dog"){
+      return "Perro"
+    }else if(type=="Cat"){
+      return "Gato"
+    }
+  }
+  
 }
 

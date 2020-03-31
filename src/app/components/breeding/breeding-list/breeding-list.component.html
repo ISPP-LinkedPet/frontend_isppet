@@ -1,6 +1,5 @@
 <!--Foreach Advertisement-->
-
-<div class="mb-3">
+<div class="mb-3 ">
   <h1 class="display-4">Lista de crianza</h1>
   <button
     routerLink="/breeding"
@@ -70,7 +69,7 @@
   </form>
 </div>
 
-<div class="card border-success mb-3" *ngFor="let breedingAd of breedings">
+<div class="card border-success mb-3" *ngFor="let breedingAd of returnedBreedings">
   <h3 class="card-header">
     {{ breedingAd.breed }} en {{ breedingAd.location }}
   </h3>
@@ -81,18 +80,22 @@
     />
     <div class="description-content">
       <ul>
-        <li>
+        <li class="card-text">
           <label><strong>Edad: </strong></label>
           {{ this.configService.calculateAge(breedingAd.birth_date) }}
         </li>
-        <li>
+        <li class="card-text">
+          <label><strong>Animal: </strong></label>
+          {{ this.configService.translateType(breedingAd.type) }}
+        </li>
+        <li class="card-text">
           <label><strong>Pedigree: </strong></label>
           {{ breedingAd.pedigree ? "Sí" : "No" }}
         </li>
-        <li>
+        <li class="card-text">
           <label><strong>Ubicación: </strong></label> {{ breedingAd.location }}
         </li>
-        <li>
+        <li class="card-text">
           <label><strong>Precio: </strong></label> {{ breedingAd.price }} euros
         </li>
       </ul>
@@ -106,3 +109,5 @@
     </button>
   </div>
 </div>
+<pagination class="center" [totalItems]="breedings.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)">
+</pagination>

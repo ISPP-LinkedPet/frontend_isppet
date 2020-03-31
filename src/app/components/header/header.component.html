@@ -72,9 +72,20 @@
             >Adopciones Pendientes</a
           >
         </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            *ngIf="rol == 'moderator'"
+            routerLink="/animal-pending"
+            >Animales Pendientes</a
+          >
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link" *ngIf="rol == 'particular'">Panel</a>
           <div class="dropdown-content">
+            <a class="nav-link" routerLink="/my-profile"
+            >Mi perfil</a
+            >
             <a class="nav-link" routerLink="/breeding-personal-list"
               >Mis Anuncios de Crianza</a
             >

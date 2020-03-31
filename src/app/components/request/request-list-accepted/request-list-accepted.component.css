@@ -15,4 +15,15 @@
   bottom: 0;
   width: 100%;
   text-align: center;
+  z-index: 4;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+}
+
+div{
+  width: 100%;
+  margin-top: 80px;
 }
