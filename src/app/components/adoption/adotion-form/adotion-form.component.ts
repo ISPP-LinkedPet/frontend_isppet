@@ -40,6 +40,7 @@ export class AdotionFormComponent implements OnInit {
   documentVerified: boolean;
   adoption = new Adoption();
 
+  check = true;
 
   //utils
   animalPhotos: any[] = [];
@@ -159,12 +160,13 @@ export class AdotionFormComponent implements OnInit {
     }
     validateType() {
       this.isValidType = this.adoptionForm.get('type').valid;
+      this.check = this.adoptionForm.get('type').value === '';
+      console.log( this.adoptionForm.get('type'));
     }
     validatePedigree() {
       this.isValidPedigri = this.adoptionForm.get('pedigree').valid;
     }
     validateAnimalPhoto() {
-      console.log("validating");
       this.isValidAnimalPhoto = this.adoptionForm.get('animal_photo').valid;
     }
     validateLocation() {
@@ -182,10 +184,9 @@ export class AdotionFormComponent implements OnInit {
 
 
     getAnimalPhotoAndValidate($event: Event) {
-      console.log("hola")
       this.animalPhotos = [];
       Array.from($event.target['files']).forEach(element => {
-        this.animalPhotos.push(element)
+        this.animalPhotos.push(element);
       });
       this.validateAnimalPhoto();
     }
@@ -193,7 +194,7 @@ export class AdotionFormComponent implements OnInit {
     getIdPhotoAndValidate($event: Event) {
       this.identification_photos = [];
       Array.from($event.target['files']).forEach(element => {
-        this.identification_photos.push(element)
+        this.identification_photos.push(element);
       });
       this.validateIdentificationPhoto();
     }
@@ -201,7 +202,7 @@ export class AdotionFormComponent implements OnInit {
     getVacPhotoAndValidate($event: Event) {
       this.vaccine_photos = [];
       Array.from($event.target['files']).forEach(element => {
-        this.vaccine_photos.push(element)
+        this.vaccine_photos.push(element);
       });
       this.validateVaccinePassaport();
     }
