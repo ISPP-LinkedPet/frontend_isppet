@@ -26,12 +26,14 @@ import {BreedingDisplayComponent} from './components/breeding/breeding-display/b
 import {AdoptionListPageComponent} from './pages/adoption/list/adoption-list-page.component';
 // Services
 import {AdoptionService} from './services/adoption/adoption.service';
+import {AnimalService} from './services/animal/animal.service';
 import {BreedingService} from './services/breeding/breeding.service';
 import {ConfigService} from './services/config/config.service';
 import {BreedingCreateComponent} from './components/breeding/breeding-form/breeding-form.component';
 import {ErrorComponent} from './components/error/error.component';
 import {CreateComponent as CreateBreedingComponent} from './pages/breeding/create/create.component';
 import {CreateComponent as CreateAdoptionComponent} from './pages/adoption/create/create.component';
+import {CreateComponent as CreateAnimalComponent} from './pages/animal/create/create.component';
 import {LoginService} from './services/login/login.service';
 import {AdoptionListComponent} from './components/adoption/adoption-list/adoption-list.component';
 import { AdotionFormComponent } from './components/adoption/adotion-form/adotion-form.component';
@@ -52,6 +54,7 @@ import { RequestListAcceptedComponent } from './components/request/request-list-
 // tslint:disable-next-line: max-line-length
 import { RequestListAcceptedItemComponent } from './components/request/request-list-accepted/request-list-accepted-item/request-list-accepted-item.component';
 import { EditParticularComponent } from './pages/breeding/edit-particular/edit-particular.component';
+import {EditComponent as EditAnimalComponent} from './pages/animal/edit/edit.component';
 
 /*Bootstrap*/
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -59,6 +62,10 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AnimalFormComponent } from './components/animal/animal-form/animal-form.component';
+import { CreateComponent } from './pages/animal/create/create.component';
+import { AnimalPendingListComponent } from './components/animal/animal-pending-list/animal-pending-list.component';
+import { PendingListComponent } from './pages/animal/pending-list/pending-list.component';
 
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -111,6 +118,12 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
     RequestListAcceptedItemComponent,
     EditParticularComponent,
     PaymentComponent,
+    AnimalFormComponent,
+    CreateComponent,
+    CreateAnimalComponent,
+    EditAnimalComponent,
+    AnimalPendingListComponent,
+    PendingListComponent,
     RatingComponent,
     VetAdvertisementComponent,
     HorizontalAdvertisementComponent,
@@ -137,6 +150,7 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
   ],
   providers: [
     AdoptionService,
+    AnimalService,
     BreedingService,
     ConfigService,
     LoginService],

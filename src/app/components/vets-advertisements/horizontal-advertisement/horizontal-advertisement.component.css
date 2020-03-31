@@ -1,9 +1,11 @@
-.crop {
+div.crop {
   overflow: hidden;
-  max-height: 200px;
+ 
+}
+img {
+  margin: 0 0 -6% 0;
+  width: 100%;
+
 }
 
-.crop img {
-  width: 100%;
-  margin: 0 0 -6% 0;
-}
+

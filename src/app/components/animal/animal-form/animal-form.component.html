@@ -1,0 +1,255 @@
+<div class="container" *ngIf="animalForm != undefined">
+    <div class="card border-primary mb-3">
+        <div class="card-body">
+            <h1 class="card-title*n">Registra tu animal</h1>
+            <form [formGroup]="animalForm">
+  
+                <em *ngIf="creating" class="text-secondary">Los campos en gris están deshabilitados</em>
+                <fieldset>
+                    <legend class="card-title">Información básica</legend>
+  
+                    <div class="row">
+  
+                        <!-- Breed -->
+                        <div class="form-group col-sm" *ngIf="isValidBreed">
+                            <label for="breed">Raza</label>
+                            <input type="text" class="form-control" id="breed" [readOnly]="rol=='particular'" formControlName="breed" (change)="validateBreed()">
+                        </div>
+                        <div class="form-group has-danger col-sm" *ngIf="!isValidBreed">
+                            <label class="form-control-label" for="breed">Raza</label>
+                            <input type="text" class="form-control is-invalid" id="breed" [readOnly]="rol=='particular'" formControlName="breed" (change)="validateBreed()">
+                            <div class="invalid-feedback">Parece que se ha equivocado</div>
+                        </div>
+  
+                        <!-- Genre -->
+                        <div class="form-group col-sm" *ngIf="isValidGenre">
+                            <label for="genre">Genero</label>
+                            <div *ngIf="rol == 'particular'">
+                                <select class="form-control" id="genre" [attr.disabled]="true" formControlName="genre" (change)="validateGenre()">
+                                    <option value='' [defaultSelected]=checkGenre>Seleccione genero</option>
+                                    <option value='Male'>Macho</option>
+                                    <option value='Female'>Hembra</option>
+                                </select>
+                            </div>
+                            <div *ngIf="rol=='moderator'">
+                                <select class="form-control" id="genre" formControlName="genre" (change)="validateGenre()">
+                                    <option value='' [defaultSelected]=checkGenre>Seleccione genero</option>
+                                    <option value='Male'>Macho</option>
+                                    <option value='Female'>Hembra</option>
+                                </select>
+                            </div>
+                        </div>
+  
+                        <div class="form-group has-danger col-sm" *ngIf="!isValidGenre">
+                            <label class="form-control-label" for="genre">Genero</label>
+                            <div *ngIf="rol == 'particular'">
+                                <select class="form-control is-invalid" id="genre" [attr.disabled]="true" formControlName="genre" (change)="validateGenre()">
+                                    <option value='' [defaultSelected]=checkGenre>Seleccione genero</option>
+                                    <option value='Male'>Macho</option>
+                                    <option value='Female'>Hembra</option>
+                                </select>
+                            </div>
+  
+                            <div *ngIf="rol=='moderator'">
+                                <select class="form-control is-invalid" id="genre" formControlName="genre" (change)="validateGenre()">
+                                    <option value='' [defaultSelected]=checkGenre>Seleccione genero</option>
+                                    <option value='Male'>Macho</option>
+                                    <option value='Female'>Hembra</option>
+                                </select>
+                            </div>
+                            <div class="invalid-feedback">No olvide seleccionar un genero</div>
+                        </div>
+  
+                        <!-- Age -->
+  
+                        <div class="form-group col-sm" *ngIf="isValidAge">
+                            <label for="birth_date">Edad</label>
+                            <input type="date" class="form-control" id="birth_date" [readOnly]="rol=='particular'" formControlName="birth_date" (change)="validateAge()">
+                        </div>
+                        <div class="form-group has-danger col-sm" *ngIf="!isValidAge">
+                            <label class="form-control-label" for="birth_date">Edad</label>
+                            <input type="date" class="form-control is-invalid" id="birth_date" [readOnly]="rol=='particular'" formControlName="birth_date" (change)="validateAge()">
+                            <div class="invalid-feedback">No olvide seleccionar la edad</div>
+                        </div>
+                    </div>
+  
+                    <div class="row">
+  
+                        <!-- Animal type -->
+  
+                        <div class="form-group col-sm" *ngIf="isValidType">
+                            <label for="type">Tipo animal</label>
+                            <div *ngIf="rol=='particular'">
+                                <select class="form-control" id="type" [attr.disabled]="true" formControlName="type" (change)="validateType()">
+                                    <option value='' [defaultSelected]=checkType>Seleccione tipo animal</option>
+                                    <option value='Dog'>Perro</option>
+                                    <option value='Cat'>Gato</option>
+                                    <option value='Horse'>Caballo</option>
+                                </select>
+                            </div>
+                            <div *ngIf="rol=='moderator'">
+                                <select class="form-control" id="type" formControlName="type" (change)="validateType()">
+                                    <option value='' [defaultSelected]=checkType>Seleccione tipo animal</option>
+                                    <option value='Dog'>Perro</option>
+                                    <option value='Cat'>Gato</option>
+                                    <option value='Horse'>Caballo</option>
+                                </select>
+                            </div>
+                        </div>
+  
+                        <div class="form-group has-danger col-sm" *ngIf="!isValidType">
+                            <label class="form-control-label" for="type">Tipo de animal</label>
+                            <div *ngIf="rol=='particular'">
+                                <select class="form-control is-invalid" id="type" [attr.disabled]="true" formControlName="type" (change)="validateType()">
+                                    <option value='' [defaultSelected]=checkType>Seleccione tipo animal</option>
+                                    <option value='Dog'>Perro</option>
+                                    <option value='Cat'>Gato</option>
+                                    <option value='Horse'>Caballo</option>
+                                </select>
+                            </div>
+  
+                            <div *ngIf="rol=='moderator'">
+                                <select class="form-control is-invalid" id="type" formControlName="type" (change)="validateType()">
+                                    <option value='' [defaultSelected]=checkType>Seleccione tipo animal</option>
+                                    <option value='Dog'>Perro</option>
+                                    <option value='Cat'>Gato</option>
+                                    <option value='Horse'>Caballo</option>
+                                </select>
+                            </div>
+                            <div class="invalid-feedback">No olvide seleccionar un tipo</div>
+                        </div>
+  
+                        <!-- Pedigri -->
+  
+                        <div class="form-group col-6" *ngIf="isValidPedigri">
+                            <label for="pedigree">Pedigrí</label>
+                            <div *ngIf="rol=='particular'">
+                                <select class="form-control" id="pedigree" [attr.disabled]="true" formControlName="pedigree" (change)="validatePedigree()">
+                                    <option value='' ></option>
+                                    <option value='1'>Si</option>
+                                    <option value='0'>No</option>
+                                </select>
+                            </div>
+  
+                            <div *ngIf="rol=='moderator'">
+                                <select class="form-control" id="pedigree" formControlName="pedigree" (change)="validatePedigree()">
+                                    <option value='' ></option>
+                                    <option value='1'>Si</option>
+                                    <option value='0'>No</option>
+                                </select>
+                            </div>
+                        </div>
+  
+                        <div class="form-group has-danger col-6" *ngIf="!isValidPedigri">
+                            <label class="form-control-label" for="pedigree">Pedigrí</label>
+                            <div *ngIf="rol=='particular'">
+                                <select class="form-control is-invalid" id="pedigree" [attr.disabled]="true" formControlName="pedigree" (change)="validatePedigree()">
+                                    <option value='' [defaultSelected]=checkPedigree>Seleccione un pedigrí</option>
+                                    <option value='1'>Si</option>
+                                    <option value='0'>No</option>
+                                </select>
+                            </div>
+  
+                            <div *ngIf="rol=='moderator'">
+                                <select class="form-control is-invalid" id="pedigree" formControlName="pedigree"(change)="validatePedigree()">
+                                    <option value='' [defaultSelected]=checkPedigree>Seleccione un pedigrí</option>
+                                    <option value='1'>Si</option>
+                                    <option value='0'>No</option>
+                                </select>
+                            </div>
+                            <div class="invalid-feedback">Debe indicar si es pedigrí</div>
+                        </div>
+                                          
+                    </div>
+  
+                      <!-- Animal photo -->
+                      <div class="row">
+                        <div class="form-group col-6" *ngIf="rol != 'moderator'">
+                            <label for="animal_photo">Imagenes</label>
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input #animalPhoto type="file" class="custom-file-input" formControlName="animal_photo" name="animal_photo" id="animal_photo" (change)="getAnimalPhotoAndValidate($event)" multiple>
+                                    <label class="custom-file-label" for="animal_photo">Seleccionar imagenes</label>
+                                </div>
+                            </div>
+                            <div class="invalid-feedback" *ngIf="!isValidAnimalPhoto">Debe subir al menos 2 imágenes del animal</div>
+                        </div>
+                      </div>
+  
+                        <!-- File names -->
+                      <div class="row">
+                        <ul>
+                            <li *ngFor="let file of animalPhotos">
+                                {{file.name}} <fa-icon [icon]="faTimes" [styles]="{'stroke': 'red', 'color': 'red'}" (click)="deleteImageAnimalPhotos(file)"></fa-icon>
+                            </li>
+                        </ul>
+                      </div>
+                </fieldset>
+                <hr>
+  
+                <!-- Animal Documentation -->
+                <fieldset>
+                    <legend class="card-title">Documentación de la mascota</legend>
+  
+                      <div class="row">
+                        <!-- Identification photo -->
+                        <div class="form-group col-6" *ngIf="rol != 'moderator'">
+                            <label for="identification_photo">Identificacion de mascota</label>
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input #identificationPhoto type="file" class="custom-file-input" formControlName="identification_photo" id="identification_photo" (change)="getIdPhotoAndValidate($event)" multiple>
+                                    <label class="custom-file-label" for="identification_photo">Seleccionar imagenes</label>
+                                </div>
+                            </div>
+                            <div class="invalid-feedback" *ngIf="!isValidIdentificationPhoto">Debe subir una imagen de la identificación</div>
+                        </div>
+                      </div>
+  
+                      <div class="form-group col-4" *ngIf="rol=='moderator'">
+                          <img style="height: 250px; width: 100%; display: block;" src="{{env}}/{{editAnimal.identification_photo.split(',')[0]}}" alt="Card image">
+                      </div>
+                      <!-- File names -->
+                      <div class="row">
+                          <ul>
+                              <li *ngFor="let file of identification_photos">
+                                  {{file.name}} <fa-icon [icon]="faTimes" [styles]="{'stroke': 'red', 'color': 'red'}" (click)="deleteIDPhotos(file)"></fa-icon>
+                              </li>
+                          </ul>
+                      </div>
+  
+                    <div class="row">
+  
+                        <!-- Vaccine passport -->
+                        <div class="form-group col-6" *ngIf="rol != 'moderator'">
+                            <label for="vaccine_passport">Cartilla de vacunacion</label>
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input #vaccinePassport type="file" class="custom-file-input" formControlName="vaccine_passport" id="vaccine_passport" (change)="getVacPhotoAndValidate($event)" multiple>
+                                    <label class="custom-file-label" for="vaccine_passport">Seleccionar imagenes</label>
+                                </div>
+                            </div>
+                            <div class="invalid-feedback" *ngIf="!isValidVaccinePassport">Debe subir una imagen de la cartilla de vacunación</div>
+                        </div>
+                        <div class="form-group col-4" *ngIf="rol=='moderator'">
+                          <img style="height: 150px; width: 100%; display: block;" src="{{env}}/{{editAnimal.vaccine_passport.split(',')[0]}}" alt="Card image">
+                        </div>
+                      </div>
+                        <!-- File names -->
+                      <div class="row">
+                        <ul>
+                            <li *ngFor="let file of vaccine_photos">
+                              {{file.name}} <fa-icon [icon]="faTimes" [styles]="{'stroke': 'red', 'color': 'red'}" (click)="deleteVetPhoto(file)"></fa-icon>
+                            </li>
+                        </ul>
+                      </div>
+  
+                </fieldset>
+                <button *ngIf="rol == 'particular' && !creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Editar</button>
+                <button *ngIf="rol == 'particular' && creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Crear</button>
+                <button *ngIf="rol == 'moderator'" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Aceptar</button>
+                <button *ngIf="rol == 'moderator'" (click)="rejectPublication()" class="btn btn-secondary btn-lg button-form right">Rechazar</button>
+            </form>
+            <div class="invalid-feedback">{{backError}} {{backError|json}}</div>
+        </div>
+    </div>
+  </div>
