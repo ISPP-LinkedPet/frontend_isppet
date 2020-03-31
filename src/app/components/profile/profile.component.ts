@@ -34,8 +34,8 @@ export class ProfileComponent implements OnInit {
     this.profileService.getParticularSeeProfile(this.id).then(res => {
       this.canSee = res.hasRequestFrom;
 
-      this.profileService.getParticularById(this.id).then(res => {
-        this.particular = res;
+      this.profileService.getParticularById(this.id).then(res2 => {
+        this.particular = res2;
       });
       this.profileService.getReviewsByParticularId(this.id).then(element =>{
         this.reviews=element;

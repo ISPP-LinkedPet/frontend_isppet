@@ -6,7 +6,8 @@
         <h3 class="card-header"></h3>
         <div class="card-body">
           <div class="row" *ngIf="particular">
-            <a *ngIf="particular.particular.optional_photo"><img src="{{env}}/{{particular.particular.optional_photo}}">
+            <a *ngIf="particular.particular.optional_photo"><img src="{{env}}/{{particular.particular.optional_photo}}" 
+              alt="{{env}}/{{particular.particular.optional_photo}}">
             </a>
           </div>
         </div>
@@ -31,8 +32,7 @@
               <div class="row">
                   <div class="col-md-3"
                       *ngFor="let img of pet.animal_photo.replace(' ', '').split(','); let i = index">
-                      <a href="{{env}}/{{img}}" target="_blank"><img id="imagen{{i}}" src="{{env}}/{{img}}"
-                              alt="img{{i}}">
+                      <a href="{{env}}/{{img}}" target="_blank"><img id="imagen{{i}}"  src="{{env}}/{{img}}" alt="img{{i}}">
                       </a>
                   </div>
               </div>
