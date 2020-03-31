@@ -1,0 +1,18 @@
+div{
+    margin-top: 100px;
+ }
+ .foot{
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+ }
+ 
+ .foot-fixed{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+ }
+ 

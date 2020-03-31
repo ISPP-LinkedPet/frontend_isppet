@@ -257,7 +257,7 @@ export class BreedingCreateComponent implements OnInit {
       formData.append('age', this.breedingForm.value.birth_date);
       formData.append('type', this.breedingForm.value.type);
       formData.append('pedigree', this.breedingForm.value.pedigree);
-
+      
       this.breedingService.acceptBreeding(formData, this.editBreeding.breedingId).then(x => {
         alert("¡La crianza se ha aceptado correctamente! \n Se ha publicado en la lista de crianzas")
         this.router.navigate(['/breeding-pending'])

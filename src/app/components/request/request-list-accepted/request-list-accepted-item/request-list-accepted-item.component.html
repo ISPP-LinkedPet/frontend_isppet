@@ -17,6 +17,18 @@
         <div>
           {{ address }}
         </div>
+
+        <div style="text-align: center" *ngIf="!created && publicationType=='Petición de crianza'">
+          <!--Review-->
+          <div *ngIf="transactionStatus=='Completed'">
+            <form [formGroup]="reviewForm"  (ngSubmit)="onSubmitReviewForm()" novalidate> 
+              <textarea formControlName="reviewarea" type="" placeholder="Cuéntanos como ha ido" maxlength="200"></textarea>
+              <button type="submit" class="btn btn-primary">Enviar Review</button>
+            </form>
+          </div>
+
+        </div>
+
         <div style="text-align: center" *ngIf="created && publicationType=='Petición de crianza'">
           <!-- Pay method -->
           <div *ngIf="transactionStatus=='In payment'">
