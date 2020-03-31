@@ -22,6 +22,7 @@ import { VetAdvertisementComponent } from './components/vet-advertisement/vet-ad
 import { HorizontalAdvertisementComponent } from './components/vets-advertisements/horizontal-advertisement/horizontal-advertisement.component';
 import { VerticalLeftAdvertisementComponent } from './components/vets-advertisements/vertical-left-advertisement/vertical-left-advertisement.component';
 import { VerticalRightAdvertisementComponent } from './components/vets-advertisements/vertical-right-advertisement/vertical-right-advertisement.component';
+import { ProfileComponent} from './components/profile/profile.component';
 
 const routes: Routes = [
 {path: '', component: HomeComponent},
@@ -42,6 +43,7 @@ const routes: Routes = [
 {path: 'adoption-pending', component: AdoptionPendingListPageComponent},
 {path: 'adoption-edit/:id', component: EditAdoptionComponent},
 {path: 'request/accepted/:createdOrReceived', component: RequestListAcceptedComponent},
+{path: 'profile/:id', component: ProfileComponent},
 /*Prueba*/
 ];
 

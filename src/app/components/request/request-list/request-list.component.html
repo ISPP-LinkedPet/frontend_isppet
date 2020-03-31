@@ -37,6 +37,13 @@
         <li>
           <label><strong>Ubicación: </strong></label> {{ request.location }}
         </li>
+        <button
+        type="button"
+        class="btn btn-primary mx-3 "
+        [routerLink]="['/profile', request.particular_id]">
+      Ver perfil de interesado
+        </button>
+        
       </ul>
 
       <div>

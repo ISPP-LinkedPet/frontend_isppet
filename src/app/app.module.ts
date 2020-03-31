@@ -17,6 +17,7 @@ import {AdoptionDisplayComponent} from './components/adoption/adoption-display/a
 import {BreedingListComponent} from './components/breeding/breeding-list/breeding-list.component';
 import {SlidePanelComponent} from './components/auxiliar/slide-panel/slide-panel.component';
 import { PaymentComponent } from './components/auxiliar/payment/payment.component';
+import { ProfileComponent} from './components/profile/profile.component';
 
 // Pages
 import {HomeComponent} from './pages/home/home.component';
@@ -69,6 +70,7 @@ import { HorizontalAdvertisementComponent } from './components/vets-advertisemen
 import { VerticalLeftAdvertisementComponent } from './components/vets-advertisements/vertical-left-advertisement/vertical-left-advertisement.component';
 // tslint:disable-next-line: max-line-length
 import { VerticalRightAdvertisementComponent } from './components/vets-advertisements/vertical-right-advertisement/vertical-right-advertisement.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
 
 @NgModule({
@@ -113,7 +115,9 @@ import { VerticalRightAdvertisementComponent } from './components/vets-advertise
     VetAdvertisementComponent,
     HorizontalAdvertisementComponent,
     VerticalLeftAdvertisementComponent,
-    VerticalRightAdvertisementComponent
+    VerticalRightAdvertisementComponent,
+    ProfileComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,
