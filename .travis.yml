@@ -20,7 +20,7 @@ deploy:
     api_key:
       secure: FenKPa+8vheWHA4uZXRncBtHhm40HQUt7d3giLN0ldfmLwBS12G6PHLuG9qepMXD32mFquWI7AkS3O1OAq0qM1w1aKmIICvIE1ea/q6yz7kmBoLEBUedIAAc5UWG6P+PGjLO0YJ01Rwhx/o27BTBHWDtSBUWOYFcwvk20sPxhzmG4JfuosgfdgX3QS5GJFIDCqYf32M8bsw2nSJR3hHtABbh7fCR17eSIKOYifEbovjrhidpJhYFdHibqQOjyBIzeUSdEetzWolgI5drhRG234HZiv2ATKygS9CYvUsCzGqLwgJ/WVGdCTGYDDLS18hxa0L3AlG2NvL4LkZd/Z5mifvM+vxyrmIi1TCfdHGjSApxGXN+86gjBjZ9Aat5m5tvejWD6nukG9N70u1Eo2FYSs1t77RNkf+uv3T/AFkRYLF2RxLRqtd13z2zup9zklyORDKp2rPM7/hNvfmZg765nBje0oD7OVE2tKb8v/KfImIt6grF90ZjK0sUu/rBO1xxfLLLrd95T6wHxwsZGcD94RLlf6N/ByJH/KBVeqRLae5QGZwNaZKZuTZCPBwKZqzbVyzuKReuU7Q2RmmxTGOGu8CnJcFl1Ai/LRokA4SacaCa1+gpV438hLuJ0zTXTdUOYbjsfRc8YyGkxBk6KFdrCm0ywioV7F1zT2KB071DvG8=
     on:
-      branch: travis-deploy
+      branch: develop
 
   - provider: heroku
     app: frontend-linkedpet-prod-$TRAVIS_TAG
