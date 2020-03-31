@@ -1,13 +1,12 @@
 <div class="container">
   <div class="card border-primary mb-3">
     <div class="card-body">
-      <h1 class="card-title">Crear nueva publicacion</h1>
-      <form [formGroup]="adoptionForm" (ngSubmit)="onSubmit()">
-        <fieldset>
-          <legend class="card-title">Información básica</legend>
+        <h1 class="card-title">{{title}}</h1>
+        <form [formGroup]="adoptionForm" (ngSubmit)="onSubmit()">
+            <fieldset>
+              <legend class="card-title">Información básica</legend>
 
           <div class="row">
-
             <!-- Breed -->
             <div class="form-group col-sm" *ngIf="isValidBreed">
               <label for="breed">Raza</label>
@@ -90,7 +89,6 @@
                 <div class="invalid-feedback">El nombre no puede estar en blanco</div>
               </div>
             </div>
-
 
             <div *ngIf="rol != 'moderator'">
               <!-- Animal images -->
