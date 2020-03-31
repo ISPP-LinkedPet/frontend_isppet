@@ -56,12 +56,12 @@ export class BreedingListComponent implements OnInit {
 
   onSubmit() {
     this.breedings = [];
-    this.breedingService.filterBreedings(this.filterForm.value.price || '', this.filterForm.value.type || '', 
-                                         this.filterForm.value.pedigree || '',
-      this.filterForm.value.breed || '', this.filterForm.value.genre || '').then(x => {
+    this.breedingService.filterBreedings(this.filterForm.value.price || '', this.filterForm.value.type || '', this.filterForm.value.pedigree || '', 
+    this.filterForm.value.breed || '', this.filterForm.value.genre || '').then(x => {
         x.forEach(b => {
           this.breedings.push(b);
         });
+        this.returnedBreedings = this.breedings.slice(0, this.itemsPerPage);
       });
   }
 
