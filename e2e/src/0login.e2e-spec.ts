@@ -11,7 +11,7 @@ describe('Login module', () => {
   it('should log in', () => {
     page.navigateTo();
     browser.driver.manage().window().setSize(1920, 1040);
-    element(by.css('li:nth-of-type(8)>a')).click();
+    element(by.css('li:nth-of-type(9)>a')).click();
     element(by.css('fieldset>div:nth-of-type(1)>input')).clear().then(() => {
       element(by.css('fieldset>div:nth-of-type(1)>input')).sendKeys('palina');
     });
