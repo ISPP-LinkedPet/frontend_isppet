@@ -55,8 +55,6 @@ export class BreedingAnimalFormComponent implements OnInit {
     //Security 
     if(!this.creating && this.rol == 'particular'){
     this.breedingService.getPersonalBreedings(this.userlogged.id).then(res=>{
-      console.log(res);
-      console.log(this.editBreeding);
       if(!res.map(o=>o.id).includes(this.editBreeding.publication_id)){
         this.router.navigate(['/breeding-personal-list'])
         }
@@ -73,7 +71,7 @@ export class BreedingAnimalFormComponent implements OnInit {
     this.editBreeding = this.editBreeding || {};
     this.breedingForm = new FormGroup({
       pet_id: new FormControl(
-        this.editBreeding.id || '', [Validators.required]
+        this.editBreeding.pet_id || '', [Validators.required]
       ),
       location: new FormControl(
         this.editBreeding.location || '', [Validators.required, Validators.minLength(0)]
