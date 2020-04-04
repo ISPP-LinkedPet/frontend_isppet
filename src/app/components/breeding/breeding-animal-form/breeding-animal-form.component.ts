@@ -55,23 +55,24 @@ export class BreedingAnimalFormComponent implements OnInit {
     //Security 
     if(!this.creating && this.rol == 'particular'){
     this.breedingService.getPersonalBreedings(this.userlogged.id).then(res=>{
+      console.log(res);
+      console.log(this.editBreeding);
       if(!res.map(o=>o.id).includes(this.editBreeding.publication_id)){
         this.router.navigate(['/breeding-personal-list'])
         }
-      })
+      });
     }
 
     this.profileService.getParticularLogged().then(res => {
       this.particular = res;
       this.profileService.getPetsByParticularId(this.particular.particular.id).then(element =>{
-        console.log(element)
         this.pets=element;
       });
     });
 
     this.editBreeding = this.editBreeding || {};
     this.breedingForm = new FormGroup({
-      animal: new FormControl(
+      pet_id: new FormControl(
         this.editBreeding.id || '', [Validators.required]
       ),
       location: new FormControl(
@@ -110,7 +111,7 @@ export class BreedingAnimalFormComponent implements OnInit {
     this.isValidLocation = this.breedingForm.get('location').valid;
   }
   validateAnimal() {
-    this.isValidAnimal = this.breedingForm.get('animal').valid;
+    this.isValidAnimal = this.breedingForm.get('pet_id').valid;
   }
 
   // submit form
@@ -124,7 +125,7 @@ export class BreedingAnimalFormComponent implements OnInit {
 
       formData.append('price', this.breedingForm.value.price);
       formData.append('location', this.breedingForm.value.location);
-      formData.append('petId', this.breedingForm.value.animal);
+      formData.append('petId', this.breedingForm.value.pet_id);
 
       this.breedingService.createBreedingAnimal(formData).then(x => {
         alert("¡La crianza se ha creado correctamente!")
@@ -139,9 +140,9 @@ export class BreedingAnimalFormComponent implements OnInit {
       
       formData.append('price', this.breedingForm.value.price);
       formData.append('location', this.breedingForm.value.location);
-      formData.append('petId', this.breedingForm.value.animal);
+      formData.append('petId', this.breedingForm.value.pet_id);
 
-      this.breedingService.editBreeding(this.editBreeding.breedingId, formData).then(x => {
+      this.breedingService.editAnimalBreeding(this.editBreeding.breedingId, formData).then(x => {
         alert("¡La crianza se ha editado correctamente!")
         this.router.navigate(['/breeding-personal-list'])
       }).catch (error => {

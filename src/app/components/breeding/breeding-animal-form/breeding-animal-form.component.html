@@ -7,16 +7,16 @@
                     <div class="row">
                       <!-- Animal -->
                       <div class="form-group col-4" *ngIf="isValidAnimal">
-                        <label for="animal">Animal</label>
-                        <select class="form-control" id="animal" formControlName="animal" (change)="validateAnimal()">
+                        <label for="pet_id">Animal</label>
+                        <select class="form-control" id="pet_id" formControlName="pet_id" (change)="validateAnimal()">
                             <option [value]="pet.id" *ngFor="let pet of pets">{{pet.name}}</option>
                         </select>
                       </div>
   
                       <div class="form-group has-danger col-4" *ngIf="!isValidAnimal">
-                            <label for="animal">Animal</label>
-                            <select class="form-control is-invalid" id="animal" formControlName="animal" (change)="validateAnimal()">
-                                <option [value]="pet.id" *ngFor="let pet of pets">{{pet.breed}}</option>
+                            <label for="pet_id">Animal</label>
+                            <select class="form-control is-invalid" id="pet_id" formControlName="pet_id" (change)="validateAnimal()">
+                                <option [value]="pet.id" *ngFor="let pet of pets">{{pet.name}}</option>
                             </select>
                           <div class="invalid-feedback">Debe seleccionar un animal requistrado previamente en su perfil</div>
                       </div>

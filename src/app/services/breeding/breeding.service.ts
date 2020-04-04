@@ -34,6 +34,10 @@ export class BreedingService {
     return this.requestService.request('PUT', `${environment.endpoint}/breeding/edit/${id}`, data, {}, true);
   }
 
+  editAnimalBreeding(id:number, data: any) {
+    return this.requestService.request('PUT', `${environment.endpoint}/breeding/pet/edit/${id}`, data, {}, true);
+  }
+
   getAllBreedings() {
     return this.requestService.request('GET', `${environment.endpoint}/breeding/offers`, {}, {}, true);
   }

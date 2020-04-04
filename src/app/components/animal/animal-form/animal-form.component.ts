@@ -195,7 +195,7 @@ export class AnimalFormComponent implements OnInit {
 
       this.animalService.createAnimal(formData).then(x => {
         alert("¡Tu animal se ha creado correctamente! \n Ahora debe de revisarlo un moderador")
-        this.router.navigate(['/profile'])
+        this.router.navigate(['/my-profile'])
       }).catch(error => {
         this.backError = error.error.error
       });
@@ -212,10 +212,10 @@ export class AnimalFormComponent implements OnInit {
       for (let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
 
       formData.append('name', this.animalForm.value.name);
-
-      this.animalService.editAnimal(this.editAnimal.animalId, formData).then(x => {
+      console.log(this.editAnimal)
+      this.animalService.editAnimal(this.editAnimal.id, formData).then(x => {
         alert("¡Tu animal se ha editado correctamente! \n Ahora debe de revisarlo un moderador")
-        this.router.navigate(['/profile'])
+        this.router.navigate(['/my-profile'])
       }).catch(error => {
         this.backError = error.error.error
       });
