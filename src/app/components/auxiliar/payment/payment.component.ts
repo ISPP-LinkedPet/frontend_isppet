@@ -35,6 +35,8 @@ export class PaymentComponent implements OnInit {
             } else {
               this.toastr.success('Payment Completed!');
             }
+          }).then(x=> {
+            location.reload();
           });
       }
     });
