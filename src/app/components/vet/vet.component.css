@@ -58,3 +58,8 @@ button{
     display: flex;
     justify-content: center;
 }
+.premium{
+    height: 4%;
+    width: 4%;
+    float: inherit;
+}
