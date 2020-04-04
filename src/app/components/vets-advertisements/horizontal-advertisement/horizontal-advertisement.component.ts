@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VetService } from 'src/app/services/vet/vet.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-horizontal-advertisement',
@@ -8,13 +9,15 @@ import { VetService } from 'src/app/services/vet/vet.service';
 })
 export class HorizontalAdvertisementComponent implements OnInit {
 
-  topAdvertisement: any;
+  advertisements: any;
+  env = environment.endpoint;
+
 
   constructor(private vetService: VetService) { }
 
   ngOnInit(): void {
-    this.vetService.getVetAdvertisements().then(res => this.topAdvertisement = res.ads)
-    .then(res => console.log(this.topAdvertisement));
+    this.vetService.getVetAdvertisements().then(res => this.advertisements = res.ads)
+    .then(res => console.log(this.advertisements));
   }
 
 }

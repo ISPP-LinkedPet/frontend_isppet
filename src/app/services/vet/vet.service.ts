@@ -14,6 +14,6 @@ export class VetService {
   }
 
   getVetAdvertisements() {
-    return this.requestService.request('GET', `${environment.endpoint}/ad/2`, {}, {}, true);
+    return this.requestService.request('GET', `${environment.endpoint}/ad/1`, {}, {}, true);
   }
 }

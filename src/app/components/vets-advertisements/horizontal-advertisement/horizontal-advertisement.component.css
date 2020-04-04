@@ -1,11 +1,19 @@
-div.crop {
-  overflow: hidden;
- 
-}
-img {
-  margin: 0 0 -6% 0;
+
+div{
   width: 100%;
-
+  height: auto;
 }
 
 
+img{
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 500px) {
+  img{
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+  }
+}

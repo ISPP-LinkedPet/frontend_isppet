@@ -52,7 +52,8 @@ const routes: Routes = [
 {path: 'my-profile', component: MyProfileComponent},
 {path: 'animal', component: CreateComponentAnimal},
 {path: 'animal-edit/:id', component: EditComponentAnimal},
-{path: 'animal-pending', component: PendingListComponent}
+{path: 'animal-pending', component: PendingListComponent},
+{path: 'topAd', component: HorizontalAdvertisementComponent}
 ];
 
 @NgModule({
