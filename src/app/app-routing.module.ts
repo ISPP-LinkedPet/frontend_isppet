@@ -27,6 +27,8 @@ import { VerticalLeftAdvertisementComponent } from './components/vets-advertisem
 import { VerticalRightAdvertisementComponent } from './components/vets-advertisements/vertical-right-advertisement/vertical-right-advertisement.component';
 import { ProfileComponent} from './components/profile/profile.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { CreateAnimalComponent as CreateAnimalComponentBreeding } from './pages/breeding/create-animal/create-animal.component';
+import { EditAnimalComponent as EditAnimalComponentBreeding } from './pages/breeding/edit-animal/edit-animal.component';
 
 
 const routes: Routes = [
@@ -52,7 +54,9 @@ const routes: Routes = [
 {path: 'my-profile', component: MyProfileComponent},
 {path: 'animal', component: CreateComponentAnimal},
 {path: 'animal-edit/:id', component: EditComponentAnimal},
-{path: 'animal-pending', component: PendingListComponent}
+{path: 'animal-pending', component: PendingListComponent},
+{path: 'breeding-animal', component: CreateAnimalComponentBreeding},
+{path: 'breeding-animal-edit/:id', component: EditAnimalComponentBreeding}
 ];
 
 @NgModule({
