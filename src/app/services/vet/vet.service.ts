@@ -13,8 +13,8 @@ export class VetService {
     return this.requestService.request('GET', `${environment.endpoint}/vet/`, {}, {}, true);
   }
 
-  getVetAdvertisements() {
-    return this.requestService.request('GET', `${environment.endpoint}/ad/1`, {}, {}, true);
+  getVetAdvertisements(nAds: any) {
+    return this.requestService.request('GET', `${environment.endpoint}/ad/${nAds}`, {}, {}, true);
   }
   changePremium(id: number) {
     return this.requestService.request('PUT', `${environment.endpoint}/vet/premiumTrue/${id}`, {}, {}, true);

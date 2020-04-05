@@ -1,3 +1,12 @@
-<div><img src="{{env}}/{{advertisements[0].top_banner}}" class="top-banner" >
+<!--<div *ngIf="{{advertisements.redirect_to==null}}"><img src="{{env}}/{{advertisements.top_banner}}" class="top-banner" >
+</div>-->
+
+<div *ngIf="advertisement.redirect_to==null">
+    <img src="{{env}}/{{advertisement.top_banner}}" class="top-banner" >
 </div>
 
+<div *ngIf="!(advertisement.redirect_to==null)">
+    <a href="{{advertisement.redirect_to}}">
+    <img src="{{env}}/{{advertisement.top_banner}}" class="top-banner" >
+    </a>
+</div>
