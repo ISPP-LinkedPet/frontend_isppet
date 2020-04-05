@@ -1,6 +1,8 @@
 <app-header></app-header>
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css" rel="stylesheet" />
-<div class="banner"><app-horizontal-advertisement></app-horizontal-advertisement></div>
+<div class="banner">
+  <app-horizontal-advertisement></app-horizontal-advertisement>
+</div>
 
 
 <div class="mb-3">
@@ -8,13 +10,16 @@
 </div>
 
 <div class="card border-success mb-3" *ngFor="let vet of vets">
-  <h3 class="card-header">{{ vet.name }}</h3>
+  <h3 class="card-header">{{ vet.name }}
+    <img class="premium" *ngIf="vet.is_premium" src="../../../assets/corona.jpg" alt="image">
+    <img class="premium" *ngIf="vet.is_premium" src="../../../assets/Recomend.png" alt="image">
+
+  </h3>
   <div class="card-body">
-    <img
-      src="{{ env }}/{{ vet.optional_photo }}"
-      alt="Foto del veterinario"
-      onerror="this.onerror=null;this.src='../../../assets/icons/simple_icon.png';"
-    />
+    <img src="{{ env }}/{{ vet.optional_photo }}" alt="Foto del veterinario"
+      onerror="this.onerror=null;this.src='../../../assets/icons/simple_icon.png';" />
+
+
     <p class="card-text">
       <label><strong>Telefóno: </strong>{{ vet.telephone }}</label>
     </p>
@@ -25,22 +30,33 @@
       <label><strong>Enlace: </strong> No disponible</label>
     </p>
     <p *ngIf="vet.url != null" class="card-text">
-      <label
-        ><strong>Enlace: </strong><a href="{{ vet.url }}">{{ vet.url }}</a>
+      <label><strong>Enlace: </strong><a href="{{ vet.url }}">{{ vet.url }}</a>
       </label>
     </p>
     <p class="card-text">
       <label><strong>Dirección: </strong> {{ vet.address }}</label>
     </p>
-    <div id="map{{vet.name}}"  style="height: 200px;">
-      <button class="btn btn-success" onclick="style.display = 'none'" (click)="onSubmit(vet.name,vet.longitude,vet.latitude)">Mostrar en mapa</button>
+    <div>
+      <button  *ngIf="!vet.is_premium && rol=='administrator'"   class="btn btn-success" onclick="style.display = 'none'" (click)="onPremium(vet.id)"> Hacer premium
+      </button>
+      <button *ngIf="vet.is_premium && rol=='administrator'" class="btn btn-success" onclick="style.display = 'none'" (click)="onNormal(vet.id)"> Eliminar premium
+      </button>
+    </div>
+    <div id="map{{vet.name}}" style="height: 200px;">
+      <button class="btn btn-success" onclick="style.display = 'none'"
+        (click)="onSubmit(vet.name,vet.longitude,vet.latitude)">Mostrar en mapa</button>
     </div>
   </div>
 </div>
 
 <div class="center">
-  <ngb-pagination [collectionSize]="allVets.length" [(page)]="page" [maxSize]="5" [pageSize]="pageSize" [boundaryLinks]="true" (pageChange)="pageChange()"></ngb-pagination>
+  <ngb-pagination [collectionSize]="allVets.length" [(page)]="page" [maxSize]="5" [pageSize]="pageSize"
+    [boundaryLinks]="true" (pageChange)="pageChange()"></ngb-pagination>
 </div>
 
-<div class="foot-fixed" *ngIf="vets.length == 0"><app-footer></app-footer></div>
-<div class="foot" *ngIf="vets.length > 1"><app-footer></app-footer></div>
+<div class="foot-fixed" *ngIf="vets.length == 0">
+  <app-footer></app-footer>
+</div>
+<div class="foot" *ngIf="vets.length > 1">
+  <app-footer></app-footer>
+</div>
