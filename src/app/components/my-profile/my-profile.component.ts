@@ -4,6 +4,7 @@ import { ConfigService } from 'src/app/services/config/config.service';
 import { ActivatedRoute } from "@angular/router";
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { AnimalService } from 'src/app/services/animal/animal.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -19,7 +20,8 @@ export class MyProfileComponent implements OnInit {
   numPets = 0;
 
   constructor(private profileService: ProfileService,
-              private router: Router, private route: ActivatedRoute, public configService: ConfigService) { }
+              private router: Router, private route: ActivatedRoute, public configService: ConfigService,
+              public animalService: AnimalService) { }
 
   ngOnInit(): void {
     this.profileService.getParticularLogged().then(res => {

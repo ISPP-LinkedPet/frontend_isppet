@@ -6,6 +6,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { ConfigService } from '../../../services/config/config.service';
 import { AnimalService } from '../../../services/animal/animal.service';
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-animal-form',
@@ -52,27 +53,47 @@ export class AnimalFormComponent implements OnInit {
   checkType = true;
   checkGenre = true;
   checkPedigree = true;
+  title: string;
 
   constructor(
     private animalService: AnimalService,
     private router: Router,
-    public configService: ConfigService
+    public configService: ConfigService,
+    public datepipe: DatePipe
   ) { }
 
   ngOnInit(): void {
+    console.log(this.editAnimal)
+    if(!this.creating && this.rol=='particular'){
+      if(!this.animalService.isEditableAnimal(this.editAnimal.id)){
+        this.router.navigate(['/my-profile'])
+      }
+      this.title = "Registra tu animal";
+      this.checkType = false;
+      this.checkGenre = false;
+      this.checkPedigree = false;
+      this.title = "Edite su mascota"
+    }else if(!this.creating && this.rol == 'moderator'){
+      this.title = "Revisión de la mascota"
+    }
     this.editAnimal = this.editAnimal || {};
     this.animalForm = new FormGroup({
       birth_date: new FormControl(
-        this.editAnimal.birth_date || '', this.requiredInput()
+        this.datepipe.transform(this.editAnimal.birth_date, 'yyyy-MM-dd')
+         || '', this.requiredInput()
       ),
-      genre: new FormControl('', this.requiredInput()),
+      genre: new FormControl(
+        this.editAnimal.genre || '', this.requiredInput()
+      ),
       breed: new FormControl(
         this.editAnimal.breed || '', this.requiredInput()
       ),
       type: new FormControl(
         this.editAnimal.type || '', this.requiredInput()
       ),
-      pedigree: new FormControl('', this.requiredInput()),
+      pedigree: new FormControl(
+        this.editAnimal.pedigree || '', this.requiredInput()
+      ),
       animal_photo: new FormControl(
         this.editAnimal.animal_photo || '', [Validators.required]
       ),
@@ -83,7 +104,7 @@ export class AnimalFormComponent implements OnInit {
         this.editAnimal.vaccine_passport || '', [Validators.required]
       ),
     });
-
+    console.log(this.animalForm)
     this.validationFields('default');
   }
 
@@ -198,9 +219,10 @@ export class AnimalFormComponent implements OnInit {
       for (let i = 0; i < vaccinePassport.length; i++) formData.append('vaccine_passport', vaccinePassport[i], vaccinePassport[i].name);
       for (let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
 
-      this.animalService.editAnimal(this.editAnimal.animalId, formData).then(x => {
+      this.animalService.editAnimal(this.editAnimal.id, formData).then(x => {
         alert("¡Tu animal se ha editado correctamente! \n Ahora debe de revisarlo un moderador")
-        this.router.navigate(['/profile'])
+      }).then(x=> {
+        this.router.navigate(['/my-profile'])
       }).catch(error => {
         this.backError = error.error.error
       });

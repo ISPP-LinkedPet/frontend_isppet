@@ -7,7 +7,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
-
+import { DatePipe } from '@angular/common'
 // Components
 import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
@@ -153,7 +153,8 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
     AnimalService,
     BreedingService,
     ConfigService,
-    LoginService],
+    LoginService,
+    DatePipe],
   bootstrap: [AppComponent]
 
 })
