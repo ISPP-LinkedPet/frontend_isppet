@@ -1,7 +1,7 @@
 
 <div *ngFor="let advertisement of advertisements">
     <div class="vertical-advertisement" *ngIf="advertisement.redirect_to!=null">
-        <a href="{{advertisement.redirect_to}}">
+        <a href="{{advertisement.redirect_to}}" (click)="onClickAdvertisement(advertisement)">
             <img src="{{env}}/{{advertisement.lateral_banner}}">
         </a>
     </div>

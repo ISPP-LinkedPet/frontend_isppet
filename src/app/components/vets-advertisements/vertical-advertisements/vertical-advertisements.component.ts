@@ -31,4 +31,10 @@ export class VerticalAdvertisementsComponent implements OnInit {
 
   }
 
+  onClickAdvertisement(advertisement: any) {
+    /*console.log(advertisement);
+    console.log(advertisement.id);*/
+    this.vetService.clickOnAdvertisement(advertisement.id);
+  }
+
 }
