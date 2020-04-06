@@ -4,13 +4,15 @@
     bottom: 0;
 }
 .vertical-advertisement{
+    overflow: hidden;
     background-color:lightblue;
     margin-top: 0px;
     display:inline-block;
     float: left;
     width: auto;
     height: 100%;
-    padding-bottom: 3%;
+    
+
 }
 
 .list-style{
