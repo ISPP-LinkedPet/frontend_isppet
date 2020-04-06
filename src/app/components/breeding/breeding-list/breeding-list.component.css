@@ -1,22 +1,20 @@
-
-
-
+.card{
+    font-size: 14px;
+}
 
 div{
     color: black;
 }
 
 img{
-    width: 27%;
+    width: 24%;
     float: right;
     border-radius: 20px;
     margin-right: 5%;
-    margin-bottom: 5%;
+    margin-bottom: 1%;
 }
 
-.card-body{
-    margin-top: auto;
-}
+
 
 .description-content{
     margin: 0;
@@ -24,7 +22,7 @@ img{
 }
 
 button.details{
-    margin: 20px 0px 0px 3%;
+    margin: 0px 0px 0px 3%;
 }
 
 .center{

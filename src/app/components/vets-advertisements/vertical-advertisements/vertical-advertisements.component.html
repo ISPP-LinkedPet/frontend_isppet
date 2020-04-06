@@ -1,6 +1,6 @@
 
 <div *ngFor="let advertisement of advertisements">
-    <div *ngIf="advertisement.redirect_to!=null"><a href="{{advertisement.redirect_to}}"><img src="{{env}}/{{advertisement.lateral_banner}}"></a></div>
-    <div *ngIf="advertisement.redirect_to==null"><img src="{{env}}/{{advertisement.lateral_banner}}"></div>
+    <div class="vertical-advertisement" *ngIf="advertisement.redirect_to!=null"><a href="{{advertisement.redirect_to}}"><img src="{{env}}/{{advertisement.lateral_banner}}"></a></div>
+    <div class="vertical-advertisement" *ngIf="advertisement.redirect_to==null"><img src="{{env}}/{{advertisement.lateral_banner}}"></div>
 </div>
 

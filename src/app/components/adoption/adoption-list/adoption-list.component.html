@@ -10,31 +10,34 @@
   <div class="card-body">
     <!--Imagen de prueba-->
     <img src="{{ env }}/{{ adoption.animal_photo.split(',')[0] }}" alt="Foto/s del animal" />
-    <p class="card-text">
-      <label><strong>Tipo de animal: </strong></label>
-      <a [ngSwitch]="adoption.type">
-        <a *ngSwitchCase="'Dog'"> Perro </a>
-        <a *ngSwitchCase="'Cat'"> Gato </a>
-        <a *ngSwitchCase="'Horse'"> Caballo </a>
-      </a>
-    </p>
-    <p class="card-text">
-      <label><strong>Pedigree: </strong></label>
-      {{ adoption.pedigree ? "Sí" : "No" }}
-    </p>
-    <p class="card-text">
-      <label><strong>Edad: </strong></label>
-      {{ this.configService.calculateAge(adoption.birth_date) }}
-    </p>
-    <p class="card-text">
-      <label><strong>Raza: </strong></label>
-      {{ adoption.breed != null ? adoption.breed : "No" }}
-    </p>
-    <p class="card-text">
-      <label><strong>Ubicación: </strong></label> {{ adoption.location }}
-    </p>
-
-    <button type="button" class="btn btn-success" (click)="viewDetails(adoption.adoption_id)">
+    <div class="description-content">
+      <ul>
+        <li class="card-text">
+          <label><strong>Tipo de animal: </strong></label>
+          <a [ngSwitch]="adoption.type">
+            <a *ngSwitchCase="'Dog'"> Perro </a>
+            <a *ngSwitchCase="'Cat'"> Gato </a>
+            <a *ngSwitchCase="'Horse'"> Caballo </a>
+          </a>
+        </li>
+        <li class="card-text">
+          <label><strong>Pedigree: </strong></label>
+          {{ adoption.pedigree ? "Sí" : "No" }}
+        </li>
+        <li class="card-text">
+          <label><strong>Edad: </strong></label>
+          {{ this.configService.calculateAge(adoption.birth_date) }}
+        </li>
+        <li class="card-text">
+          <label><strong>Raza: </strong></label>
+          {{ adoption.breed != null ? adoption.breed : "No" }}
+        </li>
+        <li class="card-text">
+          <label><strong>Ubicación: </strong></label> {{ adoption.location }}
+        </li>
+      </ul>
+    </div>
+    <button type="button details-button" class="btn btn-success" (click)="viewDetails(adoption.adoption_id)">
       Ver Detalles
     </button>
   </div>
