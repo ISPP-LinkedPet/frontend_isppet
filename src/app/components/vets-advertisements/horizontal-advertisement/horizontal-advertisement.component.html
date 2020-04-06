@@ -6,7 +6,7 @@
 </div>
 
 <div *ngIf="!(advertisement.redirect_to==null)">
-    <a href="{{advertisement.redirect_to}}">
+    <a href="{{advertisement.redirect_to}}" (click)="onClickAdvertisement()">
     <img src="{{env}}/{{advertisement.top_banner}}" class="top-banner" >
     </a>
 </div>

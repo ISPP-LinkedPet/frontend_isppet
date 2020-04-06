@@ -20,4 +20,10 @@ export class HorizontalAdvertisementComponent implements OnInit {
     .then(res => console.log(this.advertisement));
   }
 
+  onClickAdvertisement() {
+    console.log(this.advertisement);
+    console.log(this.advertisement.id);
+    this.vetService.clickOnAdvertisement(this.advertisement.id).then(res => console.log("enviado"));
+  }
+
 }
