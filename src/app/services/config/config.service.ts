@@ -71,6 +71,22 @@ export class ConfigService {
       return "Gato"
     }
   }
+
+  translteStatus(status){
+    if(status=="In progress"){
+      return "En progreso"
+    }else if(status=="Offered"){
+      return "Publicado"
+    }else if(status=="Reviewed"){
+      return "Reviewed"
+    }else if(status=="In payment"){
+      return "En pago"
+    }else if(status=="Awaiting payment"){
+      return "Esperando el pago"
+    }else if(status=="Completed"){
+      return "Completado"
+    }
+  }
   
 }
 

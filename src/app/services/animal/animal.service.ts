@@ -40,19 +40,21 @@ export class AnimalService {
   }
 
   notEditableAnimals(){
-    var petsNotEditable = Array();
-    this.profileService.getParticularLogged().then(res => {
+
+    const startAsync = async callback => this.profileService.getParticularLogged().then(res => {
+      var petsNotEditable = new Map();
       var id = res.particular.user_account_id;
       this.BreedingService.getPersonalBreedings(id).then(res=>{
         var array = res;
         for (let index = 0; index < array.length; index++) {
           const element = array[index];
           if(element.pet_id!=null && !(element.transaction_status=="Completed" || element.transaction_status=="Reviewed")){
-            petsNotEditable.push(element.pet_id)
+            petsNotEditable.set(element.pet_id, element.transaction_status)
           }
         }
+        callback(petsNotEditable);
       })
     });
-    return petsNotEditable;
+    return startAsync;
   }
 }

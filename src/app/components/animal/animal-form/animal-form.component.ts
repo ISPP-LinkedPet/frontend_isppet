@@ -66,9 +66,12 @@ export class AnimalFormComponent implements OnInit {
     this.title = "Registra tu mascota";
     if(!this.creating && this.rol=='particular'){
       this.title = "Edite su mascota";
-      if(this.editAnimal.id in this.animalService.notEditableAnimals()){
-        this.router.navigate(['/my-profile'])
-      }
+      this.animalService.notEditableAnimals()(x=>{
+        if(Array.from(x.keys()).includes(this.editAnimal.id)){
+          this.router.navigate(['/my-profile'])
+        }
+      });
+
 
       this.checkType = false;
       this.checkGenre = false;

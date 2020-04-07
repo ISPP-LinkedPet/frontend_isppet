@@ -18,14 +18,21 @@ export class MyProfileComponent implements OnInit {
   pets: any;
   numReviews = 0;
   numPets = 0;
-  notEditableAnimals = Array();
+  notEditableAnimals : any[];
+  mapNotEditableAnimals =new Map();
 
   constructor(private profileService: ProfileService,
               private router: Router, private route: ActivatedRoute, public configService: ConfigService,
-              public animalService: AnimalService) { }
+              private animalService: AnimalService) { }
 
   ngOnInit(): void {
-    this.notEditableAnimals = this.animalService.notEditableAnimals();
+
+    this.animalService.notEditableAnimals()(x=>{
+      this.notEditableAnimals=Array.from(x.keys())
+      this.mapNotEditableAnimals = x;
+      console.log(this.mapNotEditableAnimals)
+    });
+
     this.profileService.getParticularLogged().then(res => {
       this.particular = res;
       console.log(this.particular);

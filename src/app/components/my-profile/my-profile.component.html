@@ -43,12 +43,16 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <p *ngIf="pet.name!=null" class="card-text">Nombre: {{pet.name}}</p>
-                            <p *ngIf="pet.type!=null" class="card-text">Tipo de animal: {{configService.translateType(pet.type)}}</p>
-                            <p *ngIf="pet.breed!=null" class="card-text">Raza: {{pet.breed}}</p>
-                            <p *ngIf="pet.genre!=null" class="card-text">Genero: {{pet.genre == 'Male' ? 'Macho' : 'Hembra'}} </p>
-                            <p *ngIf="pet.birth_date!=null" class="card-text">Edad: {{configService.calculateAge(pet.birth_date)}}</p>
+                        <ul>
+                           <li *ngIf="pet.name!=null" > <p class="card-text">Nombre: {{pet.name}}</p></li>
+                           <li *ngIf="pet.type!=null"> <p class="card-text">Tipo de animal: {{configService.translateType(pet.type)}}</p> </li>
+                           <li *ngIf="pet.breed!=null" > <p class="card-text">Raza: {{pet.breed}}</p> </li>
+                           <li *ngIf="pet.genre!=null" > <p class="card-text">Genero: {{pet.genre == 'Male' ? 'Macho' : 'Hembra'}} </p> </li>
+                           <li *ngIf="pet.birth_date!=null"> <p class="card-text">Edad: {{configService.calculateAge(pet.birth_date)}}</p> </li>
                             <p *ngIf="!notEditableAnimals.includes(pet.id)"><button type="button" class="btn btn-primary" [routerLink]="['/animal-edit', pet.id]">Editar mascota</button></p>
+                            <p class="text-primary mt-2" *ngIf="notEditableAnimals.includes(pet.id)">No se puede editar porque está en una crianza
+                                 <strong>{{configService.translteStatus(mapNotEditableAnimals.get(pet.id))}}</strong></p>
+                        </ul>
                         </div>
                     </div>
                 </div>
