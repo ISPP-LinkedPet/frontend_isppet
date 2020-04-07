@@ -9,15 +9,21 @@ import { environment } from 'src/environments/environment';
 })
 export class HorizontalAdvertisementComponent implements OnInit {
 
-  advertisements: any;
+  advertisement: any;
   env = environment.endpoint;
 
 
   constructor(private vetService: VetService) { }
 
   ngOnInit(): void {
-    this.vetService.getVetAdvertisements().then(res => this.advertisements = res.ads)
-    .then(res => console.log(this.advertisements));
+    this.vetService.getVetAdvertisements(1).then(res => this.advertisement = res.ads[0])
+    .then(res => console.log(this.advertisement));
+  }
+
+  onClickAdvertisement() {
+    console.log(this.advertisement);
+    console.log(this.advertisement.id);
+    this.vetService.clickOnAdvertisement(this.advertisement.id).then(res => console.log("enviado"));
   }
 
 }

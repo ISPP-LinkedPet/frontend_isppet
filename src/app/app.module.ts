@@ -70,14 +70,11 @@ import { PendingListComponent } from './pages/animal/pending-list/pending-list.c
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RatingComponent } from './components/rating/rating.component';
-import { VetAdvertisementComponent } from './components/vet-advertisement/vet-advertisement.component';
 // tslint:disable-next-line: max-line-length
 import { HorizontalAdvertisementComponent } from './components/vets-advertisements/horizontal-advertisement/horizontal-advertisement.component';
-// tslint:disable-next-line: max-line-length
-import { VerticalLeftAdvertisementComponent } from './components/vets-advertisements/vertical-left-advertisement/vertical-left-advertisement.component';
-// tslint:disable-next-line: max-line-length
-import { VerticalRightAdvertisementComponent } from './components/vets-advertisements/vertical-right-advertisement/vertical-right-advertisement.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
+// tslint:disable-next-line: max-line-length
+import { VerticalAdvertisementsComponent } from './components/vets-advertisements/vertical-advertisements/vertical-advertisements.component';
 
 
 @NgModule({
@@ -125,12 +122,10 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
     AnimalPendingListComponent,
     PendingListComponent,
     RatingComponent,
-    VetAdvertisementComponent,
     HorizontalAdvertisementComponent,
-    VerticalLeftAdvertisementComponent,
-    VerticalRightAdvertisementComponent,
     ProfileComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    VerticalAdvertisementsComponent
   ],
   imports: [
     BrowserModule,
