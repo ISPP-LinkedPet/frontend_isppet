@@ -25,6 +25,8 @@ import { PendingListComponent } from './pages/animal/pending-list/pending-list.c
 import { HorizontalAdvertisementComponent } from './components/vets-advertisements/horizontal-advertisement/horizontal-advertisement.component';
 import { ProfileComponent} from './components/profile/profile.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { CreateAnimalComponent as CreateAnimalComponentBreeding } from './pages/breeding/create-animal/create-animal.component';
+import { EditAnimalComponent as EditAnimalComponentBreeding } from './pages/breeding/edit-animal/edit-animal.component';
 // tslint:disable-next-line: max-line-length
 import { VerticalAdvertisementsComponent } from './components/vets-advertisements/vertical-advertisements/vertical-advertisements.component';
 
@@ -53,6 +55,8 @@ const routes: Routes = [
 {path: 'animal', component: CreateComponentAnimal},
 {path: 'animal-edit/:id', component: EditComponentAnimal},
 {path: 'animal-pending', component: PendingListComponent},
+{path: 'breeding-animal', component: CreateAnimalComponentBreeding},
+{path: 'breeding-animal-edit/:id', component: EditAnimalComponentBreeding},
 {path: 'topAd', component: HorizontalAdvertisementComponent},
 {path: 'lateralAd', component: VerticalAdvertisementsComponent}
 ];
