@@ -1,7 +1,7 @@
 <div class="container" *ngIf="animalForm != undefined">
     <div class="card border-primary mb-3">
         <div class="card-body">
-            <h1 class="card-title*n">Registra tu animal</h1>
+            <h1 class="card-title*n">{{title}}</h1>
             <form [formGroup]="animalForm">
   
                 <em *ngIf="creating" class="text-secondary">Los campos en gris están deshabilitados</em>
@@ -262,6 +262,7 @@
                 <button *ngIf="rol == 'moderator'" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Aceptar</button>
                 <button *ngIf="rol == 'moderator'" (click)="rejectPublication()" class="btn btn-secondary btn-lg button-form right">Rechazar</button>
             </form>
+
             <div class="invalid-feedback">{{backError}} {{backError|json}}</div>
         </div>
     </div>
