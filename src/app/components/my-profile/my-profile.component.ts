@@ -18,12 +18,14 @@ export class MyProfileComponent implements OnInit {
   pets: any;
   numReviews = 0;
   numPets = 0;
+  notEditableAnimals = Array();
 
   constructor(private profileService: ProfileService,
               private router: Router, private route: ActivatedRoute, public configService: ConfigService,
               public animalService: AnimalService) { }
 
   ngOnInit(): void {
+    this.notEditableAnimals = this.animalService.notEditableAnimals();
     this.profileService.getParticularLogged().then(res => {
       this.particular = res;
       console.log(this.particular);
@@ -34,7 +36,7 @@ export class MyProfileComponent implements OnInit {
       this.profileService.getPetsByParticularId(this.particular.particular.id).then(element =>{
         this.pets=element;
         this.numPets = this.pets.length;
-      } );
+      } ).then(x=> console.log(this.pets));
     });
   }
 

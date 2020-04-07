@@ -43,13 +43,13 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Tipo de animal: {{configService.translateType(pet.type)}}</p>
-                            <p class="card-text">Raza: {{pet.breed}}</p>
-                            <p class="card-text">Genero: {{pet.genre == 'Male' ? 'Macho' : 'Hembra'}} </p>
-                            <p class="card-text">Edad: {{configService.calculateAge(pet.birth_date)}}</p>
-                            <p><button type="button" class="btn btn-primary" *ngIf="animalService.isEditableAnimal(pet.id)" [routerLink]="['/animal-edit', pet.id]">Editar mascota</button></p>
+                            <p *ngIf="pet.name!=null" class="card-text">Nombre: {{pet.name}}</p>
+                            <p *ngIf="pet.type!=null" class="card-text">Tipo de animal: {{configService.translateType(pet.type)}}</p>
+                            <p *ngIf="pet.breed!=null" class="card-text">Raza: {{pet.breed}}</p>
+                            <p *ngIf="pet.genre!=null" class="card-text">Genero: {{pet.genre == 'Male' ? 'Macho' : 'Hembra'}} </p>
+                            <p *ngIf="pet.birth_date!=null" class="card-text">Edad: {{configService.calculateAge(pet.birth_date)}}</p>
+                            <p *ngIf="!notEditableAnimals.includes(pet.id)"><button type="button" class="btn btn-primary" [routerLink]="['/animal-edit', pet.id]">Editar mascota</button></p>
                         </div>
-
                     </div>
                 </div>
                 <div class="card-footer text-muted">

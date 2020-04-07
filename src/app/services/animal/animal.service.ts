@@ -39,21 +39,20 @@ export class AnimalService {
     return this.requestService.request('PUT', `${environment.endpoint}/pet/reject/${id}`, {}, {}, true)
   }
 
-  isEditableAnimal(id:number){
-    var petsNotEditable = [];
+  notEditableAnimals(){
+    var petsNotEditable = Array();
     this.profileService.getParticularLogged().then(res => {
       var id = res.particular.user_account_id;
       this.BreedingService.getPersonalBreedings(id).then(res=>{
-        console.log(res)
         var array = res;
         for (let index = 0; index < array.length; index++) {
           const element = array[index];
-          if(element.petId!=null && !(element.transaction_status=="Completed" || element.transaction_status=="Reviewed")){
-            console.log(element.petId)
+          if(element.pet_id!=null && !(element.transaction_status=="Completed" || element.transaction_status=="Reviewed")){
+            petsNotEditable.push(element.pet_id)
           }
         }
       })
     });
-    return !(id in petsNotEditable)
+    return petsNotEditable;
   }
 }

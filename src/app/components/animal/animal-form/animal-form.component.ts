@@ -63,16 +63,16 @@ export class AnimalFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.editAnimal)
+    this.title = "Registra tu mascota";
     if(!this.creating && this.rol=='particular'){
-      if(!this.animalService.isEditableAnimal(this.editAnimal.id)){
+      this.title = "Edite su mascota";
+      if(this.editAnimal.id in this.animalService.notEditableAnimals()){
         this.router.navigate(['/my-profile'])
       }
-      this.title = "Registra tu animal";
+
       this.checkType = false;
       this.checkGenre = false;
       this.checkPedigree = false;
-      this.title = "Edite su mascota"
     }else if(!this.creating && this.rol == 'moderator'){
       this.title = "Revisión de la mascota"
     }
