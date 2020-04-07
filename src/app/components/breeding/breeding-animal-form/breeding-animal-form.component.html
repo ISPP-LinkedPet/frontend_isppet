@@ -1,0 +1,71 @@
+<div class="container" *ngIf="breedingForm != undefined">
+    <div class="card border-primary mb-3">
+        <div class="card-body">
+            <h1 class="card-title*n">{{title}} publicacion</h1>
+            <form [formGroup]="breedingForm">
+  
+                    <div class="row">
+                      <!-- Animal -->
+                      <div class="form-group col-4" *ngIf="isValidAnimal">
+                        <label for="pet_id">Animal</label>
+                        <select class="form-control" id="pet_id" formControlName="pet_id" (change)="validateAnimal()">
+                            <option [value]="pet.id" *ngFor="let pet of pets">{{pet.name}}</option>
+                        </select>
+                      </div>
+  
+                      <div class="form-group has-danger col-4" *ngIf="!isValidAnimal">
+                            <label for="pet_id">Animal</label>
+                            <select class="form-control is-invalid" id="pet_id" formControlName="pet_id" (change)="validateAnimal()">
+                                <option [value]="pet.id" *ngFor="let pet of pets">{{pet.name}}</option>
+                            </select>
+                          <div class="invalid-feedback">Debe seleccionar un animal requistrado previamente en su perfil</div>
+                      </div>
+  
+                        <!-- Precio -->
+  
+                        <div class="form-group col-sm" *ngIf="isValidPrice">
+                            <label for="age">Precio</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">€</span>
+                                </div>
+                                <input type="number" class="form-control" formControlName="price" aria-label="Amount (to the nearest dollar)" (change)="validatePrice()">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">.00</span>
+                                </div>
+                            </div>
+                        </div>
+  
+                        <div class="form-group has-danger col-sm" *ngIf="!isValidPrice">
+                            <label class="form-control-label" for="age">Precio</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">€</span>
+                                </div>
+                                <input type="number" class="form-control is-invalid" formControlName="price" aria-label="Amount (to the nearest dollar)" (change)="validatePrice()">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">.00</span>
+                                </div>
+                                <div class="invalid-feedback">Debe rellenar este campo</div>
+                            </div>
+                        </div>
+  
+                        <!-- Location -->
+                        <div class="form-group col-sm" *ngIf="isValidLocation">
+                          <label for="location">Zona</label>
+                          <input type="text" class="form-control" id="location" formControlName="location" (change)="validateLocation()">
+                        </div>
+                        <div class="form-group has-danger col-sm" *ngIf="!isValidLocation">
+                            <label class="form-control-label" for="age">Zona</label>
+                            <input type="text" class="form-control is-invalid" id="location" formControlName="location" (change)="validateLocation()">
+                            <div class="invalid-feedback">Debe rellenar este campo</div>
+                        </div>
+                    </div>
+  
+                <button *ngIf="rol == 'particular' && !creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Editar</button>
+                <button *ngIf="rol == 'particular' && creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Crear</button>
+            </form>
+            <div class="invalid-feedback">{{backError}} {{backError|json}}</div>
+        </div>
+    </div>
+  </div>

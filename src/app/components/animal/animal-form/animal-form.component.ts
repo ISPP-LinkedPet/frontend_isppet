@@ -28,6 +28,7 @@ export class AnimalFormComponent implements OnInit {
   isValidGenre: boolean;
   isValidAge: boolean;
   isValidType: boolean;
+  isValidName: boolean;
   isValidPedigri: boolean;
   isValidAnimalPhoto: boolean;
   isValidIdentificationPhoto: boolean;
@@ -97,6 +98,9 @@ export class AnimalFormComponent implements OnInit {
       pedigree: new FormControl(
         this.editAnimal.pedigree || '', this.requiredInput()
       ),
+      name: new FormControl(
+        this.editAnimal.name || '', [Validators.required]
+      ),
       animal_photo: new FormControl(
         this.editAnimal.animal_photo || '', [Validators.required]
       ),
@@ -146,6 +150,11 @@ export class AnimalFormComponent implements OnInit {
     if (!this.creating && this.rol == 'moderator') {
       this.isValidPedigri = ['1', '0'].includes(this.animalForm.get('pedigree').value);
       this.checkPedigree = this.animalForm.get('pedigree').value === '';
+    }
+  }
+  validateName() {
+    if (this.rol == 'particular') {
+      this.isValidName = this.animalForm.get('name').valid;
     }
   }
   validateAnimalPhoto() {
@@ -204,9 +213,13 @@ export class AnimalFormComponent implements OnInit {
       for (let i = 0; i < vaccinePassport.length; i++) formData.append('vaccine_passport', vaccinePassport[i], vaccinePassport[i].name);
       for (let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
 
+      formData.append('name', this.animalForm.value.name);
+      console.log(formData);
+      console.log(this.animalForm.value);
+
       this.animalService.createAnimal(formData).then(x => {
         alert("¡Tu animal se ha creado correctamente! \n Ahora debe de revisarlo un moderador")
-        this.router.navigate(['/profile'])
+        this.router.navigate(['/my-profile'])
       }).catch(error => {
         this.backError = error.error.error
       });
@@ -222,9 +235,9 @@ export class AnimalFormComponent implements OnInit {
       for (let i = 0; i < vaccinePassport.length; i++) formData.append('vaccine_passport', vaccinePassport[i], vaccinePassport[i].name);
       for (let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
 
+      formData.append('name', this.animalForm.value.name);
       this.animalService.editAnimal(this.editAnimal.id, formData).then(x => {
         alert("¡Tu animal se ha editado correctamente! \n Ahora debe de revisarlo un moderador")
-      }).then(x=> {
         this.router.navigate(['/my-profile'])
       }).catch(error => {
         this.backError = error.error.error
@@ -262,6 +275,7 @@ export class AnimalFormComponent implements OnInit {
     this.validateGenre();
     this.validateIdentificationPhoto();
     this.validateType();
+    this.validateName();
     this.validateVaccinePassport();
     this.validatePedigree();
 
@@ -271,6 +285,7 @@ export class AnimalFormComponent implements OnInit {
       this.isValidGenre = true;
       this.isValidAge = true;
       this.isValidType = true;
+      this.isValidName = true;
       this.isValidPedigri = true;
       this.isValidAnimalPhoto = true;
       this.isValidIdentificationPhoto = true;

@@ -51,6 +51,8 @@ import { AdoptionPendingListComponent } from './components/adoption/adoption-pen
 import { EditAdoptionComponent } from './pages/adoption/edit-adoption/edit-adoption.component';
 import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-moderator/adoption-pending-list-page.component';
 import { RequestListAcceptedComponent } from './components/request/request-list-accepted/request-list-accepted.component';
+import { CreateAnimalComponent as CreateAnimalComponentBreeding } from './pages/breeding/create-animal/create-animal.component';
+import { EditAnimalComponent as EditAnimalComponentBreeding } from './pages/breeding/edit-animal/edit-animal.component';
 // tslint:disable-next-line: max-line-length
 import { RequestListAcceptedItemComponent } from './components/request/request-list-accepted/request-list-accepted-item/request-list-accepted-item.component';
 import { EditParticularComponent } from './pages/breeding/edit-particular/edit-particular.component';
@@ -73,6 +75,7 @@ import { RatingComponent } from './components/rating/rating.component';
 // tslint:disable-next-line: max-line-length
 import { HorizontalAdvertisementComponent } from './components/vets-advertisements/horizontal-advertisement/horizontal-advertisement.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { BreedingAnimalFormComponent } from './components/breeding/breeding-animal-form/breeding-animal-form.component';
 // tslint:disable-next-line: max-line-length
 import { VerticalAdvertisementsComponent } from './components/vets-advertisements/vertical-advertisements/vertical-advertisements.component';
 
@@ -125,6 +128,9 @@ import { VerticalAdvertisementsComponent } from './components/vets-advertisement
     HorizontalAdvertisementComponent,
     ProfileComponent,
     MyProfileComponent,
+    BreedingAnimalFormComponent,
+    CreateAnimalComponentBreeding,
+    EditAnimalComponentBreeding,
     VerticalAdvertisementsComponent
   ],
   imports: [

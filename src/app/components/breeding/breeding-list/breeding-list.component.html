@@ -9,6 +9,14 @@
   >
     Crear Anuncio
   </button>
+  <button
+    routerLink="/breeding-animal"
+    type="button"
+    *ngIf="'particular'"
+    class="btn ml-3 btn-success"
+  >
+    Crear Anuncio con una mascota registrada
+  </button>
 </div>
 <div class="mb-3">
   <form [formGroup]="filterForm">
