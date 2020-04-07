@@ -1,8 +1,17 @@
 <app-header></app-header>
-<div><app-horizontal-advertisement></app-horizontal-advertisement></div>
+<div class="horizontal-advertisement"><app-horizontal-advertisement></app-horizontal-advertisement></div>
 <slide-panel [activePane]="isLeftVisible ? 'left' : 'right'">
-  <div leftPane><app-adoption-list></app-adoption-list></div>
-  <div rightPane><app-adoption-display></app-adoption-display></div>
+  <div leftPane>
+    <div class="vertical-advertisement">
+      <app-vertical-advertisements></app-vertical-advertisements>
+    </div>
+    <div class="list-style">
+      <app-adoption-list></app-adoption-list>
+    </div>
+  </div>
+  <div rightPane>
+    <app-adoption-display></app-adoption-display>
+  </div>
 </slide-panel>
 <div class="foot-fixed" *ngIf="adoptions.length == 0"><app-footer></app-footer></div>
 <div class="foot" *ngIf="adoptions.length > 1"><app-footer></app-footer></div>

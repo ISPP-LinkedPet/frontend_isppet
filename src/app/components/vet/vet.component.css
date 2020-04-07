@@ -7,7 +7,7 @@
 
 
 h1{
-    margin: 100px 10px 10px 10px;
+    margin: 0px 10px 10px 10px;
 }
 
 div{
@@ -21,7 +21,7 @@ img{
     float: right;
     border-radius: 20px;
     margin-right: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 2%;
 }
 
 .card-body{
@@ -37,8 +37,44 @@ button{
     margin: 20px 0px 0px 0px;
 }
 
+ .premium{
+    height: 4%;
+    width: 4%;
+    float: inherit;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+
+.horizontal-advertisement{
+    margin-left: 0px;
+    width: 100%;
+    margin-top: 80px;
+    bottom: 0;
+}
+.vertical-advertisement{
+    margin-left: 0px;
+    background-color:lightblue;
+    margin-top: 0px;
+    display:inline-block;
+    float: left;
+    width: auto;
+    height: 100%;
+    padding-bottom: 3%;
+}
+
+.list-style{
+    margin-top: 3%;
+    display:inline-block;
+    height: 100%;
+    width: 80%;
+}
+
 .foot{
-    margin: 0;
+    margin-left: 0px;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -46,7 +82,7 @@ button{
  }
  
  .foot-fixed{
-     margin: 0;
+    margin-left: 0px;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -54,7 +90,17 @@ button{
     text-align: center;
  }
 
-.center{
-    display: flex;
-    justify-content: center;
-}
+ @media (max-width:1220px){
+    .vertical-advertisement{
+        display: none;
+    }
+
+    .list-style{
+        margin-left: 10%;
+    }
+
+    .premium{
+        height: auto;
+        width: 10%;
+    }
+ }

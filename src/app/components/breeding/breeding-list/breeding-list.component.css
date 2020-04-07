@@ -1,35 +1,28 @@
-
-
-h1{
-    margin: 0px 10px 10px 10px;
+.card{
+    font-size: 14px;
 }
 
 div{
-    width: 90%;
-    margin: 10px 0 0px 0;
     color: black;
-    margin-left: 5%;
 }
 
 img{
-    width: 27%;
+    width: 24%;
     float: right;
     border-radius: 20px;
     margin-right: 5%;
-    margin-bottom: 5%;
+    margin-bottom: 1%;
 }
 
-.card-body{
-    margin-top: auto;
-}
+
 
 .description-content{
     margin: 0;
     list-style-type: none;
 }
 
-button{
-    margin: 20px 0px 0px 0px;
+button.details{
+    margin: 0px 0px 0px 3%;
 }
 
 .center{
