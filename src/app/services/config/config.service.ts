@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {environment} from '../../../environments/environment';
 
 import {RequestService} from '../request/request.service';
 
@@ -14,6 +15,10 @@ export class ConfigService {
 
   getUserLogged() {
     return localStorage.getItem('access_token') ? JSON.parse(atob(localStorage.getItem('access_token').split('.')[1])) : null;
+  }
+
+  getUser() {
+    return this.requestService.request('GET', `${environment.endpoint}/user`, {}, {}, true);
   }
 
   translatePedigree(pedigree): string {
