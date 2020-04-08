@@ -17,7 +17,6 @@ export class AnimalPendingListComponent implements OnInit {
 
   ngOnInit(): void {
     this.animalService.getPetsInRevision().then(res => res.forEach(animalAd => {
-      console.log(animalAd)
       this.animals.push(animalAd);
     }));
   }
