@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { RequestPublicationService } from '../../../services/requestPublication/request-publication.service';
 import { PaymentService } from '../../../services/payment/payment.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 @Component({
@@ -14,6 +15,7 @@ export class RequestListAcceptedComponent implements OnInit {
   created: boolean; // created or received
   requests = [];
   title: string;
+  filterForm: any;
   returnedRequest = new Array();
   itemsPerPage = 5;
   constructor(
@@ -30,7 +32,9 @@ export class RequestListAcceptedComponent implements OnInit {
       this.checkCreatedOrReceived(createdOrReceived);
       this.loadData();
     });
-
+    this.filterForm = new FormGroup({
+      status: new FormControl(''),
+    });
     this.ckeckPayment();
   }
 
@@ -55,7 +59,7 @@ export class RequestListAcceptedComponent implements OnInit {
   checkCreatedOrReceived(createdOrReceived: string) {
     if (createdOrReceived === 'created') {
       this.created = true;
-      this.title = 'Tus peticiones aceptadas';
+      this.title = 'Peticiones enviadas';
     } else if (createdOrReceived === 'received') {
       this.created = false;
       this.title = 'Peticiones aceptadas a alguna de tus publicaciones';
@@ -67,12 +71,43 @@ export class RequestListAcceptedComponent implements OnInit {
   navigateToMainPage() {
     this.router.navigateByUrl('');
   }
+  onSubmit() {
+    this.requests = [];
+    this.requestPublicationService.filterRequest(this.filterForm.value.status).then(x => {
+        x.forEach(b => {
+          this.requests.push(b);
+        });
+        this.returnedRequest = this.requests.slice(0, this.itemsPerPage);
+      });
+  }
 
   loadData() {
     this.requests = [];
     if (this.created) {
       this.requestPublicationService
         .getCreatedAndAccepted()
+        .then(requests => {
+          console.log(requests);
+          requests.forEach(request => this.requests.push(request));
+          this.returnedRequest = this.requests.slice(0, this.itemsPerPage);
+        })
+        .catch(error => {
+          // console.log(error);
+          this.navigateToMainPage();
+        });
+      this.requestPublicationService
+        .getCreatedAndPending()
+        .then(requests => {
+          console.log(requests);
+          requests.forEach(request => this.requests.push(request));
+          this.returnedRequest = this.requests.slice(0, this.itemsPerPage);
+        })
+        .catch(error => {
+          // console.log(error);
+          this.navigateToMainPage();
+        });
+      this.requestPublicationService
+        .getCreatedAndRejected()
         .then(requests => {
           console.log(requests);
           requests.forEach(request => this.requests.push(request));
