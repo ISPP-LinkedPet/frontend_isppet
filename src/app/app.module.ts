@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
@@ -155,6 +155,8 @@ import { VerticalAdvertisementsComponent } from './components/vets-advertisement
     BreedingService,
     ConfigService,
     LoginService,
+    HttpClientModule,
+    HttpClient,
     DatePipe],
   bootstrap: [AppComponent]
 

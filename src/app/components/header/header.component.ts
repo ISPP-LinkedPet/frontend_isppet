@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from 'src/app/services/config/config.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 import { BreedingService } from '../../services/breeding/breeding.service';
 import { AnimalService } from '../../services/animal/animal.service';
 import {environment} from '../../../environments/environment';
@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
   userlogged = this.configService.getUserLogged();
   user : any;
   rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
-  
+
   // utiles
   requests = new Array();
   breedings = new Array();

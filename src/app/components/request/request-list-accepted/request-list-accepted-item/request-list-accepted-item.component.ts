@@ -70,7 +70,7 @@ export class RequestListAcceptedItemComponent implements OnInit {
   onSubmitCodeForm() {
     const confirmationCode = this.requestForm.get('confirmationCode').value;
     this.requestBreedingService.finishBreedingConfirmation(this.breedingId, {codenumber: confirmationCode} ).then(x => {
-    alert('Tu código se ha enviado correctamente')} ).then(x=>{
+    alert('Tu código se ha enviado correctamente'); } ).then(x => {
       location.reload();
     });
   }
@@ -79,8 +79,8 @@ export class RequestListAcceptedItemComponent implements OnInit {
     const review = this.reviewForm.get('reviewarea').value;
     console.log(review);
     console.log(this.publicationId);
-    this.requestBreedingService.writeReview({star: 3 , review_description: review, publication_id: this.publicationId}).then(x=> {
-      alert('Tu review se ha enviado correctamente')} ).then(x=> {
+    this.requestBreedingService.writeReview({star: 3 , review_description: review, publication_id: this.publicationId}).then(x => {
+      alert('Tu review se ha enviado correctamente');} ).then(x => {
         location.reload();
       });
   }

@@ -1,21 +1,29 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {BreedingPendingListComponent} from './breeding-pending-list.component';
+import {HttpClient, HttpHandler} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
 
-import { BreedingPendingListComponent } from './breeding-pending-list.component';
-
+// Checked
 describe('BreedingPendingListComponent', () => {
   let component: BreedingPendingListComponent;
   let fixture: ComponentFixture<BreedingPendingListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BreedingPendingListComponent ]
+      declarations: [ BreedingPendingListComponent ],
+      providers: [ HttpClient, HttpHandler ],
+      imports: [ RouterTestingModule ]
     })
-    .compileComponents();
+        .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BreedingPendingListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  it('BreedingPendingListComponent should be created', () => {
+    expect(component).toBeTruthy();
   });
 });
