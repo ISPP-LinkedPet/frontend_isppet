@@ -3,6 +3,7 @@ import {AnimalPendingListComponent} from './animal-pending-list.component';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {RouterTestingModule} from '@angular/router/testing';
 
+// Checked
 describe('AnimalPendingListComponent', () => {
   let component: AnimalPendingListComponent;
   let fixture: ComponentFixture<AnimalPendingListComponent>;

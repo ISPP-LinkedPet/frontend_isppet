@@ -3,6 +3,7 @@ import { MyProfileComponent } from './my-profile.component';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {RouterTestingModule} from '@angular/router/testing';
 
+// Checked
 describe('MyProfileComponent', () => {
   let component: MyProfileComponent;
   let fixture: ComponentFixture<MyProfileComponent>;

@@ -3,6 +3,7 @@ import {HttpClient, HttpHandler} from '@angular/common/http';
 import {RequestListAcceptedItemComponent} from './request-list-accepted-item.component';
 import {RouterTestingModule} from '@angular/router/testing';
 
+// Checked
 describe('RequestListAcceptedItemComponent', () => {
   let component: RequestListAcceptedItemComponent;
   let fixture: ComponentFixture<RequestListAcceptedItemComponent>;
