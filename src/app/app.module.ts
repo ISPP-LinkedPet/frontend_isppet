@@ -78,6 +78,8 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
 import { BreedingAnimalFormComponent } from './components/breeding/breeding-animal-form/breeding-animal-form.component';
 // tslint:disable-next-line: max-line-length
 import { VerticalAdvertisementsComponent } from './components/vets-advertisements/vertical-advertisements/vertical-advertisements.component';
+import { StatisticsPageComponent } from './pages/admin/statistics-page/statistics-page.component';
+import { StatisticsComponent } from './components/admin/statistics/statistics.component';
 
 
 @NgModule({
@@ -131,7 +133,9 @@ import { VerticalAdvertisementsComponent } from './components/vets-advertisement
     BreedingAnimalFormComponent,
     CreateAnimalComponentBreeding,
     EditAnimalComponentBreeding,
-    VerticalAdvertisementsComponent
+    VerticalAdvertisementsComponent,
+    StatisticsPageComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,

@@ -51,6 +51,12 @@
           </div>
         </li>
         <!-- .end moderator dropdown-->
+        <!-- admin -->
+        <li class="nav-item ml-5" *ngIf="rol== 'administrator'">
+          <a class="nav-link" routerLink="/statitics">
+            <fa-icon [icon]="faChartPie" class="mr-3"></fa-icon>Estadísticas
+          </a>
+        </li>
       </ul>
       <!-- .end principal content-->
 
