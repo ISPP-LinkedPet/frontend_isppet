@@ -25,6 +25,6 @@ describe('RequestListAcceptedItemComponent', () => {
   });
 
   it('RequestListAcceptedItemComponent should be created', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
   });
 });
