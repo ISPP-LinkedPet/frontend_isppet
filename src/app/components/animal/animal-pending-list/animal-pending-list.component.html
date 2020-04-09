@@ -1,7 +1,7 @@
 <h1 class="display-5">Lista de animales pendientes de revision</h1>
 <!--Foreach Advertisement-->
 
-<div class="card border-success mb-3" *ngFor="let animal of animals">
+<div class="card border-success mb-3" *ngFor="let animal of returnedAnimals">
   <h3 class="card-header">
     {{ animal.breed }}
   </h3>
@@ -31,3 +31,6 @@
 </div>
 
 <!--End Foreach-->
+
+<pagination class="center" [totalItems]="animals.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)">
+</pagination>
