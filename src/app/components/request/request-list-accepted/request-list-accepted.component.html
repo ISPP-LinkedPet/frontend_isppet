@@ -3,7 +3,7 @@
 <div id="main">
   <div class="container mt-4">
     <div class="mb-3 text-center">
-      <div class="mb-3">
+      <div class="mb-3" *ngIf="created==true">
         <form [formGroup]="filterForm">
           <label for="status">Estado</label>
           <select
@@ -13,9 +13,9 @@
             (change)="onSubmit()"
           >
             <option value="" [defaultSelected]="true">Seleccione estado</option>
-            <option value="Accepted">Accepted</option>
-            <option value="Pending">Pending</option>
-            <option value="Rejected">Rejected</option>
+            <option value="Accepted">Aceptada</option>
+            <option value="Pending">Pendiente</option>
+            <option value="Rejected">Rechazada</option>
           </select>
         </form>
       </div>
