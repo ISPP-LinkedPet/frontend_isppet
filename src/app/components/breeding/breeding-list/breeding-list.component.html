@@ -1,79 +1,59 @@
-<!--Foreach Advertisement-->
-<div class="mb-3 ">
-  <h1 class="display-4">Lista de crianza</h1>
-  <button
-    routerLink="/breeding"
-    type="button"
-    *ngIf="'particular'"
-    class="btn btn-success"
-  >
-    Crear Anuncio
-  </button>
-  <button
-    routerLink="/breeding-animal"
-    type="button"
-    *ngIf="'particular'"
-    class="btn ml-3 btn-success"
-  >
-    Crear Anuncio con una mascota registrada
-  </button>
-</div>
-<div class="mb-3">
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-header">Lista de crianza</h1>
+    <p class="lead text-muted">
+      Esta es la lista de todas las ofertas de crianza disponibles
+    </p>
+    <p>
+      <button routerLink="/breeding" type="button" *ngIf="'particular'" class="btn btn-success">Crear Anuncio</button>
+      <button routerLink="/breeding-animal" type="button" *ngIf="'particular'" class="btn ml-3 btn-success">Crear Anuncio con una mascota registrada</button>
+    </p>
+  </div>
+</section>
+
+<div class="my-3 p-3 bg-white rounded shadow-sm">
+  <h3 class="border-bottom border-gray pb-2 mb-0">Filtrar</h3>
+  <br>
   <form [formGroup]="filterForm">
-    <label for="price">Precio</label>
-    <input
-      type="text"
-      class="form-control"
-      formControlName="price"
-      aria-label="Amount (to the nearest dollar)"
-      (change)="onSubmit()"
-    />
+    <div class="row">
+      <div class="form-group col-sm">
+        <label for="price">Precio</label>
+        <input type="text" class="form-control" formControlName="price" (change)="onSubmit()"/>
+      </div>
+      <div class="form-group col-sm">
+        <label for="type">Tipo animal</label>
+        <select class="form-control" id="type" formControlName="type" (change)="onSubmit()">
+          <option value="" [defaultSelected]="true">Seleccione tipo animal</option>
+          <option value="Dog">Perro</option>
+          <option value="Cat">Gato</option>
+          <option value="Horse">Caballo</option>
+        </select>
+      </div>
+      <div class="form-group col-sm">
+        <label for="pedigree">Pedigrí</label>
+        <select class="form-control" id="pedigree" formControlName="pedigree" (change)="onSubmit()">
+          <option value="" [defaultSelected]="true">Selecciona si tiene pedigrí</option>
+          <option value="true">Si</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+    </div>
 
-    <label for="type">Tipo animal</label>
-    <select
-      class="form-control"
-      id="type"
-      formControlName="type"
-      (change)="onSubmit()"
-    >
-      <option value="" [defaultSelected]="true">Seleccione tipo animal</option>
-      <option value="Dog">Perro</option>
-      <option value="Cat">Gato</option>
-      <option value="Horse">Caballo</option>
-    </select>
-
-    <label for="pedigree">Pedigrí</label>
-    <select
-      class="form-control"
-      id="pedigree"
-      formControlName="pedigree"
-      (change)="onSubmit()"
-    >
-      <option value="" [defaultSelected]="true"></option>
-      <option value="true">Si</option>
-      <option value="false">No</option>
-    </select>
-
-    <label for="breed">Raza</label>
-    <input
-      type="text"
-      class="form-control"
-      id="breed"
-      formControlName="breed"
-      (change)="onSubmit()"
-    />
-
-    <label for="genre">Genero</label>
-    <select
-      class="form-control"
-      id="genre"
-      formControlName="genre"
-      (change)="onSubmit()"
-    >
-      <option value="" [defaultSelected]="true">Seleccione genero</option>
-      <option value="Male">Macho</option>
-      <option value="Female">Hembra</option>
-    </select>
+    <div class="row">
+      <div class="form-group col-sm">
+        <label for="breed">Raza</label>
+        <input type="text" class="form-control" id="breed" formControlName="breed" (change)="onSubmit()"/>
+      </div>
+      <div class="form-group col-sm">
+        <label for="genre">Genero</label>
+        <select class="form-control" id="genre" formControlName="genre" (change)="onSubmit()">
+          <option value="" [defaultSelected]="true">Seleccione genero</option>
+          <option value="Male">Macho</option>
+          <option value="Female">Hembra</option>
+        </select>
+      </div>
+      <div class="form-group col-sm"></div>
+    </div>
   </form>
 </div>
 
@@ -108,11 +88,7 @@
         </li>
       </ul>
     </div>
-    <button
-      type="button"
-      class="btn btn-success details"
-      (click)="viewDetails(breedingAd.breeding_id)"
-    >
+    <button type="button" class="btn btn-success details" (click)="viewDetails(breedingAd.breeding_id)">
       Ver Detalles
     </button>
   </div>
