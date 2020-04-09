@@ -18,6 +18,7 @@ export class RequestListAcceptedItemComponent implements OnInit {
   phone: string;
   email: string;
   address: string;
+  requestStatus: string;
   transactionStatus: string;
   breedingId: string;
   publicationId: string;
@@ -46,7 +47,7 @@ export class RequestListAcceptedItemComponent implements OnInit {
 
     this.breedingId = this.request.contactData.breedingId;
     this.publicationId = this.request.publication_id;
-
+    this.requestStatus = this.request.status;
     this.transactionStatus = this.request.transaction_status;
     /*RequestForm*/
     this.requestForm = new FormGroup({
@@ -57,6 +58,7 @@ export class RequestListAcceptedItemComponent implements OnInit {
     this.reviewForm = new FormGroup({
       reviewarea: new FormControl('')
     });
+    console.log(this.request.status);
 
     console.log(this.request);
   }
