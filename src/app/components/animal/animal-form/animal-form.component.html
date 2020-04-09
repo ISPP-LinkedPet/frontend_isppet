@@ -1,7 +1,7 @@
 <div class="container" *ngIf="animalForm != undefined">
     <div class="card border-primary mb-3">
         <div class="card-body">
-            <h1 class="card-title*n">Registra tu animal</h1>
+            <h1 class="card-title*n">{{title}}</h1>
             <form [formGroup]="animalForm">
   
                 <em *ngIf="creating" class="text-secondary">Los campos en gris están deshabilitados</em>
@@ -77,7 +77,7 @@
   
                         <!-- Animal type -->
   
-                        <div class="form-group col-sm" *ngIf="isValidType">
+                        <div class="form-group col-4" *ngIf="isValidType">
                             <label for="type">Tipo animal</label>
                             <div *ngIf="rol=='particular'">
                                 <select class="form-control" id="type" [attr.disabled]="true" formControlName="type" (change)="validateType()">
@@ -97,7 +97,7 @@
                             </div>
                         </div>
   
-                        <div class="form-group has-danger col-sm" *ngIf="!isValidType">
+                        <div class="form-group has-danger col-4" *ngIf="!isValidType">
                             <label class="form-control-label" for="type">Tipo de animal</label>
                             <div *ngIf="rol=='particular'">
                                 <select class="form-control is-invalid" id="type" [attr.disabled]="true" formControlName="type" (change)="validateType()">
@@ -121,7 +121,7 @@
   
                         <!-- Pedigri -->
   
-                        <div class="form-group col-6" *ngIf="isValidPedigri">
+                        <div class="form-group col-4" *ngIf="isValidPedigri">
                             <label for="pedigree">Pedigrí</label>
                             <div *ngIf="rol=='particular'">
                                 <select class="form-control" id="pedigree" [attr.disabled]="true" formControlName="pedigree" (change)="validatePedigree()">
@@ -140,7 +140,7 @@
                             </div>
                         </div>
   
-                        <div class="form-group has-danger col-6" *ngIf="!isValidPedigri">
+                        <div class="form-group has-danger col-4" *ngIf="!isValidPedigri">
                             <label class="form-control-label" for="pedigree">Pedigrí</label>
                             <div *ngIf="rol=='particular'">
                                 <select class="form-control is-invalid" id="pedigree" [attr.disabled]="true" formControlName="pedigree" (change)="validatePedigree()">
@@ -158,6 +158,19 @@
                                 </select>
                             </div>
                             <div class="invalid-feedback">Debe indicar si es pedigrí</div>
+                        </div>
+
+                        <!-- Name -->
+  
+                        <div class="form-group col-4" *ngIf="isValidName">
+                            <label for="name">Nombre</label>
+                            <input type="text" class="form-control" id="name" [readOnly]="rol=='moderator'" formControlName="name" (change)="validateName()">
+                        </div>
+  
+                        <div class="form-group has-danger col-4" *ngIf="!isValidName">
+                            <label for="name">Nombre</label>
+                            <input type="text" class="form-control" id="name" [readOnly]="rol=='moderator'" formControlName="name" (change)="validateName()">
+                            <div class="invalid-feedback">Debe indicar el nombre</div>
                         </div>
                                           
                     </div>
@@ -249,6 +262,7 @@
                 <button *ngIf="rol == 'moderator'" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Aceptar</button>
                 <button *ngIf="rol == 'moderator'" (click)="rejectPublication()" class="btn btn-secondary btn-lg button-form right">Rechazar</button>
             </form>
+
             <div class="invalid-feedback">{{backError}} {{backError|json}}</div>
         </div>
     </div>

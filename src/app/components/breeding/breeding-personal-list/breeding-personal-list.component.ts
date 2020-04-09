@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConfigService } from './../../../services/config/config.service'
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { PaymentService } from 'src/app/services/payment/payment.service';
+import { ProfileService } from '../../../services/profile/profile.service';
 
 @Component({
   selector: 'app-breeding-personal-list',
@@ -15,8 +16,9 @@ export class BreedingPersonalListComponent implements OnInit {
   itemsPerPage = 5;
   personalBreedings = new Array();
   env = environment.endpoint;
-
-  constructor(private breedingService: BreedingService, public configService: ConfigService, private paymentService: PaymentService) { }
+  particular: any;
+  pets: any;
+  constructor(private breedingService: BreedingService, public configService: ConfigService, private paymentService: PaymentService, private profileService: ProfileService) { }
   ngOnInit(): void {
     this.getList();
   }

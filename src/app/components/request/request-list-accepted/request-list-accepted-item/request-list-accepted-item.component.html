@@ -20,7 +20,7 @@
 
         <div style="text-align: center" *ngIf="!created && publicationType=='Petición de crianza'">
           <!--Review-->
-          <div *ngIf="transactionStatus=='Completed'">
+          <div *ngIf="transactionStatus=='Completed' && requestStatus=='Accepted'">
             <form [formGroup]="reviewForm"  (ngSubmit)="onSubmitReviewForm()" novalidate> 
               <textarea formControlName="reviewarea" type="" placeholder="Cuéntanos como ha ido" maxlength="200"></textarea>
               <button type="submit" class="btn btn-primary">Enviar Review</button>
@@ -31,12 +31,12 @@
 
         <div style="text-align: center" *ngIf="created && publicationType=='Petición de crianza'">
           <!-- Pay method -->
-          <div *ngIf="transactionStatus=='In payment'">
+          <div *ngIf="transactionStatus=='In payment' && requestStatus=='Accepted'">
             <app-payment [price]="request.contactData.price" [breedingId]="request.contactData.breedingId"></app-payment>
           </div>
           <hr>
           <!--Confirmation code-->
-          <div *ngIf="transactionStatus=='In progress'">
+          <div *ngIf="transactionStatus=='In progress' && requestStatus=='Accepted'">
             <form [formGroup]="requestForm"  (ngSubmit)="onSubmitCodeForm()" novalidate> 
               <input formControlName="confirmationCode" type="text" placeholder="Introduce código">
               <button type="submit" class="btn btn-primary">Enviar Código</button>
@@ -44,7 +44,7 @@
           </div>
 
           <!--Review-->
-          <div *ngIf="transactionStatus=='Awaiting payment'">
+          <div *ngIf="transactionStatus=='Awaiting payment' && requestStatus=='Accepted'">
             <form [formGroup]="reviewForm"  (ngSubmit)="onSubmitReviewForm()" novalidate> 
               <textarea formControlName="reviewarea" type="" placeholder="Cuéntanos como ha ido" maxlength="200" required></textarea>
               <button type="submit" class="btn btn-primary">Enviar Review</button>

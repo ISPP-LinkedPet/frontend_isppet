@@ -7,17 +7,9 @@ img {
     border-bottom: 1px solid #29735B;
   }
 
-  .nav-item{
-    margin-left: 10%;
-    margin-right: 10%;
-  }
-
   a.nav-link {
     position: relative;
-    color: #000;
-    text-decoration: none;
   }
-
 
   a.nav-link:hover {
     color: #000;
@@ -43,10 +35,6 @@ img {
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
   }
-  
-  .bg-light {
-    background-color: #D5DCD4 !important;
-  }
 
   .dropdown-content {
     display: none;
@@ -66,3 +54,28 @@ img {
   .dropdown:hover .dropdown-content {
     display: block;
   }
+
+  .notification-container {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    top: 15px;
+    left: 15px;
+}
+
+.notification-counter {   
+    position: absolute;
+    top: 3px;
+    left: 20px;
+
+    background-color: rgba(212, 19, 13, 1);
+    color: #fff;
+    border-radius: 3px;
+    padding: 1px 3px;
+    font: 8px Verdana;
+}
+
+.rounded-circle{
+  width: 40px;
+  height: 40px;
+}

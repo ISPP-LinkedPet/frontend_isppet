@@ -21,12 +21,14 @@ import { EditParticularComponent } from './pages/breeding/edit-particular/edit-p
 import { CreateComponent as CreateComponentAnimal } from './pages/animal/create/create.component';
 import { EditComponent as EditComponentAnimal } from './pages/animal/edit/edit.component';
 import { PendingListComponent } from './pages/animal/pending-list/pending-list.component';
-import { VetAdvertisementComponent } from './components/vet-advertisement/vet-advertisement.component';
+// tslint:disable-next-line: max-line-length
 import { HorizontalAdvertisementComponent } from './components/vets-advertisements/horizontal-advertisement/horizontal-advertisement.component';
-import { VerticalLeftAdvertisementComponent } from './components/vets-advertisements/vertical-left-advertisement/vertical-left-advertisement.component';
-import { VerticalRightAdvertisementComponent } from './components/vets-advertisements/vertical-right-advertisement/vertical-right-advertisement.component';
 import { ProfileComponent} from './components/profile/profile.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { CreateAnimalComponent as CreateAnimalComponentBreeding } from './pages/breeding/create-animal/create-animal.component';
+import { EditAnimalComponent as EditAnimalComponentBreeding } from './pages/breeding/edit-animal/edit-animal.component';
+// tslint:disable-next-line: max-line-length
+import { VerticalAdvertisementsComponent } from './components/vets-advertisements/vertical-advertisements/vertical-advertisements.component';
 
 
 const routes: Routes = [
@@ -53,7 +55,10 @@ const routes: Routes = [
 {path: 'animal', component: CreateComponentAnimal},
 {path: 'animal-edit/:id', component: EditComponentAnimal},
 {path: 'animal-pending', component: PendingListComponent},
-{path: 'topAd', component: HorizontalAdvertisementComponent}
+{path: 'breeding-animal', component: CreateAnimalComponentBreeding},
+{path: 'breeding-animal-edit/:id', component: EditAnimalComponentBreeding},
+{path: 'topAd', component: HorizontalAdvertisementComponent},
+{path: 'lateralAd', component: VerticalAdvertisementsComponent}
 ];
 
 @NgModule({
