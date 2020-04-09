@@ -3,6 +3,8 @@
 <div id="main">
   <div class="container mt-4">
     <div class="mb-3 text-center">
+
+      <!--Filro de peticiones-->
       <div class="mb-3" *ngIf="created==true">
         <form [formGroup]="filterForm">
           <label for="status">Estado</label>
@@ -10,18 +12,22 @@
             class="form-control"
             id="status"
             formControlName="status"
-            (change)="onSubmit()"
-          >
+            (change)="onSubmit()">
+
             <option value="" [defaultSelected]="true">Seleccione estado</option>
             <option value="Accepted">Aceptada</option>
             <option value="Pending">Pendiente</option>
             <option value="Rejected">Rechazada</option>
+            
           </select>
         </form>
       </div>
+      <!---->
+
       <h1 class="display-4">{{ title }}</h1>
     </div>
 
+    <!--Petciones-->
     <div class="row d-flex justify-content-center" style="margin-top: 6em;">
       <app-request-list-accepted-item
         *ngFor="let req of returnedRequest"
@@ -29,6 +35,8 @@
         [created]="created"
       ></app-request-list-accepted-item>
     </div>
+    <!---->
+
   </div>
 </div>
 
