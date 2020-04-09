@@ -34,7 +34,7 @@
                 <div class="card-body" *ngIf="numPets>0">
                     <h1>Mascotas registradas</h1>
                     <button type="button" class="btn btn-primary mb-2" [routerLink]="['/animal']">Añadir una mascota</button>
-                    <div class="card-body border-top" *ngFor="let pet of pets;">
+                    <div class="card-body border-top" *ngFor="let pet of returnedPets;">
                         <div class="row">
                             <div class="col-md-3"
                                 *ngFor="let img of pet.animal_photo.replace(' ', '').split(','); let i = index">
@@ -55,7 +55,10 @@
                         </ul>
                         </div>
                     </div>
+                    <pagination class="center" [totalItems]="pets.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)">
+                    </pagination>
                 </div>
+                
                 <div class="card-footer text-muted">
                     <br>
                 </div>
