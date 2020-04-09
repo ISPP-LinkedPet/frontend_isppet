@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { PaymentService } from '../../../services/payment/payment.service';
 import { ToastrService } from 'ngx-toastr';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-payment',
@@ -10,15 +11,22 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PaymentComponent implements OnInit {
   
-  @Input() price;
-  @Input() breedingId;
+  @Input() price: any;
+  @Input() breedingId: any;
 
   constructor(
     private paymentService: PaymentService,
     private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit() {}
+
+  async paypal() {
+    console.log('ui')
+    const redirectUrl = await this.paymentService.userCreatePayMePaypal({breedingId: this.breedingId, returnUrl: "http://" + window.location.hostname + ":4200/request/accepted/received"});
+    window.location.href = redirectUrl.links[1].href;
+  }
 
   openCheckout() {
     var handler = (<any>window).StripeCheckout.configure({

@@ -21,4 +21,12 @@ export class PaymentService {
   makePaypalPayment(data: any) {
     return this.requestService.request('POST', `${environment.endpoint}/payment/user`, data, {});
   }
+
+  userCreatePayMePaypal(data: any) {
+    return this.requestService.request('POST', `${environment.endpoint}/payment/paypalCreatePayment`, data, {});
+  }
+ 
+  checkPaypalPayment(breedingId: string, paymentId: string) {
+    return this.requestService.request('GET', `${environment.endpoint}/payment/checkPaypalPayment/${breedingId}/${paymentId}`, {}, {});
+  }
 }
