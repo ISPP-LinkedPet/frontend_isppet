@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MyProfileComponent } from './my-profile.component';
+import {HttpClient, HttpHandler} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('MyProfileComponent', () => {
   let component: MyProfileComponent;
@@ -8,7 +9,9 @@ describe('MyProfileComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MyProfileComponent ]
+      declarations: [ MyProfileComponent ],
+      providers: [ HttpClient, HttpHandler ],
+      imports: [ RouterTestingModule ]
     })
     .compileComponents();
   }));
@@ -19,7 +22,7 @@ describe('MyProfileComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('MyProfileComponent should be created', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,8 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
 import { HorizontalAdvertisementComponent } from './horizontal-advertisement.component';
-import { RouterTestingModule } from "@angular/router/testing";
-import { ToastrModule } from 'ngx-toastr';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('HorizontalAdvertisementComponent', () => {
   let component: HorizontalAdvertisementComponent;
@@ -10,19 +9,21 @@ describe('HorizontalAdvertisementComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterTestingModule, ToastrModule.forRoot()],
-      declarations: [ HorizontalAdvertisementComponent ]
+      declarations: [ HorizontalAdvertisementComponent ],
+      providers: [ HttpClient, HttpHandler ],
+      imports: [ RouterTestingModule ]
     })
-    .compileComponents();
+        .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HorizontalAdvertisementComponent);
     component = fixture.componentInstance;
+    component.advertisements = ['ad.jpg'];
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeDefined();
+  it('HorizontalAdvertisementComponent should be created', () => {
+    expect(component).toBeTruthy();
   });
 });

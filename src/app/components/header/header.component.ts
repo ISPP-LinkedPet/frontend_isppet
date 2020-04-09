@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from 'src/app/services/config/config.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 import {BreedingListPageComponent} from './../../pages/breeding/list/breeding-list-page.component';
 
