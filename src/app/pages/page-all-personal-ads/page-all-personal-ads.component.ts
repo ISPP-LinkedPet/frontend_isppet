@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from 'src/app/services/config/config.service';
+import { ProfileService } from 'src/app/services/profile/profile.service';
 
 @Component({
   selector: 'app-page-all-personal-ads',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page-all-personal-ads.component.css']
 })
 export class PageAllPersonalAdsComponent implements OnInit {
+  userlogged: any;
+  id: any;
+  particular: any;
 
-  constructor() { }
+  constructor(public configService: ConfigService) { }
 
   ngOnInit(): void {
+
   }
 
 }
