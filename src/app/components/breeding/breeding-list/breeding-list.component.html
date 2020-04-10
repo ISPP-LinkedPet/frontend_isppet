@@ -1,3 +1,4 @@
+<div class="container my-4">
 <section class="jumbotron text-center">
   <div class="container">
     <h1 class="jumbotron-header">Lista de crianza</h1>
@@ -57,41 +58,44 @@
   </form>
 </div>
 
-<div class="card border-success mb-3" *ngFor="let breedingAd of returnedBreedings">
-  <h3 class="card-header">
-    {{ breedingAd.breed }} en {{ breedingAd.location }}
-  </h3>
-  <div class="card-body">
-    <img
-      src="{{ env }}/{{ breedingAd.animal_photo.split(',')[0] }}"
-      alt="Foto/s del animal"
-    />
-    <div class="description-content">
-      <ul>
-        <li class="card-text">
-          <label><strong>Edad: </strong></label>
-          {{ this.configService.calculateAge(breedingAd.birth_date) }}
-        </li>
-        <li class="card-text">
-          <label><strong>Animal: </strong></label>
-          {{ this.configService.translateType(breedingAd.type) }}
-        </li>
-        <li class="card-text">
-          <label><strong>Pedigree: </strong></label>
-          {{ breedingAd.pedigree ? "Sí" : "No" }}
-        </li>
-        <li class="card-text">
-          <label><strong>Ubicación: </strong></label> {{ breedingAd.location }}
-        </li>
-        <li class="card-text">
-          <label><strong>Precio: </strong></label> {{ breedingAd.price }} euros
-        </li>
-      </ul>
-    </div>
-    <button type="button" class="btn btn-success details" (click)="viewDetails(breedingAd.breeding_id)">
-      Ver Detalles
-    </button>
-  </div>
+<div class="alert alert-dismissible alert-warning" *ngIf="returnedBreedings.length>0">
+  <h4 class="alert-heading"><fa-icon [icon]="faAward" class="mr-2"></fa-icon>Mascotas con pedigrí</h4>
+  <p class="mb-0">Si ves este símbolo, significa que la mascota tiene pedigrí y ha sido verificado por nuestros moderadores</p>
 </div>
-<pagination class="center" [totalItems]="breedings.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)">
+
+<div class="alert alert-dismissible alert-info" *ngIf="returnedBreedings.length==0">
+  <h4 class="alert-heading"><fa-icon [icon]="faInfoCircle" class="mr-2"></fa-icon>No se han encontrado ofertas</h4>
+</div>
+
+  <div class="row">
+    <div class="col-md-3" *ngFor="let breedingAd of returnedBreedings">
+      <div class="card mb-3">
+        <img class="card-img-top" src="{{ env }}/{{ breedingAd.animal_photo.split(',')[0] }}" alt="Foto/s del animal"/>
+        <div class="card-header bg-success text-white">
+          <h5 class="primary-card-title">{{breedingAd.breed}}
+            <fa-icon *ngIf="breedingAd.pedigree" [icon]="faAward" class="ml-2"></fa-icon>
+          </h5>
+        </div>
+        <div class="card-body bg-white">
+          {{breedingAd.genre == 'Male' ? 'Macho' : 'Hembra'}}  de {{ this.configService.calculateAge(breedingAd.birth_date) }} 
+          <strong>{{ breedingAd.pedigree ? "con" : "sin" }}</strong> pedigrí en {{ breedingAd.location }}
+          <h2 class="text-right">{{ breedingAd.price }} €</h2>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-between align-items-center">
+            <button type="button" class="btn btn-success details" (click)="viewDetails(breedingAd.breeding_id)">
+              Ver Detalles 
+              <fa-icon *ngIf="breedingAd.type=='Cat'" [icon]="faCat" class="ml-2"></fa-icon>
+              <fa-icon *ngIf="breedingAd.type=='Dog'" [icon]="faDog" class="ml-2"></fa-icon>
+              <fa-icon  *ngIf="breedingAd.type=='Horse'" [icon]="faHorse" class="ml-2"></fa-icon>
+            </button>
+            <fa-icon title="Este anuncio es de una de sus mascotas" *ngIf="personalBreedings.includes(breedingAd.id)" [icon]="faUser" class="ml-2"></fa-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<pagination class="justify-content-md-center" [totalItems]="breedings.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)">
 </pagination>
+</div>

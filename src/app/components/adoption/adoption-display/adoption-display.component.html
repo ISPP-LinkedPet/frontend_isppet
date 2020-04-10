@@ -1,37 +1,38 @@
-<div class="container">
-  <div class="row">
-    <div class="col sm-6" >
-      <div class="card border-primary">
-          <h3 class="card-header">{{ adoptionListPageComponent.selectedAdoption.breed }} en {{ adoptionListPageComponent.selectedAdoption.location }}</h3>
-          <div class="card-body">
-            <div class="row">
-              <div clas="col-md3" *ngFor="let img of adoptionListPageComponent.selectedAdoption.animal_photo.replace(' ', '').split(','); let i = index">
-                <a href="{{env}}/{{img}}" target="_blank"><img class = "img-thumbnail" id="imagen{{i}}" style="height: 150px; display: block;" src="{{env}}/{{img}}" alt="img{{i}}" ></a>
+<div class="container my-4">
+  <div class="card bg-white rounded shadow-sm">
+      <div class="col-md-12 back card-img-top">
+        <carousel>
+          <slide *ngFor="let img of adoptionListPageComponent.selectedAdoption.animal_photo.replace(' ', '').split(',')">
+            <img class="img-fluid" src="{{env}}/{{img}}">
+          </slide>
+        </carousel>
+      </div>
+      <div class="card-body">
+        <h3 class="primary-card-title ml-4">Información</h3>
+        <div class="small ml-4">{{configService.translateType(adoptionListPageComponent.selectedAdoption.type)}}</div><br>
+        <div class="card-section pl-4 pr-4 pb-4 mb-4 mr-4 ml-4">
+          <div class="row">
+            <div class="col-7">
+              <h5 class="my-4">Raza: <strong>{{adoptionListPageComponent.selectedAdoption.breed}}</strong></h5>
+              <h5 class="my-4">Género: <strong>{{adoptionListPageComponent.selectedAdoption.genre == 'Male' ? 'Macho' : 'Hembra'}}</strong></h5>
+              <h5 class="my-4">Fecha de nacimiento: <strong>{{adoptionListPageComponent.selectedAdoption.birth_date | date:'MM/dd/yyyy'}}</strong> ({{adoptionListPageComponent.configService.calculateAge(adoptionListPageComponent.selectedAdoption.birth_date)}})</h5>
+              <h5 class="my-4">Pedigrí: <strong>{{adoptionListPageComponent.selectedAdoption.pedigree == 1 ? 'Sí' : 'No'}}</strong></h5>
+            </div>
+            <div class="col-5" *ngIf="adoptionListPageComponent.selectedShelter != null">
+              <div class="alert alert-dismissible alert-primary">
+              <h1>Contacto</h1>
+                <h5 class="my-4">Dirección: {{adoptionListPageComponent.selectedShelter.address}}</h5>
+                <h5 class="my-3">Teléfono: {{adoptionListPageComponent.selectedShelter.telephone}}</h5>
+                <h5 class="my-3">Nombre: {{adoptionListPageComponent.selectedShelter.name}} </h5>
+                <h5 class="my-3">Email: {{adoptionListPageComponent.selectedShelter.email}} </h5>
               </div>
             </div>
           </div>
-        <div class="card-body" *ngIf="adoptionListPageComponent.selectedShelter != null">
-            <h1>Información de contacto</h1>
-            <p class="card-text">Dirección: {{adoptionListPageComponent.selectedShelter.address}}</p>
-            <p class="card-text">Teléfono: {{adoptionListPageComponent.selectedShelter.telephone}}</p>
-            <p class="card-text">Nombre: {{adoptionListPageComponent.selectedShelter.name}} </p>
-            <p class="card-text">Email: {{adoptionListPageComponent.selectedShelter.email}} </p>
         </div>
-          <ul class="list-group list-group-flush">
-            <h3 class="list-group-item">Datos específicos:</h3>
-            <li class="list-group-item">Animal: {{configService.translateType(adoptionListPageComponent.selectedAdoption.type)}}</li>
-            <li class="list-group-item">Raza: {{adoptionListPageComponent.selectedAdoption.breed}}</li>
-            <li class="list-group-item">Pedigree: {{adoptionListPageComponent.selectedAdoption.pedigree ? "Sí" : "No" }}</li>
-            <li class="list-group-item">Edad: {{adoptionListPageComponent.configService.calculateAge(adoptionListPageComponent.selectedAdoption.birth_date)}}</li>
-            <li class="list-group-item">Genéro: {{adoptionListPageComponent.selectedAdoption.genre == 'Male' ? 'Macho' : 'Hembra'}}</li>
-          </ul>
-          <div class="card-body">
-              <button type="button" class="btn btn-primary" (click)="adoptionListPageComponent.isLeftVisible = !adoptionListPageComponent.isLeftVisible">Volver a adopciones</button>
-          </div>
-          <div class="card-footer text-muted">
-              <br>
-          </div>
-      </div>
+      <button class="btn btn-danger mx-3" (click)="adoptionListPageComponent.isLeftVisible = !adoptionListPageComponent.isLeftVisible">Volver a anuncios</button> 
+    </div>
+    <div class="card-footer text-muted text-right">
+      Fecha de publicación: {{adoptionListPageComponent.selectedAdoption.creation_date | date:'MM/dd/yyyy HH:mm' }}
     </div>
   </div>
 </div>

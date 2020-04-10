@@ -1,35 +1,34 @@
-<div class="container">
-  <div class="row">
-    <div class="col sm-6" >
-      <div class="card border-primary">
-          <h3 class="card-header">{{breedingListPageComponent.selectedBreeding.breed}} en {{breedingListPageComponent.selectedBreeding.location}}</h3>
-          <div class="card-body">
-          <p class="card-text">Fotos subidas por el publicante:</p>
+<div class="container my-4">
+  <div class="card bg-white rounded shadow-sm">
+      <div class="col-md-12 back card-img-top">
+        <carousel>
+          <slide *ngFor="let img of breedingListPageComponent.selectedBreeding.animal_photo.replace(' ', '').split(',')">
+            <img class="img-fluid" src="{{env}}/{{img}}">
+          </slide>
+        </carousel>
+      </div>
+      <div class="card-body">
+        <div class="card-section p-4 m-4">
+          <h3 class="secondary-card-title">Información</h3>
           <div class="row">
-            <div clas="col-md3 " *ngFor="let img of breedingListPageComponent.selectedBreeding.animal_photo.replace(' ', '').split(','); let i = index">
-              <a href="{{env}}/{{img}}" target="_blank"><img class = "img-thumbnail" id="imagen{{i}}" style="height: 150px; display: block;" src="{{env}}/{{img}}" alt="img{{i}}" ></a>
+            <div class="col-8">
+              <div class="small">{{configService.translateType(breedingListPageComponent.selectedBreeding.type)}}</div>
+              <h5 class="my-4">Raza: <strong>{{breedingListPageComponent.selectedBreeding.breed}}</strong></h5>
+              <h5 class="my-4">Género: <strong>{{breedingListPageComponent.selectedBreeding.genre == 'Male' ? 'Macho' : 'Hembra'}}</strong></h5>
+              <h5 class="my-4">Fecha de nacimiento: <strong>{{breedingListPageComponent.selectedBreeding.birth_date | date:'MM/dd/yyyy'}}</strong> ({{breedingListPageComponent.configService.calculateAge(breedingListPageComponent.selectedBreeding.birth_date)}})</h5>
+              <h5 class="my-4">Pedigrí: <strong>{{breedingListPageComponent.selectedBreeding.pedigree == 1 ? 'Sí' : 'No'}}</strong></h5>
+            </div>
+            <div class="col-4">
+              <p class="display-4">Precio</p>
+              <p class="display-2"><strong>{{breedingListPageComponent.selectedBreeding.price}} €</strong></p>
             </div>
           </div>
-          </div>
-          <div class="card-body">
-            <p class="card-text">Precio: {{breedingListPageComponent.selectedBreeding.price}} </p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Animal: {{configService.translateType(breedingListPageComponent.selectedBreeding.type)}}</li>
-            <li class="list-group-item">Raza: {{breedingListPageComponent.selectedBreeding.breed}}</li>
-            <li class="list-group-item">Pedigree: {{breedingListPageComponent.selectedBreeding.pedigree == 1 ? 'Sí' : 'No'}}</li>
-            <li class="list-group-item">Edad: {{breedingListPageComponent.configService.calculateAge(breedingListPageComponent.selectedBreeding.birth_date)}}</li>
-            <li class="list-group-item">Genéro: {{breedingListPageComponent.selectedBreeding.genre == 'Male' ? 'Macho' : 'Hembra'}}</li>
-            <li class="list-group-item">Fecha de publicación: {{breedingListPageComponent.selectedBreeding.creation_date | date:'MM/dd/yyyy HH:mm' }}</li>
-
-          </ul>
-          <div class="card-body">
-              <button *ngIf="!breedingListPageComponent.hasreq.hasRequest" type="button" class="btn btn-primary" (click)="onSubmit(breedingListPageComponent.selectedBreeding.breedingId)" >Me interesa</button>
-              <button type="button" class="btn btn-primary mx-3" (click)="backToTheList()">Volver a anuncios</button>      
-          </div>
-          <div class="card-footer text-muted">
-          </div>
-      </div>
+        </div>
+      <button *ngIf="!breedingListPageComponent.hasreq.hasRequest" class="btn btn-success float-right" (click)="onSubmit(breedingListPageComponent.selectedBreeding.breedingId)" >Me interesa</button>
+      <button class="btn btn-danger mx-3" (click)="backToTheList()">Volver a anuncios</button> 
+    </div>
+    <div class="card-footer text-muted text-right">
+      Fecha de publicación: {{breedingListPageComponent.selectedBreeding.creation_date | date:'MM/dd/yyyy HH:mm' }}
     </div>
   </div>
 </div>

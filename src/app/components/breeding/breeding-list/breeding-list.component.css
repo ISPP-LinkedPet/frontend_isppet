@@ -1,23 +1,6 @@
 img{
-    width: 24%;
-    float: right;
-    border-radius: 20px;
-    margin-right: 5%;
-    margin-bottom: 1%;
-}
-
-
-
-.description-content{
-    margin: 0;
-    list-style-type: none;
-}
-
-button.details{
-    margin: 0px 0px 0px 3%;
-}
-
-.center{
-    display: flex;
-    justify-content: center;
+    height: 160px; 
+    width: inherit; 
+    display: block;
+    object-fit: cover;
 }

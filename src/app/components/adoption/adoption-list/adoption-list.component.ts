@@ -5,6 +5,7 @@ import { AdoptionListPageComponent } from '../../../pages/adoption/list/adoption
 import { AdoptionDisplayComponent } from '../adoption-display/adoption-display.component';
 import { environment } from '../../../../environments/environment';
 import { ConfigService } from 'src/app/services/config/config.service';
+import { faCat, faDog, faHorse, faAward, faUser, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-adoption-list',
@@ -12,9 +13,18 @@ import { ConfigService } from 'src/app/services/config/config.service';
   styleUrls: ['./adoption-list.component.css']
 })
 export class AdoptionListComponent implements OnInit {
+  // icons
+  faCat = faCat;
+  faAward = faAward;
+  faDog = faDog;
+  faUser = faUser;
+  faHorse = faHorse;
+  faInfoCircle = faInfoCircle;
+
   returnedAdoptions = new Array();
   itemsPerPage = 5;
   adoptions = new Array();
+  personalAdoptions = new Array();
   env = environment.endpoint;
   userlogged = this.configService.getUserLogged();
   rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
@@ -24,6 +34,14 @@ export class AdoptionListComponent implements OnInit {
     public adoptionListPageComponent: AdoptionListPageComponent) { }
 
   ngOnInit(): void {
+
+    if(this.rol!='disconnected'){
+      this.adoptionService.getPersonalAdoptions(this.userlogged.id).then(res => {
+        res.forEach(breeding => {
+          this.personalAdoptions.push(breeding.id);
+        });
+      });
+    }
 
     if (this.rol === 'shelter') {
       this.adoptionService.getAdoptionByShelterLogged().then(res => {
@@ -39,6 +57,7 @@ export class AdoptionListComponent implements OnInit {
         });
         this.returnedAdoptions = this.adoptions.slice(0, this.itemsPerPage);
       });
+      console.log(this.returnedAdoptions)
     }
 
 
