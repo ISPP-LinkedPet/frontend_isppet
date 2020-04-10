@@ -18,6 +18,7 @@ export class RequestListAcceptedItemComponent implements OnInit {
   phone: string;
   email: string;
   address: string;
+  requestStatus: string;
   transactionStatus: string;
   breedingId: string;
   publicationId: string;
@@ -46,7 +47,7 @@ export class RequestListAcceptedItemComponent implements OnInit {
 
     this.breedingId = this.request.contactData.breedingId;
     this.publicationId = this.request.publication_id;
-
+    this.requestStatus = this.request.status;
     this.transactionStatus = this.request.transaction_status;
     /*RequestForm*/
     this.requestForm = new FormGroup({
@@ -57,6 +58,7 @@ export class RequestListAcceptedItemComponent implements OnInit {
     this.reviewForm = new FormGroup({
       reviewarea: new FormControl('')
     });
+    console.log(this.request.status);
 
     console.log(this.request);
   }
@@ -68,7 +70,7 @@ export class RequestListAcceptedItemComponent implements OnInit {
   onSubmitCodeForm() {
     const confirmationCode = this.requestForm.get('confirmationCode').value;
     this.requestBreedingService.finishBreedingConfirmation(this.breedingId, {codenumber: confirmationCode} ).then(x => {
-    alert('Tu código se ha enviado correctamente')} ).then(x=>{
+    alert('Tu código se ha enviado correctamente'); } ).then(x => {
       location.reload();
     });
   }
@@ -77,8 +79,8 @@ export class RequestListAcceptedItemComponent implements OnInit {
     const review = this.reviewForm.get('reviewarea').value;
     console.log(review);
     console.log(this.publicationId);
-    this.requestBreedingService.writeReview({star: 3 , review_description: review, publication_id: this.publicationId}).then(x=> {
-      alert('Tu review se ha enviado correctamente')} ).then(x=> {
+    this.requestBreedingService.writeReview({star: 3 , review_description: review, publication_id: this.publicationId}).then(x => {
+      alert('Tu review se ha enviado correctamente');} ).then(x => {
         location.reload();
       });
   }

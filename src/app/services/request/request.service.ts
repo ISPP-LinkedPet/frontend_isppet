@@ -62,7 +62,6 @@ export class RequestService {
     }
 
   }
-
   serializeUrl(uri, params) {
     const str = [];
 

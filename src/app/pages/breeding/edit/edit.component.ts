@@ -19,7 +19,7 @@ export class EditComponent implements OnInit {
 
   ngOnInit(): void {
     this.breedingService.getBreedingById(this.route.snapshot.params.id).then(response => {
-      this.breeding = response
+      this.breeding = response;
     });
   }
 }
