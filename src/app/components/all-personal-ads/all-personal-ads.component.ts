@@ -15,26 +15,33 @@ export class AllPersonalAdsComponent implements OnInit {
   allads = new Array();
   env = environment.endpoint;
   rol = null;
-
+  id = null;
 
 
   constructor(private breedingService: BreedingService,
               private adoptionService: AdoptionService,
-              private configService: ConfigService,
+              public configService: ConfigService,
               private paymentService: PaymentService) { }
 
   ngOnInit(): void {
+
     this.init();
     console.log(localStorage);
   }
 
   init() {
+
     const userLogged = this.configService.getUserLogged();
     this.rol = userLogged.role;
+    this.id = userLogged.id;
 
-    this.adoptionService.getAllAdoptions(localStorage.getItem('access_token'))
+    console.log(userLogged);
+
+    /*Personal Adoptions*/
+    this.adoptionService.getPersonalAdoptions(this.id)
     .then(res => res.forEach( (element: any) => {this.allads.push(element); } ));
-    this.breedingService.getAllBreedings()
+    /*Personal Breedings*/
+    this.breedingService.getPersonalBreedings(this.id)
     .then(res => res.forEach((element: any) => {this.allads.push(element); } ))
     .then(res => this.shuffle(this.allads)).then(res => console.log(this.allads));
   }

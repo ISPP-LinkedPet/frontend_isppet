@@ -46,11 +46,11 @@
               </ul>
               
               <div *ngIf="adv.transaction_status=='Awaiting payment'">
-                <!--<button
+                <button
                   type="button"
                   class="btn btn-success"
-                  (click)="acceptMoney(breedingAd.breeding_id)">Recibir el pago
-                </button>-->
+                  (click)="acceptMoney(adv.breeding_id)">Recibir el pago
+                </button>
             </div>
         
               <div *ngIf="adv.transaction_status == 'Offered'">
@@ -105,7 +105,7 @@
                 </li>
                 <li>
                   <label><strong>Edad: </strong></label>
-                  <!--{{ this.configService.calculateAge(adv.birth_date) }}-->
+                    {{ this.configService.calculateAge(adv.birth_date) }}
                 </li>
                 <li>
                   <label><strong>Pedigree: </strong></label>
