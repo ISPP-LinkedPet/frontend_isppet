@@ -29,6 +29,7 @@ import { CreateAnimalComponent as CreateAnimalComponentBreeding } from './pages/
 import { EditAnimalComponent as EditAnimalComponentBreeding } from './pages/breeding/edit-animal/edit-animal.component';
 // tslint:disable-next-line: max-line-length
 import { VerticalAdvertisementsComponent } from './components/vets-advertisements/vertical-advertisements/vertical-advertisements.component';
+import { AllPersonalAdsComponent } from './components/all-personal-ads/all-personal-ads.component';
 
 
 const routes: Routes = [
@@ -58,7 +59,8 @@ const routes: Routes = [
 {path: 'breeding-animal', component: CreateAnimalComponentBreeding},
 {path: 'breeding-animal-edit/:id', component: EditAnimalComponentBreeding},
 {path: 'topAd', component: HorizontalAdvertisementComponent},
-{path: 'lateralAd', component: VerticalAdvertisementsComponent}
+{path: 'lateralAd', component: VerticalAdvertisementsComponent},
+{path: 'pallAds', component: AllPersonalAdsComponent}
 ];
 
 @NgModule({

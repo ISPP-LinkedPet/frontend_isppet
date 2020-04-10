@@ -1,0 +1,135 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<div *ngFor="let adv of allads">
+
+    <!--Mis Anuncios de Crianza-->
+
+    <div *ngIf="adv.breeding_id!=null" class="card border-success mb-3">
+        <h3 class="card-header text-dark">
+            {{ adv.breed }} en {{ adv.location }}
+            <span class="badge badge-secondary text-white">CRIANZA</span>
+
+        </h3>
+        <h6
+        class="card-header bg-success text-dark"
+        *ngIf="adv.document_status == 'Accepted'">
+        Revisada
+        </h6>
+        <h6
+        class="card-header bg-warning text-dark"
+        *ngIf="adv.document_status == 'In revision'">
+            En revisión
+        </h6>
+        <div class="card-body">
+            <img src="{{ env }}/{{ adv.animal_photo.split(',')[0] }}" alt="Foto/s del animal" />
+            <div class="description-content">
+              <!--{{breedingAd.breeding_id}}-->
+              <ul>
+                <!--<li>
+                  <label><strong>Edad: </strong></label>
+                  {{ this.configService.calculateAge(breedingAd.birth_date) }}
+                </li>-->
+                <li>
+                  <label><strong>Pedigree: </strong></label>
+                  {{ adv.pedigree == 1 ? "Sí" : "No" }}
+                </li>
+                <li>
+                  <label><strong>Ubicación: </strong></label> {{ adv.location }}
+                </li>
+                <li>
+                  <label><strong>Precio: </strong></label> {{ adv.price }} euros
+                </li>
+                <li *ngIf="adv.transaction_status == 'In progress'">
+                  <label><strong>Código de confirmación: </strong></label>
+                  {{ adv.codenumber }}
+                </li>
+              </ul>
+              
+              <div *ngIf="adv.transaction_status=='Awaiting payment'">
+                <!--<button
+                  type="button"
+                  class="btn btn-success"
+                  (click)="acceptMoney(breedingAd.breeding_id)">Recibir el pago
+                </button>-->
+            </div>
+        
+              <div *ngIf="adv.transaction_status == 'Offered'">
+                <div *ngIf="adv.pet_id == null">
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    [routerLink]="['/breeding-edit-particular', adv.breeding_id]">
+                    Editar Anuncio
+                  </button>
+                </div>
+                <div *ngIf="adv.pet_id != null">
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    [routerLink]="['/breeding-animal-edit', adv.breeding_id]">
+                    Editar Anuncio
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+    <!--Mis Anuncios de Adopciones-->
+    <div *ngIf="adv.adoption_id!=null" class="card border-success mb-3 text-dark"> 
+        <h3 class="card-header">
+            {{ adv.breed }} en {{ adv.location }}
+            <span class="badge badge-info text-white">ADOPCIÓN</span>
+
+          </h3>
+          <h6
+            class="card-header bg-success"
+            *ngIf="adv.document_status == 'Accepted'"
+          >
+            Revisada
+          </h6>
+          <h6
+            class="card-header bg-warning"
+            *ngIf="adv.document_status == 'In revision'"
+          >
+            En revisión
+          </h6>
+          <div class="card-body">
+            <img src="{{ env }}/{{ adv.animal_photo.split(',')[0] }}" alt="Foto/s del animal" />
+            <div class="description-content">
+              <!--{{breedingAd.breeding_id}}-->
+              <ul>
+                <li>
+                  <label><strong>Nombre: </strong></label>
+                  {{ adv.name == "" ? "No tiene nombre" : adv.name }}
+                </li>
+                <li>
+                  <label><strong>Edad: </strong></label>
+                  <!--{{ this.configService.calculateAge(adv.birth_date) }}-->
+                </li>
+                <li>
+                  <label><strong>Pedigree: </strong></label>
+                  {{ adv.pedigree == 1 ? "Sí" : "No" }}
+                </li>
+                <li>
+                  <label><strong>Ubicación: </strong></label> {{ adv.location }}
+                </li>
+                <li *ngIf="rol == 'shelter'">
+                  <label><strong>Tasas: </strong></label> {{ adv.taxes }} euros
+                </li>
+              </ul>
+        
+              <div *ngIf="adv.transaction_status != 'Completed'">
+                <button type="button" class="btn btn-success" [routerLink]="['/adoption-edit', adv.adoption_id]">
+                  Editar Anuncio
+                </button>
+              </div>
+            </div>
+          </div>
+
+    </div>
+
+
+
+
+</div>
