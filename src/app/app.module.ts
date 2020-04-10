@@ -79,6 +79,8 @@ import { BreedingAnimalFormComponent } from './components/breeding/breeding-anim
 // tslint:disable-next-line: max-line-length
 import { VerticalAdvertisementsComponent } from './components/vets-advertisements/vertical-advertisements/vertical-advertisements.component';
 import { AllPersonalAdsComponent } from './components/all-personal-ads/all-personal-ads.component';
+import { StatisticsPageComponent } from './pages/admin/statistics-page/statistics-page.component';
+import { StatisticsComponent } from './components/admin/statistics/statistics.component';
 
 
 @NgModule({
@@ -133,7 +135,9 @@ import { AllPersonalAdsComponent } from './components/all-personal-ads/all-perso
     CreateAnimalComponentBreeding,
     EditAnimalComponentBreeding,
     VerticalAdvertisementsComponent,
-    AllPersonalAdsComponent
+    AllPersonalAdsComponent,
+    StatisticsPageComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
