@@ -1,10 +1,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div *ngFor="let adv of allads">
+<div *ngFor="let adv of returnedAds">
 
     <!--Mis Anuncios de Crianza-->
-
     <div *ngIf="adv.breeding_id!=null" class="card border-success mb-3">
+      <strong>{{adv.transaction_status}}</strong>
         <h3 class="card-header text-dark">
             {{ adv.breed }} en {{ adv.location }}
             <span class="badge badge-secondary text-white">CRIANZA</span>
@@ -25,10 +25,10 @@
             <div class="description-content">
               <!--{{breedingAd.breeding_id}}-->
               <ul>
-                <!--<li>
+                <li>
                   <label><strong>Edad: </strong></label>
-                  {{ this.configService.calculateAge(breedingAd.birth_date) }}
-                </li>-->
+                  {{ this.configService.calculateAge(adv.birth_date) }}
+                </li>
                 <li>
                   <label><strong>Pedigree: </strong></label>
                   {{ adv.pedigree == 1 ? "Sí" : "No" }}
@@ -72,11 +72,15 @@
                 </div>
               </div>
             </div>
+            <!--Sección Petciones para este anuncio-->
+
+
           </div>
     </div>
 
     <!--Mis Anuncios de Adopciones-->
     <div *ngIf="adv.adoption_id!=null" class="card border-success mb-3 text-dark"> 
+      <strong>{{adv.transaction_status}}</strong>
         <h3 class="card-header">
             {{ adv.breed }} en {{ adv.location }}
             <span class="badge badge-info text-white">ADOPCIÓN</span>
@@ -128,8 +132,6 @@
           </div>
 
     </div>
-
-
-
-
 </div>
+<pagination class="center" [totalItems]="allads.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)">
+</pagination>
