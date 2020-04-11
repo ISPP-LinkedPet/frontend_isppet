@@ -2,8 +2,8 @@
   <div class="card bg-white rounded shadow-sm">
       <div class="col-md-12 back card-img-top">
         <carousel>
-          <slide *ngFor="let img of adoptionListPageComponent.selectedAdoption.animal_photo.replace(' ', '').split(',')">
-            <img class="img-fluid" src="{{env}}/{{img}}">
+          <slide *ngFor="let img of adoptionListPageComponent.selectedAdoption.animal_photo.replace(' ', '').split(','); let i = index">
+            <img class="img-fluid" src="{{env}}/{{img}}" alt="img{{i}}">
           </slide>
         </carousel>
       </div>
