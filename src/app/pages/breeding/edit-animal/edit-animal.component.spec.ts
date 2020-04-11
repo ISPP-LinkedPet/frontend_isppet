@@ -1,16 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {EditAnimalComponent} from './edit-animal.component';
+import {HttpClient, HttpHandler} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
 
-import { EditAnimalComponent } from './edit-animal.component';
-
+// Checked
 describe('EditAnimalComponent', () => {
   let component: EditAnimalComponent;
   let fixture: ComponentFixture<EditAnimalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditAnimalComponent ]
+      declarations: [ EditAnimalComponent ],
+      providers: [ HttpClient, HttpHandler ],
+      imports: [ RouterTestingModule ]
     })
-    .compileComponents();
+        .compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +23,7 @@ describe('EditAnimalComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('EditAnimalComponent should be created', () => {
     expect(component).toBeTruthy();
   });
 });

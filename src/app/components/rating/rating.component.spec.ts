@@ -1,15 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RatingComponent } from './rating.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {RatingComponent} from './rating.component';
+import {HttpClient, HttpHandler} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
 
+// Checked
 describe('RatingComponent', () => {
   let component: RatingComponent;
   let fixture: ComponentFixture<RatingComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RatingComponent ]
+      declarations: [ RatingComponent ],
+      providers: [ HttpClient, HttpHandler ],
+      imports: [ RouterTestingModule ]
     })
-    .compileComponents();
+        .compileComponents();
   }));
 
   beforeEach(() => {
@@ -18,7 +23,7 @@ describe('RatingComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('RatingComponent should be created', () => {
     expect(component).toBeTruthy();
   });
 });

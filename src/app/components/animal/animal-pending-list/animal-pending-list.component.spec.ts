@@ -1,16 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {AnimalPendingListComponent} from './animal-pending-list.component';
+import {HttpClient, HttpHandler} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
 
-import { AnimalPendingListComponent } from './animal-pending-list.component';
-
+// Checked
 describe('AnimalPendingListComponent', () => {
   let component: AnimalPendingListComponent;
   let fixture: ComponentFixture<AnimalPendingListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AnimalPendingListComponent ]
+      declarations: [ AnimalPendingListComponent ],
+      providers: [ HttpClient, HttpHandler ],
+      imports: [ RouterTestingModule ]
     })
-    .compileComponents();
+        .compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +23,7 @@ describe('AnimalPendingListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('AnimalPendingListComponent should be created', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
-      this.id = +params['id'];
+      this.id = +params[' id '];
     });
 
     this.profileService.getParticularSeeProfile(this.id).then(res => {
