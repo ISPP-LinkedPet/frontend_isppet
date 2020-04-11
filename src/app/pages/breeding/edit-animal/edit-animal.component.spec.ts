@@ -23,6 +23,7 @@ describe('EditAnimalComponent', () => {
     fixture.detectChanges();
   });
 
+
   it('EditAnimalComponent should be created', () => {
     expect(component).toBeTruthy();
   });
