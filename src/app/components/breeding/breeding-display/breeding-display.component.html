@@ -18,7 +18,7 @@
               <h5 class="my-4">Fecha de nacimiento: <strong>{{breedingListPageComponent.selectedBreeding.birth_date | date:'MM/dd/yyyy'}}</strong> ({{breedingListPageComponent.configService.calculateAge(breedingListPageComponent.selectedBreeding.birth_date)}})</h5>
               <h5 class="my-4">Pedigrí: <strong>{{breedingListPageComponent.selectedBreeding.pedigree == 1 ? 'Sí' : 'No'}}</strong></h5>
             </div>
-            <div class="col-4">
+            <div class="col-sm-4">
               <p class="display-4">Precio</p>
               <p class="display-2"><strong>{{breedingListPageComponent.selectedBreeding.price}} €</strong></p>
             </div>

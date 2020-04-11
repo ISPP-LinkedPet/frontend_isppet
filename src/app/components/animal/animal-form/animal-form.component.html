@@ -1,5 +1,5 @@
 <div class="container" *ngIf="animalForm != undefined">
-    <div class="card border-primary mb-3">
+    <div class="card p-3 bg-white rounded shadow-sm">
         <div class="card-body">
             <h1 class="card-title*n">{{title}}</h1>
             <form [formGroup]="animalForm">
@@ -11,18 +11,18 @@
                     <div class="row">
   
                         <!-- Breed -->
-                        <div class="form-group col-sm" *ngIf="isValidBreed">
+                        <div class="form-group col-4" *ngIf="isValidBreed">
                             <label for="breed">Raza</label>
                             <input type="text" class="form-control" id="breed" [readOnly]="rol=='particular'" formControlName="breed" (change)="validateBreed()">
                         </div>
-                        <div class="form-group has-danger col-sm" *ngIf="!isValidBreed">
+                        <div class="form-group has-danger col-4" *ngIf="!isValidBreed">
                             <label class="form-control-label" for="breed">Raza</label>
                             <input type="text" class="form-control is-invalid" id="breed" [readOnly]="rol=='particular'" formControlName="breed" (change)="validateBreed()">
                             <div class="invalid-feedback">Parece que se ha equivocado</div>
                         </div>
   
                         <!-- Genre -->
-                        <div class="form-group col-sm" *ngIf="isValidGenre">
+                        <div class="form-group col-4" *ngIf="isValidGenre">
                             <label for="genre">Genero</label>
                             <div *ngIf="rol == 'particular'">
                                 <select class="form-control" id="genre" [attr.disabled]="true" formControlName="genre" (change)="validateGenre()">
@@ -40,7 +40,7 @@
                             </div>
                         </div>
   
-                        <div class="form-group has-danger col-sm" *ngIf="!isValidGenre">
+                        <div class="form-group has-danger col-4" *ngIf="!isValidGenre">
                             <label class="form-control-label" for="genre">Genero</label>
                             <div *ngIf="rol == 'particular'">
                                 <select class="form-control is-invalid" id="genre" [attr.disabled]="true" formControlName="genre" (change)="validateGenre()">
@@ -62,11 +62,11 @@
   
                         <!-- Age -->
   
-                        <div class="form-group col-sm" *ngIf="isValidAge">
+                        <div class="form-group col-4" *ngIf="isValidAge">
                             <label for="birth_date">Edad</label>
                             <input type="date" class="form-control" id="birth_date" [readOnly]="rol=='particular'" formControlName="birth_date" (change)="validateAge()">
                         </div>
-                        <div class="form-group has-danger col-sm" *ngIf="!isValidAge">
+                        <div class="form-group has-danger col-4" *ngIf="!isValidAge">
                             <label class="form-control-label" for="birth_date">Edad</label>
                             <input type="date" class="form-control is-invalid" id="birth_date" [readOnly]="rol=='particular'" formControlName="birth_date" (change)="validateAge()">
                             <div class="invalid-feedback">No olvide seleccionar la edad</div>
@@ -177,7 +177,7 @@
   
                       <!-- Animal photo -->
                       <div class="row">
-                        <div class="form-group col-6" *ngIf="rol != 'moderator'">
+                        <div class="form-group col-4" *ngIf="rol != 'moderator'">
                             <label for="animal_photo">Imagenes</label>
                             <div class="input-group mb-3">
                                 <div class="custom-file">
@@ -257,10 +257,11 @@
                       </div>
   
                 </fieldset>
-                <button *ngIf="rol == 'particular' && !creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Editar</button>
-                <button *ngIf="rol == 'particular' && creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Crear</button>
+                <button *ngIf="rol == 'particular' && !creating" (click)="onSubmit()" class="btn btn-primary button-form mr-2">Editar</button>
+                <button *ngIf="rol == 'particular' && creating" (click)="onSubmit()" class="btn btn-primary button-form mr-2">Crear</button>
                 <button *ngIf="rol == 'moderator'" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Aceptar</button>
                 <button *ngIf="rol == 'moderator'" (click)="rejectPublication()" class="btn btn-secondary btn-lg button-form right">Rechazar</button>
+                <button *ngIf="rol == 'particular'" (click)="router.navigate(['/my-profile']);" class="btn btn-danger">Volver a anuncios</button> 
             </form>
 
             <div class="invalid-feedback">{{backError}} {{backError|json}}</div>

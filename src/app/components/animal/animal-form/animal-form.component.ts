@@ -58,7 +58,7 @@ export class AnimalFormComponent implements OnInit {
 
   constructor(
     private animalService: AnimalService,
-    private router: Router,
+    public router: Router,
     public configService: ConfigService,
     public datepipe: DatePipe
   ) { }

@@ -22,7 +22,7 @@ export class AdoptionListComponent implements OnInit {
   faInfoCircle = faInfoCircle;
 
   returnedAdoptions = new Array();
-  itemsPerPage = 5;
+  itemsPerPage = 8;
   adoptions = new Array();
   personalAdoptions = new Array();
   env = environment.endpoint;

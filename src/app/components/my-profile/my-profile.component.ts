@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AnimalService } from 'src/app/services/animal/animal.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { faStar, faStarHalfAlt, faMapMarkedAlt, faPhone, faEnvelope, faCat, faDog, faHorse, faVenus, faMars } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-my-profile',
@@ -13,6 +15,23 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
   styleUrls: ['./my-profile.component.css']
 })
 export class MyProfileComponent implements OnInit {
+  //icons
+  faCat = faCat;
+  faDog = faDog;
+  faHorse = faHorse;
+  faVenus = faVenus;
+  faMars = faMars;
+  faStarRegular = faStarRegular;
+  faStar = faStar;
+  faStarHalfAlt = faStarHalfAlt;
+  faMapMarkedAlt = faMapMarkedAlt;
+  faPhone = faPhone;
+  faEnvelope = faEnvelope;
+
+  stars= new Array();
+  rating: number = 0;
+  valoraciones: boolean;
+  mascotas: boolean;
   particular: any;
   env = environment.endpoint;
   reviews: any;
@@ -23,12 +42,14 @@ export class MyProfileComponent implements OnInit {
   notEditableAnimals: any[];
   mapNotEditableAnimals = new Map();
   // pagginations
-  itemsPerPage = 5;
+  itemsPerPage = 2;
   constructor(private profileService: ProfileService,
               private router: Router, private route: ActivatedRoute, public configService: ConfigService,
               private animalService: AnimalService) { }
 
   ngOnInit(): void {
+    this.valoraciones = true;
+    this.mascotas = false;
 
     this.animalService.notEditableAnimals()(x => {
       this.notEditableAnimals = Array.from(x.keys())
@@ -42,6 +63,11 @@ export class MyProfileComponent implements OnInit {
       this.profileService.getReviewsByParticularId(this.particular.particular.id).then(element => {
         this.reviews = element;
         this.numReviews = this.reviews.length;
+        this.reviews.forEach(element => {
+          this.rating = element.star + this.rating;
+        });
+        this.rating = this.rating/this.numReviews;
+        this.starRating(this.rating);
       });
       this.profileService.getPetsByParticularId(this.particular.particular.id).then(element => {
         this.pets = element;
@@ -55,4 +81,32 @@ export class MyProfileComponent implements OnInit {
     const endItem = event.page * event.itemsPerPage;
     this.returnedPets = this.pets.slice(startItem, endItem);
   }
+
+  options(string){
+
+    if(string == 'valoraciones'){
+      this.valoraciones = true;
+      this.mascotas = false;
+    } else if (string == 'mascotas'){
+      this.valoraciones = false;
+      this.mascotas = true;
+    }
+  }
+
+  starRating(rating){
+    for(var i = 1; i <= rating; i++){
+      this.stars.push(1);
+    }
+    if(Math.abs(Math.floor(rating)-rating)>0.4){
+      this.stars.push(0)
+    }
+
+    if(Math.abs(Math.floor(rating)-rating) < 0.5){
+      for(var i = 1; i <= 5-Math.floor(rating); i++){
+        this.stars.push(2)
+      }
+    }
+    return this.stars
+  }
 }
+

@@ -26,7 +26,7 @@ export class BreedingListComponent implements OnInit {
   faInfoCircle = faInfoCircle;
 
   returnedBreedings = new Array();
-  itemsPerPage = 5;
+  itemsPerPage = 8;
   breedings = new Array();
   personalBreedings = new Array();
   env = environment.endpoint;

@@ -18,7 +18,7 @@
               <h5 class="my-4">Fecha de nacimiento: <strong>{{adoptionListPageComponent.selectedAdoption.birth_date | date:'MM/dd/yyyy'}}</strong> ({{adoptionListPageComponent.configService.calculateAge(adoptionListPageComponent.selectedAdoption.birth_date)}})</h5>
               <h5 class="my-4">Pedigrí: <strong>{{adoptionListPageComponent.selectedAdoption.pedigree == 1 ? 'Sí' : 'No'}}</strong></h5>
             </div>
-            <div class="col-5" *ngIf="adoptionListPageComponent.selectedShelter != null">
+            <div class="col-sm-5" *ngIf="adoptionListPageComponent.selectedShelter != null">
               <div class="alert alert-dismissible alert-primary">
               <h1>Contacto</h1>
                 <h5 class="my-4">Dirección: {{adoptionListPageComponent.selectedShelter.address}}</h5>
