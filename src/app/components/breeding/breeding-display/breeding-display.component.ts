@@ -5,7 +5,6 @@ import {environment} from 'src/environments/environment';
 import {Router} from '@angular/router';
 import {ConfigService} from 'src/app/services/config/config.service';
 
-
 @Component({
   selector: 'app-breeding-display',
   templateUrl: './breeding-display.component.html',
@@ -14,6 +13,7 @@ import {ConfigService} from 'src/app/services/config/config.service';
 
 
 export class BreedingDisplayComponent implements OnInit {
+
   env = environment.endpoint;
   constructor(public breedingListPageComponent: BreedingListPageComponent, public breedingService: BreedingService, private router: Router,
               public configService: ConfigService) { }

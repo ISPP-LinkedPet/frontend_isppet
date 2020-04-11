@@ -8753,29 +8753,77 @@
  }
  
  .m-5 {
-   margin: 3rem !important;
- }
- 
- .mt-5,
- .my-5 {
-   margin-top: 3rem !important;
- }
- 
- .mr-5,
- .mx-5 {
-   margin-right: 3rem !important;
- }
- 
- .mb-5,
- .my-5 {
-   margin-bottom: 3rem !important;
- }
- 
- .ml-5,
- .mx-5 {
-   margin-left: 3rem !important;
- }
- 
+  margin: 3rem !important;
+}
+
+.mt-5,
+.my-5 {
+  margin-top: 3rem !important;
+}
+
+.mr-5,
+.mx-5 {
+  margin-right: 3rem !important;
+}
+
+.mb-5,
+.my-5 {
+  margin-bottom: 3rem !important;
+}
+
+.ml-5,
+.mx-5 {
+  margin-left: 3rem !important;
+}
+
+.m-6 {
+  margin: 4rem !important;
+}
+
+.mt-6,
+.my-6 {
+  margin-top: 4rem !important;
+}
+
+.mr-6,
+.mx-6 {
+  margin-right: 4rem !important;
+}
+
+.mb-6,
+.my-6 {
+  margin-bottom: 4rem !important;
+}
+
+.ml-6,
+.mx-6 {
+  margin-left: 4rem !important;
+}
+
+.m-10 {
+  margin: 8rem !important;
+}
+
+.mt-10,
+.my-10 {
+  margin-top: 8rem !important;
+}
+
+.mr-10,
+.mx-10 {
+  margin-right: 8rem !important;
+}
+
+.mb-10,
+.my-10 {
+  margin-bottom: 8rem !important;
+}
+
+.ml-10,
+.mx-10 {
+  margin-left: 8rem !important;
+}
+
  .p-0 {
    padding: 0 !important;
  }

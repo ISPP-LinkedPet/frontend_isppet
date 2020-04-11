@@ -7,6 +7,8 @@ import { ConfigService } from 'src/app/services/config/config.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { faCat, faDog, faHorse, faAward, faUser, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-breeding-list',
@@ -14,9 +16,19 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
   styleUrls: ['./breeding-list.component.css']
 })
 export class BreedingListComponent implements OnInit {
+
+  // icons
+  faCat = faCat;
+  faAward = faAward;
+  faDog = faDog;
+  faUser = faUser;
+  faHorse = faHorse;
+  faInfoCircle = faInfoCircle;
+
   returnedBreedings = new Array();
-  itemsPerPage = 5;
+  itemsPerPage = 8;
   breedings = new Array();
+  personalBreedings = new Array();
   env = environment.endpoint;
 
   filterForm: any;
@@ -32,14 +44,21 @@ export class BreedingListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const token = localStorage.getItem('access_token');
+    if(this.rol!='disconnected'){
+      this.breedingService.getPersonalBreedings(this.userlogged.id).then(res => {
+        res.forEach(breeding => {
+          this.personalBreedings.push(breeding.id);
+        });
+      });
+    }
+
     this.breedingService.getAllBreedings().then(res => {
       res.forEach(breedingAd => {
         this.breedings.push(breedingAd);
       });
       this.returnedBreedings = this.breedings.slice(0, this.itemsPerPage);
 
-    }).then(res => console.log(this.breedings));
+    }).then();
     this.filterForm = new FormGroup({
       price: new FormControl(''),
       type: new FormControl(''),

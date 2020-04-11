@@ -17,13 +17,11 @@ export class HorizontalAdvertisementComponent implements OnInit {
 
   ngOnInit(): void {
     this.vetService.getVetAdvertisements(1).then(res => this.advertisement = res.ads[0])
-    .then(res => console.log(this.advertisement));
+    .then();
   }
 
   onClickAdvertisement() {
-    console.log(this.advertisement);
-    console.log(this.advertisement.id);
-    this.vetService.clickOnAdvertisement(this.advertisement.id).then(res => console.log("enviado"));
+    this.vetService.clickOnAdvertisement(this.advertisement.id).then();
   }
 
 }

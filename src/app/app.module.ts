@@ -59,6 +59,7 @@ import { EditParticularComponent } from './pages/breeding/edit-particular/edit-p
 import {EditComponent as EditAnimalComponent} from './pages/animal/edit/edit.component';
 
 /*Bootstrap*/
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -149,6 +150,7 @@ import { PageAllPersonalAdsComponent } from './pages/page-all-personal-ads/page-
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    CarouselModule.forRoot(),
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
