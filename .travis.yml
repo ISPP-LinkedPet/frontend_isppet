@@ -13,7 +13,7 @@ before_script:
   - npm install
 script:
   - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-  - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
+  - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js --baseUrl=https://frontend-linkedpet-dev.herokuapp.com/
 deploy:
   - provider: heroku
     app: frontend-linkedpet-dev

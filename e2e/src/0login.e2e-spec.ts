@@ -10,16 +10,16 @@ describe('Login module', () => {
 
   it('should log in', () => {
     page.navigateTo();
-    browser.driver.manage().window().setSize(1920, 1040);
-    element(by.css('li:nth-of-type(9)>a')).click();
-    element(by.css('fieldset>div:nth-of-type(1)>input')).clear().then(() => {
-      element(by.css('fieldset>div:nth-of-type(1)>input')).sendKeys('palina');
-    });
-    element(by.css('div:nth-of-type(2)>input')).clear().then(() => {
-      element(by.css('div:nth-of-type(2)>input')).sendKeys('hola');
-    });
+
+    browser.driver.manage().window().setSize(1536, 824);
+    element(by.css('ul:nth-of-type(4)>li:nth-of-type(1)>a')).click();
+    element(by.css('fieldset>div:nth-of-type(1)>input')).click();
+    // @ts-ignore
+    element(by.css('fieldset>div:nth-of-type(1)>input')).clear().sendKeys('palinaParticular');
+    // @ts-ignore
+    element(by.css('div:nth-of-type(2)>input')).clear().sendKeys('hola');
     element(by.css('fieldset>button:nth-of-type(1)')).click();
-    expect(element(by.css('nav>div:nth-of-type(1)>ul>li:nth-of-type(2)>a')).getText()).toEqual('Crianza');
+
   });
 
   afterEach(async () => {
