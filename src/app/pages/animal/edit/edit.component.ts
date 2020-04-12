@@ -19,6 +19,7 @@ export class EditComponent implements OnInit {
 
   ngOnInit(): void {
     this.animalService.getAnimalById(this.route.snapshot.params.id).then(response => {
+      this.animal = response
     });
   }
 }
