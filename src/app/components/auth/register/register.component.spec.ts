@@ -2,8 +2,8 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {RegisterComponent} from './register.component';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {RouterTestingModule} from '@angular/router/testing';
-import {LoginRegisterComponent} from '../../../pages/login-register/login-register.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {LoginRegisterComponent} from '../../../pages/login-register/login-register.component';
 
 // Checked
 describe('RegisterComponent', () => {

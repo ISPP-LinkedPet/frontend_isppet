@@ -23,8 +23,4 @@ describe('AnimalPendingListComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('AnimalPendingListComponent should be created', () => {
-    expect(component).toBeTruthy();
-  });
 });

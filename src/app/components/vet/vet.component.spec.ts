@@ -23,8 +23,4 @@ describe('VetComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('VetComponent should be created', () => {
-    expect(component).toBeTruthy();
-  });
 });

@@ -13,7 +13,7 @@ describe('RequestListAcceptedComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ RequestListAcceptedComponent ],
-      providers: [ HttpClient, HttpHandler, ToastrModule.forRoot() ],
+      providers: [ HttpClient, HttpHandler ],
       imports: [ RouterTestingModule, HttpClientTestingModule ]
     })
         .compileComponents();

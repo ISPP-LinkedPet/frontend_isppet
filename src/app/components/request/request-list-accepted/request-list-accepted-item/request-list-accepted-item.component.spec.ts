@@ -25,8 +25,4 @@ describe('RequestListAcceptedItemComponent', () => {
                           contactData: {name: 'name'}};
     fixture.detectChanges();
   });
-
-  it('RequestListAcceptedItemComponent should be created', () => {
-    expect(component).toBeTruthy();
-  });
 });

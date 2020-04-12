@@ -23,8 +23,4 @@ describe('ProfileComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('ProfileComponent should be created', () => {
-    expect(component).toBeTruthy();
-  });
 });

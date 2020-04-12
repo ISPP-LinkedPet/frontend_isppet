@@ -23,8 +23,4 @@ describe('RatingComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('RatingComponent should be created', () => {
-    expect(component).toBeTruthy();
-  });
 });

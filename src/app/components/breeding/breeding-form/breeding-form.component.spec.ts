@@ -23,8 +23,4 @@ describe('BreedingCreateComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('BreedingFormComponent should be created', () => {
-    expect(component).toBeTruthy();
-  });
 });

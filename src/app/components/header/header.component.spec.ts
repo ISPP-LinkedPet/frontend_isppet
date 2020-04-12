@@ -23,8 +23,4 @@ describe('HeaderComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('HeaderComponent should be created', () => {
-    expect(component).toBeTruthy();
-  });
 });

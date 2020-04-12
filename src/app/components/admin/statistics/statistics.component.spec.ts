@@ -12,7 +12,7 @@ describe('StatisticsComponent', () => {
   TestBed.configureTestingModule({
     declarations: [ StatisticsComponent ],
     providers: [ HttpClient, HttpHandler ],
-    imports: [ RouterTestingModule,HttpClientTestingModule ]
+    imports: [ RouterTestingModule, HttpClientTestingModule ]
   });
 
   beforeEach(() => {

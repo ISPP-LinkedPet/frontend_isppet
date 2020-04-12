@@ -23,8 +23,4 @@ describe('BreedingListComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('BreedingListComponent should be created', () => {
-    expect(component).toBeTruthy();
-  });
 });

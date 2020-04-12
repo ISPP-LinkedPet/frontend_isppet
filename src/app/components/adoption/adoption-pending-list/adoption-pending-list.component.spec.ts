@@ -13,7 +13,7 @@ describe('AdoptionPendingListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AdoptionPendingListComponent ],
-      providers: [ HttpClient, HttpHandler, RequestService ],
+      providers: [ HttpClient, HttpHandler ],
       imports: [ RouterTestingModule, HttpClientTestingModule ]
     })
         .compileComponents();

@@ -23,8 +23,4 @@ describe('RequestListComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('RequestListComponent should be created', () => {
-    expect(component).toBeTruthy();
-  });
 });
