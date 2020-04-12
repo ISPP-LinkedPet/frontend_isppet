@@ -15,7 +15,8 @@ exports.config = {
   capabilities: {
     browserName: 'chrome'
   },
-  directConnect: true,
+  highlightDelay: 200,
+  directConnect: false,
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
