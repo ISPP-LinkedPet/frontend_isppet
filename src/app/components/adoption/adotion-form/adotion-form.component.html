@@ -1,28 +1,63 @@
-<div class="container">
-  <div class="card border-primary mb-3">
+<div class="container my-10" *ngIf="adoptionForm != undefined">
+  <div class="card p-3 bg-white rounded shadow-sm">
     <div class="card-body">
         <h1 class="card-title">{{title}}</h1>
         <form [formGroup]="adoptionForm" (ngSubmit)="onSubmit()">
             <fieldset>
               <legend class="card-title">Información básica</legend>
 
-          <div class="row">
-            <!-- Breed -->
-            <div class="form-group col-sm" *ngIf="isValidBreed">
-              <label for="breed">Raza</label>
-              <input type="text" class="form-control" id="breed" formControlName="breed" (change)="validateBreed()">
-            </div>
-            <div class="form-group has-danger col-sm" *ngIf="!isValidBreed">
-              <div class="form-group">
-                <label for="breed">Raza</label>
-                <input type="text" class="form-control is-invalid" id="breed" formControlName="breed"
-                  (change)="validateBreed()">
-                <div class="invalid-feedback">Debe seleccionar una raza</div>
+              <div class="row">
+                <!-- Breed -->
+                <div class="form-group col-4" *ngIf="isValidBreed">
+                  <label for="breed">Raza</label>
+                  <input type="text" class="form-control" id="breed" formControlName="breed" (change)="validateBreed()">
+                </div>
+                <div class="form-group has-danger col-sm" *ngIf="!isValidBreed">
+                  <div class="form-group">
+                    <label for="breed">Raza</label>
+                    <input type="text" class="form-control is-invalid" id="breed" formControlName="breed"
+                      (change)="validateBreed()">
+                    <div class="invalid-feedback">Debe seleccionar una raza</div>
+                  </div>
+                </div>
+
+                <!-- Genre -->
+                <div class="form-group col-4" *ngIf="isValidGenre">
+                  <label for="pedigree">Genero</label>
+                  <select class="form-control" id="genre" formControlName="genre" (change)="validateGenre()">
+                    <option [defaultSelected]= 'check' value=''>Seleccione el género</option>
+                    <option value='Male'>Macho</option>
+                    <option value='Female'>Hembra</option>
+                  </select>
+                </div>
+                <div class="form-group has-danger col-4" *ngIf="!isValidGenre">
+                  <label class="form-control-label" for="genre">Genero</label>
+                  <select class="form-control is-invalid" id="genre" formControlName="genre" (change)="validateGenre()">
+                    <option [defaultSelected]= 'check' value=''>Seleccione el género</option>
+                    <option value='Male'>Macho</option>
+                    <option value='Female'>Hembra</option>
+                  </select>
+                  <div class="invalid-feedback">Debe seleccionar un género</div>
+                </div>
+
+                <!-- Age -->
+                <div class="form-group col-4" *ngIf="isValidAge">
+                  <label for="birth_date">Fecha de nacimiento</label>
+                  <input type="date" class="form-control" id="birth_date" formControlName="birth_date"
+                    (change)="validateAge()">
+                </div>
+                <div class="form-group has-danger col-4" *ngIf="!isValidAge">
+                  <label for="birth_date">Edad</label>
+                  <input type="date" class="form-control is-invalid" id="birth_date" formControlName="birth_date"
+                    (change)="validateAge()">
+                  <div class="invalid-feedback">La fecha de nacimiento no puede estar en blanco</div>
+                </div>
               </div>
-            </div>
+
+          <div class="row">
 
             <!--Type-->
-            <div class="form-group col-sm" *ngIf="isValidType">
+            <div class="form-group col-4" *ngIf="isValidType">
               <label for="pedigree">Tipo de animal</label>
               <select class="form-control" id="type" formControlName="type" (change)="validateType()">
                 <option value='' [defaultSelected]= 'check'>Seleccione tipo animal</option>
@@ -31,10 +66,10 @@
                 <option value='Horse'>Caballo</option>
               </select>
             </div>
-            <div class="form-group has-danger col-sm" *ngIf="!isValidType">
+            <div class="form-group has-danger col-4" *ngIf="!isValidType">
               <label class="form-control-label" for="type">Tipo de animal</label>
               <select class="form-control is-invalid" id="type" formControlName="type" (change)="validateType()">
-                <option value=''>Seleccione tipo animal</option>
+                <option [defaultSelected]= 'check' value=''>Seleccione tipo animal</option>
                 <option value='Dog'>Perro</option>
                 <option value='Cat'>Gato</option>
                 <option value='Horse'>Caballo</option>
@@ -42,149 +77,112 @@
               <div class="invalid-feedback">Debe seleccionar un tipo de animal</div>
             </div>
 
-            <!-- Genre -->
-            <div class="form-group col-sm" *ngIf="isValidGenre">
-              <label for="pedigree">Genero</label>
-              <select class="form-control" id="genre" formControlName="genre" (change)="validateGenre()">
-                <option value=''></option>
-                <option value='Male'>Macho</option>
-                <option value='Female'>Hembra</option>
-              </select>
-            </div>
-            <div class="form-group has-danger col-sm" *ngIf="!isValidGenre">
-              <label class="form-control-label" for="genre">Genero</label>
-              <select class="form-control is-invalid" id="genre" formControlName="genre" (change)="validateGenre()">
-                <option value=''></option>
-                <option value='Male'>Macho</option>
-                <option value='Female'>Hembra</option>
-              </select>
-              <div class="invalid-feedback">Debe seleccionar un género</div>
-            </div>
-
-            <!-- Age -->
-            <div class="form-group col-sm" *ngIf="isValidAge">
-              <label for="birth_date">Fecha de nacimiento</label>
-              <input type="date" class="form-control" id="birth_date" formControlName="birth_date"
-                (change)="validateAge()">
-            </div>
-            <div class="form-group has-danger col-sm" *ngIf="!isValidAge">
-              <label for="birth_date">Edad</label>
-              <input type="date" class="form-control is-invalid" id="birth_date" formControlName="birth_date"
-                (change)="validateAge()">
-              <div class="invalid-feedback">La fecha de nacimiento no puede estar en blanco</div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div *ngIf="rol != 'moderator'">
-              <!-- Nombre -->
-              <div class="form-group col-sm" *ngIf="isValidName">
-                <label for="name">Nombre</label>
-                <input type="text" class="form-control" id="name" formControlName="name" (change)="validateName()">
-              </div>
-              <div class="form-group has-danger col-sm" *ngIf="!isValidName">
-                <label class="form-control-label" for="name">Nombre</label>
-                <input type="text" class="form-control is-invalid" id="name" formControlName="name"
-                  (change)="validateName()">
-                <div class="invalid-feedback">El nombre no puede estar en blanco</div>
-              </div>
-            </div>
-
-            <div *ngIf="rol != 'moderator'">
-              <!-- Animal images -->
-              <div class="form-group col-10">
-                <label for="animal_photo">Imagenes</label>
-                <div class="input-group mb-3">
-                  <div class="custom-file">
-                    <label class="custom-file-label" for="animal_photo">Seleccionar imagenes</label>
-                    <input #animalPhoto type="file" class="custom-file-input" formControlName="animal_photo"
-                      name="animal_photo" id="animal_photo" ng-model-options="{ debounce: 50 }"
-                      (change)="getAnimalPhotoAndValidate($event)" multiple>
-
-                  </div>
-                </div>
-                <div class="invalid-feedback" *ngIf="!isValidAnimalPhoto">Debe subir al menos 2 imágenes del animal
-                </div>
-              </div>
-              <!-- File names -->
-              <div class="row">
-                <ul>
-                  <li *ngFor="let file of animalPhotos">
-                    {{file.name}} <fa-icon [icon]="faTimes" [styles]="{'stroke': 'red', 'color': 'red'}"
-                      (click)="deleteImageAnimalPhotos(file)"></fa-icon>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
             <!-- Pedigree-->
-            <div class="form-group col-sm" *ngIf="isValidPedigri">
+            <div class="form-group col-4" *ngIf="isValidPedigri">
               <label for="pedigree">Pedigrí</label>
               <select class="form-control" id="pedigree" formControlName="pedigree" (change)="validatePedigree()">
-                <option value=''></option>
+                <option [defaultSelected]= 'check' value=''>Seleccione si tiene pedigrí</option>
                 <option value='1'>Si</option>
                 <option value='0'>No</option>
               </select>
             </div>
-            <div class="form-group has-danger col-sm" *ngIf="!isValidPedigri">
+            <div class="form-group has-danger col-4" *ngIf="!isValidPedigri">
               <label class="form-control-label" for="birth_date">Pedigrí</label>
               <select class="form-control is-invalid" id="pedigree" formControlName="pedigree"
                 (change)="validatePedigree()">
-                <option value=''></option>
+                <option [defaultSelected]= 'check' value=''>Seleccione si tiene pedigrí</option>
                 <option value='1'>Si</option>
                 <option value='0'>No</option>
               </select>
               <div class="invalid-feedback">Debe indicar si tiene pedigrí</div>
             </div>
 
-            <!-- Zona -->
-            <div class="form-group col-sm" *ngIf="isValidLocation">
-              <label for="location">Zona</label>
-              <input type="text" class="form-control" id="location" formControlName="location"
-                (change)="validateLocation()">
-            </div>
-            <div class="form-group has-danger col-sm" *ngIf="!isValidLocation">
-              <label class="form-control-label" for="location">Zona</label>
-              <input type="text" class="form-control is-invalid" id="location" formControlName="location"
-                (change)="validateLocation()">
-              <div class="invalid-feedback">No puede estar vacío</div>
-            </div>
-          </div>
-
-          <!-- Only for shelter-->
-          <div *ngIf="rol=='shelter'">
-            <div class="row">
-              <!-- Taxes -->
-              <div class="form-group col-sm" *ngIf="isValidTaxes">
-                <label class="form-control-label" for="taxes">Tasas</label>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">€</span>
-                  </div>
-                  <input type="number" class="form-control" formControlName="taxes"
-                    aria-label="Amount (to the nearest dollar)" (change)="validateTaxes()">
-                  <div class="input-group-append">
-                    <span class="input-group-text">.00</span>
-                  </div>
-                </div>
+            <!-- Nombre -->
+              <div class="form-group col-4" *ngIf="isValidName && rol != 'moderator'">
+                <label for="name">Nombre</label>
+                <input type="text" class="form-control" id="breed" formControlName="name" (change)="validateName()">
               </div>
-
-              <div class="form-group has-danger  col-sm" *ngIf="!isValidTaxes">
-                <label class="form-control-label" for="taxes">Tasas</label>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">$</span>
-                  </div>
-                  <input type="number" class="form-control is-invalid" formControlName="taxes"
-                    aria-label="Amount (to the nearest dollar)" (change)="validateTaxes()">
-                  <div class="input-group-append">
-                    <span class="input-group-text">.00</span>
-                  </div>
-                  <div class="invalid-feedback">No puede estar en blanco ni tampoco puede ser menor que 0</div>
+              <div class="form-group has-danger col-4" *ngIf="!isValidName && rol != 'moderator'">
+                <div class="form-group">
+                  <label for="name">Nombre</label>
+                  <input type="text" class="form-control is-invalid" id="breed" formControlName="name"
+                    (change)="validateName()">
+                  <div class="invalid-feedback">Debe indicar un nombre</div>
                 </div>
               </div>
             </div>
-          </div>
+
+              <div class="row">
+              
+              <!-- Zona -->
+                <div class="form-group col-4" *ngIf="isValidLocation && rol != 'moderator'">
+                  <label for="location">Zona</label>
+                  <input type="text" class="form-control" id="location" formControlName="location"
+                    (change)="validateLocation()">
+                </div>
+                <div class="form-group has-danger col-4" *ngIf="!isValidLocation && rol != 'moderator'">
+                  <label class="form-control-label" for="location">Zona</label>
+                  <input type="text" class="form-control is-invalid" id="location" formControlName="location"
+                    (change)="validateLocation()">
+                  <div class="invalid-feedback">No puede estar vacío</div>
+                </div>
+
+                <!-- Animal images -->
+                <div class="form-group col-4" *ngIf="rol != 'moderator'">
+                  <label for="animal_photo">Imagenes</label>
+                  <div class="input-group mb-3">
+                    <div class="custom-file">
+                      <label class="custom-file-label" for="animal_photo">Seleccionar imagenes</label>
+                      <input #animalPhoto type="file" class="custom-file-input" formControlName="animal_photo"
+                        name="animal_photo" id="animal_photo" ng-model-options="{ debounce: 50 }"
+                        (change)="getAnimalPhotoAndValidate($event)" multiple>
+
+                    </div>
+                  </div>
+                  <div class="invalid-feedback" *ngIf="!isValidAnimalPhoto">Debe subir al menos 2 imágenes del animal
+                  </div>
+                  <!-- File names -->
+                  <div class="row">
+                    <ul>
+                      <li *ngFor="let file of animalPhotos">
+                        {{file.name}} <fa-icon [icon]="faTimes" [styles]="{'stroke': 'red', 'color': 'red'}"
+                          (click)="deleteImageAnimalPhotos(file)"></fa-icon>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Only for shelter-->
+                <!-- Taxes -->
+                <div class="form-group col-4" *ngIf="isValidTaxes && rol == 'shelter'">
+                  <label class="form-control-label" for="taxes">Tasas</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">€</span>
+                    </div>
+                    <input type="number" class="form-control" formControlName="taxes"
+                      aria-label="Amount (to the nearest dollar)" (change)="validateTaxes()">
+                    <div class="input-group-append">
+                      <span class="input-group-text">.00</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group has-danger  col-4" *ngIf="!isValidTaxes && rol == 'shelter'">
+                  <label class="form-control-label" for="taxes">Tasas</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">$</span>
+                    </div>
+                    <input type="number" class="form-control is-invalid" formControlName="taxes"
+                      aria-label="Amount (to the nearest dollar)" (change)="validateTaxes()">
+                    <div class="input-group-append">
+                      <span class="input-group-text">.00</span>
+                    </div>
+                    <div class="invalid-feedback">No puede estar en blanco ni tampoco puede ser menor que 0</div>
+                  </div>
+                </div>
+              </div>
 
         </fieldset>
         <hr>

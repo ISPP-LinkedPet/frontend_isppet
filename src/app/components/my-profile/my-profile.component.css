@@ -15,19 +15,9 @@
     text-align: center;
  }
 
- #first{
-   margin-top: 100px;
-}
 
-#profile{
-   width: 27%;
-   float: left;
-   border-radius: 20px;
-   margin-right: 20px;
-   margin-bottom: 20px;
-}
-
-img{
-    width: 100%;
-    display: block;
-}
+ .img-fluid {
+   height: 250px;
+   width: inherit;
+   object-fit: cover;
+ }
