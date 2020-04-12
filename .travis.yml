@@ -13,9 +13,9 @@ before_script:
   - npm install -g @angular/cli
   - npm install
 script:
+  - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
   - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
   - webdriver-manager update
-  - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
 deploy:
   - provider: heroku
     app: frontend-linkedpet-dev
