@@ -1,10 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { StatisticsComponent } from './statistics.component';
-import {AllPersonalAdsComponent} from '../../all-personal-ads/all-personal-ads.component';
+import {StatisticsComponent} from './statistics.component';
 import {HttpClient, HttpHandler} from '@angular/common/http';
-import {ToastrModule} from 'ngx-toastr';
 import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('StatisticsComponent', () => {
   let component: StatisticsComponent;
@@ -13,7 +12,7 @@ describe('StatisticsComponent', () => {
   TestBed.configureTestingModule({
     declarations: [ StatisticsComponent ],
     providers: [ HttpClient, HttpHandler ],
-    imports: [ RouterTestingModule ]
+    imports: [ RouterTestingModule,HttpClientTestingModule ]
   });
 
   beforeEach(() => {

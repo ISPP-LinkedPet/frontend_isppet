@@ -3,6 +3,7 @@ import {AdotionFormComponent} from './adotion-form.component';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {ConfigService} from '../../../services/config/config.service';
 import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 // Checked
 describe('AdotionFormComponent', () => {
@@ -13,7 +14,7 @@ describe('AdotionFormComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ AdotionFormComponent ],
       providers: [ HttpClient, HttpHandler, ConfigService ],
-      imports: [ RouterTestingModule ]
+      imports: [ RouterTestingModule, HttpClientTestingModule ]
     })
         .compileComponents();
   }));

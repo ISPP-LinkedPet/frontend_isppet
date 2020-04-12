@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {RequestListAcceptedItemComponent} from './request-list-accepted-item.component';
 import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 // Checked
 describe('RequestListAcceptedItemComponent', () => {
@@ -12,7 +13,7 @@ describe('RequestListAcceptedItemComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ RequestListAcceptedItemComponent ],
       providers: [ HttpClient, HttpHandler ],
-      imports: [ RouterTestingModule ]
+      imports: [ RouterTestingModule, HttpClientTestingModule ]
     })
         .compileComponents();
   }));

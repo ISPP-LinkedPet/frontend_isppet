@@ -3,6 +3,7 @@ import {HttpClient, HttpHandler} from '@angular/common/http';
 import {PaymentComponent} from './payment.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {ToastrModule} from 'ngx-toastr';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 // Checked
 describe('PaymentComponent', () => {
@@ -13,7 +14,7 @@ describe('PaymentComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ PaymentComponent ],
       providers: [ HttpClient, HttpHandler ],
-      imports: [ RouterTestingModule, ToastrModule.forRoot() ]
+      imports: [ RouterTestingModule, ToastrModule.forRoot(), HttpClientTestingModule ]
     })
         .compileComponents();
   }));

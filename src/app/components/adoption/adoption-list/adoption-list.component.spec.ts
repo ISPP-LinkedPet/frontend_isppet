@@ -4,6 +4,7 @@ import {HttpClient, HttpHandler} from '@angular/common/http';
 import {RouterTestingModule} from '@angular/router/testing';
 import {RequestService} from 'src/app/services/request/request.service';
 import {AdoptionListPageComponent} from '../../../pages/adoption/list/adoption-list-page.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 // Checked
 describe('AdoptionListComponent', () => {
@@ -14,7 +15,7 @@ describe('AdoptionListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ AdoptionListComponent ],
       providers: [ HttpClient, HttpHandler, RequestService, AdoptionListPageComponent ],
-      imports: [ RouterTestingModule ]
+      imports: [ RouterTestingModule, HttpClientTestingModule ]
     })
         .compileComponents();
   }));
@@ -23,9 +24,5 @@ describe('AdoptionListComponent', () => {
     fixture = TestBed.createComponent(AdoptionListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('AdoptionListComponent should be created', () => {
-    expect(component).toBeTruthy();
   });
 });

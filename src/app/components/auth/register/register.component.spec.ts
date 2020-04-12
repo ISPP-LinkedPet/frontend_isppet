@@ -3,6 +3,7 @@ import {RegisterComponent} from './register.component';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {RouterTestingModule} from '@angular/router/testing';
 import {LoginRegisterComponent} from '../../../pages/login-register/login-register.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 // Checked
 describe('RegisterComponent', () => {
@@ -13,7 +14,7 @@ describe('RegisterComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ RegisterComponent ],
       providers: [ HttpClient, HttpHandler, LoginRegisterComponent ],
-      imports: [ RouterTestingModule ]
+      imports: [ RouterTestingModule, HttpClientTestingModule ]
     })
         .compileComponents();
   }));
