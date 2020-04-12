@@ -25,7 +25,6 @@ export class AllPersonalAdsComponent implements OnInit {
 
   /*** Map Requests & id ***/
   mapBreedingRequestId = new Map();
-  mapAdoptionRequestsId = new Map();
 
   /* Map request_id & user */
   mapBreedingReqIdUser = new Map();
@@ -75,16 +74,6 @@ export class AllPersonalAdsComponent implements OnInit {
                                                              console.log(this.mapBreedingReqIdUser);
                                                              }));
         this.mapBreedingRequestId.set(element.breeding_id, rqsbrd);
-
-      }
-
-      if (element.adoption_id != null) {
-        const rqsadpt = new Array();
-
-        this.requestPublicationService.getRequestsAdoptionAd(element.adoption_id)
-        .then(res => res.requests.forEach((element: any) => rqsadpt.push(element)));
-
-        this.mapAdoptionRequestsId.set(element.adoption_id, rqsadpt);
 
       }
     }
