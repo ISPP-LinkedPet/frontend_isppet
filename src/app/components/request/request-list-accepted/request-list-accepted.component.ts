@@ -44,11 +44,12 @@ export class RequestListAcceptedComponent implements OnInit {
      // verificar si tienes parametro paymentId
      const paymentId = this.route.snapshot.queryParamMap.get('paymentId')
      const breedingId = this.route.snapshot.queryParamMap.get('breedingId')
+     const payerId = this.route.snapshot.queryParamMap.get('PayerID')
      console.log(paymentId, 'ppp')
      if (paymentId != undefined) {
       // Hacer peticion de confirmPayment
-      this.paymentService.checkPaypalPayment(breedingId, paymentId).then(response => {
-        if (response.state === 'created') {
+      this.paymentService.checkPaypalPayment(paymentId, {breedingId, payerId}).then(response => {
+        if (response.state === 'approved') {
           // abrir modal
           this.toastr.success('Payment Completed!');
         } else {

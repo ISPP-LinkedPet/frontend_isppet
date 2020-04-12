@@ -26,7 +26,7 @@ export class PaymentService {
     return this.requestService.request('POST', `${environment.endpoint}/payment/paypalCreatePayment`, data, {});
   }
  
-  checkPaypalPayment(breedingId: string, paymentId: string) {
-    return this.requestService.request('GET', `${environment.endpoint}/payment/checkPaypalPayment/${breedingId}/${paymentId}`, {}, {});
+  checkPaypalPayment(paymentId: string, data:any) {
+    return this.requestService.request('GET', `${environment.endpoint}/payment/checkPaypalPayment/${paymentId}`, data, {});
   }
 }
