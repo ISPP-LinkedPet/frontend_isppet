@@ -25,13 +25,17 @@ module.exports = function (config) {
         colors: true,
         logLevel: config.LOG_INFO,
         autoWatch: true,
-        browsers: ['ChromeHeadless'],
+        browsers: ['ChromeHeadless', 'Chrome'],
         customLaunchers: {
             MyHeadlessChrome: {
                 base: 'ChromeHeadless',
                 flags: ['--disable-translate', '--disable-extensions', '--remote-debugging-port=9223', '--watch=false']
             },
             ChromeHeadlessNoSandbox: {
+                base: 'ChromeHeadless',
+                flags: ['--no-sandbox']
+            },
+            ChromeHeadlessCI: {
                 base: 'ChromeHeadless',
                 flags: ['--no-sandbox']
             }
