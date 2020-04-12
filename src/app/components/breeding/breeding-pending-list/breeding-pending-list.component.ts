@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { ConfigService } from '../../../services/config/config.service'
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { faCat, faDog, faHorse, faInfoCircle, faMars, faVenus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-breeding-pending-list',
@@ -11,6 +12,15 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
   styleUrls: ['./breeding-pending-list.component.css']
 })
 export class BreedingPendingListComponent implements OnInit {
+  // icons
+  faCat = faCat;
+  faDog = faDog;
+  faHorse = faHorse;
+  faInfoCircle = faInfoCircle;
+  faVenus = faVenus;
+  faMars = faMars;
+
+
   returnedBreedings = new Array();
   itemsPerPage = 5;
   breedings = new Array();

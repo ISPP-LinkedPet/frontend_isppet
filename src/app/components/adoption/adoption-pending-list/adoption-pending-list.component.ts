@@ -5,6 +5,7 @@ import { ShelterService } from 'src/app/services/shelter/shelter.service';
 import { ConfigService } from 'src/app/services/config/config.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { Router } from '@angular/router';
+import { faCat, faDog, faHorse, faInfoCircle, faMars, faVenus, faAward } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-adoption-pending-list',
@@ -12,15 +13,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./adoption-pending-list.component.css']
 })
 export class AdoptionPendingListComponent implements OnInit {
+
+  // icons
+  faCat = faCat;
+  faDog = faDog;
+  faHorse = faHorse;
+  faInfoCircle = faInfoCircle;
+  faVenus = faVenus;
+  faMars = faMars;
+  FaAward = faAward;
+
   returnedAdoptions = new Array();
   itemsPerPage = 5;
   mapAdoption = new Map();
   pendingAdoptions = new Array();
   env = environment.endpoint;
-
+  details: boolean;
   constructor(private adoptionService: AdoptionService, private shelterService: ShelterService, public configService: ConfigService) { }
 
   ngOnInit(): void {
+    this.details = false;
     this.adoptionService.getPendingAdoptions().then(res => {
       res.forEach(adoptionAd => {
         this.pendingAdoptions.push(adoptionAd);
@@ -50,5 +62,13 @@ export class AdoptionPendingListComponent implements OnInit {
     const startItem = (event.page - 1) * event.itemsPerPage;
     const endItem = event.page * event.itemsPerPage;
     this.returnedAdoptions = this.pendingAdoptions.slice(startItem, endItem);
+  }
+
+  showDetails(string){
+    if(string=='show'){
+      this.details = true;
+    } else {
+      this.details = false;
+    }
   }
 }
