@@ -14,29 +14,6 @@
     height: 100%;
 }
 
-.list-style{
-    margin-top: 3%;
-    margin-left: 5%;
-    display:inline-block;
-    height: 100%;
-    width: 80%;
-}
-
-.foot{
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
- }
- 
- .foot-fixed{
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
- }
-
  @media (max-width:1220px){
     .vertical-advertisement{
         display: none;

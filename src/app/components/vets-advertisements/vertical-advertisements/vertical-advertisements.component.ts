@@ -21,19 +21,17 @@ export class VerticalAdvertisementsComponent implements OnInit {
   ngOnInit(): void {
 
     this.breedingService.getAllBreedings().then(res => this.breedings.push(res))
-    .then(res => console.log(this.breedings));
+    .then();
 
     this.nBredAds = 2;
     /*Varía la altura de la página según el número de elementos en la lista*/
 
     this.vetService.getVetAdvertisements(this.nBredAds).then(res => this.advertisements = res.ads)
-    .then(res => console.log(this.advertisements));
+    .then();
 
   }
 
   onClickAdvertisement(advertisement: any) {
-    /*console.log(advertisement);
-    console.log(advertisement.id);*/
     this.vetService.clickOnAdvertisement(advertisement.id);
   }
 

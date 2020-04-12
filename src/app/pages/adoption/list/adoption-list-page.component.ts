@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
 import {AdoptionService} from '../../../services/adoption/adoption.service';
 import { ConfigService } from 'src/app/services/config/config.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-adoption-list-page',

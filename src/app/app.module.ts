@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
@@ -59,6 +59,7 @@ import { EditParticularComponent } from './pages/breeding/edit-particular/edit-p
 import {EditComponent as EditAnimalComponent} from './pages/animal/edit/edit.component';
 
 /*Bootstrap*/
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -78,6 +79,10 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
 import { BreedingAnimalFormComponent } from './components/breeding/breeding-animal-form/breeding-animal-form.component';
 // tslint:disable-next-line: max-line-length
 import { VerticalAdvertisementsComponent } from './components/vets-advertisements/vertical-advertisements/vertical-advertisements.component';
+import { AllPersonalAdsComponent } from './components/all-personal-ads/all-personal-ads.component';
+import { StatisticsPageComponent } from './pages/admin/statistics-page/statistics-page.component';
+import { StatisticsComponent } from './components/admin/statistics/statistics.component';
+import { PageAllPersonalAdsComponent } from './pages/page-all-personal-ads/page-all-personal-ads.component';
 
 
 @NgModule({
@@ -131,7 +136,11 @@ import { VerticalAdvertisementsComponent } from './components/vets-advertisement
     BreedingAnimalFormComponent,
     CreateAnimalComponentBreeding,
     EditAnimalComponentBreeding,
-    VerticalAdvertisementsComponent
+    VerticalAdvertisementsComponent,
+    AllPersonalAdsComponent,
+    StatisticsPageComponent,
+    StatisticsComponent,
+    PageAllPersonalAdsComponent
   ],
   imports: [
     BrowserModule,
@@ -141,6 +150,7 @@ import { VerticalAdvertisementsComponent } from './components/vets-advertisement
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    CarouselModule.forRoot(),
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
@@ -155,6 +165,8 @@ import { VerticalAdvertisementsComponent } from './components/vets-advertisement
     BreedingService,
     ConfigService,
     LoginService,
+    HttpClientModule,
+    HttpClient,
     DatePipe],
   bootstrap: [AppComponent]
 

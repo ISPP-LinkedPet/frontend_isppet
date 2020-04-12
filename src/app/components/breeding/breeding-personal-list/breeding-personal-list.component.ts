@@ -1,7 +1,7 @@
 import { environment } from '../../../../environments/environment';
 import { BreedingService } from '../../../services/breeding/breeding.service';
 import { Component, OnInit } from '@angular/core';
-import { ConfigService } from './../../../services/config/config.service'
+import { ConfigService } from './../../../services/config/config.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { PaymentService } from '../../../services/payment/payment.service';
 import { ProfileService } from '../../../services/profile/profile.service';
@@ -18,13 +18,14 @@ export class BreedingPersonalListComponent implements OnInit {
   env = environment.endpoint;
   particular: any;
   pets: any;
+
+  // tslint:disable-next-line: max-line-length
   constructor(private breedingService: BreedingService, public configService: ConfigService, private paymentService: PaymentService, private profileService: ProfileService) { }
   ngOnInit(): void {
     this.getList();
   }
 
   acceptMoney(id) {
-
     this.paymentService.makePaypalPayment({ breedingId: id }).then(res => {
       this.personalBreedings = new Array();
       this.getList();
