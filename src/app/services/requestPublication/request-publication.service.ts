@@ -8,6 +8,16 @@ import { environment } from 'src/environments/environment';
 export class RequestPublicationService {
   constructor(private requestService: RequestService) {}
 
+  /* Request I received for a Breeding ad*/
+  getRequestsBreedingAd(breedingId: any) {
+    return this.requestService.request('GET', `${environment.endpoint}/request/breeding/${breedingId}`, {}, {}, true);
+  }
+
+  /* Request I received for an Adoption ad*/
+  getRequestsAdoptionAd(adoptionId: any) {
+    return this.requestService.request('GET', `${environment.endpoint}/request/adoption/${adoptionId}`, {}, {}, true);
+  }
+
   /* Requests created by me and accepted */
   getCreatedAndAccepted() {
     return this.requestService.request('GET', `${environment.endpoint}/publication/requests/created/accepted`, {}, {}, true);
