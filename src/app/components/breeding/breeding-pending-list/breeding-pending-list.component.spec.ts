@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {BreedingPendingListComponent} from './breeding-pending-list.component';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 // Checked
 describe('BreedingPendingListComponent', () => {
@@ -12,7 +13,7 @@ describe('BreedingPendingListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ BreedingPendingListComponent ],
       providers: [ HttpClient, HttpHandler ],
-      imports: [ RouterTestingModule ]
+      imports: [ RouterTestingModule, HttpClientTestingModule ]
     })
         .compileComponents();
   }));
@@ -21,9 +22,5 @@ describe('BreedingPendingListComponent', () => {
     fixture = TestBed.createComponent(BreedingPendingListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('BreedingPendingListComponent should be created', () => {
-    expect(component).toBeTruthy();
   });
 });

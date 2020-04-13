@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PersonalListAdoptionComponent } from './personal-list-adoption.component';
+import {HttpClient, HttpHandler} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('PersonalListAdoptionComponent', () => {
   let component: PersonalListAdoptionComponent;
@@ -8,9 +11,11 @@ describe('PersonalListAdoptionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PersonalListAdoptionComponent ]
+      declarations: [ PersonalListAdoptionComponent ],
+      providers: [ HttpClient, HttpHandler ],
+      imports: [ RouterTestingModule, HttpClientTestingModule ]
     })
-    .compileComponents();
+        .compileComponents();
   }));
 
   beforeEach(() => {

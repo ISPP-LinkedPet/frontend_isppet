@@ -1,25 +1,22 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {PageAllPersonalAdsComponent} from './page-all-personal-ads.component';
+import {HttpClient, HttpHandler} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
 
-import { PageAllPersonalAdsComponent } from './page-all-personal-ads.component';
-
+// Checked
 describe('PageAllPersonalAdsComponent', () => {
   let component: PageAllPersonalAdsComponent;
   let fixture: ComponentFixture<PageAllPersonalAdsComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ PageAllPersonalAdsComponent ]
-    })
-    .compileComponents();
-  }));
+  TestBed.configureTestingModule({
+    declarations: [ PageAllPersonalAdsComponent ],
+    providers: [ HttpClient, HttpHandler ],
+    imports: [ RouterTestingModule ]
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PageAllPersonalAdsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 });
