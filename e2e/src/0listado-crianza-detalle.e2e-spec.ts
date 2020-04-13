@@ -3,7 +3,7 @@ import {browser, by, element, logging} from 'protractor';
 
 // browser.executeScript('window.scrollTo(0, document.body.scrollHeight)');
 
-describe('Login module', () => {
+describe('Listado crianza', () => {
   let page: IndexPage;
 
   beforeEach(() => {
@@ -14,6 +14,7 @@ describe('Login module', () => {
     page.navigateTo();
 
     browser.driver.manage().window().setSize(1536, 824);
+    browser.sleep(20000); // Espera para que arranque heroku en el caso de estar dormido el servidor
     element(by.css('ul:nth-of-type(4)>li:nth-of-type(1)>a')).click();
     element(by.css('fieldset>div:nth-of-type(1)>input')).click();
     // @ts-ignore
