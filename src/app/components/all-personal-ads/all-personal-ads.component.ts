@@ -66,7 +66,7 @@ export class AllPersonalAdsComponent implements OnInit {
                                                              // tslint:disable-next-line: max-line-length
                                                              const particularInfo =  new Array();
                                                              // tslint:disable-next-line: max-line-length
-                                                             const userProfile = this.profileService.getParticularById(element.particular_id)
+                                                             this.profileService.getParticularById(element.particular_id)
                                                              // tslint:disable-next-line: no-shadowed-variable
                                                              .then(res => particularInfo.push(res.particular));
                                                              this.mapBreedingReqIdUser.set(element.id, particularInfo);

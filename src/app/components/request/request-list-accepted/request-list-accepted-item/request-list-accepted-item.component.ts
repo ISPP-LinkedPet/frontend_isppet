@@ -61,6 +61,8 @@ export class RequestListAcceptedItemComponent implements OnInit {
     console.log(this.request.status);
 
     console.log(this.request);
+
+    console.log(this.requestStatus, this.transactionStatus);
   }
 
   onClick(e: Event) {
