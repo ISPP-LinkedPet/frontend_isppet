@@ -57,6 +57,13 @@
             <fa-icon [icon]="faChartPie" class="mr-3"></fa-icon>Estadísticas
           </a>
         </li>
+        <li class="nav-item dropdown mr-3 avatar" *ngIf="rol == 'administrator'">
+          <a class="nav-link"><fa-icon [icon]="faBalanceScale" class="mr-3"></fa-icon>Panel
+          </a>
+          <div class="dropdown-content">
+            <a class="nav-link" routerLink="/register" >Registrar usuario</a>
+          </div>
+        </li>
       </ul>
       <!-- .end principal content-->
 

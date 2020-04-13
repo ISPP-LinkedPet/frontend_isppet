@@ -8,6 +8,7 @@ import { BreedingListPageComponent } from './pages/breeding/list/breeding-list-p
 import { AdoptionDisplayComponent } from './components/adoption/adoption-display/adoption-display.component';
 import { BreedingDisplayComponent } from './components/breeding/breeding-display/breeding-display.component';
 import { LoginRegisterComponent } from './pages/login-register/login-register.component';
+import { RegisterUserPageComponent } from './pages/admin/register-user-page/register-user-page.component';
 import { VetComponent } from './components/vet/vet.component';
 import { BreedingPendingListPageComponent } from './pages/breeding/pending-list/breeding-pending-list-page.component';
 import { PersonalListComponent } from './pages/breeding/personal-list/personal-list.component';
@@ -45,6 +46,7 @@ const routes: Routes = [
 {path: 'breeding', component: CreateComponentBreeding},
 {path: 'adoption', component: CreateComponentAdoption},
 {path: 'login', component: LoginRegisterComponent},
+{path: 'register', component: RegisterUserPageComponent},
 {path: 'vet', component: VetComponent},
 {path: 'breeding-pending', component: BreedingPendingListPageComponent},
 {path: 'breeding-edit/:id', component: EditComponentBreeding},

@@ -38,6 +38,8 @@ import {LoginService} from './services/login/login.service';
 import {AdoptionListComponent} from './components/adoption/adoption-list/adoption-list.component';
 import { AdotionFormComponent } from './components/adoption/adotion-form/adotion-form.component';
 import { LoginRegisterComponent } from './pages/login-register/login-register.component';
+import { RegisterUserPageComponent } from './pages/admin/register-user-page/register-user-page.component';
+import { RegisterUserComponent } from './components/admin/register-user/register-user.component';
 import { VetComponent } from './components/vet/vet.component';
 import { BreedingPendingListComponent } from './components/breeding/breeding-pending-list/breeding-pending-list.component';
 import { BreedingPendingListPageComponent } from './pages/breeding/pending-list/breeding-pending-list-page.component';
@@ -140,7 +142,10 @@ import { PageAllPersonalAdsComponent } from './pages/page-all-personal-ads/page-
     AllPersonalAdsComponent,
     StatisticsPageComponent,
     StatisticsComponent,
-    PageAllPersonalAdsComponent
+    PageAllPersonalAdsComponent,
+    RegisterUserPageComponent,
+    RegisterUserComponent
+
   ],
   imports: [
     BrowserModule,
