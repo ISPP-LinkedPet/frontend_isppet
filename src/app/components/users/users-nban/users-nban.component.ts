@@ -25,6 +25,12 @@ export class UsersNbanComponent implements OnInit {
       this.returnedUsers = this.users.slice(0, this.itemsPerPage);
     })
   }
+  banUser(id: number) {
+    this.adminService.banUser(id).then(res => {
+      this.ngOnInit();
+    });
+
+  }
   pageChanged(event: PageChangedEvent): void {
     const startItem = (event.page - 1) * event.itemsPerPage;
     const endItem = event.page * event.itemsPerPage;

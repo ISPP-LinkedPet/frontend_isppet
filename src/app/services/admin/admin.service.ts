@@ -15,6 +15,9 @@ export class AdminService {
   getUsersNotBan() {
     return this.requestService.request('GET', `${environment.endpoint}/administrator/unban/list`, {}, {}, true);
   }
+  banUser(id: number) {
+    return this.requestService.request('PUT', `${environment.endpoint}/administrator/ban/${id}`, {}, {}, true)
+  }
   registerShelter(data: any) {
     return this.requestService.request(
       'POST',
