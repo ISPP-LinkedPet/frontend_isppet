@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ConfigService } from '../../../services/config/config.service'
 import { AnimalService } from '../../../services/animal/animal.service'
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { faCat, faDog, faHorse, faInfoCircle, faMars, faVenus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-animal-pending-list',
@@ -11,6 +12,15 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
   styleUrls: ['./animal-pending-list.component.css']
 })
 export class AnimalPendingListComponent implements OnInit {
+
+  // icons
+  faCat = faCat;
+  faDog = faDog;
+  faHorse = faHorse;
+  faInfoCircle = faInfoCircle;
+  faVenus = faVenus;
+  faMars = faMars;
+
   animals = new Array();
   returnedAnimals = new Array();
   env = environment.endpoint;

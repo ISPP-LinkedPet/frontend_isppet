@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AnimalService } from '../../../services/animal/animal.service';
 
 @Component({
   selector: 'app-pending-list',
