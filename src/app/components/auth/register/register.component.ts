@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginRegisterComponent } from 'src/app/pages/login-register/login-register.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService } from '../../../services/login/login.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',

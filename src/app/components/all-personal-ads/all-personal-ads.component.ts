@@ -8,6 +8,7 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { RequestPublicationService } from 'src/app/services/requestPublication/request-publication.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { RequestBreedingService } from 'src/app/services/requestBreeding/request-breeding.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-all-personal-ads',
@@ -29,6 +30,9 @@ export class AllPersonalAdsComponent implements OnInit {
   /* Map request_id & user */
   mapBreedingReqIdUser = new Map();
 
+  /*ReviewForm*/
+  reviewForm: FormGroup;
+
 
   constructor(private breedingService: BreedingService,
               private adoptionService: AdoptionService,
@@ -39,6 +43,11 @@ export class AllPersonalAdsComponent implements OnInit {
               private requestBreedingService: RequestBreedingService) { }
 
   ngOnInit(): void {
+/*Review Form*/
+    this.reviewForm = new FormGroup({
+      reviewarea: new FormControl('')
+    });
+
     const userLogged = this.configService.getUserLogged();
     this.rol = userLogged.role;
     this.userId = userLogged.id;
@@ -55,13 +64,16 @@ export class AllPersonalAdsComponent implements OnInit {
     this.breedingService.getPersonalBreedings(this.userId)
     // tslint:disable-next-line: no-shadowed-variable
     .then(res => res.forEach((element: any) => {this.allads.push(element);
-                                                this.returnedAds = this.allads.slice(0, this.itemsPerPage); } ))
+                                                this.returnedAds = this.allads.slice(0, this.itemsPerPage);
+                                                console.log(this.allads);
+                                               } ))
     .then(res => this.shuffle(this.allads))
     .then(res => this.allads.forEach(element => {
       /*Create Map (Id - Requests(id)) */
       if (element.breeding_id != null) {
         const rqsbrd = new Array();
         this.requestPublicationService.getRequestsBreedingAd(element.breeding_id)
+        // tslint:disable-next-line: no-shadowed-variable
         .then(res => res.requests.forEach((element: any) => {rqsbrd.push(element);
                                                              // tslint:disable-next-line: max-line-length
                                                              const particularInfo =  new Array();
@@ -70,26 +82,17 @@ export class AllPersonalAdsComponent implements OnInit {
                                                              // tslint:disable-next-line: no-shadowed-variable
                                                              .then(res => particularInfo.push(res.particular));
                                                              this.mapBreedingReqIdUser.set(element.id, particularInfo);
+                                                             console.log(this.mapBreedingRequestId);
 
-                                                             console.log(this.mapBreedingReqIdUser);
+                                                             // console.log(this.mapBreedingReqIdUser);
                                                              }));
         this.mapBreedingRequestId.set(element.breeding_id, rqsbrd);
-
       }
     }
 
     ));
     /***Slice***/
     this.returnedAds = this.allads.slice(0, this.itemsPerPage);
-
-    /* MAPS */
-    console.log(this.mapBreedingRequestId);
-    console.log(this.mapBreedingRequestId.keys());
-    // tslint:disable-next-line: forin
-    for (let p in this.mapBreedingRequestId.keys()){
-      console.log(p);
-    }
-
   }
 
   pageChanged(event: PageChangedEvent): void {
@@ -102,7 +105,11 @@ export class AllPersonalAdsComponent implements OnInit {
   acceptMoney(id: any) {
     this.paymentService.makePaypalPayment({ breedingId: id }).then(res => {
     this.getList();
-    });
+    })
+    .then(x => {
+      alert('Tu pago se ha recibido correctamente'); } ).then(x => {
+        location.reload();
+      });
   }
 
   /****Auxiliar methods*** */
@@ -128,4 +135,13 @@ export class AllPersonalAdsComponent implements OnInit {
     location.reload();
   }
 
+  onSubmitReviewForm(publicationId: string) {
+    const review = this.reviewForm.get('reviewarea').value;
+    console.log(review);
+    console.log(publicationId);
+    this.requestBreedingService.writeReview({star: 3 , review_description: review, publication_id: publicationId}).then(x => {
+      alert('Tu review se ha enviado correctamente'); } ).then(x => {
+        location.reload();
+      });
+  }
 }
