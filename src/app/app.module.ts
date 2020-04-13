@@ -85,6 +85,8 @@ import { AllPersonalAdsComponent } from './components/all-personal-ads/all-perso
 import { StatisticsPageComponent } from './pages/admin/statistics-page/statistics-page.component';
 import { StatisticsComponent } from './components/admin/statistics/statistics.component';
 import { PageAllPersonalAdsComponent } from './pages/page-all-personal-ads/page-all-personal-ads.component';
+import { UsersNbanComponent } from './components/users/users-nban/users-nban.component';
+import { UsersNbanPageComponent } from './pages/users/users-nban-page/users-nban-page.component';
 
 
 @NgModule({
@@ -144,7 +146,9 @@ import { PageAllPersonalAdsComponent } from './pages/page-all-personal-ads/page-
     StatisticsComponent,
     PageAllPersonalAdsComponent,
     RegisterUserPageComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    UsersNbanComponent,
+    UsersNbanPageComponent
 
   ],
   imports: [

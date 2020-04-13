@@ -33,6 +33,7 @@ import { EditAnimalComponent as EditAnimalComponentBreeding } from './pages/bree
 import { VerticalAdvertisementsComponent } from './components/vets-advertisements/vertical-advertisements/vertical-advertisements.component';
 import { AllPersonalAdsComponent } from './components/all-personal-ads/all-personal-ads.component';
 import { PageAllPersonalAdsComponent } from './pages/page-all-personal-ads/page-all-personal-ads.component';
+import { UsersNbanPageComponent } from './pages/users/users-nban-page/users-nban-page.component';
 
 
 const routes: Routes = [
@@ -47,6 +48,7 @@ const routes: Routes = [
 {path: 'adoption', component: CreateComponentAdoption},
 {path: 'login', component: LoginRegisterComponent},
 {path: 'register', component: RegisterUserPageComponent},
+{path: 'userlist', component: UsersNbanPageComponent},
 {path: 'vet', component: VetComponent},
 {path: 'breeding-pending', component: BreedingPendingListPageComponent},
 {path: 'breeding-edit/:id', component: EditComponentBreeding},

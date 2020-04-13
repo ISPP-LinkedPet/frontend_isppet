@@ -1,0 +1,6 @@
+img{
+    height: 300px; 
+    width: inherit; 
+    display: block;
+    object-fit: cover;
+}

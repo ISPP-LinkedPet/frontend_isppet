@@ -12,6 +12,9 @@ export class AdminService {
   getAllStatictics() {
     return this.requestService.request('GET', `${environment.endpoint}/administrator/statistics`, {}, {}, true);
   }
+  getUsersNotBan() {
+    return this.requestService.request('GET', `${environment.endpoint}/administrator/unban/list`, {}, {}, true);
+  }
   registerShelter(data: any) {
     return this.requestService.request(
       'POST',
