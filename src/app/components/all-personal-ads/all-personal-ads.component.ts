@@ -8,6 +8,7 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { RequestPublicationService } from 'src/app/services/requestPublication/request-publication.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { RequestBreedingService } from 'src/app/services/requestBreeding/request-breeding.service';
+import { faCat, faDog, faHorse, faAward, faInfoCircle, faMars, faVenus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-all-personal-ads',
@@ -16,12 +17,22 @@ import { RequestBreedingService } from 'src/app/services/requestBreeding/request
 })
 export class AllPersonalAdsComponent implements OnInit {
 
+  // icons
+  faCat = faCat;
+  faDog = faDog;
+  faHorse = faHorse;
+  faInfoCircle = faInfoCircle;
+  faVenus = faVenus;
+  faMars = faMars;
+  faAward = faAward;
+
   allads = new Array();
   env = environment.endpoint;
   rol = null;
   userId = null;
   returnedAds = new Array();
-  itemsPerPage = 3;
+  itemsPerPage = 6;
+  requests: boolean;
 
   /*** Map Requests & id ***/
   mapBreedingRequestId = new Map();
@@ -126,6 +137,14 @@ export class AllPersonalAdsComponent implements OnInit {
     }
 
     location.reload();
+  }
+
+  showRequests(string){
+    if(string=='show'){
+      this.requests = true;
+    } else {
+      this.requests = false;
+    }
   }
 
 }

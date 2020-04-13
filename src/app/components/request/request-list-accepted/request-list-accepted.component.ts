@@ -5,6 +5,7 @@ import { PaymentService } from '../../../services/payment/payment.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-request-list-accepted',
@@ -12,6 +13,9 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
   styleUrls: ['./request-list-accepted.component.css'],
 })
 export class RequestListAcceptedComponent implements OnInit {
+  //icons
+  faInfoCircle = faInfoCircle;
+
   created: boolean; // created or received
   requests = [];
   title: string;
