@@ -22,4 +22,8 @@ describe('EditComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+
+  it('Component should be created', () => {
+    expect(component).toBeTruthy();
+  });
 });

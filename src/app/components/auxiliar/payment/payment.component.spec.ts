@@ -3,6 +3,7 @@ import {HttpClient, HttpHandler} from '@angular/common/http';
 import {PaymentComponent} from './payment.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ToastContainerModule} from 'ngx-toastr';
 
 // Checked
 describe('PaymentComponent', () => {
@@ -12,7 +13,7 @@ describe('PaymentComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ PaymentComponent ],
-      providers: [ HttpClient, HttpHandler ],
+      providers: [ HttpClient, HttpHandler, ToastContainerModule ],
       imports: [ RouterTestingModule, HttpClientTestingModule ]
     })
         .compileComponents();

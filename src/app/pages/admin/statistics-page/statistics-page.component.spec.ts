@@ -1,6 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { StatisticsPageComponent } from './statistics-page.component';
+import {StatisticsPageComponent} from './statistics-page.component';
+import {HttpClient, HttpHandler} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('StatisticsPageComponent', () => {
   let component: StatisticsPageComponent;
@@ -8,9 +11,11 @@ describe('StatisticsPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StatisticsPageComponent ]
+      declarations: [ StatisticsPageComponent ],
+      providers: [ HttpClient, HttpHandler ],
+      imports: [ RouterTestingModule, HttpClientTestingModule]
     })
-    .compileComponents();
+        .compileComponents();
   }));
 
   beforeEach(() => {
