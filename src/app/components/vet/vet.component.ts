@@ -3,6 +3,9 @@ import { environment } from 'src/environments/environment';
 import { VetService } from 'src/app/services/vet/vet.service';
 import * as mapboxgl from 'mapbox-gl';
 import { ConfigService } from '../../services/config/config.service';
+import { Router } from '@angular/router';
+import { faCrown } from '@fortawesome/free-solid-svg-icons';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 
 @Component({
@@ -12,8 +15,13 @@ import { ConfigService } from '../../services/config/config.service';
 })
 
 export class VetComponent implements OnInit {
-  vets: any = [];
-  allVets: any = [];
+
+  //icons
+  faCrown = faCrown;
+
+  itemsPerPage = 5;
+  vets = new Array();
+  returnedVets = new Array();
   env = environment.endpoint;
   mapkey = environment.mapbox_key;
   mapbox = (mapboxgl as typeof mapboxgl);
@@ -26,7 +34,7 @@ export class VetComponent implements OnInit {
   userlogged = this.configService.getUserLogged();
   rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
 
-  constructor(private vetService: VetService, public configService: ConfigService) {
+  constructor(private vetService: VetService, public configService: ConfigService, public router: Router) {
     this.mapbox.accessToken = environment.mapbox_key;
 
   }
@@ -34,8 +42,10 @@ export class VetComponent implements OnInit {
 
   ngOnInit(): void {
     this.vetService.getAllVets().then(res => {
-      this.allVets = res;
-      this.pageChange();
+      res.forEach(vet => {
+        this.vets.push(vet);
+      });
+      this.returnedVets = this.vets.slice(0, this.itemsPerPage);
     });
   }
 
@@ -54,8 +64,10 @@ export class VetComponent implements OnInit {
 
   }
 
-  pageChange() {
-    this.vets = this.allVets.slice(this.page * this.pageSize - this.pageSize, this.page * this.pageSize);
+  pageChanged(event: PageChangedEvent): void {
+    const startItem = (event.page - 1) * event.itemsPerPage;
+    const endItem = event.page * event.itemsPerPage;
+    this.returnedVets = this.vets.slice(startItem, endItem);
   }
 
   onPremium(id: number) {
