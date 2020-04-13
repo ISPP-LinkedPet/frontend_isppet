@@ -95,6 +95,16 @@
               </div>
             </div>
 
+            <div class="adRequests" *ngIf="!(adv.transaction_status == 'Offered')" >
+              <div *ngFor="let request of mapBreedingRequestId.get(adv.breeding_id)">
+                <div *ngIf="request.status=='Accepted'">
+                  <button type="button"class="btn btn-success mx-3 " [routerLink]="['/profile', request.particular_id]">
+                    Ver perfil de interesado
+                  </button>
+                </div>
+              </div>
+            </div>
+
             <div class="adRequests" *ngIf="!(adv.transaction_status == 'Offered')">
             El anuncio ya ha sido aceptado
             </div>

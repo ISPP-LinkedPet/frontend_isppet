@@ -62,17 +62,20 @@ export class RequestListAcceptedComponent implements OnInit {
 
   ckeckPayment() {
     // verificar si tienes parametro paymentId
-    const paymentId = this.route.snapshot.queryParamMap.get('payment_intent')
-    const breedingId = this.route.snapshot.queryParamMap.get('breedingId')
+    const paymentId = this.route.snapshot.queryParamMap.get('payment_intent');
+    const breedingId = this.route.snapshot.queryParamMap.get('breedingId');
+    // tslint:disable-next-line: triple-equals
     if (paymentId != undefined) {
       // Hacer peticion de confirmPayment
-      this.paymentService.confirmPaymentToMyself({paymentId, breedingId: breedingId}).then(response => {
+      this.paymentService.confirmPaymentToMyself({paymentId, breedingId}).then(response => {
         if (response.status === 'succeeded') {
           // abrir modal
-          this.toastr.success('Payment Completed!');
+          this.toastr.success('Payment Completed!')
+          location.reload();
         } else {
           // error
           this.toastr.error('Payment not complete!');
+          location.reload();
         }
       });
     }

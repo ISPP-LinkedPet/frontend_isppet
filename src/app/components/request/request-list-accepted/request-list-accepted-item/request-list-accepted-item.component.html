@@ -44,7 +44,7 @@
           </div>
 
           <!--Review-->
-          <div *ngIf="transactionStatus=='Awaiting payment' && requestStatus=='Accepted'">
+          <div *ngIf="transactionStatus=='Completed' && requestStatus=='Accepted'">
             <form [formGroup]="reviewForm"  (ngSubmit)="onSubmitReviewForm()" novalidate> 
               <textarea formControlName="reviewarea" type="" placeholder="Cuéntanos como ha ido" maxlength="200" required></textarea>
               <button type="submit" class="btn btn-primary">Enviar Review</button>
