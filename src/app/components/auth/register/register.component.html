@@ -2,23 +2,24 @@
     <div class="text-center">
         <h1 class="display-4">Registro</h1>
     </div>
-        <div class="container mt-5">
-            <div class="col-md-8 mx-auto">
+    <div class="container mt-5">
+        <div class="col-md-8 mx-auto">
             <form [formGroup]="registerForm">
                 <fieldset>
                     <legend></legend>
                     <div class="row">
                         <div class="form-group col-md-6" *ngIf="isValidUserName">
                             <label for="user_name">Nombre de usuario</label>
-                            <input type="text" class="form-control" id="user_name" required formControlName="user_name" (change)="validateUsername()">
+                            <input type="text" class="form-control" id="user_name" required formControlName="user_name"
+                                (change)="validateUsername()">
                         </div>
                         <div class="form-group has-danger col-md-6" *ngIf="!isValidUserName">
                             <label class="form-control-label" for="user_name">Nombre de usuario</label>
-                            <input type="text" class="form-control is-invalid" id="user_name" formControlName="user_name"
-                                (change)="validateUsername()">
+                            <input type="text" class="form-control is-invalid" id="user_name"
+                                formControlName="user_name" (change)="validateUsername()">
                             <div class="invalid-feedback">Nombre de usuario no válido</div>
                         </div>
-        
+
                         <div class="form-group col-md-6" *ngIf="isValidRole">
                             <label for="role">Rol de usuario</label>
                             <select class="form-control" id="role" formControlName="role"
@@ -28,7 +29,7 @@
                                 <option value='shelter'>Refugio</option>
                             </select>
                         </div>
-                        <div class="form-group has-danger col-md-6" *ngIf="!isValidRole">     
+                        <div class="form-group has-danger col-md-6" *ngIf="!isValidRole">
                             <label for="role">Rol de usuario</label>
                             <select class="form-control is-invalid" id="role" formControlName="role"
                                 (change)="onChangeRole($event.target.value)">
@@ -78,7 +79,7 @@
                                 (change)="validateName()">
                             <div class="invalid-feedback">Nombre no válido</div>
                         </div>
-        
+
                         <div class="form-group col-md-6" *ngIf="showParticularInputs && isValidSurname">
                             <label for="surname">Apellido</label>
                             <input type="text" class="form-control" id="surname" required formControlName="surname"
@@ -104,17 +105,17 @@
                                 (change)="validateAddress()">
                             <div class="invalid-feedback">Dirección no válida</div>
                         </div>
-        
+
                         <div class="form-group col-md-4" *ngIf="isValidTelephone">
                             <label for="telephone">Teléfono</label>
-                            <input type="text" class="form-control" id="telephone" required formControlName="telephone" maxlength="9"
-                                (change)="validateTelephone()">
+                            <input type="text" class="form-control" id="telephone" required formControlName="telephone"
+                                maxlength="9" (change)="validateTelephone()">
                         </div>
-        
+
                         <div class="form-group has-danger col-md-4" *ngIf="!isValidTelephone">
                             <label class="form-control-label" for="telephone">Teléfono</label>
-                            <input type="text" class="form-control is-invalid" id="telephone" formControlName="telephone" maxlength="9"
-                                (change)="validateTelephone()">
+                            <input type="text" class="form-control is-invalid" id="telephone"
+                                formControlName="telephone" maxlength="9" (change)="validateTelephone()">
                             <div class="invalid-feedback">Teléfono no válido</div>
                         </div>
                     </div>
@@ -136,17 +137,20 @@
                             <label for="optional_photo">Foto opcional</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input #optionalPhoto type="file" class="custom-file-input" formControlName="optional_photo" name="optional_photo" id="optional_photo"
+                                    <input #optionalPhoto type="file" class="custom-file-input"
+                                        formControlName="optional_photo" name="optional_photo" id="optional_photo"
                                         (change)="getOptionalPhotoAndValidate($event)">
                                     <label class="custom-file-label" for="optional_photo">Seleccionar imagen</label>
                                 </div>
                             </div>
-                            <div class="invalid-feedback" *ngIf="!isValidOptionalPhoto">La foto debe tener una extensión jpg, jpeg o png</div>
+                            <div class="invalid-feedback" *ngIf="!isValidOptionalPhoto">La foto debe tener una extensión
+                                jpg, jpeg o png</div>
                             <div class="imagePreview" *ngIf="optionalPhotoUrl && optionalPhotoUrl !== ''">
                                 <img id="img-upload" [src]="optionalPhotoUrl" alt="asd">
                             </div>
                         </div>
                     </div>
+                    
                 </fieldset>
 
                 <div class="alert alert-danger" role="alert" *ngIf="showError">
@@ -156,10 +160,21 @@
                 <div class="alert alert-success" role="alert" *ngIf="registerSuccess">
                     {{ successMessage }}
                 </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required formGroupName="check"
+                    (change)="validateCheck()">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Al marcar esta casilla esta de acuerdo con nuestros <a href='https://ispp-linkedpet.github.io/terms.html' target='_blank'>Términos y condiciones</a> 
+                    </label>
+                </div>
 
+                
                 <div class="text-center mt-4">
-                    <button type="submit"  class="btn btn-primary " (click)="onSubmit()">Registrarse</button>
-                    <button type="button"  class="btn btn-danger "
+
+
+
+                    <button type="submit" class="btn btn-primary " (click)="onSubmit()">Registrarse</button>
+                    <button type="button" class="btn btn-danger "
                         (click)="homeComponent.isLeftVisible = !homeComponent.isLeftVisible">Volver</button>
                 </div>
             </form>

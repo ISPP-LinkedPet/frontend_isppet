@@ -39,10 +39,10 @@ export class VetComponent implements OnInit {
     });
   }
 
-  onSubmit(name: string, lng: string, lat: string) {
+  onSubmit(id: string, lng: string, lat: string) {
 
     this.map = new mapboxgl.Map({
-      container: 'map' + name,
+      container: 'map' + id,
       style: `mapbox://styles/mapbox/streets-v11`,
       zoom: 14,
       center: [lng, lat]

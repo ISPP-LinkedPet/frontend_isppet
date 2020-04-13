@@ -85,4 +85,11 @@ export class RequestListAcceptedItemComponent implements OnInit {
       });
   }
 
+  onSubmitdeleteRequest(id: string){
+    this.requestBreedingService.deleteRequest(id).then(x => {
+      alert('Tu oferta ha sido eliminada correctamente');} ).then(x => {
+        location.reload();
+      });;
+  }
+
 }

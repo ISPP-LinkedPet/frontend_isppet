@@ -57,6 +57,12 @@
             <fa-icon [icon]="faChartPie" class="mr-3"></fa-icon>Estadísticas
           </a>
         </li>
+
+        <li class="nav-item ml-8" *ngIf="rol== 'administrator'">
+          <a class="nav-link" routerLink="/alerta">
+            <fa-icon [icon]="faExclamationTriangle" class="mr-3"></fa-icon>Comunicado de alerta
+          </a>
+        </li>
       </ul>
       <!-- .end principal content-->
 

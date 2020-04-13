@@ -26,16 +26,16 @@
         <div class="description-content">
           <ul>
             <li class="card-text">
-              <label><strong>Telefóno: </strong></label>{{ vet.telephone }}
+              <label><strong>Telefóno: </strong></label> {{ vet.telephone }}
             </li>
             <li class="card-text">
-              <label><strong>Email de contacto: </strong></label>{{ vet.email }}
+              <label><strong>Email de contacto: </strong></label> {{ vet.email }}
             </li>
             <li *ngIf="vet.url == null" class="card-text">
               <label><strong>Enlace: </strong></label> No disponible
             </li>
             <li *ngIf="vet.url != null" class="card-text">
-              <label><strong>Enlace: </strong></label><a href="{{ vet.url }}">Pulsa para acceder</a>
+              <label><strong>Enlace: </strong></label><a href="{{ vet.url }}"> Pulsa para acceder</a>
               
             </li>
             <li class="card-text">
@@ -50,9 +50,9 @@
         <button *ngIf="vet.is_premium && rol=='administrator'" class="btn btn-success" onclick="style.display = 'none'" (click)="onNormal(vet.id)"> Eliminar premium
         </button>
       </div>
-      <div id="map{{vet.name}}">
+      <div id="map{{vet.id}}" style="height: 200px;">
         <button class="btn btn-success" onclick="style.display = 'none'"
-          (click)="onSubmit(vet.name,vet.longitude,vet.latitude)">Mostrar en mapa</button>
+          (click)="onSubmit(vet.id,vet.longitude,vet.latitude)">Mostrar en mapa</button>
       </div>
     </div>
   </div>

@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   isValidTelephone: boolean;
   isValidOptionalPhoto: boolean;
   isValidSurname: boolean;
+  isValidCheck: boolean;
 
   optionalPhotoUrl: string; // Para la preview
   optionalPhoto: any;
@@ -49,6 +50,7 @@ export class RegisterComponent implements OnInit {
     this.isValidTelephone = true;
     this.isValidOptionalPhoto = true;
     this.isValidSurname = true;
+    this.isValidCheck = true;
     this.showParticularInputs = this.registerForm.value.role === 'particular';
   }
 
@@ -67,7 +69,8 @@ export class RegisterComponent implements OnInit {
       optional_photo: new FormControl('', [
         Validators.required,
       ]),
-      surname: new FormControl('', [Validators.required])
+      surname: new FormControl('', [Validators.required]),
+      check: new FormControl('', [Validators.required])
     });
   }
 
@@ -89,6 +92,8 @@ export class RegisterComponent implements OnInit {
       formData.append('telephone', this.registerForm.value.telephone);
       formData.append('optional_photo', this.optionalPhoto);
       formData.append('surname', this.registerForm.value.surname);
+      formData.append('check', this.registerForm.value.check);
+
 
       this.loginService
         .register(formData)
@@ -122,6 +127,7 @@ export class RegisterComponent implements OnInit {
     this.validateTelephone();
     this.validateUsername();
     this.validateRole();
+    this.validateCheck();
   }
 
   validateUsername() {
@@ -182,6 +188,15 @@ export class RegisterComponent implements OnInit {
       }
     } else {
       this.isValidSurname = true;
+    }
+  }
+
+  validateCheck() {
+      this.isValidCheck = this.registerForm.get('check').valid;
+      if (!this.isValidCheck) {
+        this.isValid = false;
+      } else {
+      this.isValidCheck = true;
     }
   }
   validateRole() {

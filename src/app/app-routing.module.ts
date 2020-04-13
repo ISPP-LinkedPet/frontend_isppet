@@ -32,7 +32,7 @@ import { EditAnimalComponent as EditAnimalComponentBreeding } from './pages/bree
 import { VerticalAdvertisementsComponent } from './components/vets-advertisements/vertical-advertisements/vertical-advertisements.component';
 import { AllPersonalAdsComponent } from './components/all-personal-ads/all-personal-ads.component';
 import { PageAllPersonalAdsComponent } from './pages/page-all-personal-ads/page-all-personal-ads.component';
-
+import { AlertComponent} from './components/admin/alert/alert.component';
 
 const routes: Routes = [
 {path: '', component: HomeComponent},
@@ -64,6 +64,7 @@ const routes: Routes = [
 {path: 'lateralAd', component: VerticalAdvertisementsComponent},
 {path: 'pallAds', component: PageAllPersonalAdsComponent},
 {path: 'statitics', component: StatisticsPageComponent},
+{path: 'alert', component: AlertComponent}
 ];
 
 @NgModule({

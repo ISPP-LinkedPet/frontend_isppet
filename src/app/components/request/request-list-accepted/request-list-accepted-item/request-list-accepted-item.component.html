@@ -26,8 +26,17 @@
               <button type="submit" class="btn btn-primary">Enviar Review</button>
             </form>
           </div>
+        
 
         </div>
+        <button
+          *ngIf="request.status == 'Pending'"
+          type="button"
+          class="btn btn-danger mx-6"
+          (click)="onSubmitdeleteRequest(request.id)"
+        >
+          Eliminar
+        </button>
 
         <div style="text-align: center" *ngIf="created && publicationType=='Petición de crianza'">
           <!-- Pay method -->
