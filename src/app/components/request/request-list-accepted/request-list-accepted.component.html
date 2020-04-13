@@ -28,7 +28,7 @@
     </div>
 
     <!--Petciones-->
-    <div class="row d-flex justify-content-center" style="margin-top: 6em;">
+    <div class="row d-flex justify-content-center" style="margin-top: 6em;" *ngIf="returnedRequest != undefined">
       <app-request-list-accepted-item
         *ngFor="let req of returnedRequest"
         [request]="req"
