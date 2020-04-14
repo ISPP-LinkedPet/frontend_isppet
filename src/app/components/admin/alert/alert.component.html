@@ -1,0 +1,34 @@
+<div class="center col-sm-10 formDiv">
+    <div class="card border-primary mb-3">
+        <div class="card-body">
+            <p class="card-title">
+                Enviar comunicado
+            </p>
+            <form [formGroup]="breachForm" (ngSubmit)="onSubmit()">
+                <fieldset>
+                    <legend></legend>
+                    <div class="form-group">
+                        <label for="subject"><strong>Asunto</strong></label>
+                        <input type="text" class="form-control col-sm-9" id="subject" required
+                            formControlName="subject" />
+
+                        <label for="body"><strong>Mensaje</strong></label>
+                        <textarea type="text" class="form-control col" rows="4" id="body" required
+                            formControlName="body"></textarea>
+                    </div>
+
+                    
+                    <div class="row-sm">
+                        <button type="submit" class="btn btn-primary btn-lg left " (click)="onSubmit()">
+                            Enviar mensaje
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-lg right "routerLink="/" >
+                            Cancelar
+                        </button>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

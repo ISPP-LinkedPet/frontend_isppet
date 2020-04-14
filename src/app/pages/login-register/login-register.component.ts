@@ -38,5 +38,6 @@ export class LoginRegisterComponent implements OnInit {
       this.router.navigate(['/'])
     }
   }
+  
 
 }

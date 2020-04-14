@@ -22,20 +22,20 @@ export class RequestListAcceptedItemComponent implements OnInit {
   transactionStatus: string;
   breedingId: string;
   publicationId: string;
- /*requestForm*/
+  /*requestForm*/
   requestForm: FormGroup;
   /*ReviewForm*/
   reviewForm: FormGroup;
   reviewarea: string;
 
   constructor(private router: Router,
-              private requestBreedingService: RequestBreedingService) {}
+    private requestBreedingService: RequestBreedingService) { }
 
   ngOnInit(): void {
 
     this.photo = `${environment.endpoint}/${
       this.request.animal_photo.split(',')[0]
-    }`;
+      }`;
     this.publicationType =
       'Petición de ' +
       (this.request.publicationType === 'breeding' ? 'crianza' : 'adopción');
@@ -51,8 +51,8 @@ export class RequestListAcceptedItemComponent implements OnInit {
     this.transactionStatus = this.request.transaction_status;
     /*RequestForm*/
     this.requestForm = new FormGroup({
-        confirmationCode: new FormControl('')
-      });
+      confirmationCode: new FormControl('')
+    });
 
     /*Review Form*/
     this.reviewForm = new FormGroup({
@@ -71,8 +71,9 @@ export class RequestListAcceptedItemComponent implements OnInit {
 
   onSubmitCodeForm() {
     const confirmationCode = this.requestForm.get('confirmationCode').value;
-    this.requestBreedingService.finishBreedingConfirmation(this.breedingId, {codenumber: confirmationCode} ).then(x => {
-    alert('Tu código se ha enviado correctamente'); } ).then(x => {
+    this.requestBreedingService.finishBreedingConfirmation(this.breedingId, { codenumber: confirmationCode }).then(x => {
+      alert('Tu código se ha enviado correctamente');
+    }).then(x => {
       location.reload();
     });
   }
@@ -81,10 +82,19 @@ export class RequestListAcceptedItemComponent implements OnInit {
     const review = this.reviewForm.get('reviewarea').value;
     console.log(review);
     console.log(this.publicationId);
-    this.requestBreedingService.writeReview({star: 3 , review_description: review, publication_id: this.publicationId}).then(x => {
-      alert('Tu review se ha enviado correctamente');} ).then(x => {
-        location.reload();
-      });
+    this.requestBreedingService.writeReview({ star: 3, review_description: review, publication_id: this.publicationId }).then(x => {
+      alert('Tu review se ha enviado correctamente');
+    }).then(x => {
+      location.reload();
+    });
+  }
+
+  onSubmitdeleteRequest(id: string) {
+    this.requestBreedingService.deleteRequest(id).then(x => {
+      alert('Tu oferta ha sido eliminada correctamente');
+    }).then(x => {
+      location.reload();
+    });
   }
 
 }

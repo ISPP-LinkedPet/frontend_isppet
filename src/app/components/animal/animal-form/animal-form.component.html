@@ -258,6 +258,7 @@
   
                 </fieldset>
                 <button *ngIf="rol == 'particular' && !creating" (click)="onSubmit()" class="btn btn-primary button-form mr-2">Editar</button>
+                <button *ngIf="rol == 'particular' && !creating && canDelete" (click)="deleteAnimal(id)" class="btn btn-secondary button-form mr-2" >Eliminar</button>
                 <button *ngIf="rol == 'particular' && creating" (click)="onSubmit()" class="btn btn-primary button-form mr-2">Crear</button>
                 <button *ngIf="rol == 'moderator'" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Aceptar</button>
                 <button *ngIf="rol == 'moderator'" (click)="rejectPublication()" class="btn btn-secondary btn-lg button-form right">Rechazar</button>

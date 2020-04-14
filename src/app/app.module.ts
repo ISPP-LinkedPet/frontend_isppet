@@ -85,6 +85,8 @@ import { AllPersonalAdsComponent } from './components/all-personal-ads/all-perso
 import { StatisticsPageComponent } from './pages/admin/statistics-page/statistics-page.component';
 import { StatisticsComponent } from './components/admin/statistics/statistics.component';
 import { PageAllPersonalAdsComponent } from './pages/page-all-personal-ads/page-all-personal-ads.component';
+import { AlertComponent } from './components/admin/alert/alert.component';
+import { AlertPageComponent } from './pages/admin/alert-page/alert-page.component';
 import { UsersNbanComponent } from './components/users/users-nban/users-nban.component';
 import { UsersNbanPageComponent } from './pages/users/users-nban-page/users-nban-page.component';
 import { AdsListComponent } from './components/ads/ads-list/ads-list.component';
@@ -150,6 +152,8 @@ import { VetPremiumComponent } from './components/vet/vet-premium/vet-premium.co
     StatisticsPageComponent,
     StatisticsComponent,
     PageAllPersonalAdsComponent,
+    AlertComponent,
+    AlertPageComponent,
     RegisterUserPageComponent,
     RegisterUserComponent,
     UsersNbanComponent,

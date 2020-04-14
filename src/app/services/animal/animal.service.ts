@@ -39,6 +39,14 @@ export class AnimalService {
     return this.requestService.request('PUT', `${environment.endpoint}/pet/reject/${id}`, {}, {}, true)
   }
 
+  deleteAnimal(id: number) {
+    return this.requestService.request('DELETE', `${environment.endpoint}/pet/delete/${id}`, {}, {}, true)
+  }
+
+    canDeleteAnimal(id: number) {
+    return this.requestService.request('GET', `${environment.endpoint}/pet/canDelete/${id}`, {}, {}, true)
+  }
+
   notEditableAnimals(){
 
     const startAsync = async callback => this.profileService.getParticularLogged().then(res => {

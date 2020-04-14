@@ -6,7 +6,7 @@ import { AnimalService } from '../../services/animal/animal.service';
 import {environment} from '../../../environments/environment';
 import { AdoptionService } from 'src/app/services/adoption/adoption.service';
 import { RequestBreedingService } from 'src/app/services/requestBreeding/request-breeding.service';
-import { faHome, faPaw, faHeart, faStethoscope, faSignOutAlt, faSignInAlt, faBalanceScale, faEnvelope, faCat, faChartPie} from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPaw, faHeart, faStethoscope, faSignOutAlt, faSignInAlt, faBalanceScale, faEnvelope, faCat, faChartPie, faExclamationTriangle} from '@fortawesome/free-solid-svg-icons';
 
 import {BreedingListPageComponent} from './../../pages/breeding/list/breeding-list-page.component';
 import { Animal } from 'src/app/models/animal/animal';
@@ -31,7 +31,8 @@ export class HeaderComponent implements OnInit {
   faBalanceScale = faBalanceScale;
   faEnvelope = faEnvelope;
   faCat = faCat;
-  faChartPie = faChartPie
+  faChartPie = faChartPie;
+  faExclamationTriangle= faExclamationTriangle
 
   constructor(public  configService: ConfigService,private router: Router, public breedingListPageComponent: BreedingListPageComponent,
     private requestBreedingService: RequestBreedingService, private breedingService: BreedingService, private adoptionService: AdoptionService,

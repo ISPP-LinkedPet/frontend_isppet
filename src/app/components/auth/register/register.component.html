@@ -85,6 +85,7 @@
                         <label class="custom-file-label" for="optional_photo">Seleccionar imagen</label>
                     </div>
                 </div>
+
                 <div class="invalid-feedback" *ngIf="!isValidOptionalPhoto">La foto debe tener una extensión jpg, jpeg o png</div>
                 <div class="imagePreview" *ngIf="optionalPhotoUrl && optionalPhotoUrl !== ''">
                     <img id="img-upload" [src]="optionalPhotoUrl" alt="asd">
@@ -154,6 +155,20 @@
 
         <div class="alert alert-success" role="alert" *ngIf="registerSuccess">
             {{ successMessage }}
+        </div>
+
+        <div class="form-check" *ngIf="isChecked">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"  formControlName="check" checked="check">
+            <label class="form-check-label" for="defaultCheck1">
+            Debe marcar esta casilla para mostrar acuerdo con nuestros <a  rel="noopener noreferrer" href='https://ispp-linkedpet.github.io/terms.html' target='_blank'>Términos y condiciones</a> 
+            </label>
+        </div>
+        <div class="form-check" *ngIf="!isChecked">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"  formControlName="check" checked="check">                   
+            <label class="form-control-label" for="check">
+                Debe marcar esta casilla para mostrar acuerdo con nuestros <a  rel="noopener noreferrer"  href='https://ispp-linkedpet.github.io/terms.html' target='_blank'>Términos y condiciones</a> 
+            </label>
+            <div class="invalid-feedback">Debe marcar la casilla para continuar el registro</div>
         </div>
 
         <button type="button"  class="btn btn-danger "

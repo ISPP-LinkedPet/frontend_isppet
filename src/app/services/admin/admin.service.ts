@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {environment} from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { RequestService } from '../request/request.service';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,17 @@ export class AdminService {
 
   getAllStatictics() {
     return this.requestService.request('GET', `${environment.endpoint}/administrator/statistics`, {}, {}, true);
+  }
+
+  sendBreachNotification(breachForm: FormGroup) {
+    return this.requestService.request('POST', `${environment.endpoint}/administrator/breachNotification`,
+      {
+        subject: breachForm.value.subject,
+        body: breachForm.value.body
+      }, {}, true);
+
+
+
   }
   getUsersNotBan() {
     return this.requestService.request('GET', `${environment.endpoint}/administrator/unban/list`, {}, {}, true);
@@ -32,7 +44,7 @@ export class AdminService {
       {},
       false,
     );
- }
+  }
   filterAdmin(role: string = '') {
     let url;
     let url1 = `${environment.endpoint}/administrator/unban/particular/list?`;
@@ -40,13 +52,13 @@ export class AdminService {
     let url3 = `${environment.endpoint}/administrator/unban/shelter/list?`;
     let url4 = `${environment.endpoint}/administrator/unban/administrator/list?`;
     if (role != '') {
-      if(role == 'particular'){
+      if (role == 'particular') {
         url = url1;
-      } else if(role == 'moderator'){
+      } else if (role == 'moderator') {
         url = url2;
-      } else if(role == 'shelter'){
+      } else if (role == 'shelter') {
         url = url3;
-      }else if(role == 'administrator'){
+      } else if (role == 'administrator') {
         url = url4;
       }
     }

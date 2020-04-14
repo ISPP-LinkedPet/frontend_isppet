@@ -31,12 +31,16 @@
         <div class="row mt-5 ml-2">
           <div class="col-md-8 mb-3">
             <button type="button" class="btn btn-success mr-2" (clic)="router.navigate([vet.url])" *ngIf="vet.url!=null">Sito web</button>
-            <button id="map{{vet.name}}" class="btn btn-secondary" onclick="style.display = 'none'"
-                (click)="onSubmit(vet.name,vet.longitude,vet.latitude)">Mostrar en mapa</button>
+           
           </div>
+          
           <div class="col-md-4">
             <small>¡Recomendado!</small><fa-icon [icon]="faCrown" class="fa-2x mr-2 pb-4" ></fa-icon>
           </div>
+        </div>
+        <div id="map{{vet.id}}" style="height:200px ;" >
+          <button  class="btn btn-secondary ml-4" onclick="style.display = 'none'"
+          (click)="onSubmit(vet.id,vet.longitude,vet.latitude)">Mostrar en mapa</button>
         </div>
       </div>
       <div class="col-md-4">
