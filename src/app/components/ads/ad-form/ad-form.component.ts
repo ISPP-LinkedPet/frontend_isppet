@@ -134,7 +134,7 @@ export class AdFormComponent implements OnInit {
     reader.onload = () => {
       this.topBannerUrl = reader.result as string;
     };
-    reader.readAsDataURL(file as any);
+    reader.readAsDataURL(file);
   }
 
   showPreviewLateral(file: any) {
@@ -142,7 +142,7 @@ export class AdFormComponent implements OnInit {
     reader.onload = () => {
       this.lateralBannerUrl = reader.result as string;
     };
-    reader.readAsDataURL(file as any);
+    reader.readAsDataURL(file);
   }
 
   getTopBannerValidate($event: Event) {

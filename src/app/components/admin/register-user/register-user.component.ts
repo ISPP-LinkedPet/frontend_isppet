@@ -223,7 +223,7 @@ export class RegisterUserComponent implements OnInit {
     reader.onload = () => {
       this.optionalPhotoUrl = reader.result as string;
     };
-    reader.readAsDataURL(file as any);
+    reader.readAsDataURL(file);
   }
 
   checkExtension(filename: string) {
