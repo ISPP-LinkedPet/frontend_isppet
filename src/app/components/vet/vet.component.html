@@ -12,6 +12,12 @@
       </p>
     </div>
   </section>
+
+  <div class="alert alert-dismissible alert-info" *ngIf="returnedVets.length<=0">
+    <h4 class="alert-heading"><fa-icon [icon]="faInfoCircle" class="mr-2"></fa-icon>No se han encontrado veterinarios</h4><br>
+    <p>Parece que no hay disponibles veterinarios en la página en estos momentos</p>
+  </div>
+
   <div class="card mb-3" *ngFor="let vet of returnedVets">
     <div class="row no-gutters">
       <div class="col-md-8">

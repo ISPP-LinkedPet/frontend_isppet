@@ -8,6 +8,7 @@ import { BreedingListPageComponent } from './pages/breeding/list/breeding-list-p
 import { AdoptionDisplayComponent } from './components/adoption/adoption-display/adoption-display.component';
 import { BreedingDisplayComponent } from './components/breeding/breeding-display/breeding-display.component';
 import { LoginRegisterComponent } from './pages/login-register/login-register.component';
+import { RegisterUserPageComponent } from './pages/admin/register-user-page/register-user-page.component';
 import { VetComponent } from './components/vet/vet.component';
 import { BreedingPendingListPageComponent } from './pages/breeding/pending-list/breeding-pending-list-page.component';
 import { PersonalListComponent } from './pages/breeding/personal-list/personal-list.component';
@@ -32,8 +33,10 @@ import { EditAnimalComponent as EditAnimalComponentBreeding } from './pages/bree
 import { VerticalAdvertisementsComponent } from './components/vets-advertisements/vertical-advertisements/vertical-advertisements.component';
 import { AllPersonalAdsComponent } from './components/all-personal-ads/all-personal-ads.component';
 import { PageAllPersonalAdsComponent } from './pages/page-all-personal-ads/page-all-personal-ads.component';
-import { AlertComponent} from './components/admin/alert/alert.component';
 import { AlertPageComponent } from './pages/admin/alert-page/alert-page.component';
+import { UsersNbanPageComponent } from './pages/users/users-nban-page/users-nban-page.component';
+import { AdsListPageComponent } from './pages/ads/ads-list-page/ads-list-page.component';
+import { AdsEditPageComponent } from './pages/ads/ads-edit-page/ads-edit-page.component';
 import { VetPremiumComponent } from './components/vet/vet-premium/vet-premium.component';
 
 
@@ -48,6 +51,10 @@ const routes: Routes = [
 {path: 'breeding', component: CreateComponentBreeding},
 {path: 'adoption', component: CreateComponentAdoption},
 {path: 'login', component: LoginRegisterComponent},
+{path: 'register', component: RegisterUserPageComponent},
+{path: 'userlist', component: UsersNbanPageComponent},
+{path: 'adsList', component: AdsListPageComponent},
+{path: 'adEdit/:id', component: AdsEditPageComponent},
 {path: 'vet', component: VetComponent},
 {path: 'breeding-pending', component: BreedingPendingListPageComponent},
 {path: 'breeding-edit/:id', component: EditComponentBreeding},
