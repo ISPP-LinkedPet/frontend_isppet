@@ -21,7 +21,7 @@ export class RequestListAcceptedComponent implements OnInit {
   title: string;
   filterForm: any;
   returnedRequest;
-  itemsPerPage = 5;
+  itemsPerPage = 6;
   constructor(
     private requestPublicationService: RequestPublicationService,
     private router: Router,

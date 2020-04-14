@@ -5,12 +5,16 @@
     </h5>
   </div>
   <div class="card-body bg-white">
-    <span *ngIf="transactionStatus=='Offered'" class="badge badge-dark text-white">CREADA</span>
-    <span *ngIf="transactionStatus=='In payment'" class="badge badge-light">PENDIENTE DE PAGO</span>
-    <span *ngIf="transactionStatus=='In progress'" class="badge badge-info text-white">PENDIENTE DE CONFIRMACIÓN</span>
-    <span *ngIf="transactionStatus=='Awaiting payment'" class="badge badge-secondary text-white">PENDIENTE DE ACEPTACIÓN DE PAGO</span>
-    <span *ngIf="transactionStatus=='Completed'" class="badge badge-primary text-white">PENDIENTE DE REVISIÓN</span>
-    <span *ngIf="transactionStatus=='Reviewed'" class="badge badge-danger text-white">FINALIZADA</span>
+    <span *ngIf="requestStatus=='Pending'" class="badge badge-warning text-white">PENDIENTE DE ACEPTACIÓN</span>
+    <span *ngIf="requestStatus=='Rejected'" class="badge badge-danger text-white">RECHAZADA</span>
+    <div *ngIf="requestStatus=='Accepted'">
+      <span *ngIf="transactionStatus=='Offered'" class="badge badge-success text-white">CREADA</span>
+      <span *ngIf="transactionStatus=='In payment'" class="badge badge-light">PENDIENTE DE PAGO</span>
+      <span *ngIf="transactionStatus=='In progress'" class="badge badge-info text-white">PENDIENTE DE CONFIRMACIÓN</span>
+      <span *ngIf="transactionStatus=='Awaiting payment'" class="badge badge-secondary text-white">PENDIENTE DE ACEPTACIÓN DE PAGO</span>
+      <span *ngIf="transactionStatus=='Completed'" class="badge badge-primary text-white">PENDIENTE DE REVISIÓN</span>
+      <span *ngIf="transactionStatus=='Reviewed'" class="badge badge-dark text-white">FINALIZADA</span>
+    </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item"><h5>Telefono: {{ phone }}</h5></li>
       <li class="list-group-item"><h5>Email: {{ email }}</h5></li>
