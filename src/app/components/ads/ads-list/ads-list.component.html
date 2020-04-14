@@ -18,8 +18,9 @@
               <h5 class="card-text">Tipo de anuncio: {{ad.ad_type}}</h5>
               <h5 class="card-text">Precio: {{ad.price}} €</h5>
             </div>
-            <div class="col-md-8 mb-3">
-                <button type="button" class="btn btn-success mr-2" >Editar</button>
+            <div class="col-md-8 mb-3" *ngIf="ad.id != null">
+                <button type="button"
+                class="btn btn-success" [routerLink]="['/adEdit', ad.id]">Editar</button>
               </div>
           </div>
         </div>

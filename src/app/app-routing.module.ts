@@ -35,6 +35,7 @@ import { AllPersonalAdsComponent } from './components/all-personal-ads/all-perso
 import { PageAllPersonalAdsComponent } from './pages/page-all-personal-ads/page-all-personal-ads.component';
 import { UsersNbanPageComponent } from './pages/users/users-nban-page/users-nban-page.component';
 import { AdsListPageComponent } from './pages/ads/ads-list-page/ads-list-page.component';
+import { AdsEditPageComponent } from './pages/ads/ads-edit-page/ads-edit-page.component';
 
 
 const routes: Routes = [
@@ -51,6 +52,7 @@ const routes: Routes = [
 {path: 'register', component: RegisterUserPageComponent},
 {path: 'userlist', component: UsersNbanPageComponent},
 {path: 'adsList', component: AdsListPageComponent},
+{path: 'adEdit/:id', component: AdsEditPageComponent},
 {path: 'vet', component: VetComponent},
 {path: 'breeding-pending', component: BreedingPendingListPageComponent},
 {path: 'breeding-edit/:id', component: EditComponentBreeding},

@@ -89,6 +89,8 @@ import { UsersNbanComponent } from './components/users/users-nban/users-nban.com
 import { UsersNbanPageComponent } from './pages/users/users-nban-page/users-nban-page.component';
 import { AdsListComponent } from './components/ads/ads-list/ads-list.component';
 import { AdsListPageComponent } from './pages/ads/ads-list-page/ads-list-page.component';
+import { AdFormComponent } from './components/ads/ad-form/ad-form.component';
+import { AdsEditPageComponent } from './pages/ads/ads-edit-page/ads-edit-page.component';
 
 
 @NgModule({
@@ -152,7 +154,9 @@ import { AdsListPageComponent } from './pages/ads/ads-list-page/ads-list-page.co
     UsersNbanComponent,
     UsersNbanPageComponent,
     AdsListComponent,
-    AdsListPageComponent
+    AdsListPageComponent,
+    AdFormComponent,
+    AdsEditPageComponent
 
   ],
   imports: [
