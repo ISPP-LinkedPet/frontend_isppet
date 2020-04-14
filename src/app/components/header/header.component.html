@@ -84,7 +84,7 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown mr-3 avatar" *ngIf="rol == 'particular'">
           <a class="nav-link" href="/my-profile">
-            <img src="{{env}}/{{user.optional_photo}}" class="rounded-circle img-fluid" alt="Mi perfil">
+            <img *ngIf="user.optional_photo!=null" src="{{env}}/{{user.optional_photo}}" class="rounded-circle img-fluid" alt="Mi perfil">
             {{ user.user_name }}
           </a>
           <div class="dropdown-content">
@@ -104,7 +104,7 @@
       <!-- notifications -->
       <ul class="navbar-nav">
         <li class="nav-item mr-3" *ngIf="rol == 'particular' && requests.length > 0">
-          <a class="nav-link" title="Tienes {{ requests.length }} nueva/s oferta/s de crianza" href="/request">
+          <a class="nav-link" title="Tienes {{ requests.length }} nueva/s oferta/s de crianza" href="/pallAds">
             <fa-icon [icon]="faEnvelope"></fa-icon><span class="notification-counter">{{ requests.length }}</span>
           </a>
         </li>
