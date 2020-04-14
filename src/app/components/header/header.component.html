@@ -42,14 +42,12 @@
         </li>
 
         <!-- vet admin-->
-        <li class="nav-item dropdown mr-3 avatar" *ngIf="rol== 'administrator'">
+        <li class="nav-item dropdown ml-5" *ngIf="rol== 'administrator'">
           <a class="nav-link" href="/vet">
             <fa-icon [icon]="faStethoscope" class="mr-3"></fa-icon>Veterinarios
           </a>
           <div class="dropdown-content">
             <a class="nav-link" *ngIf="rol== 'administrator'" routerLink="/vet-premium">Veterinarios premium</a>
-
-
           </div>
         </li>
         <!-- moderator dropdown -->
@@ -69,6 +67,14 @@
           <a class="nav-link" routerLink="/statitics">
             <fa-icon [icon]="faChartPie" class="mr-3"></fa-icon>Estadísticas
           </a>
+        </li>
+        <li class="nav-item dropdown ml-5" *ngIf="rol == 'administrator'">
+          <a class="nav-link"><fa-icon [icon]="faBalanceScale" class="mr-3"></fa-icon>Panel
+          </a>
+          <div class="dropdown-content">
+            <a class="nav-link" routerLink="/userlist" >Usuarios</a>
+            <a class="nav-link" routerLink="/adsList" >Publicidad</a>
+          </div>
         </li>
       </ul>
       <!-- .end principal content-->
