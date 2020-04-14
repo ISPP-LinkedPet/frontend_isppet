@@ -8,6 +8,22 @@
         <p>
           <button routerLink="/register" type="button" class="btn btn-success">Registrar Usuario</button>
         </p>
+        <form [formGroup]="filterForm">
+          <label for="role">Puedes filtrar por rol de usuario</label>
+          <select
+            class="form-control"
+            id="role"
+            formControlName="role"
+            (change)="onSubmit()">
+
+            <option value="" [defaultSelected]="true">Seleccione Rol</option>
+            <option value="particular">Particular</option>
+            <option value="shelter">Refugio</option>
+            <option value="moderator">Validador</option>
+            <option value="administrator">Administrador</option>
+
+          </select>
+        </form>
       </div>
     </section>
   
