@@ -318,6 +318,7 @@ export class AdotionFormComponent implements OnInit {
 
   deleteAdoption(id: string) {
     this.adoptionService.deleteAdoption(id).then(res => {
+      alert('Tu adopción ha sido eliminada correctamente');
       this.router.navigate(['/adoption-personal-list']);
     });
   }

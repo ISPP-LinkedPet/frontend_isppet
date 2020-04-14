@@ -150,18 +150,22 @@ export class MyProfileComponent implements OnInit {
   }
 
   deleteMyAccountParticular() {
+    if(window.confirm('¿Esta seguro de que quiere eliminar su cuenta?')){
     this.profileService.deleteMyAccountParticular().then(res=>{
       console.log("Se ha borrado"),
       this.disconnect();
     });
   }
+  }
 
   deleteMyAccountShelter() {
+    if(window.confirm('¿Esta seguro de que quiere eliminar su cuenta?')){
     this.profileService.deleteMyAccountShelter().then(res=>{
       console.log("Se ha borrado"),
       this.disconnect();
     });
   }
+}
 
   disconnect(){
     localStorage.removeItem('access_token')

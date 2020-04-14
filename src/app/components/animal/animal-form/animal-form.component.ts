@@ -49,6 +49,8 @@ export class AnimalFormComponent implements OnInit {
   vaccine_photos: any[] = [];
   id: number;
   private sub: any;
+  canDelete: any;
+
 
   // Icons
   faTimes = faTimes;
@@ -78,7 +80,9 @@ export class AnimalFormComponent implements OnInit {
 
       this.sub = this.route.params.subscribe(params => {
         this.id = +params['id']; // (+) converts string 'id' to a number
+        this.animalService.canDeleteAnimal(this.id).then(res=> this.canDelete = res).then(res=>console.log(this.canDelete));
       });
+
       this.checkType = false;
       this.checkGenre = false;
       this.checkPedigree = false;
@@ -330,6 +334,7 @@ export class AnimalFormComponent implements OnInit {
 
   deleteAnimal(id: number) {
     this.animalService.deleteAnimal(id).then(res => {
+      alert('Tu mascota ha sido eliminada correctamente');
       this.router.navigate(['/my-profile']);
     });
   }

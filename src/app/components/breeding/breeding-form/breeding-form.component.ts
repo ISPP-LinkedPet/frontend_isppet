@@ -328,6 +328,7 @@ export class BreedingCreateComponent implements OnInit {
 
   deleteBreeding(id: number){
     this.breedingService.deleteBreeding(id).then(res=> {
+      alert('Tu oferta de crianza ha sido eliminada correctamente');
       this.router.navigate(['/breeding-personal-list']);
     });
   }
