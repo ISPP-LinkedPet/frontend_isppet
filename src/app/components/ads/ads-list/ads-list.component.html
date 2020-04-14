@@ -13,7 +13,7 @@
         <div class="row no-gutters">
           <div class="col-md-8">
             <div class="card-body">
-                <h2 class="card-title">{{ad.id}}</h2>
+              <img class="card-img-top" src="{{ env }}/{{ ad.top_banner.split(',')[0] }}" alt="Topo Banner"/>
               <hr>
               <h5 class="card-text">Tipo de anuncio: {{ad.ad_type}}</h5>
               <h5 class="card-text">Precio: {{ad.price}} €</h5>
