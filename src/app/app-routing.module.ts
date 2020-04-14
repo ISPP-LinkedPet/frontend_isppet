@@ -34,6 +34,8 @@ import { AllPersonalAdsComponent } from './components/all-personal-ads/all-perso
 import { PageAllPersonalAdsComponent } from './pages/page-all-personal-ads/page-all-personal-ads.component';
 import { AlertComponent} from './components/admin/alert/alert.component';
 import { AlertPageComponent } from './pages/admin/alert-page/alert-page.component';
+import { VetPremiumComponent } from './components/vet/vet-premium/vet-premium.component';
+
 
 const routes: Routes = [
 {path: '', component: HomeComponent},
@@ -65,7 +67,8 @@ const routes: Routes = [
 {path: 'lateralAd', component: VerticalAdvertisementsComponent},
 {path: 'pallAds', component: PageAllPersonalAdsComponent},
 {path: 'statitics', component: StatisticsPageComponent},
-{path: 'alert', component: AlertPageComponent}
+{path: 'alert', component: AlertPageComponent},
+{path: 'vet-premium', component: VetPremiumComponent}
 ];
 
 @NgModule({

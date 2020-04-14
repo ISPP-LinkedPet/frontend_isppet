@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {BreedingCreateComponent} from './breeding-form.component';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 // Checked
 describe('BreedingCreateComponent', () => {
@@ -12,7 +13,7 @@ describe('BreedingCreateComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ BreedingCreateComponent ],
       providers: [ HttpClient, HttpHandler ],
-      imports: [ RouterTestingModule ]
+      imports: [ RouterTestingModule, HttpClientTestingModule ]
     })
         .compileComponents();
   }));
@@ -21,9 +22,5 @@ describe('BreedingCreateComponent', () => {
     fixture = TestBed.createComponent(BreedingCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('BreedingFormComponent should be created', () => {
-    expect(component).toBeTruthy();
   });
 });

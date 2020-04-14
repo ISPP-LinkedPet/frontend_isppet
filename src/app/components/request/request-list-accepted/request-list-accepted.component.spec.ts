@@ -3,6 +3,7 @@ import {HttpClient, HttpHandler} from '@angular/common/http';
 import {RequestListAcceptedComponent} from './request-list-accepted.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {ToastrModule} from 'ngx-toastr';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 // Checked
 describe('RequestListAcceptedComponent', () => {
@@ -12,8 +13,8 @@ describe('RequestListAcceptedComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ RequestListAcceptedComponent ],
-      providers: [ HttpClient, HttpHandler, ToastrModule.forRoot() ],
-      imports: [ RouterTestingModule ]
+      providers: [ HttpClient, HttpHandler ],
+      imports: [ RouterTestingModule, HttpClientTestingModule ]
     })
         .compileComponents();
   }));

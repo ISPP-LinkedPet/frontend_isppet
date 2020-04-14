@@ -1,9 +1,9 @@
-import { environment } from 'src/environments/environment';
-import { BreedingService } from 'src/app/services/breeding/breeding.service';
+import { environment } from '../../../../environments/environment';
+import { BreedingService } from '../../../services/breeding/breeding.service';
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from './../../../services/config/config.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
-import { PaymentService } from 'src/app/services/payment/payment.service';
+import { PaymentService } from '../../../services/payment/payment.service';
 import { ProfileService } from '../../../services/profile/profile.service';
 
 @Component({

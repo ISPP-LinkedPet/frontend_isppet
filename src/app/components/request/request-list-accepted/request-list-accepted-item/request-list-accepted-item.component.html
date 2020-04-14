@@ -38,7 +38,7 @@
           Eliminar
         </button>
 
-        <div style="text-align: center" *ngIf="created && publicationType=='Petición de crianza'">
+        <div style="text-align: center" *ngIf="publicationType=='Petición de crianza'">
           <!-- Pay method -->
           <div *ngIf="transactionStatus=='In payment' && requestStatus=='Accepted'">
             <app-payment [price]="request.contactData.price" [breedingId]="request.contactData.breedingId"></app-payment>
@@ -53,7 +53,7 @@
           </div>
 
           <!--Review-->
-          <div *ngIf="transactionStatus=='Awaiting payment' && requestStatus=='Accepted'">
+          <div *ngIf="transactionStatus=='Completed' && requestStatus=='Accepted'">
             <form [formGroup]="reviewForm"  (ngSubmit)="onSubmitReviewForm()" novalidate> 
               <textarea formControlName="reviewarea" type="" placeholder="Cuéntanos como ha ido" maxlength="200" required></textarea>
               <button type="submit" class="btn btn-primary">Enviar Review</button>

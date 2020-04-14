@@ -6,17 +6,17 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
     <!-- logo -->
     <a class="navbar-brand" routerLink="/">
-      <img src="../../../assets/icons/simple_icon.png" alt="Icono de empresa"/>
+      <img src="../../../assets/icons/simple_icon.png" alt="Icono de empresa" />
     </a>
     <!-- .end logo -->
 
     <!-- dropdown control -->
-    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse" data-target="#navbar" 
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse" data-target="#navbar"
       aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbar" [ngClass]="{ show: navbarOpen }">
-    <!-- .end dropdown control-->
+      <!-- .end dropdown control-->
 
       <!-- principal content (Left side) -->
       <ul class="navbar-nav">
@@ -35,14 +35,27 @@
             <fa-icon [icon]="faPaw" class="mr-3"></fa-icon>Adopciones
           </a>
         </li>
-        <li class="nav-item ml-5" *ngIf="rol == 'particular' || rol== 'administrator'">
+        <li class="nav-item ml-5" *ngIf="rol == 'particular'">
           <a class="nav-link" routerLink="/vet">
             <fa-icon [icon]="faStethoscope" class="mr-3"></fa-icon>Veterinarios
           </a>
         </li>
+
+        <!-- vet admin-->
+        <li class="nav-item dropdown mr-3 avatar" *ngIf="rol== 'administrator'">
+          <a class="nav-link" href="/vet">
+            <fa-icon [icon]="faStethoscope" class="mr-3"></fa-icon>Veterinarios
+          </a>
+          <div class="dropdown-content">
+            <a class="nav-link" *ngIf="rol== 'administrator'" routerLink="/vet-premium">Veterinarios premium</a>
+
+
+          </div>
+        </li>
         <!-- moderator dropdown -->
         <li class="nav-item dropdown ml-5" *ngIf="rol == 'moderator'">
-          <a class="nav-link"><fa-icon [icon]="faBalanceScale" class="mr-3"></fa-icon>Moderar
+          <a class="nav-link">
+            <fa-icon [icon]="faBalanceScale" class="mr-3"></fa-icon>Moderar
           </a>
           <div class="dropdown-content">
             <a class="nav-link" routerLink="/breeding-pending">Crianzas pendientes</a>
@@ -71,21 +84,23 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown mr-3 avatar" *ngIf="rol == 'particular'">
           <a class="nav-link" href="/my-profile">
-            <img src="{{env}}/{{user.optional_photo}}" class="rounded-circle img-fluid" alt="Mi perfil"> {{ user.user_name }}
+            <img src="{{env}}/{{user.optional_photo}}" class="rounded-circle img-fluid" alt="Mi perfil">
+            {{ user.user_name }}
           </a>
           <div class="dropdown-content">
-            <a class="nav-link" routerLink="/breeding-personal-list">Mis Anuncios de Crianza</a>
+            <!--<a class="nav-link" routerLink="/breeding-personal-list">Mis Anuncios de Crianza</a>
             <a class="nav-link" routerLink="/adoption-personal-list">Mis Anuncios de Adopciones</a>
             <a class="nav-link" routerLink="/request">Ofertas recibidas</a>
             <a class="nav-link" routerLink="/request/accepted/received">Peticiones aceptadas</a>
-            <a class="nav-link">----------------</a>
+            <a class="nav-link">----------------</a>-->
             <a class="nav-link" routerLink="/pallAds">Mis Anuncios</a>
-            <a class="nav-link" routerLink="/request/accepted/created">Peticiones enviadas</a>
+            <a class="nav-link" routerLink="/request/accepted/created">Mis peticiones a otros usuarios</a>
 
           </div>
         </li>
         <li class="nav-item mr-3 avatar" *ngIf="rol != 'particular' && rol!= 'disconnected'">
-          <a class="nav-link"><img src="{{env}}/{{user.optional_photo}}" class="rounded-circle img-fluid" alt=""> {{ user.user_name }}
+          <a class="nav-link"><img src="{{env}}/{{user.optional_photo}}" class="rounded-circle img-fluid" alt="">
+            {{ user.user_name }}
           </a>
         </li>
       </ul>
@@ -93,7 +108,7 @@
 
       <!-- notifications -->
       <ul class="navbar-nav">
-        <li class="nav-item mr-3"*ngIf="rol == 'particular' && requests.length > 0">
+        <li class="nav-item mr-3" *ngIf="rol == 'particular' && requests.length > 0">
           <a class="nav-link" title="Tienes {{ requests.length }} nueva/s oferta/s de crianza" href="/request">
             <fa-icon [icon]="faEnvelope"></fa-icon><span class="notification-counter">{{ requests.length }}</span>
           </a>
@@ -121,11 +136,13 @@
       <ul class="navbar-nav ml-3">
         <li class="nav-item">
           <a class="nav-link" *ngIf="rol == 'disconnected'" routerLink="/login">
-            <fa-icon [icon]="faSignInAlt" class="mr-3"></fa-icon>Login</a>
+            <fa-icon [icon]="faSignInAlt" class="mr-3"></fa-icon>Login
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" *ngIf="rol != 'disconnected'" routerLink="/" (click)="disconnect()">
-            <fa-icon [icon]="faSignOutAlt" class="mr-3"></fa-icon>Logout</a>
+            <fa-icon [icon]="faSignOutAlt" class="mr-3"></fa-icon>Logout
+          </a>
         </li>
       </ul>
       <!-- .end access control-->

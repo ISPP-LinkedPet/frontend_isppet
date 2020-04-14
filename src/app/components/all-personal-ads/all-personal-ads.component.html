@@ -4,11 +4,17 @@
 
     <!--Mis Anuncios de Crianza-->
     <div *ngIf="adv.breeding_id!=null" class="card border-success mb-3">
-      <strong>{{adv.transaction_status}}</strong>
         <h3 class="card-header text-dark">
             {{ adv.breed }} en {{ adv.location }}
             <span class="badge badge-secondary text-white">CRIANZA</span>
-
+            <!--Estados del anuncio-->
+            <span *ngIf="adv.transaction_status=='Offered'" class="badge badge-success text-white">Ofrecido</span>
+            <span *ngIf="adv.transaction_status=='In payment'" class="badge badge-success text-white">Pago del solicitante</span>
+            <span *ngIf="adv.transaction_status=='In progress'" class="badge badge-success text-white">Código de confirmación</span>
+            <span *ngIf="adv.transaction_status=='Awaiting payment'" class="badge badge-success text-white">A la espera de recibir el pago</span>
+            <span *ngIf="adv.transaction_status=='Completed'" class="badge badge-success text-white">A la espera de Review</span>
+            <span *ngIf="adv.transaction_status=='Reviewed'" class="badge badge-success text-white">Finalizado</span>
+            <!---->
         </h3>
         <h6
         class="card-header bg-success text-dark"
@@ -73,18 +79,52 @@
               </div>
             </div>
             <!--Sección Petciones para este anuncio-->
+            <div class="adRequests" *ngIf="adv.transaction_status == 'Offered'" >
+              <!--p: {{mapBreedingRequestId.get(adv.breeding_id)}}-->
+              <div *ngFor="let request of mapBreedingRequestId.get(adv.breeding_id)">
+                <p><strong> Usuario: </strong> {{mapBreedingReqIdUser.get(request.id)[0].name}} {{mapBreedingReqIdUser.get(request.id)[0].surname}}</p>
+                <button type="button"class="btn btn-success mx-3 " [routerLink]="['/profile', request.particular_id]">
+                Ver perfil de interesado
+                </button>
+                <button *ngIf="request.status == 'Pending'" type="button" class="btn btn-primary mx-3 " (click)="onSubmitRequest(request.id, request.publication_id, true)">
+                Aceptar
+                </button>
+                <button *ngIf="request.status == 'Pending'" type="button" class="btn btn-danger mx-6" (click)="onSubmitRequest(request.id, request.publication_id, false)">
+                Rechazar
+                </button>
+              </div>
+            </div>
 
+            <div class="adRequests" *ngIf="!(adv.transaction_status == 'Offered')" >
+              <div *ngFor="let request of mapBreedingRequestId.get(adv.breeding_id)">
+                <div *ngIf="request.status=='Accepted'">
+                  <button type="button"class="btn btn-success mx-3 " [routerLink]="['/profile', request.particular_id]">
+                    Ver perfil de interesado
+                  </button>
+                </div>
+              </div>
+            </div>
 
+            <div class="adRequests" *ngIf="!(adv.transaction_status == 'Offered')">
+            El anuncio ya ha sido aceptado
+            </div>
+            <!---->
           </div>
     </div>
 
     <!--Mis Anuncios de Adopciones-->
     <div *ngIf="adv.adoption_id!=null" class="card border-success mb-3 text-dark"> 
-      <strong>{{adv.transaction_status}}</strong>
         <h3 class="card-header">
             {{ adv.breed }} en {{ adv.location }}
             <span class="badge badge-info text-white">ADOPCIÓN</span>
-
+            <!--Estados del anuncio-->
+            <span *ngIf="adv.transaction_status=='Offered'" class="badge badge-success text-white">Ofrecido</span>
+            <span *ngIf="adv.transaction_status=='In payment'" class="badge badge-success text-white">Pago del solicitante</span>
+            <span *ngIf="adv.transaction_status=='In progress'" class="badge badge-success text-white">Código de confirmación</span>
+            <span *ngIf="adv.transaction_status=='Awaiting payment'" class="badge badge-success text-white">A la espera de recibir el pago</span>
+            <span *ngIf="adv.transaction_status=='Completed'" class="badge badge-success text-white">A la espera de Review</span>
+            <span *ngIf="adv.transaction_status=='Reviewed'" class="badge badge-success text-white">Finalizado</span>
+            <!---->
           </h3>
           <h6
             class="card-header bg-success"
