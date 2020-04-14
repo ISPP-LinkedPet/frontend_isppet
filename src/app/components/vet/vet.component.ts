@@ -6,6 +6,7 @@ import { ConfigService } from '../../services/config/config.service';
 import { Router } from '@angular/router';
 import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class VetComponent implements OnInit {
 
   //icons
   faCrown = faCrown;
+  faInfoCircle = faInfoCircle;
 
   itemsPerPage = 5;
   vets = new Array();

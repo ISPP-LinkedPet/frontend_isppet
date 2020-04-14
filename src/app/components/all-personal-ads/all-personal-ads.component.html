@@ -9,6 +9,11 @@
     </div>
   </section>
 
+  <div class="alert alert-dismissible alert-info" *ngIf="returnedAds.length<=0">
+    <h4 class="alert-heading"><fa-icon [icon]="faInfoCircle" class="mr-2"></fa-icon>No se han encontrado anuncios</h4><br>
+    <p>Podrías probar a crear alguno nuevo y verlo en esta sección</p>
+  </div>
+
   <div class="row">
     <div class="col-sm-6 d-flex flex-column align-items-center justify-content-center my-4" *ngFor="let adv of returnedAds">
       <img class="rounded" src="{{ env }}/{{ adv.animal_photo.split(',')[0] }}" alt="Foto/s del animal"/>
@@ -32,7 +37,7 @@
           <span *ngIf="adv.transaction_status=='In payment'" class="badge badge-light">PENDIENTE DE PAGO</span>
           <span *ngIf="adv.transaction_status=='In progress'" class="badge badge-info text-white">PENDIENTE DE CONFIRMACIÓN</span>
           <span *ngIf="adv.transaction_status=='Awaiting payment'" class="badge badge-secondary text-white">PENDIENTE DE ACEPTACIÓN DE PAGO</span>
-          <span *ngIf="adv.transaction_status=='Completed'" class="badge badge-primary text-white">PENDIENTE DE REVISIÓN</span>
+          <span *ngIf="adv.transaction_status=='Completed'" class="badge badge-primary text-white">PENDIENTE DE RESEÑA</span>
           <span *ngIf="adv.transaction_status=='Reviewed'" class="badge badge-danger text-white">FINALIZADA</span>
           <ul class="list-group list-group-flush">
             <li class="list-group-item"><h5>Edad: {{ this.configService.calculateAge(adv.birth_date) }}</h5></li>
