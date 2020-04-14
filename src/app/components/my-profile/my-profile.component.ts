@@ -8,8 +8,7 @@ import { AnimalService } from 'src/app/services/animal/animal.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { faStar, faStarHalfAlt, faMapMarkedAlt, faPhone, faEnvelope, faCat, faDog, faHorse, faVenus, faMars } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
-import { saveAs } from 'file-saver';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -57,8 +56,8 @@ export class MyProfileComponent implements OnInit {
     this.valoraciones = true;
     this.mascotas = false;
 
-    this.profileService.canDelete().then(res=> this.canDelete = res).then(res=>console.log(this.canDelete));
-    
+    this.profileService.canDelete().then(res => this.canDelete = res).then(res => console.log(this.canDelete));
+
     this.animalService.notEditableAnimals()(x => {
       this.notEditableAnimals = Array.from(x.keys())
       this.mapNotEditableAnimals = x;
@@ -122,7 +121,7 @@ export class MyProfileComponent implements OnInit {
       .subscribe(x => {
         // It is necessary to create a new blob object with mime-type explicitly set
         // otherwise only Chrome works like it should
-        var newBlob = new Blob([x as any], { type: "application/pdf" });
+        var newBlob = new Blob([x], { type: "application/pdf" });
 
         // IE doesn't allow using a blob object directly as link href
         // instead it is necessary to use msSaveOrOpenBlob
@@ -150,28 +149,27 @@ export class MyProfileComponent implements OnInit {
   }
 
   deleteMyAccountParticular() {
-    if(window.confirm('¿Esta seguro de que quiere eliminar su cuenta?')){
-    this.profileService.deleteMyAccountParticular().then(res=>{
-      console.log("Se ha borrado"),
-      this.disconnect();
-    });
-  }
+    if (window.confirm('¿Esta seguro de que quiere eliminar su cuenta?')) {
+      this.profileService.deleteMyAccountParticular().then(res => {
+        console.log(res);
+        this.disconnect();
+      });
+    }
   }
 
   deleteMyAccountShelter() {
-    if(window.confirm('¿Esta seguro de que quiere eliminar su cuenta?')){
-    this.profileService.deleteMyAccountShelter().then(res=>{
-      console.log("Se ha borrado"),
-      this.disconnect();
-    });
+    if (window.confirm('¿Esta seguro de que quiere eliminar su cuenta?')) {
+      this.profileService.deleteMyAccountShelter().then(res => {
+        console.log(res);
+        this.disconnect();
+      });
+    }
   }
-}
 
-  disconnect(){
+  disconnect() {
     localStorage.removeItem('access_token')
     this.rol = 'disconnected'
     this.router.navigate(['/'])
-   // location.reload()
   }
 
 }
