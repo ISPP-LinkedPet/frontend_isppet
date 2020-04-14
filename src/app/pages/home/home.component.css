@@ -1,0 +1,6 @@
+.img-fluid{
+    width: inherit;
+    height: 400px;
+    display: block;
+    object-fit: cover;
+}
