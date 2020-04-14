@@ -20,7 +20,7 @@ export class RequestListAcceptedComponent implements OnInit {
   requests = [];
   title: string;
   filterForm: any;
-  returnedRequest = new Array();
+  returnedRequest;
   itemsPerPage = 5;
   constructor(
     private requestPublicationService: RequestPublicationService,
@@ -39,22 +39,47 @@ export class RequestListAcceptedComponent implements OnInit {
     this.filterForm = new FormGroup({
       status: new FormControl(''),
     });
-    this.ckeckPayment();
+
+   this.ckeckPayment();
+   this.checkPaypalPayment();
   }
 
-  ckeckPayment() {
-    // verificar si tienes parametro paymentId
-    const paymentId = this.route.snapshot.queryParamMap.get('payment_intent')
-    const breedingId = this.route.snapshot.queryParamMap.get('breedingId')
-    if (paymentId !== undefined) {
+  checkPaypalPayment(){
+     // verificar si tienes parametro paymentId
+     const paymentId = this.route.snapshot.queryParamMap.get('paymentId')
+     const breedingId = this.route.snapshot.queryParamMap.get('breedingId')
+     const payerId = this.route.snapshot.queryParamMap.get('PayerID')
+     console.log(paymentId, 'ppp')
+     if (paymentId != undefined) {
       // Hacer peticion de confirmPayment
-      this.paymentService.confirmPaymentToMyself({paymentId, breedingId: breedingId}).then(response => {
-        if (response.status === 'succeeded') {
+      this.paymentService.checkPaypalPayment(paymentId, {breedingId, payerId}).then(response => {
+        if (response.state === 'approved') {
           // abrir modal
           this.toastr.success('Payment Completed!');
         } else {
           // error
           this.toastr.error('Payment not complete!');
+        }
+      });
+    }
+  }
+
+  ckeckPayment() {
+    // verificar si tienes parametro paymentId
+    const paymentId = this.route.snapshot.queryParamMap.get('payment_intent');
+    const breedingId = this.route.snapshot.queryParamMap.get('breedingId');
+    // tslint:disable-next-line: triple-equals
+    if (paymentId != undefined) {
+      // Hacer peticion de confirmPayment
+      this.paymentService.confirmPaymentToMyself({paymentId, breedingId}).then(response => {
+        if (response.status === 'succeeded') {
+          // abrir modal
+          this.toastr.success('Payment Completed!')
+          location.reload();
+        } else {
+          // error
+          this.toastr.error('Payment not complete!');
+          location.reload();
         }
       });
     }

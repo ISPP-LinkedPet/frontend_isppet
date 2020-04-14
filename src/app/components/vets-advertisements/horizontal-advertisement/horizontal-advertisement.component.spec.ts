@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {HorizontalAdvertisementComponent} from './horizontal-advertisement.component';
 import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 // Checked
 describe('HorizontalAdvertisementComponent', () => {
@@ -12,7 +13,7 @@ describe('HorizontalAdvertisementComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ HorizontalAdvertisementComponent ],
       providers: [ HttpClient, HttpHandler ],
-      imports: [ RouterTestingModule ]
+      imports: [ RouterTestingModule, HttpClientTestingModule ]
     })
         .compileComponents();
   }));

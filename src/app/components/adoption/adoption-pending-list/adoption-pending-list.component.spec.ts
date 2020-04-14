@@ -3,6 +3,7 @@ import {AdoptionPendingListComponent} from './adoption-pending-list.component';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {RequestService} from '../../../services/request/request.service';
 import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 // Checked
 describe('AdoptionPendingListComponent', () => {
@@ -12,8 +13,8 @@ describe('AdoptionPendingListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AdoptionPendingListComponent ],
-      providers: [ HttpClient, HttpHandler, RequestService ],
-      imports: [ RouterTestingModule ]
+      providers: [ HttpClient, HttpHandler ],
+      imports: [ RouterTestingModule, HttpClientTestingModule ]
     })
         .compileComponents();
   }));

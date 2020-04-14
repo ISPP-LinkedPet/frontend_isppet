@@ -40,7 +40,7 @@
         <form [formGroup]="reviewForm" (ngSubmit)="onSubmitReviewForm()" novalidate> 
           <div class="row mb-4">
             <div class="col-12">
-              <textarea class="form-control" formControlName="reviewarea" placeholder="Cuéntanos como ha ido" required></textarea>
+              <textarea class="form-control" formControlName="reviewarea" placeholder="Cuéntanos como ha ido" maxlength="200" required></textarea>
             </div>
           </div>
           <button type="submit" class="btn btn-primary">Enviar Review</button>
