@@ -5,6 +5,7 @@ import { PaymentService } from '../../../services/payment/payment.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-request-list-accepted',
@@ -12,12 +13,15 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
   styleUrls: ['./request-list-accepted.component.css'],
 })
 export class RequestListAcceptedComponent implements OnInit {
+  //icons
+  faInfoCircle = faInfoCircle;
+
   created: boolean; // created or received
   requests = [];
   title: string;
   filterForm: any;
   returnedRequest;
-  itemsPerPage = 5;
+  itemsPerPage = 6;
   constructor(
     private requestPublicationService: RequestPublicationService,
     private router: Router,
@@ -62,17 +66,20 @@ export class RequestListAcceptedComponent implements OnInit {
 
   ckeckPayment() {
     // verificar si tienes parametro paymentId
-    const paymentId = this.route.snapshot.queryParamMap.get('payment_intent')
-    const breedingId = this.route.snapshot.queryParamMap.get('breedingId')
+    const paymentId = this.route.snapshot.queryParamMap.get('payment_intent');
+    const breedingId = this.route.snapshot.queryParamMap.get('breedingId');
+    // tslint:disable-next-line: triple-equals
     if (paymentId != undefined) {
       // Hacer peticion de confirmPayment
-      this.paymentService.confirmPaymentToMyself({paymentId, breedingId: breedingId}).then(response => {
+      this.paymentService.confirmPaymentToMyself({paymentId, breedingId}).then(response => {
         if (response.status === 'succeeded') {
           // abrir modal
-          this.toastr.success('Payment Completed!');
+          this.toastr.success('Payment Completed!')
+          location.reload();
         } else {
           // error
           this.toastr.error('Payment not complete!');
+          location.reload();
         }
       });
     }

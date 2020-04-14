@@ -1,45 +1,39 @@
 <app-header></app-header>
-
-<div id="main">
-  <div class="container mt-4">
-    <div class="mb-3 text-center">
-
-      <!--Filro de peticiones-->
-      <div class="mb-3" *ngIf="created==true">
-        <form [formGroup]="filterForm">
-          <label for="status">Estado</label>
-          <select
-            class="form-control"
-            id="status"
-            formControlName="status"
-            (change)="onSubmit()">
-
-            <option value="" [defaultSelected]="true">Seleccione estado</option>
-            <option value="Accepted">Aceptada</option>
-            <option value="Pending">Pendiente</option>
-            <option value="Rejected">Rechazada</option>
-            
-          </select>
-        </form>
-      </div>
-      <!---->
-
-      <h1 class="display-4">{{ title }}</h1>
+<div class="container">
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-header">Lista de ofertas enviadas</h1>
+      <p class="lead text-muted">
+        Esta es la lista de todas las peticiones que has enviado a otros usuarios. <br>
+        Dependiendo del estado que tengan, deberás realizar una serie de acciones para completar la oferta satisfactoriamente.
+      </p>
     </div>
-
-    <!--Petciones-->
-    <div class="row d-flex justify-content-center" style="margin-top: 6em;" *ngIf="returnedRequest != undefined">
-      <app-request-list-accepted-item
-        *ngFor="let req of returnedRequest"
-        [request]="req"
-        [created]="created"
-      ></app-request-list-accepted-item>
-    </div>
-    <!---->
-
+  </section>
+  <div class="my-3 p-3 bg-white rounded shadow-sm " *ngIf="created==true">
+    <h3 class="border-bottom border-gray pb-2 mb-0">Filtrar</h3>
+    <br>
+      <form [formGroup]="filterForm">
+        <label for="status">Estado</label>
+        <select class="form-control" id="status" formControlName="status" (change)="onSubmit()">
+          <option value="" [defaultSelected]="true">Seleccione estado</option>
+          <option value="Accepted">Aceptada</option>
+          <option value="Pending">Pendiente</option>
+          <option value="Rejected">Rechazada</option>
+        </select>
+      </form>
   </div>
-</div>
 
-<pagination class="center" [totalItems]="requests.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
-<div class="foot-fixed col-sm-13" *ngIf="!(returnedRequest.length >3) "><app-footer></app-footer></div>
-<div class="foot col-sm-13" *ngIf="returnedRequest.length > 3"><app-footer></app-footer></div>
+  <div class="alert alert-dismissible alert-info" *ngIf="returnedRequest.length==0">
+    <h4 class="alert-heading"><fa-icon [icon]="faInfoCircle" class="mr-2"></fa-icon>No se han encontrado ofertas</h4>
+  </div>
+
+  <!--Petciones-->
+  <div class="row">
+    <app-request-list-accepted-item class="col-md-4" *ngFor="let req of returnedRequest" [request]="req" [created]="created">
+    </app-request-list-accepted-item>
+  </div>
+  <!---->
+
+<pagination class="justify-content-md-center" [totalItems]="requests.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
+</div>
+<app-footer></app-footer>

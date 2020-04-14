@@ -36,6 +36,7 @@ import { PageAllPersonalAdsComponent } from './pages/page-all-personal-ads/page-
 import { UsersNbanPageComponent } from './pages/users/users-nban-page/users-nban-page.component';
 import { AdsListPageComponent } from './pages/ads/ads-list-page/ads-list-page.component';
 import { AdsEditPageComponent } from './pages/ads/ads-edit-page/ads-edit-page.component';
+import { VetPremiumComponent } from './components/vet/vet-premium/vet-premium.component';
 
 
 const routes: Routes = [
@@ -72,6 +73,7 @@ const routes: Routes = [
 {path: 'lateralAd', component: VerticalAdvertisementsComponent},
 {path: 'pallAds', component: PageAllPersonalAdsComponent},
 {path: 'statitics', component: StatisticsPageComponent},
+{path: 'vet-premium', component: VetPremiumComponent}
 ];
 
 @NgModule({

@@ -9088,6 +9088,54 @@
    margin-left: -3rem !important;
  }
  
+ .m-n6 {
+  margin: -3.5rem !important;
+}
+
+.mt-n6,
+.my-n6 {
+  margin-top: -3.5rem !important;
+}
+
+.mr-n6,
+.mx-n6 {
+  margin-right: -3.5rem !important;
+}
+
+.mb-n6,
+.my-n5 {
+  margin-bottom: -3.5rem !important;
+}
+
+.ml-n6,
+.mx-n6 {
+  margin-left: -3.5rem !important;
+}
+
+.m-n7 {
+  margin: -5rem !important;
+}
+
+.mt-n7,
+.my-n7 {
+  margin-top: -5rem !important;
+}
+
+.mr-n7,
+.mx-n7 {
+  margin-right: -5rem !important;
+}
+
+.mb-n7,
+.my-n7 {
+  margin-bottom: -5rem !important;
+}
+
+.ml-n7,
+.mx-n7 {
+  margin-left: -5rem !important;
+}
+
  .m-auto {
    margin: auto !important;
  }
