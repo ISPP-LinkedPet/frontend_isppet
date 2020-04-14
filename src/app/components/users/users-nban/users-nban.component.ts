@@ -27,6 +27,8 @@ export class UsersNbanComponent implements OnInit {
   }
   banUser(id: number) {
     this.adminService.banUser(id).then(res => {
+      alert('¡Has baneado con éxito al usuario!')
+      this.router.navigate(['/userList']);
       this.ngOnInit();
     });
 

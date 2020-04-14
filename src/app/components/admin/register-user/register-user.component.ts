@@ -96,6 +96,8 @@ export class RegisterUserComponent implements OnInit {
         .then(res => {
           this.registerSuccess = true;
           this.successMessage = 'Registro exitoso';
+          alert('Registro exitoso!')
+           this.router.navigate(['/userlist']);
           setTimeout(() => {
             this.cleanData();
           }, 2000);
@@ -108,6 +110,8 @@ export class RegisterUserComponent implements OnInit {
         this.adminService.registerShelter(formData).then(res => {
           this.registerSuccess = true;
           this.successMessage = 'Registro exitoso';
+          alert('Registro exitoso!')
+           this.router.navigate(['/userlist']);
           setTimeout(() => {
             this.cleanData();
           }, 2000);

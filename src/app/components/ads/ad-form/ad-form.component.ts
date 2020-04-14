@@ -86,7 +86,9 @@ export class AdFormComponent implements OnInit {
         .editAd(formData, this.route.snapshot.params.id)
         .then(res => {
           this.registerSuccess = true;
-          this.successMessage = 'Registro exitoso';
+          this.successMessage = 'Edición exitosa';
+          alert('Edición exitosa!')
+           this.router.navigate(['/adsList']);
           setTimeout(() => {
             this.cleanData();
           }, 2000);
