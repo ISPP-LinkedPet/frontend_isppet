@@ -30,10 +30,10 @@
 
         </div>
         <button
-          *ngIf="request.status == 'Pending'"
+          *ngIf="requestStatus=='Pending'"
           type="button"
           class="btn btn-danger mx-6"
-          (click)="onSubmitdeleteRequest(request.id)"
+          (click)="onSubmitdeleteRequest(request.requestId)"
         >
           Eliminar
         </button>

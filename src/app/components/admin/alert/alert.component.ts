@@ -10,18 +10,20 @@ import {Router} from "@angular/router";
 })
 export class AlertComponent implements OnInit {
   breachForm = new FormGroup({
-    username: new FormControl('', [
+    subject: new FormControl('', [
       Validators.required]),
-    password: new FormControl('',
+    body: new FormControl('',
     [Validators.required]),
   });
-  constructor(private adminService: AdminService,private router: Router ) { }
+  constructor(private adminService: AdminService, private router: Router ) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(){
-    this.adminService.sendBreachNotification(this.breachForm);
+    this.adminService.sendBreachNotification(this.breachForm).then(res => {
+      this.router.navigate(['/']);
+    });
   }
 
 }

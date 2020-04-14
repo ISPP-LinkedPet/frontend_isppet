@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {environment} from '../../../../environments/environment';
 
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import { BreedingService } from '../../../services/breeding/breeding.service';
 import { ConfigService } from '../../../services/config/config.service';
 
@@ -53,6 +53,8 @@ export class BreedingCreateComponent implements OnInit {
   animalPhotos: any[] = [];
   identification_photos: any[] = [];
   vaccine_photos :any[] = [];
+  id = null;
+  private sub : any;
 
   // Icons
   faTimes = faTimes;
@@ -60,11 +62,15 @@ export class BreedingCreateComponent implements OnInit {
   constructor(
     private breedingService: BreedingService,
     private router: Router,
+    private route: ActivatedRoute,
     public configService: ConfigService
   ) { }
 
   ngOnInit() {
-
+    this.sub = this.route.params.subscribe(params => {
+      this.id = +params['id']; // (+) converts string 'id' to a number
+    });
+    
     //Security 
     if(!this.creating && this.rol == 'particular'){
     this.breedingService.getPersonalBreedings(this.userlogged.id).then(res=>{
@@ -318,6 +324,12 @@ export class BreedingCreateComponent implements OnInit {
         break;
       }
     }
+  }
+
+  deleteBreeding(id: number){
+    this.breedingService.deleteBreeding(id).then(res=> {
+      this.router.navigate(['/breeding-personal-list']);
+    });
   }
 
   deleteVetPhoto(imageName){

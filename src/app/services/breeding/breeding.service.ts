@@ -58,6 +58,10 @@ export class BreedingService {
     return this.requestService.request('PUT', `${environment.endpoint}/breeding/reject/${id}`, {}, {}, true)
   }
 
+  deleteBreeding(id: number) {
+    return this.requestService.request('DELETE', `${environment.endpoint}/breeding/delete/${id}`, {}, {}, true)
+  } 
+
   filterBreedings(price: string = '', type: string = '', pedigree: string = '', breed: string = '', genre: string = '') {
     let url = `${environment.endpoint}/breeding/offers?`;
     if (price != '') {

@@ -8,6 +8,9 @@ import { AnimalService } from 'src/app/services/animal/animal.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { faStar, faStarHalfAlt, faMapMarkedAlt, faPhone, faEnvelope, faCat, faDog, faHorse, faVenus, faMars } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
+import { saveAs } from 'file-saver';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-my-profile',
@@ -28,7 +31,7 @@ export class MyProfileComponent implements OnInit {
   faPhone = faPhone;
   faEnvelope = faEnvelope;
 
-  stars= new Array();
+  stars = new Array();
   rating: number = 0;
   valoraciones: boolean;
   mascotas: boolean;
@@ -41,16 +44,21 @@ export class MyProfileComponent implements OnInit {
   numPets = 0;
   notEditableAnimals: any[];
   mapNotEditableAnimals = new Map();
+  canDelete: any;
+  userlogged = this.configService.getUserLogged();
+  rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
   // pagginations
   itemsPerPage = 2;
   constructor(private profileService: ProfileService,
-              private router: Router, private route: ActivatedRoute, public configService: ConfigService,
-              private animalService: AnimalService) { }
+    private router: Router, private route: ActivatedRoute, public configService: ConfigService,
+    private animalService: AnimalService, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
     this.valoraciones = true;
     this.mascotas = false;
 
+    this.profileService.canDelete().then(res=> this.canDelete = res).then(res=>console.log(this.canDelete));
+    
     this.animalService.notEditableAnimals()(x => {
       this.notEditableAnimals = Array.from(x.keys())
       this.mapNotEditableAnimals = x;
@@ -66,7 +74,7 @@ export class MyProfileComponent implements OnInit {
         this.reviews.forEach(element => {
           this.rating = element.star + this.rating;
         });
-        this.rating = this.rating/this.numReviews;
+        this.rating = this.rating / this.numReviews;
         this.starRating(this.rating);
       });
       this.profileService.getPetsByParticularId(this.particular.particular.id).then(element => {
@@ -82,31 +90,84 @@ export class MyProfileComponent implements OnInit {
     this.returnedPets = this.pets.slice(startItem, endItem);
   }
 
-  options(string){
+  options(string) {
 
-    if(string == 'valoraciones'){
+    if (string == 'valoraciones') {
       this.valoraciones = true;
       this.mascotas = false;
-    } else if (string == 'mascotas'){
+    } else if (string == 'mascotas') {
       this.valoraciones = false;
       this.mascotas = true;
     }
   }
 
-  starRating(rating){
-    for(var i = 1; i <= rating; i++){
+  starRating(rating) {
+    for (var i = 1; i <= rating; i++) {
       this.stars.push(1);
     }
-    if(Math.abs(Math.floor(rating)-rating)>0.4){
+    if (Math.abs(Math.floor(rating) - rating) > 0.4) {
       this.stars.push(0)
     }
 
-    if(Math.abs(Math.floor(rating)-rating) < 0.5){
-      for(var i = 1; i <= 5-Math.floor(rating); i++){
+    if (Math.abs(Math.floor(rating) - rating) < 0.5) {
+      for (var i = 1; i <= 5 - Math.floor(rating); i++) {
         this.stars.push(2)
       }
     }
-    return this.stars
+    return this.stars;
   }
-}
 
+  getMyData() {
+    this.profileService.getMyData()
+      .subscribe(x => {
+        // It is necessary to create a new blob object with mime-type explicitly set
+        // otherwise only Chrome works like it should
+        var newBlob = new Blob([x as any], { type: "application/pdf" });
+
+        // IE doesn't allow using a blob object directly as link href
+        // instead it is necessary to use msSaveOrOpenBlob
+        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+          window.navigator.msSaveOrOpenBlob(newBlob);
+          return;
+        }
+
+        // For other browsers: 
+        // Create a link pointing to the ObjectURL containing the blob.
+        const data = window.URL.createObjectURL(newBlob);
+
+        var link = document.createElement('a');
+        link.href = data;
+        link.download = "Mis_datos_linkedpet.pdf";
+        // this is necessary as link.click() does not work on the latest firefox
+        link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+
+        setTimeout(function () {
+          // For Firefox it is necessary to delay revoking the ObjectURL
+          window.URL.revokeObjectURL(data);
+          link.remove();
+        }, 100);
+      });
+  }
+
+  deleteMyAccountParticular() {
+    this.profileService.deleteMyAccountParticular().then(res=>{
+      console.log("Se ha borrado"),
+      this.disconnect();
+    });
+  }
+
+  deleteMyAccountShelter() {
+    this.profileService.deleteMyAccountShelter().then(res=>{
+      console.log("Se ha borrado"),
+      this.disconnect();
+    });
+  }
+
+  disconnect(){
+    localStorage.removeItem('access_token')
+    this.rol = 'disconnected'
+    this.router.navigate(['/'])
+   // location.reload()
+  }
+
+}

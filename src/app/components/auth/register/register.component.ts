@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   isValidTelephone: boolean;
   isValidOptionalPhoto: boolean;
   isValidSurname: boolean;
-  isValidCheck: boolean;
+  isChecked: boolean;
 
   optionalPhotoUrl: string; // Para la preview
   optionalPhoto: any;
@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
     this.isValidTelephone = true;
     this.isValidOptionalPhoto = true;
     this.isValidSurname = true;
-    this.isValidCheck = true;
+    this.isChecked =true;
     this.showParticularInputs = this.registerForm.value.role === 'particular';
   }
 
@@ -70,7 +70,7 @@ export class RegisterComponent implements OnInit {
         Validators.required,
       ]),
       surname: new FormControl('', [Validators.required]),
-      check: new FormControl('', [Validators.required])
+      check: new FormControl(false, Validators.requiredTrue)
     });
   }
 
@@ -79,6 +79,7 @@ export class RegisterComponent implements OnInit {
     this.cleanError();
     this.isValid = true;
     this.validationFields();
+    console.log(this.registerForm.value.check);
     if (this.isValid) {
 
       const formData: FormData = new FormData();
@@ -92,7 +93,6 @@ export class RegisterComponent implements OnInit {
       formData.append('telephone', this.registerForm.value.telephone);
       formData.append('optional_photo', this.optionalPhoto);
       formData.append('surname', this.registerForm.value.surname);
-      formData.append('check', this.registerForm.value.check);
 
 
       this.loginService
@@ -129,6 +129,11 @@ export class RegisterComponent implements OnInit {
     this.validateRole();
     this.validateCheck();
   }
+  validateCheck() {
+    this.isChecked = this.registerForm.get('check').valid;
+    if (this.isChecked==false) {
+      this.isValid = false;
+    }  }
 
   validateUsername() {
     this.isValidUserName = this.registerForm.get('user_name').valid;
@@ -191,14 +196,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  validateCheck() {
-      this.isValidCheck = this.registerForm.get('check').valid;
-      if (!this.isValidCheck) {
-        this.isValid = false;
-      } else {
-      this.isValidCheck = true;
-    }
-  }
+
   validateRole() {
     this.isValidRole = ['particular', 'shelter'].includes(this.registerForm.get('role').value);
     if (!this.isValidRole) {

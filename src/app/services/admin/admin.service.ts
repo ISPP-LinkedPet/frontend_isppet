@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {environment} from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { RequestService } from '../request/request.service';
 import { FormGroup } from '@angular/forms';
 
@@ -14,11 +14,11 @@ export class AdminService {
     return this.requestService.request('GET', `${environment.endpoint}/administrator/statistics`, {}, {}, true);
   }
 
-  sendBreachNotification(breachForm: FormGroup){
-    return this.requestService.request('POST', `${environment.endpoint}/administrator/breachNotification`, 
+  sendBreachNotification(breachForm: FormGroup) {
+    return this.requestService.request('POST', `${environment.endpoint}/administrator/breachNotification`,
       {
-        userName: breachForm.value.subject,
-        password: breachForm.value.body
+        subject: breachForm.value.subject,
+        body: breachForm.value.body
       }, {}, true);
   }
 }

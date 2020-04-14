@@ -16,6 +16,13 @@
                     <p class="card-text"><fa-icon [icon]="faEnvelope" class="mr-3"></fa-icon> {{particular.particular.email}} </p>
                     <p class="card-text"><fa-icon [icon]="faPhone" class="mr-3"></fa-icon> {{particular.particular.telephone}} </p>
                     <p class="card-text"><fa-icon [icon]="faMapMarkedAlt" class="mr-3"></fa-icon> {{particular.particular.address}} </p>
+                    <button type="button" class="btn btn-secondary mb-2 my-2" (click)="getMyData()">Descargar mis datos</button>
+
+                    <button type="button" class="btn btn-secondary mb-2 my-2" *ngIf="rol == 'particular' && canDelete==true"
+                    (click)="deleteMyAccountParticular()">Eliminar mi cuenta</button>
+                    <button type="button" class="btn btn-secondary mb-2 my-2" *ngIf="rol == 'shelter' && canDelete==true"
+                    (click)="deleteMyAccountShelter()">Eliminar mi cuenta</button>
+                    
                     </ul>
                 </div>
             </div>
@@ -95,6 +102,8 @@
                     </pagination>
                 </div>
             </div>
+
+
         </div>
     </div>
 </div>

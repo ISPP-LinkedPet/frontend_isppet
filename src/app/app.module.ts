@@ -84,6 +84,7 @@ import { StatisticsPageComponent } from './pages/admin/statistics-page/statistic
 import { StatisticsComponent } from './components/admin/statistics/statistics.component';
 import { PageAllPersonalAdsComponent } from './pages/page-all-personal-ads/page-all-personal-ads.component';
 import { AlertComponent } from './components/admin/alert/alert.component';
+import { AlertPageComponent } from './pages/admin/alert-page/alert-page.component';
 
 
 @NgModule({
@@ -142,7 +143,8 @@ import { AlertComponent } from './components/admin/alert/alert.component';
     StatisticsPageComponent,
     StatisticsComponent,
     PageAllPersonalAdsComponent,
-    AlertComponent
+    AlertComponent,
+    AlertPageComponent
   ],
   imports: [
     BrowserModule,
