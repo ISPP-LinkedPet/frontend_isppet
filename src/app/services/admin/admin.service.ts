@@ -18,6 +18,12 @@ export class AdminService {
   banUser(id: number) {
     return this.requestService.request('PUT', `${environment.endpoint}/administrator/ban/${id}`, {}, {}, true)
   }
+  editAd(data: any, id: number) {
+    return this.requestService.request('PUT', `${environment.endpoint}/administrator/ad/edit/${id}`, data, {}, true)
+  }
+  getAllAds() {
+    return this.requestService.request('GET', `${environment.endpoint}/administrator/allAds`, {}, {}, true);
+  }
   registerShelter(data: any) {
     return this.requestService.request(
       'POST',

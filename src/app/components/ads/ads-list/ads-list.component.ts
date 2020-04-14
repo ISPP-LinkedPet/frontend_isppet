@@ -5,35 +5,29 @@ import { environment } from 'src/environments/environment';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 @Component({
-  selector: 'app-users-nban',
-  templateUrl: './users-nban.component.html',
-  styleUrls: ['./users-nban.component.css']
+  selector: 'app-ads-list',
+  templateUrl: './ads-list.component.html',
+  styleUrls: ['./ads-list.component.css']
 })
-export class UsersNbanComponent implements OnInit {
-  users = new Array();
-  returnedUsers = new Array();
+export class AdsListComponent implements OnInit {
+  ads = new Array();
+  returnedAds = new Array();
   env = environment.endpoint
   // pagginations
   itemsPerPage = 5;
   constructor(private adminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
-    this.adminService.getUsersNotBan().then(res => {
-      res.forEach(userAd => {
-        this.users.push(userAd);
+    this.adminService.getAllAds().then(res => {
+      res.forEach(ad => {
+        this.ads.push(ad);
       });
-      this.returnedUsers = this.users.slice(0, this.itemsPerPage);
+      this.returnedAds = this.ads.slice(0, this.itemsPerPage);
     })
-  }
-  banUser(id: number) {
-    this.adminService.banUser(id).then(res => {
-      this.ngOnInit();
-    });
-
   }
   pageChanged(event: PageChangedEvent): void {
     const startItem = (event.page - 1) * event.itemsPerPage;
     const endItem = event.page * event.itemsPerPage;
-    this.returnedUsers = this.users.slice(startItem, endItem);
+    this.returnedAds = this.ads.slice(startItem, endItem);
   }
 }

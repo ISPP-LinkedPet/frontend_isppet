@@ -17,7 +17,7 @@
               <h5 class="card-text">Dirección: {{userAd.address}}</h5>
               <h5 class="card-text">Teléfono: {{userAd.telephone}}</h5>
               <h5 class="card-text">Email: {{userAd.email}}</h5>
-              <h5 class="card-text">Email: {{userAd.role}}</h5>
+              <h5 class="card-text">Rol: {{userAd.role}}</h5>
             </div>
             <div class="col-md-8 mb-3">
                 <button type="button" class="btn btn-success mr-2" (click)="banUser(userAd.id)">Banear</button>
@@ -32,4 +32,4 @@
     <!--End Foreach-->
     <pagination class="justify-content-md-center" [totalItems]="users.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)">
     </pagination>
-  </div>
+</div>
