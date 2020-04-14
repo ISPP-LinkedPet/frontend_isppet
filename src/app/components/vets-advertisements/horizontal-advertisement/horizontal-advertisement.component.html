@@ -1,9 +1,9 @@
 <div *ngIf="advertisement.redirect_to==null">
-    <img src="{{env}}/{{advertisement.top_banner}}" class="top-banner" >
+    <img src="{{env}}/{{advertisement.top_banner}}" class="img-fluid w-100 mt-n6" >
 </div>
 
 <div *ngIf="!(advertisement.redirect_to==null)">
     <a href="{{advertisement.redirect_to}}" (click)="onClickAdvertisement()">
-    <img src="{{env}}/{{advertisement.top_banner}}" class="top-banner" >
+    <img src="{{env}}/{{advertisement.top_banner}}" class="img-fluid w-100 mt-n6" >
     </a>
 </div>
