@@ -1,67 +1,63 @@
-<div class="col s12 m6 l4 mb-4">
-  <div class="card" style="width: 18rem;">
-    <img class="card-img-top" [src]="photo" alt="Card image cap" />
-    <div class="card-body">
-      <h5 class="card-title">{{ publicationType }}</h5>
-      <!-- <h6 class="card-subtitle mb-2 text-muted text-center">Datos de contacto</h6> -->
-      <div class="card-text">
-        <div>
-          {{name}}
-        </div>
-        <div>
-          {{ phone }}
-        </div>
-        <div>
-          {{ email }}
-        </div>
-        <div>
-          {{ address }}
-        </div>
-
-        <div style="text-align: center" *ngIf="!created && publicationType=='Petición de crianza'">
-          <!--Review-->
-          <div *ngIf="transactionStatus=='Completed' && requestStatus=='Accepted'">
-            <form [formGroup]="reviewForm"  (ngSubmit)="onSubmitReviewForm()" novalidate> 
-              <textarea formControlName="reviewarea" type="" placeholder="Cuéntanos como ha ido" maxlength="200"></textarea>
-              <button type="submit" class="btn btn-primary">Enviar Review</button>
-            </form>
+<div class="card mb-3">
+  <img class="card-img-top" src="{{ photo }}" alt="Foto/s del animal"/>
+  <div class="card-header bg-success text-white">
+    <h5 class="primary-card-title">{{name}}
+    </h5>
+  </div>
+  <div class="card-body bg-white">
+    <span *ngIf="requestStatus=='Pending'" class="badge badge-warning text-white">PENDIENTE DE ACEPTACIÓN</span>
+    <span *ngIf="requestStatus=='Rejected'" class="badge badge-danger text-white">RECHAZADA</span>
+    <div *ngIf="requestStatus=='Accepted'">
+      <span *ngIf="transactionStatus=='Offered'" class="badge badge-success text-white">CREADA</span>
+      <span *ngIf="transactionStatus=='In payment'" class="badge badge-light">PENDIENTE DE PAGO</span>
+      <span *ngIf="transactionStatus=='In progress'" class="badge badge-info text-white">PENDIENTE DE CONFIRMACIÓN</span>
+      <span *ngIf="transactionStatus=='Awaiting payment'" class="badge badge-secondary text-white">PENDIENTE DE ACEPTACIÓN DE PAGO</span>
+      <span *ngIf="transactionStatus=='Completed'" class="badge badge-primary text-white">PENDIENTE DE REVISIÓN</span>
+      <span *ngIf="transactionStatus=='Reviewed'" class="badge badge-dark text-white">FINALIZADA</span>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><h5>Telefono: {{ phone }}</h5></li>
+      <li class="list-group-item"><h5>Email: {{ email }}</h5></li>
+      <li class="list-group-item"><h5>Dirección: {{ address }}</h5></li>
+    </ul>
+  </div>
+  <div class="card-footer">
+    <div style="text-align: center" *ngIf="created && publicationType=='Petición de crianza'">
+      <button
+      *ngIf="requestStatus=='Pending'"
+      type="button"
+      class="btn btn-danger mx-6"
+      (click)="onSubmitdeleteRequest(request.requestId)"
+    >
+      Eliminar
+    </button>
+      <!-- Pay method -->
+      <div *ngIf="transactionStatus=='In payment' && requestStatus=='Accepted'">
+        <app-payment [price]="request.contactData.price" [breedingId]="request.contactData.breedingId"></app-payment>
+      </div>
+      <!--Confirmation code-->
+      <div *ngIf="transactionStatus=='In progress' && requestStatus=='Accepted'">
+        <form [formGroup]="requestForm"  (ngSubmit)="onSubmitCodeForm()" novalidate>
+          <div class="row mb-4">
+            <div class="col-12">
+              <input class="form-control" formControlName="confirmationCode" type="text" placeholder="Introduce código">
+            </div>
           </div>
-        
+          <button type="submit" class="btn btn-primary">Enviar Código</button>
+        </form>
+      </div>
 
-        </div>
-        <button
-          *ngIf="requestStatus=='Pending'"
-          type="button"
-          class="btn btn-danger mx-6"
-          (click)="onSubmitdeleteRequest(request.requestId)"
-        >
-          Eliminar
-        </button>
-
-        <div style="text-align: center" *ngIf="publicationType=='Petición de crianza'">
-          <!-- Pay method -->
-          <div *ngIf="transactionStatus=='In payment' && requestStatus=='Accepted'">
-            <app-payment [price]="request.contactData.price" [breedingId]="request.contactData.breedingId"></app-payment>
+      <!--Review-->
+      <div *ngIf="transactionStatus=='Completed' && requestStatus=='Accepted'">
+        <form [formGroup]="reviewForm" (ngSubmit)="onSubmitReviewForm()" novalidate> 
+          <div class="row mb-4">
+            <div class="col-12">
+              <textarea class="form-control" formControlName="reviewarea" placeholder="Cuéntanos como ha ido" maxlength="200" required></textarea>
+            </div>
           </div>
-          <hr>
-          <!--Confirmation code-->
-          <div *ngIf="transactionStatus=='In progress' && requestStatus=='Accepted'">
-            <form [formGroup]="requestForm"  (ngSubmit)="onSubmitCodeForm()" novalidate> 
-              <input formControlName="confirmationCode" type="text" placeholder="Introduce código">
-              <button type="submit" class="btn btn-primary">Enviar Código</button>
-            </form>
-          </div>
-
-          <!--Review-->
-          <div *ngIf="transactionStatus=='Completed' && requestStatus=='Accepted'">
-            <form [formGroup]="reviewForm"  (ngSubmit)="onSubmitReviewForm()" novalidate> 
-              <textarea formControlName="reviewarea" type="" placeholder="Cuéntanos como ha ido" maxlength="200" required></textarea>
-              <button type="submit" class="btn btn-primary">Enviar Review</button>
-            </form>
-          </div>
-        </div>
+          <button type="submit" class="btn btn-primary">Enviar Review</button>
+        </form>
       </div>
     </div>
-    <!-- <a href="#" class="btn btn-primary">Ir al anuncio</a> -->
   </div>
 </div>
