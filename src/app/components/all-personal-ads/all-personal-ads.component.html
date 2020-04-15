@@ -39,7 +39,7 @@
             <li class="list-group-item"><h5>Ubicación: {{ adv.location }}</h5></li>
             <li class="list-group-item" *ngIf="adv.price!=null" ><h5>Precio: {{ adv.price }}€</h5></li>
             <li class="list-group-item" *ngIf="adv.taxes!=null" ><h5>Tasas: {{ adv.taxes }}€</h5></li>
-            <li *ngIf="adv.transaction_status == 'In progress'" class="list-group-item bg-info text-white">
+            <li *ngIf="adv.transaction_status == 'In progress' && adv.particular_id!=null" class="list-group-item bg-info text-white">
               <h5>Código de confirmación: {{ adv.codenumber }}</h5>
             </li>
           </ul>
