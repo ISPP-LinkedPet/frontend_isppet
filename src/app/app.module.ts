@@ -94,6 +94,7 @@ import { AdsListPageComponent } from './pages/ads/ads-list-page/ads-list-page.co
 import { AdFormComponent } from './components/ads/ad-form/ad-form.component';
 import { AdsEditPageComponent } from './pages/ads/ads-edit-page/ads-edit-page.component';
 import { VetPremiumComponent } from './components/vet/vet-premium/vet-premium.component';
+import { RegisterVetComponent } from './components/vet/register-vet/register-vet.component';
 
 
 @NgModule({
@@ -162,7 +163,8 @@ import { VetPremiumComponent } from './components/vet/vet-premium/vet-premium.co
     AdsListPageComponent,
     AdFormComponent,
     AdsEditPageComponent,
-    VetPremiumComponent
+    VetPremiumComponent,
+    RegisterVetComponent
   ],
   imports: [
     BrowserModule,
