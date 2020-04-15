@@ -38,6 +38,7 @@ import { UsersNbanPageComponent } from './pages/users/users-nban-page/users-nban
 import { AdsListPageComponent } from './pages/ads/ads-list-page/ads-list-page.component';
 import { AdsEditPageComponent } from './pages/ads/ads-edit-page/ads-edit-page.component';
 import { VetPremiumComponent } from './components/vet/vet-premium/vet-premium.component';
+import { RegisterVetComponent } from './components/vet/register-vet/register-vet.component';
 
 
 const routes: Routes = [
@@ -75,7 +76,8 @@ const routes: Routes = [
 {path: 'pallAds', component: PageAllPersonalAdsComponent},
 {path: 'statitics', component: StatisticsPageComponent},
 {path: 'alert', component: AlertPageComponent},
-{path: 'vet-premium', component: VetPremiumComponent}
+{path: 'vet-premium', component: VetPremiumComponent},
+{path: 'vet-create', component: RegisterVetComponent}
 ];
 
 @NgModule({

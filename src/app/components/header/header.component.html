@@ -69,12 +69,14 @@
           </a>
         </li>
         <li class="nav-item dropdown ml-5" *ngIf="rol == 'administrator'">
-          <a class="nav-link"><fa-icon [icon]="faBalanceScale" class="mr-3"></fa-icon>Panel
+          <a class="nav-link">
+            <fa-icon [icon]="faBalanceScale" class="mr-3"></fa-icon>Panel
           </a>
           <div class="dropdown-content">
-            <a class="nav-link" routerLink="/userlist" >Usuarios</a>
-            <a class="nav-link" routerLink="/adsList" >Publicidad</a>
-            <a class="nav-link" routerLink="/alert" >Comunicado de alerta</a>
+            <a class="nav-link" routerLink="/userlist">Usuarios</a>
+            <a class="nav-link" routerLink="/adsList">Publicidad</a>
+            <a class="nav-link" routerLink="/vet-create">Crear veterinario</a>
+            <a class="nav-link" routerLink="/alert">Comunicado de alerta</a>
           </div>
         </li>
       </ul>
@@ -85,7 +87,8 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown mr-3 avatar" *ngIf="rol == 'particular'">
           <a class="nav-link" href="/my-profile">
-            <img *ngIf="user.optional_photo!=null" src="{{env}}/{{user.optional_photo}}" class="rounded-circle img-fluid" alt="Mi perfil">
+            <img *ngIf="user.optional_photo!=null" src="{{env}}/{{user.optional_photo}}"
+              class="rounded-circle img-fluid" alt="Mi perfil">
             {{ user.user_name }}
           </a>
           <div class="dropdown-content">
