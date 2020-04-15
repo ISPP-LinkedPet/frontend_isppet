@@ -2,7 +2,7 @@
   <title></title>
 </head>
 
-<header>
+<div class="container mb-10">
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
     <!-- logo -->
     <a class="navbar-brand" routerLink="/">
@@ -42,14 +42,12 @@
         </li>
 
         <!-- vet admin-->
-        <li class="nav-item dropdown mr-3 avatar" *ngIf="rol== 'administrator'">
+        <li class="nav-item dropdown ml-5" *ngIf="rol== 'administrator'">
           <a class="nav-link" href="/vet">
             <fa-icon [icon]="faStethoscope" class="mr-3"></fa-icon>Veterinarios
           </a>
           <div class="dropdown-content">
             <a class="nav-link" *ngIf="rol== 'administrator'" routerLink="/vet-premium">Veterinarios premium</a>
-
-
           </div>
         </li>
         <!-- moderator dropdown -->
@@ -70,6 +68,15 @@
             <fa-icon [icon]="faChartPie" class="mr-3"></fa-icon>Estadísticas
           </a>
         </li>
+        <li class="nav-item dropdown ml-5" *ngIf="rol == 'administrator'">
+          <a class="nav-link"><fa-icon [icon]="faBalanceScale" class="mr-3"></fa-icon>Panel
+          </a>
+          <div class="dropdown-content">
+            <a class="nav-link" routerLink="/userlist" >Usuarios</a>
+            <a class="nav-link" routerLink="/adsList" >Publicidad</a>
+            <a class="nav-link" routerLink="/alert" >Comunicado de alerta</a>
+          </div>
+        </li>
       </ul>
       <!-- .end principal content-->
 
@@ -78,7 +85,7 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown mr-3 avatar" *ngIf="rol == 'particular'">
           <a class="nav-link" href="/my-profile">
-            <img src="{{env}}/{{user.optional_photo}}" class="rounded-circle img-fluid" alt="Mi perfil">
+            <img *ngIf="user.optional_photo!=null" src="{{env}}/{{user.optional_photo}}" class="rounded-circle img-fluid" alt="Mi perfil">
             {{ user.user_name }}
           </a>
           <div class="dropdown-content">
@@ -137,5 +144,4 @@
       <!-- .end access control-->
     </div>
   </nav>
-  <div class="mt-6"></div>
-</header>
+</div>

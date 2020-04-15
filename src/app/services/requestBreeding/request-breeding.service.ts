@@ -28,6 +28,10 @@ export class RequestBreedingService {
     return this.requestService.request('PUT', `${environment.endpoint}/request/${id}/reject`, {}, {}, true);
   }
 
+  deleteRequest(id: string) {
+    return this.requestService.request('DELETE', `${environment.endpoint}/request/delete/${id}`, {}, {}, true);
+  }  
+
   
   finishBreedingConfirmation(id: string, data: any) {
     return this.requestService.request('PUT', `${environment.endpoint}/breeding/finish/${id}`, data, {}, true);

@@ -1,0 +1,11 @@
+img{
+    height: 50px; 
+    width: inherit; 
+    display: block;
+    object-fit: cover;
+  }
+  
+  .img-fluid{
+    width: inherit;
+    height: auto;
+  }

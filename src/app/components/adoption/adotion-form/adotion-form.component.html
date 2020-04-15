@@ -1,4 +1,4 @@
-<div class="container my-10" *ngIf="adoptionForm != undefined">
+<div class="container" *ngIf="adoptionForm != undefined">
   <div class="card p-3 bg-white rounded shadow-sm">
     <div class="card-body">
         <h1 class="card-title">{{title}}</h1>
@@ -248,8 +248,8 @@
 
         </div>
         <button type="submit" class="btn btn-primary btn-lg button-form">Crear</button>
-        <button type="button" class="btn btn-secondary btn-lg button-form right"
-          routerLink="/adoption-list">Cancelar</button>
+        <button type="submit" class="btn btn-secondary btn-lg button-form" *ngIf="(rol == 'particular'||rol == 'shelter') && !creating" (click)="deleteAdoption(id)">Eliminar</button>
+        <button type="button" class="btn btn-secondary btn-lg button-form right" routerLink="/adoption-personal-list">Cancelar</button>
       </form>
     </div>
   </div>

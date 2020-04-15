@@ -23,6 +23,14 @@
   </div>
   <div class="card-footer">
     <div style="text-align: center" *ngIf="created && publicationType=='Petición de crianza'">
+      <button
+      *ngIf="requestStatus=='Pending'"
+      type="button"
+      class="btn btn-danger mx-6"
+      (click)="onSubmitdeleteRequest(request.requestId)"
+    >
+      Eliminar
+    </button>
       <!-- Pay method -->
       <div *ngIf="transactionStatus=='In payment' && requestStatus=='Accepted'">
         <app-payment [price]="request.contactData.price" [breedingId]="request.contactData.breedingId"></app-payment>

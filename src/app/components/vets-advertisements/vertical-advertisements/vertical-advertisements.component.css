@@ -1,4 +1,6 @@
-.vertical-advertisement{
-    overflow: hidden;
-    margin-bottom: 5%;
+@media (max-width:1300px){
+    .img-fluid{
+        display: none;
+    }
+
 }

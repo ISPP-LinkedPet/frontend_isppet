@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="container my-4">
+<div class="container">
   <section class="jumbotron text-center">
     <div class="container">
       <h1 class="jumbotron-header">Lista de ofertas enviadas</h1>
@@ -23,8 +23,9 @@
       </form>
   </div>
 
-  <div class="alert alert-dismissible alert-info" *ngIf="returnedRequest.length==0">
-    <h4 class="alert-heading"><fa-icon [icon]="faInfoCircle" class="mr-2"></fa-icon>No se han encontrado ofertas</h4>
+  <div class="alert alert-dismissible alert-info" *ngIf="returnedRequest.length<=0">
+    <h4 class="alert-heading"><fa-icon [icon]="faInfoCircle" class="mr-2"></fa-icon>No se han encontrado ofertas que hayas enviado</h4><br>
+    <p>Podrías probar a crear una oferta a algún anuncio que te interese</p>
   </div>
 
   <!--Petciones-->
@@ -34,7 +35,6 @@
   </div>
   <!---->
 
-<pagination class="center" [totalItems]="requests.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
+<pagination class="justify-content-md-center" [totalItems]="requests.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
 </div>
-<div class="foot-fixed col-sm-13" *ngIf="!(returnedRequest.length >3) "><app-footer></app-footer></div>
-<div class="foot col-sm-13" *ngIf="returnedRequest.length > 3"><app-footer></app-footer></div>
+<app-footer></app-footer>

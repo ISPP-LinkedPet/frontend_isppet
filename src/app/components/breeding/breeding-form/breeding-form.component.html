@@ -1,4 +1,4 @@
-<div class="container my-10" *ngIf="breedingForm != undefined">
+<div class="container" *ngIf="breedingForm != undefined">
   <div class="card p-3 bg-white rounded shadow-sm">
       <div class="card-body">
           <h1 class="card-title*n">{{title}} publicacion</h1>
@@ -284,6 +284,8 @@
 
               </fieldset>
               <button *ngIf="rol == 'particular' && !creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Editar</button>
+
+              <button *ngIf="rol == 'particular' && !creating" (click)="deleteBreeding(id)" class="btn btn-secondary btn-lg button-form">Eliminar</button>
               <button *ngIf="rol == 'particular' && creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Crear</button>
               <button *ngIf="rol == 'moderator'" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Aceptar</button>
               <button *ngIf="rol == 'moderator'" (click)="rejectPublication()" class="btn btn-secondary btn-lg button-form right">Rechazar</button>

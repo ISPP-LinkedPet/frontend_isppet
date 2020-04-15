@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { environment } from '../../../../environments/environment';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { ConfigService } from '../../../services/config/config.service';
@@ -47,6 +47,10 @@ export class AnimalFormComponent implements OnInit {
   animalPhotos: any[] = [];
   identification_photos: any[] = [];
   vaccine_photos: any[] = [];
+  id: number;
+  private sub: any;
+  canDelete: any;
+
 
   // Icons
   faTimes = faTimes;
@@ -59,32 +63,37 @@ export class AnimalFormComponent implements OnInit {
   constructor(
     private animalService: AnimalService,
     public router: Router,
+    public route: ActivatedRoute,
     public configService: ConfigService,
     public datepipe: DatePipe
   ) { }
 
   ngOnInit(): void {
     this.title = "Registra tu mascota";
-    if(!this.creating && this.rol=='particular'){
+    if (!this.creating && this.rol == 'particular') {
       this.title = "Edite su mascota";
-      this.animalService.notEditableAnimals()(x=>{
-        if(Array.from(x.keys()).includes(this.editAnimal.id)){
+      this.animalService.notEditableAnimals()(x => {
+        if (Array.from(x.keys()).includes(this.editAnimal.id)) {
           this.router.navigate(['/my-profile'])
         }
       });
 
+      this.sub = this.route.params.subscribe(params => {
+        this.id = +params['id']; // (+) converts string 'id' to a number
+        this.animalService.canDeleteAnimal(this.id).then(res=> this.canDelete = res).then(res=>console.log(this.canDelete));
+      });
 
       this.checkType = false;
       this.checkGenre = false;
       this.checkPedigree = false;
-    }else if(!this.creating && this.rol == 'moderator'){
+    } else if (!this.creating && this.rol == 'moderator') {
       this.title = "Revisión de la mascota"
     }
     this.editAnimal = this.editAnimal || {};
     this.animalForm = new FormGroup({
       birth_date: new FormControl(
         this.datepipe.transform(this.editAnimal.birth_date, 'yyyy-MM-dd')
-         || '', this.requiredInput()
+        || '', this.requiredInput()
       ),
       genre: new FormControl(
         this.editAnimal.genre || '', this.requiredInput()
@@ -321,6 +330,13 @@ export class AnimalFormComponent implements OnInit {
         break;
       }
     }
+  }
+
+  deleteAnimal(id: number) {
+    this.animalService.deleteAnimal(id).then(res => {
+      alert('Tu mascota ha sido eliminada correctamente');
+      this.router.navigate(['/my-profile']);
+    });
   }
 
 }

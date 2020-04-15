@@ -1,17 +1,14 @@
 <app-header></app-header>
-<div class="horizontal-advertisement"><app-horizontal-advertisement></app-horizontal-advertisement></div>
+<app-horizontal-advertisement></app-horizontal-advertisement>
+<app-vertical-advertisements></app-vertical-advertisements>
 <slide-panel [activePane]="isLeftVisible ? 'left' : 'right'">
     <div leftPane>
-        <div class="vertical-advertisement">
-            <app-vertical-advertisements></app-vertical-advertisements>
-        </div>
         <div class="list-style" >
             <app-breeding-list></app-breeding-list></div>
         </div>
     <div rightPane><app-breeding-display></app-breeding-display></div>
 </slide-panel>
-<div class="foot-fixed" *ngIf="breedings.length == 2"><app-footer></app-footer></div>
-<div class="foot" *ngIf="breedings.length > 2"><app-footer></app-footer></div>
+<app-footer></app-footer>
 
 
 
