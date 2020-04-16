@@ -50,8 +50,11 @@
       <!--Review-->
       <div *ngIf="transactionStatus=='Completed' && requestStatus=='Accepted'">
         <form [formGroup]="reviewForm" (ngSubmit)="onSubmitReviewForm()" novalidate> 
+          <h5 class="text-center">Crear reseña</h5>
           <div class="row mb-4">
             <div class="col-12">
+              <ngb-rating class="star" [(rate)]="star"[max]="5" formControlName="star">
+              </ngb-rating>
               <textarea class="form-control" formControlName="reviewarea" placeholder="Cuéntanos como ha ido" maxlength="200" required></textarea>
             </div>
           </div>
