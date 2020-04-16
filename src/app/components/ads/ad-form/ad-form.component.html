@@ -25,6 +25,7 @@
                             <input type="text" class="form-control is-invalid" id="price" formControlName="price">
                         </div>
                     </div>
+                    <div class="row">
                         <div class="form-group col-md-6">
                             <label for="top_banner">Top Banner</label>
                             <div class="input-group">
@@ -54,7 +55,11 @@
                                 <img id="img-upload" [src]="lateralBannerUrl" alt="asd">
                             </div>
                         </div>
+                    </div>
                 </fieldset>
+                <div class="text-center mt-4">
+                    <button type="submit"  class="btn btn-primary " (click)="onSubmit()">Editar</button>
+                </div>
 
                 <div class="alert alert-danger" role="alert" *ngIf="showError">
                     {{ errorMessage }}
@@ -62,10 +67,6 @@
 
                 <div class="alert alert-success" role="alert" *ngIf="registerSuccess">
                     {{ successMessage }}
-                </div>
-
-                <div class="text-center mt-4">
-                    <button type="submit"  class="btn btn-primary " (click)="onSubmit()">Editar</button>
                 </div>
             </form>
         </div>
