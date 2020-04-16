@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RequestBreedingService } from 'src/app/services/requestBreeding/request-breeding.service';
 
@@ -27,6 +27,7 @@ export class RequestListAcceptedItemComponent implements OnInit {
   /*ReviewForm*/
   reviewForm: FormGroup;
   reviewarea: string;
+  star: number;
 
   constructor(private router: Router,
     private requestBreedingService: RequestBreedingService) { }
@@ -56,7 +57,8 @@ export class RequestListAcceptedItemComponent implements OnInit {
 
     /*Review Form*/
     this.reviewForm = new FormGroup({
-      reviewarea: new FormControl('')
+      reviewarea: new FormControl(''),
+      star: new FormControl([Validators.required])
     });
     console.log(this.request.status);
 
@@ -80,9 +82,9 @@ export class RequestListAcceptedItemComponent implements OnInit {
 
   onSubmitReviewForm() {
     const review = this.reviewForm.get('reviewarea').value;
-    console.log(review);
-    console.log(this.publicationId);
-    this.requestBreedingService.writeReview({ star: 3, review_description: review, publication_id: this.publicationId }).then(x => {
+    const star = this.reviewForm.get('star').value;
+    console.log(star)
+    this.requestBreedingService.writeReview({ star: star, review_description: review, publication_id: this.publicationId }).then(x => {
       alert('Tu review se ha enviado correctamente');
     }).then(x => {
       location.reload();
