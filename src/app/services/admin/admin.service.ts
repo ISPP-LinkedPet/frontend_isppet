@@ -45,6 +45,28 @@ export class AdminService {
       false,
     );
   }
+  registerAdministrator(data: any) {
+    return this.requestService.request(
+      'POST',
+      `${environment.endpoint}/administrator/registerAdministrator`,
+      data,
+      {},
+      false,
+    );
+  }
+
+
+  registerModerator(data: any) {
+    return this.requestService.request(
+      'POST',
+      `${environment.endpoint}/administrator/registerModerator`,
+      data,
+      {},
+      false,
+    );
+  }
+
+
   filterAdmin(role: string = '') {
     let url;
     let url1 = `${environment.endpoint}/administrator/unban/particular/list?`;
