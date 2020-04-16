@@ -9,6 +9,10 @@ export class VetService {
 
   constructor(private requestService: RequestService) { }
 
+  create(data: any) {
+    return this.requestService.request('POST', `${environment.endpoint}/administrator/vet/add`, data, {}, false);
+  }
+
   getAllVets() {
     return this.requestService.request('GET', `${environment.endpoint}/vet/`, {}, {}, true);
   }
