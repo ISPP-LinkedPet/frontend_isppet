@@ -4,3 +4,7 @@ img{
   display: block;
   object-fit: cover;
 }
+.star {
+  font-size: 4rem;
+  color: #ffd700;
+}
