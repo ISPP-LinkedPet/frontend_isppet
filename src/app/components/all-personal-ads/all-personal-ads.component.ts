@@ -44,6 +44,7 @@ export class AllPersonalAdsComponent implements OnInit {
   /*ReviewForm*/
   reviewForm: FormGroup;
 
+  filterForm: any;
 
   constructor(private breedingService: BreedingService,
               private adoptionService: AdoptionService,
@@ -63,21 +64,38 @@ export class AllPersonalAdsComponent implements OnInit {
     this.rol = userLogged.role;
     this.userId = userLogged.id;
     this.getList();
+    this.initFilterForm();
   }
 
+  initFilterForm() {
+    this.filterForm = new FormGroup({
+      pubType: new FormControl(''),
+      animalType: new FormControl(''),
+    });
+  }
 
-  getList() {
+  onFilter() {
+    this.allads = [];
+    this.returnedAds = [];
+    const pubType = this.filterForm.value.pubType;
+    const animalType = this.filterForm.value.animalType === 'None' ? null : this.filterForm.value.animalType;
+    this.getList(pubType, animalType);
+  }
+
+  getList(pubType = '', animalType = '') {
     /*Personal Adoptions*/
-    this.adoptionService.getPersonalAdoptions(this.userId)
-    // tslint:disable-next-line: no-shadowed-variable
-    .then(res => res.forEach( (element: any) => {this.allads.push(element); } ));
+    this.adoptionService.getPersonalAdoptions(this.userId).then(res => res.forEach((element: any) => {
+      if ((pubType === '' || pubType === 'Adoption') && (animalType === '' || animalType === element.type)) {
+        this.allads.push(element);
+      }
+    }));
     /*Personal Breedings*/
-    this.breedingService.getPersonalBreedings(this.userId)
-    // tslint:disable-next-line: no-shadowed-variable
-    .then(res => res.forEach((element: any) => {this.allads.push(element);
-                                                this.returnedAds = this.allads.slice(0, this.itemsPerPage);
-                                                console.log(this.allads);
-                                               } ))
+    this.breedingService.getPersonalBreedings(this.userId).then(res => res.forEach((element: any) => {
+      if ((pubType === '' || pubType === 'Breeding') && (animalType === '' || animalType === element.type)) {
+        this.allads.push(element);
+      }
+      this.returnedAds = this.allads.slice(0, this.itemsPerPage);
+      }))
     .then(res => this.shuffle(this.allads))
     .then(res => this.allads.forEach(element => {
       /*Create Map (Id - Requests(id)) */
