@@ -26,6 +26,8 @@
                                 <option value=''>Rol de usuario</option>
                                 <option value='particular'>Particular</option>
                                 <option value='shelter'>Refugio</option>
+                                <option value='administrator'>Administrador</option>
+                                <option value='moderator'>Validador</option>
                             </select>
                         </div>
                         <div class="form-group has-danger col-md-6" *ngIf="!isValidRole">     
@@ -35,6 +37,8 @@
                                 <option value=''>Rol de usuario</option>
                                 <option value='particular'>Particular</option>
                                 <option value='shelter'>Refugio</option>
+                                <option value='administrator'>Administrador</option>
+                                <option value='moderator'>Validador</option>
                             </select>
                             <div class="invalid-feedback">Rol no válido</div>
                         </div>
@@ -85,6 +89,30 @@
                                 (change)="validateSurname()">
                         </div>
                         <div class="form-group has-danger col-md-6" *ngIf="(!isValidSurname) && showParticularInputs">
+                            <label class="form-control-label" for="surname">Apellido</label>
+                            <input type="text" class="form-control is-invalid" id="surname" formControlName="surname"
+                                (change)="validateSurname()">
+                            <div class="invalid-feedback">Apellido no válido</div>
+                        </div>
+
+                        <div class="form-group col-md-6" *ngIf="showModeratorInputs && isValidSurname">
+                            <label for="surname">Apellido</label>
+                            <input type="text" class="form-control" id="surname" required formControlName="surname"
+                                (change)="validateSurname()">
+                        </div>
+                        <div class="form-group has-danger col-md-6" *ngIf="(!isValidSurname) && showModeratorInputs">
+                            <label class="form-control-label" for="surname">Apellido</label>
+                            <input type="text" class="form-control is-invalid" id="surname" formControlName="surname"
+                                (change)="validateSurname()">
+                            <div class="invalid-feedback">Apellido no válido</div>
+                        </div>
+
+                        <div class="form-group col-md-6" *ngIf="showAdministratorInputs && isValidSurname">
+                            <label for="surname">Apellido</label>
+                            <input type="text" class="form-control" id="surname" required formControlName="surname"
+                                (change)="validateSurname()">
+                        </div>
+                        <div class="form-group has-danger col-md-6" *ngIf="(!isValidSurname) && showAdministratorInputs">
                             <label class="form-control-label" for="surname">Apellido</label>
                             <input type="text" class="form-control is-invalid" id="surname" formControlName="surname"
                                 (change)="validateSurname()">

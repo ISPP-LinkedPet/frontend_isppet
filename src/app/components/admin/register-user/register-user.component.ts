@@ -11,6 +11,8 @@ import { AdminService } from 'src/app/services/admin/admin.service';
 })
 export class RegisterUserComponent implements OnInit {
   showParticularInputs: boolean;
+  showModeratorInputs: boolean;
+  showAdministratorInputs: boolean;
   isValid: boolean;
   isValidUserName: boolean;
   isValidRole: boolean;
@@ -50,6 +52,9 @@ export class RegisterUserComponent implements OnInit {
     this.isValidOptionalPhoto = true;
     this.isValidSurname = true;
     this.showParticularInputs = this.registerForm.value.role === 'particular';
+    this.showAdministratorInputs = this.registerForm.value.role === 'administrator';
+    this.showModeratorInputs = this.registerForm.value.role === 'moderator';
+
   }
 
   initializeForm() {
@@ -120,12 +125,42 @@ export class RegisterUserComponent implements OnInit {
           this.errorMessage = (error.error.error && typeof error.error.error === 'string') ? error.error.error : 'Something went wrong';
           this.showError = true;
         });
+      } else if(this.registerForm.value.role == 'moderator'){
+        this.adminService.registerModerator(formData).then(res => {
+          this.registerSuccess = true;
+          this.successMessage = 'Registro exitoso';
+          alert('Registro exitoso!')
+           this.router.navigate(['/userlist']);
+          setTimeout(() => {
+            this.cleanData();
+          }, 2000);
+        })
+        .catch(error => {
+          this.errorMessage = (error.error.error && typeof error.error.error === 'string') ? error.error.error : 'Something went wrong';
+          this.showError = true;
+        });
+      } else if(this.registerForm.value.role == 'administrator'){
+        this.adminService.registerAdministrator(formData).then(res => {
+          this.registerSuccess = true;
+          this.successMessage = 'Registro exitoso';
+          alert('Registro exitoso!')
+           this.router.navigate(['/userlist']);
+          setTimeout(() => {
+            this.cleanData();
+          }, 2000);
+        })
+        .catch(error => {
+          this.errorMessage = (error.error.error && typeof error.error.error === 'string') ? error.error.error : 'Something went wrong';
+          this.showError = true;
+        });
       }
     }
   }
 
   onChangeRole(e: Event) {
     this.showParticularInputs = e.toString() === 'particular';
+    this.showModeratorInputs = e.toString() === 'moderator';
+    this.showAdministratorInputs = e.toString() === 'administrator';
     this.validateRole();
   }
 
@@ -192,7 +227,7 @@ export class RegisterUserComponent implements OnInit {
   }
 
   validateSurname() {
-    if (this.registerForm.value.role === 'particular') {
+    if (this.registerForm.value.role === 'particular' || this.registerForm.value.role === 'moderator' || this.registerForm.value.role === 'administrator') {
       this.isValidSurname = this.registerForm.get('surname').valid;
       if (!this.isValidSurname) {
         this.isValid = false;
@@ -202,7 +237,7 @@ export class RegisterUserComponent implements OnInit {
     }
   }
   validateRole() {
-    this.isValidRole = ['particular', 'shelter'].includes(this.registerForm.get('role').value);
+    this.isValidRole = ['particular', 'shelter', 'moderator', 'administrator'].includes(this.registerForm.get('role').value);
     if (!this.isValidRole) {
       this.isValid = false;
     }
