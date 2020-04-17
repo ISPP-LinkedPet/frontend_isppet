@@ -4,10 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "build": "cp src/environments/environment.prod.ts src/environments/environment.ts && ng build",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-postbuild": "cp src/environments/environment.prod.ts src/environments/environment.ts && ng build"
   },
   "private": true,
   "dependencies": {
