@@ -1,6 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AdsEditPageComponent } from './ads-edit-page.component';
+import {AdsEditPageComponent} from './ads-edit-page.component';
+import {HttpClient, HttpHandler} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('AdsEditPageComponent', () => {
   let component: AdsEditPageComponent;
@@ -8,18 +11,16 @@ describe('AdsEditPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdsEditPageComponent ]
+      declarations: [ AdsEditPageComponent ],
+      providers: [ HttpClient, HttpHandler ],
+      imports: [ RouterTestingModule, HttpClientTestingModule]
     })
-    .compileComponents();
+        .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AdsEditPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 });

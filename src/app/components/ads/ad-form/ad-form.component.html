@@ -4,70 +4,71 @@
     </div>
         <div class="container mt-5">
             <div class="col-md-8 mx-auto">
-            <form [formGroup]="registerForm">
-                <fieldset>
-                    <legend></legend>
-                    <div class="row">
-                        <div class="form-group col-md-6" *ngIf="isValidAdType">
-                            <label for="ad_type">Tipo de Anuncio</label>
-                            <select class="form-control" id="ad_type" formControlName="ad_type">
-                                <option value=''>Tipo de Anuncio</option>
-                                <option value='CPM'>CPM</option>
-                                <option value='DXC'>DXC</option>
-                            </select>
+                <form [formGroup]="registerForm">
+                    <fieldset>
+                        <legend></legend>
+                        <div class="row">
+                            <div class="form-group col-md-6" *ngIf="isValidAdType">
+                                <label for="ad_type">Tipo de Anuncio</label>
+                                <select class="form-control" id="ad_type" formControlName="ad_type">
+                                    <option value=''>Tipo de Anuncio</option>
+                                    <option value='CPM'>CPM</option>
+                                    <option value='DXC'>DXC</option>
+                                </select>
+                            </div>
+                            <div class="form-group has-danger col-md-6">
+                                <label class="form-control-label" for="redirect_to">Redirección</label>
+                                <input type="text" class="form-control is-invalid" id="redirect_to" formControlName="redirect_to">
+                            </div>
+                            <div class="form-group has-danger col-md-6">
+                                <label class="form-control-label" for="price">Precio</label>
+                                <input type="text" class="form-control is-invalid" id="price" formControlName="price">
+                            </div>
                         </div>
-                        <div class="form-group has-danger col-md-6">
-                            <label class="form-control-label" for="redirect_to">Redirección</label>
-                            <input type="text" class="form-control is-invalid" id="redirect_to" formControlName="redirect_to">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="top_banner">Top Banner</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input #optionalPhoto type="file" class="custom-file-input" formControlName="top_banner" name="top_banner" id="top_banner"
+                                            (change)="getTopBannerValidate($event)">
+                                        <label class="custom-file-label" for="optional_photo">Seleccionar imagen</label>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback" *ngIf="!isValidTopBanner">La foto debe tener una extensión jpg, jpeg o png</div>
+                                <div class="imagePreview" *ngIf="topBannerUrl && topBannerUrl !== ''">
+                                    <img id="img-upload" [src]="topBannerUrl" alt="asd">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="lateral_banner">Lateral Banner</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input #optionalPhoto type="file" class="custom-file-input" formControlName="lateral_banner" name="lateral_banner" id="lateral_banner"
+                                            (change)="getLateralBannerValidate($event)">
+                                        <label class="custom-file-label" for="lateral_banner">Seleccionar imagen</label>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback" *ngIf="!isValidLateralBanner">La foto debe tener una extensión jpg, jpeg o png</div>
+                                <div class="imagePreview" *ngIf="lateralBannerUrl && lateralBannerUrl !== ''">
+                                    <img id="img-upload" [src]="lateralBannerUrl" alt="asd">
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group has-danger col-md-6">
-                            <label class="form-control-label" for="price">Precio</label>
-                            <input type="text" class="form-control is-invalid" id="price" formControlName="price">
-                        </div>
+                    </fieldset>
+                    <div class="text-center mt-4">
+                        <button type="submit"  class="btn btn-primary " (click)="onSubmit()">Editar</button>
                     </div>
-                        <div class="form-group col-md-6">
-                            <label for="top_banner">Top Banner</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input #optionalPhoto type="file" class="custom-file-input" formControlName="top_banner" name="top_banner" id="top_banner"
-                                        (change)="getTopBannerValidate($event)">
-                                    <label class="custom-file-label" for="optional_photo">Seleccionar imagen</label>
-                                </div>
-                            </div>
-                            <div class="invalid-feedback" *ngIf="!isValidTopBanner">La foto debe tener una extensión jpg, jpeg o png</div>
-                            <div class="imagePreview" *ngIf="topBannerUrl && topBannerUrl !== ''">
-                                <img id="img-upload" [src]="topBannerUrl" alt="asd">
-                            </div>
-                        </div>
 
-                        <div class="form-group col-md-6">
-                            <label for="lateral_banner">Lateral Banner</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input #optionalPhoto type="file" class="custom-file-input" formControlName="lateral_banner" name="lateral_banner" id="lateral_banner"
-                                        (change)="getLateralBannerValidate($event)">
-                                    <label class="custom-file-label" for="lateral_banner">Seleccionar imagen</label>
-                                </div>
-                            </div>
-                            <div class="invalid-feedback" *ngIf="!isValidLateralBanner">La foto debe tener una extensión jpg, jpeg o png</div>
-                            <div class="imagePreview" *ngIf="lateralBannerUrl && lateralBannerUrl !== ''">
-                                <img id="img-upload" [src]="lateralBannerUrl" alt="asd">
-                            </div>
-                        </div>
-                </fieldset>
+                    <div class="alert alert-danger" role="alert" *ngIf="showError">
+                        {{ errorMessage }}
+                    </div>
 
-                <div class="alert alert-danger" role="alert" *ngIf="showError">
-                    {{ errorMessage }}
-                </div>
-
-                <div class="alert alert-success" role="alert" *ngIf="registerSuccess">
-                    {{ successMessage }}
-                </div>
-
-                <div class="text-center mt-4">
-                    <button type="submit"  class="btn btn-primary " (click)="onSubmit()">Editar</button>
-                </div>
-            </form>
+                    <div class="alert alert-success" role="alert" *ngIf="registerSuccess">
+                        {{ successMessage }}
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
 </div>
