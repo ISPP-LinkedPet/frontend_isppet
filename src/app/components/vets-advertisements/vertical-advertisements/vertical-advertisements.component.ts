@@ -23,7 +23,7 @@ export class VerticalAdvertisementsComponent implements OnInit {
     this.breedingService.getAllBreedings().then(res => this.breedings.push(res))
     .then();
 
-    this.nBredAds = 2;
+    this.nBredAds = 1;
     /*Varía la altura de la página según el número de elementos en la lista*/
 
     this.vetService.getVetAdvertisements(this.nBredAds).then(res => this.advertisements = res.ads)
