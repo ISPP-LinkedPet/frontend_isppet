@@ -4,7 +4,7 @@ import { BreedingListPageComponent } from '../../../pages/breeding/list/breeding
 import { BreedingDisplayComponent } from 'src/app/components/breeding/breeding-display/breeding-display.component';
 import { environment } from 'src/environments/environment';
 import { ConfigService } from 'src/app/services/config/config.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { faCat, faDog, faHorse, faAward, faUser, faInfoCircle } from '@fortawesome/free-solid-svg-icons';

@@ -10,6 +10,47 @@
       </p>
     </div>
   </section>
+
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h3 class="border-bottom border-gray pb-2 mb-0">Filtrar</h3>
+    <br>
+    <form [formGroup]="filterForm">
+      <div class="row">
+        <div class="form-group col-sm">
+          <label for="location">Localización</label>
+          <input type="text" class="form-control" formControlName="location" (change)="onSubmit()"/>
+        </div>
+        <div class="form-group col-sm">
+          <label for="type">Tipo animal</label>
+          <select class="form-control" id="type" formControlName="type" (change)="onSubmit()">
+            <option value="" [defaultSelected]="true">Seleccione tipo animal</option>
+            <option value="Dog">Perro</option>
+            <option value="Cat">Gato</option>
+            <option value="Horse">Caballo</option>
+          </select>
+        </div>
+        <div class="form-group col-sm">
+          <label for="pedigree">Pedigrí</label>
+          <select class="form-control" id="pedigree" formControlName="pedigree" (change)="onSubmit()">
+            <option value="" [defaultSelected]="true">Selecciona si tiene pedigrí</option>
+            <option value="true">Si</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm">
+          <label for="breed">Raza</label>
+          <input type="text" class="form-control" id="breed" formControlName="breed" (change)="onSubmit()"/>
+        </div>
+        <div class="form-group col-sm">
+          <label for="birth_date">Fecha de nacimiento</label>
+          <input type="date" class="form-control" id="birth_date" formControlName="birth_date" (change)="onSubmit()">
+        </div>
+        <div class="form-group col-sm"></div>
+      </div>
+    </form>
+  </div>
   
   <div class="alert alert-dismissible alert-warning" *ngIf="returnedAdoptions.length>0">
     <h4 class="alert-heading"><fa-icon [icon]="faAward" class="mr-2"></fa-icon>Mascotas con pedigrí</h4>

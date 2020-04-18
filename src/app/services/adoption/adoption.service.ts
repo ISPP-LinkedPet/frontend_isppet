@@ -12,8 +12,8 @@ export class AdoptionService {
 
   constructor(private requestService: RequestService, public configService: ConfigService) { }
 
-  getAllAdoptions(token: string) {
-    return this.requestService.request('GET', `${environment.endpoint}/adoption/available`, {}, {access_token: token}, true);
+  getAllAdoptions() {
+    return this.requestService.request('GET', `${environment.endpoint}/adoption/available`, {}, {}, true);
   }
 
   getAdoptionById(token: string, id: string) {
@@ -55,5 +55,25 @@ export class AdoptionService {
   
   deleteAdoption(id: string) {
     return this.requestService.request('DELETE', `${environment.endpoint}/adoption/delete/${id}`, {}, {}, true);
+  }
+
+  filterAdoptions(location: string = '', birthDate: string = '', type: string = '', breed: string = '', pedigree: string = '') {
+    let url = `${environment.endpoint}/adoption/offers?`;
+    if (location != '') {
+      url = url + 'location=' + location + '&';
+    }
+    if (type != '') {
+      url = url + 'type=' + type + '&';
+    }
+    if (pedigree != '') {
+      url = url + 'pedigree=' + pedigree + '&';
+    }
+    if (breed != '') {
+      url = url + 'breed=' + breed + '&';
+    }
+    if (birthDate != '') {
+      url = url + 'birthDate=' + birthDate + '&';
+    }
+    return this.requestService.request('GET', url, {}, {}, true);
   }
 }

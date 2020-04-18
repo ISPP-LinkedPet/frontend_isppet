@@ -28,7 +28,7 @@ export class AdoptionListPageComponent implements OnInit {
         this.adoptions.push(element)
       }))
     }else{
-      this.adoptionService.getAllAdoptions(localStorage.getItem('access_token')).then(res=>res.forEach(element => {
+      this.adoptionService.getAllAdoptions().then(res=>res.forEach(element => {
         this.adoptions.push(element)
       }))
     }
