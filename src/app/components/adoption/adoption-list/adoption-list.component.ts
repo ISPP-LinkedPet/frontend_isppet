@@ -6,6 +6,7 @@ import { AdoptionDisplayComponent } from '../adoption-display/adoption-display.c
 import { environment } from '../../../../environments/environment';
 import { ConfigService } from 'src/app/services/config/config.service';
 import { faCat, faDog, faHorse, faAward, faUser, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-adoption-list',
@@ -21,6 +22,7 @@ export class AdoptionListComponent implements OnInit {
   faHorse = faHorse;
   faInfoCircle = faInfoCircle;
 
+  filterForm: any;
   returnedAdoptions = new Array();
   itemsPerPage = 8;
   adoptions = new Array();
@@ -42,7 +44,19 @@ export class AdoptionListComponent implements OnInit {
         });
       });
     }
+    this.loadAdoptions();
+    console.log(this.rol, this.returnedAdoptions)
 
+    this.filterForm = new FormGroup({
+      location: new FormControl(''),
+      birth_date: new FormControl(''),
+      breed: new FormControl(''),
+      type: new FormControl(''),
+      pedigree: new FormControl(''),
+    });
+  }
+
+  loadAdoptions() {
     if (this.rol === 'shelter') {
       this.adoptionService.getAdoptionByShelterLogged().then(res => {
         res.forEach(element => {
@@ -51,16 +65,13 @@ export class AdoptionListComponent implements OnInit {
         this.returnedAdoptions = this.adoptions.slice(0, this.itemsPerPage);
       });
     } else {
-      this.adoptionService.getAllAdoptions(localStorage.getItem('access_token')).then(res => {
+      this.adoptionService.getAllAdoptions().then(res => {
         res.forEach(element => {
           this.adoptions.push(element);
         });
         this.returnedAdoptions = this.adoptions.slice(0, this.itemsPerPage);
       });
-      console.log(this.returnedAdoptions)
     }
-
-
   }
 
   viewDetails(id: string) {
@@ -68,9 +79,22 @@ export class AdoptionListComponent implements OnInit {
     this.adoptionListPageComponent.loadAdoption(id);
     window.scroll(0, 0);
   }
+
   pageChanged(event: PageChangedEvent): void {
     const startItem = (event.page - 1) * event.itemsPerPage;
     const endItem = event.page * event.itemsPerPage;
     this.returnedAdoptions = this.adoptions.slice(startItem, endItem);
+  }
+
+  onSubmit() {
+    this.adoptions = [];
+    this.adoptionService.filterAdoptions(this.filterForm.value.location || '', this.filterForm.value.birthDate || '', this.filterForm.value.type || '', 
+      this.filterForm.value.breed || '', this.filterForm.value.pedigree || '').then(x => {
+        x.forEach(b => {
+          this.adoptions.push(b);
+        });
+        this.returnedAdoptions = this.adoptions.slice(0, this.itemsPerPage);
+        console.log('aaaaaaaa', this.returnedAdoptions);
+      });
   }
 }
