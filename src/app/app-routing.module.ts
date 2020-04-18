@@ -39,6 +39,8 @@ import { AdsListPageComponent } from './pages/ads/ads-list-page/ads-list-page.co
 import { AdsEditPageComponent } from './pages/ads/ads-edit-page/ads-edit-page.component';
 import { VetPremiumComponent } from './components/vet/vet-premium/vet-premium.component';
 import { RegisterVetComponent } from './components/vet/register-vet/register-vet.component';
+import { VetEditPageComponent } from './pages/admin/vet-edit-page/vet-edit-page.component';
+import { RegisterVetPageComponent } from './pages/admin/register-vet-page/register-vet-page.component';
 
 
 const routes: Routes = [
@@ -77,7 +79,8 @@ const routes: Routes = [
 {path: 'statitics', component: StatisticsPageComponent},
 {path: 'alert', component: AlertPageComponent},
 {path: 'vet-premium', component: VetPremiumComponent},
-{path: 'vet-create', component: RegisterVetComponent}
+{path: 'vet-create', component: RegisterVetPageComponent},
+{path: 'vet-edit/:id', component: VetEditPageComponent}
 ];
 
 @NgModule({
