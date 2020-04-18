@@ -74,12 +74,17 @@ export class VetComponent implements OnInit {
 
   onPremium(id: number) {
     this.vetService.changePremium(id).then(res => {
-      this.ngOnInit();
+      setTimeout(() => {
+        this.router.navigate(['/vet']);
+      }, 2000);      this.ngOnInit();
     });
 
   }
   onNormal(id: number) {
     this.vetService.changeNormal(id).then(res => {
+      setTimeout(() => {
+        this.router.navigate(['/vet']);
+      }, 2000);
       this.ngOnInit();
     });
   }

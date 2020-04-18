@@ -35,8 +35,11 @@
           <div class="col-md-8 mb-3">
             <button type="button" class="btn btn-success mr-2" [routerLink]="['//vet-edit', vet.id]"  *ngIf="rol=='administrator'">Editar Veterinario</button>
           </div>
-          <div class="col-md-8 mb-3">
-            <button type="button" class="btn btn-success mr-2"  *ngIf="rol=='administrator'">Quitar Premium</button>
+          <div class="col-md-8 mb-3" *ngIf="!vet.is_premium">
+            <button type="button" class="btn btn-success mr-2" (click)="onPremium(vet.id)" *ngIf="rol=='administrator'">Hacer Premium</button>
+          </div>
+          <div class="col-md-8 mb-3" *ngIf="vet.is_premium">
+            <button type="button" class="btn btn-success mr-2" (click)="onNormal(vet.id)" *ngIf="rol=='administrator'">Quitar Premium</button>
           </div>
           <div class="col-md-8 mb-3">
             <button type="button" class="btn btn-success mr-2" (clic)="router.navigate([vet.url])" *ngIf="vet.url!=null">Sito web</button>
