@@ -89,6 +89,8 @@ import { AdFormComponent } from './components/ads/ad-form/ad-form.component';
 import { AdsEditPageComponent } from './pages/ads/ads-edit-page/ads-edit-page.component';
 import { VetPremiumComponent } from './components/vet/vet-premium/vet-premium.component';
 import { RegisterVetComponent } from './components/vet/register-vet/register-vet.component';
+import { VetEditPageComponent } from './pages/admin/vet-edit-page/vet-edit-page.component';
+import { RegisterVetPageComponent } from './pages/admin/register-vet-page/register-vet-page.component';
 
 
 @NgModule({
@@ -152,7 +154,9 @@ import { RegisterVetComponent } from './components/vet/register-vet/register-vet
     AdFormComponent,
     AdsEditPageComponent,
     VetPremiumComponent,
-    RegisterVetComponent
+    RegisterVetComponent,
+    VetEditPageComponent,
+    RegisterVetPageComponent
   ],
   imports: [
     BrowserModule,

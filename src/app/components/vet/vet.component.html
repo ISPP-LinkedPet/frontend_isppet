@@ -10,6 +10,9 @@
       <p class="lead text-muted">
         Aquí podrás consultar todos los veterinarios, además te recomendamos algunos de ellos.
       </p>
+      <p>
+        <button routerLink="//vet-create" type="button" class="btn btn-success">Registrar Veterinario</button>
+      </p>
     </div>
   </section>
 
@@ -30,10 +33,18 @@
         </div>
         <div class="row mt-5 ml-2">
           <div class="col-md-8 mb-3">
+            <button type="button" class="btn btn-success mr-2" [routerLink]="['//vet-edit', vet.id]"  *ngIf="rol=='administrator'">Editar Veterinario</button>
+          </div>
+          <div class="col-md-8 mb-3" *ngIf="!vet.is_premium">
+            <button type="button" class="btn btn-success mr-2" (click)="onPremium(vet.id)" *ngIf="rol=='administrator'">Hacer Premium</button>
+          </div>
+          <div class="col-md-8 mb-3" *ngIf="vet.is_premium">
+            <button type="button" class="btn btn-success mr-2" (click)="onNormal(vet.id)" *ngIf="rol=='administrator'">Quitar Premium</button>
+          </div>
+          <div class="col-md-8 mb-3">
             <button type="button" class="btn btn-success mr-2" (clic)="router.navigate([vet.url])" *ngIf="vet.url!=null">Sito web</button>
            
           </div>
-          
           <div class="col-md-4">
             <small>¡Recomendado!</small><fa-icon [icon]="faCrown" class="fa-2x mr-2 pb-4" ></fa-icon>
           </div>
