@@ -30,7 +30,6 @@ import {AnimalService} from './services/animal/animal.service';
 import {BreedingService} from './services/breeding/breeding.service';
 import {ConfigService} from './services/config/config.service';
 import {BreedingCreateComponent} from './components/breeding/breeding-form/breeding-form.component';
-import {ErrorComponent} from './components/error/error.component';
 import {CreateComponent as CreateBreedingComponent} from './pages/breeding/create/create.component';
 import {CreateComponent as CreateAdoptionComponent} from './pages/adoption/create/create.component';
 import {CreateComponent as CreateAnimalComponent} from './pages/animal/create/create.component';
@@ -43,12 +42,7 @@ import { RegisterUserComponent } from './components/admin/register-user/register
 import { VetComponent } from './components/vet/vet.component';
 import { BreedingPendingListComponent } from './components/breeding/breeding-pending-list/breeding-pending-list.component';
 import { BreedingPendingListPageComponent } from './pages/breeding/pending-list/breeding-pending-list-page.component';
-import { BreedingPersonalListComponent } from './components/breeding/breeding-personal-list/breeding-personal-list.component';
-import { PersonalListComponent } from './pages/breeding/personal-list/personal-list.component';
-import { AdoptionPersonalListComponent } from './components/adoption/adoption-personal-list/adoption-personal-list.component';
-import { PersonalListAdoptionComponent } from './pages/adoption/personal-list-adoption/personal-list-adoption.component';
 import { EditComponent } from './pages/breeding/edit/edit.component';
-import { RequestListComponent } from './components/request/request-list/request-list.component';
 import { AdoptionPendingListComponent } from './components/adoption/adoption-pending-list/adoption-pending-list.component';
 import { EditAdoptionComponent } from './pages/adoption/edit-adoption/edit-adoption.component';
 import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-moderator/adoption-pending-list-page.component';
@@ -104,7 +98,6 @@ import { RegisterVetComponent } from './components/vet/register-vet/register-vet
     HeaderComponent,
     FooterComponent,
     BreedingCreateComponent,
-    ErrorComponent,
     CreateBreedingComponent,
     BreedingDisplayComponent,
     CreateAdoptionComponent,
@@ -122,12 +115,7 @@ import { RegisterVetComponent } from './components/vet/register-vet/register-vet
     VetComponent,
     BreedingPendingListComponent,
     BreedingPendingListPageComponent,
-    BreedingPersonalListComponent,
-    PersonalListComponent,
-    AdoptionPersonalListComponent,
-    PersonalListAdoptionComponent,
     EditComponent,
-    RequestListComponent,
     AdoptionPendingListPageComponent,
     AdoptionPendingListComponent,
     EditAdoptionComponent,

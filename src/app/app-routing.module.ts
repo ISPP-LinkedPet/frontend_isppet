@@ -11,10 +11,7 @@ import { LoginRegisterComponent } from './pages/login-register/login-register.co
 import { RegisterUserPageComponent } from './pages/admin/register-user-page/register-user-page.component';
 import { VetComponent } from './components/vet/vet.component';
 import { BreedingPendingListPageComponent } from './pages/breeding/pending-list/breeding-pending-list-page.component';
-import { PersonalListComponent } from './pages/breeding/personal-list/personal-list.component';
-import { PersonalListAdoptionComponent } from './pages/adoption/personal-list-adoption/personal-list-adoption.component';
 import { EditComponent as EditComponentBreeding} from './pages/breeding/edit/edit.component';
-import { RequestListComponent } from './components/request/request-list/request-list.component';
 import { EditAdoptionComponent} from './pages/adoption/edit-adoption/edit-adoption.component';
 import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-moderator/adoption-pending-list-page.component';
 import { RequestListAcceptedComponent } from './components/request/request-list-accepted/request-list-accepted.component';
@@ -31,7 +28,6 @@ import { CreateAnimalComponent as CreateAnimalComponentBreeding } from './pages/
 import { EditAnimalComponent as EditAnimalComponentBreeding } from './pages/breeding/edit-animal/edit-animal.component';
 // tslint:disable-next-line: max-line-length
 import { VerticalAdvertisementsComponent } from './components/vets-advertisements/vertical-advertisements/vertical-advertisements.component';
-import { AllPersonalAdsComponent } from './components/all-personal-ads/all-personal-ads.component';
 import { PageAllPersonalAdsComponent } from './pages/page-all-personal-ads/page-all-personal-ads.component';
 import { AlertPageComponent } from './pages/admin/alert-page/alert-page.component';
 import { UsersNbanPageComponent } from './pages/users/users-nban-page/users-nban-page.component';
@@ -47,8 +43,6 @@ const routes: Routes = [
 {path: 'adoption-display', component: AdoptionDisplayComponent},
 {path: 'breeding-list', component: BreedingListPageComponent},
 {path: 'adoption-list', component: AdoptionListPageComponent},
-{path: 'breeding-personal-list', component: PersonalListComponent},
-{path: 'adoption-personal-list', component: PersonalListAdoptionComponent},
 {path: 'breeding', component: CreateComponentBreeding},
 {path: 'adoption', component: CreateComponentAdoption},
 {path: 'login', component: LoginRegisterComponent},
@@ -60,7 +54,6 @@ const routes: Routes = [
 {path: 'breeding-pending', component: BreedingPendingListPageComponent},
 {path: 'breeding-edit/:id', component: EditComponentBreeding},
 {path: 'breeding-edit-particular/:id', component: EditParticularComponent},
-{path: 'request', component: RequestListComponent},
 {path: 'adoption-pending', component: AdoptionPendingListPageComponent},
 {path: 'adoption-edit/:id', component: EditAdoptionComponent},
 {path: 'request/accepted/:createdOrReceived', component: RequestListAcceptedComponent},
