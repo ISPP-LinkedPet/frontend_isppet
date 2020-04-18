@@ -1,60 +1,45 @@
-
-.banner{
-    margin-left: 0px;
-    margin-top: 80px;
-    width: 100%;
-}
-
-
-h1{
-    margin: 100px 10px 10px 10px;
-}
-
-div{
-    width: 90%;
-    margin: 20px 0px 0px 20px;
-    color: black;
-}
-
 img{
-    width: 17%;
-    float: right;
-    border-radius: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
+    height: 300px; 
+    width: inherit; 
+    display: block;
+    object-fit: cover;
 }
 
-.card-body{
-    margin-top: auto;
+.img-fluid{
+    height:50px;
+    width: 50px;
 }
 
-.description-content{
-    margin: 0;
-    list-style-type: none;
-}
-
-button{
-    margin: 20px 0px 0px 0px;
-}
-
-.foot{
-    margin: 0;
-    left: 0;
-    bottom: 0;
+.horizontal-advertisement{
+    margin-left: 0px;
     width: 100%;
-    text-align: center;
+    margin-top: 80px;
+    bottom: 0;
+}
+.vertical-advertisement{
+    margin-left: 0px;
+    background-color:lightblue;
+    margin-top: 0px;
+    display:inline-block;
+    float: left;
+    width: auto;
+    height: 100%;
+    padding-bottom: 3%;
+}
+
+ @media (max-width:1220px){
+    .vertical-advertisement{
+        display: none;
+    }
+
+    .list-style{
+        margin-left: 10%;
+    }
+
+    .premium{
+        height: auto;
+        width: 10%;
+    }
  }
+
  
- .foot-fixed{
-     margin: 0;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
- }
-
-.center{
-    display: flex;
-    justify-content: center;
-}

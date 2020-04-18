@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {environment} from '../../../environments/environment';
 
 import {RequestService} from '../request/request.service';
 
@@ -14,6 +15,10 @@ export class ConfigService {
 
   getUserLogged() {
     return localStorage.getItem('access_token') ? JSON.parse(atob(localStorage.getItem('access_token').split('.')[1])) : null;
+  }
+
+  getUser() {
+    return this.requestService.request('GET', `${environment.endpoint}/user`, {}, {}, true);
   }
 
   translatePedigree(pedigree): string {
@@ -69,6 +74,22 @@ export class ConfigService {
       return "Perro"
     }else if(type=="Cat"){
       return "Gato"
+    }
+  }
+
+  translteStatus(status){
+    if(status=="In progress"){
+      return "En progreso"
+    }else if(status=="Offered"){
+      return "Publicado"
+    }else if(status=="Reviewed"){
+      return "Reviewed"
+    }else if(status=="In payment"){
+      return "En pago"
+    }else if(status=="Awaiting payment"){
+      return "Esperando el pago"
+    }else if(status=="Completed"){
+      return "Completado"
     }
   }
   

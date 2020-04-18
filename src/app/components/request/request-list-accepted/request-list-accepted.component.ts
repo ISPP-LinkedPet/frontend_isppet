@@ -3,7 +3,9 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { RequestPublicationService } from '../../../services/requestPublication/request-publication.service';
 import { PaymentService } from '../../../services/payment/payment.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-request-list-accepted',
@@ -11,11 +13,15 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
   styleUrls: ['./request-list-accepted.component.css'],
 })
 export class RequestListAcceptedComponent implements OnInit {
+  //icons
+  faInfoCircle = faInfoCircle;
+
   created: boolean; // created or received
   requests = [];
   title: string;
-  returnedRequest = new Array();
-  itemsPerPage = 5;
+  filterForm: any;
+  returnedRequest;
+  itemsPerPage = 6;
   constructor(
     private requestPublicationService: RequestPublicationService,
     private router: Router,
@@ -30,18 +36,24 @@ export class RequestListAcceptedComponent implements OnInit {
       this.checkCreatedOrReceived(createdOrReceived);
       this.loadData();
     });
+    this.filterForm = new FormGroup({
+      status: new FormControl(''),
+    });
 
-    this.ckeckPayment();
+   this.ckeckPayment();
+   this.checkPaypalPayment();
   }
 
-  ckeckPayment() {
-    // verificar si tienes parametro paymentId
-    const paymentId = this.route.snapshot.queryParamMap.get('payment_intent')
-    const breedingId = this.route.snapshot.queryParamMap.get('breedingId')
-    if (paymentId !== undefined) {
+  checkPaypalPayment(){
+     // verificar si tienes parametro paymentId
+     const paymentId = this.route.snapshot.queryParamMap.get('paymentId')
+     const breedingId = this.route.snapshot.queryParamMap.get('breedingId')
+     const payerId = this.route.snapshot.queryParamMap.get('PayerID')
+     console.log(paymentId, 'ppp')
+     if (paymentId != undefined) {
       // Hacer peticion de confirmPayment
-      this.paymentService.confirmPaymentToMyself({paymentId, breedingId: breedingId}).then(response => {
-        if (response.status === 'succeeded') {
+      this.paymentService.checkPaypalPayment(paymentId, {breedingId, payerId}).then(response => {
+        if (response.state === 'approved') {
           // abrir modal
           this.toastr.success('Payment Completed!');
         } else {
@@ -52,10 +64,31 @@ export class RequestListAcceptedComponent implements OnInit {
     }
   }
 
+  ckeckPayment() {
+    // verificar si tienes parametro paymentId
+    const paymentId = this.route.snapshot.queryParamMap.get('payment_intent');
+    const breedingId = this.route.snapshot.queryParamMap.get('breedingId');
+    // tslint:disable-next-line: triple-equals
+    if (paymentId != undefined) {
+      // Hacer peticion de confirmPayment
+      this.paymentService.confirmPaymentToMyself({paymentId, breedingId}).then(response => {
+        if (response.status === 'succeeded') {
+          // abrir modal
+          this.toastr.success('Payment Completed!')
+          location.reload();
+        } else {
+          // error
+          this.toastr.error('Payment not complete!');
+          location.reload();
+        }
+      });
+    }
+  }
+
   checkCreatedOrReceived(createdOrReceived: string) {
     if (createdOrReceived === 'created') {
       this.created = true;
-      this.title = 'Tus peticiones aceptadas';
+      this.title = 'Peticiones enviadas';
     } else if (createdOrReceived === 'received') {
       this.created = false;
       this.title = 'Peticiones aceptadas a alguna de tus publicaciones';
@@ -67,12 +100,43 @@ export class RequestListAcceptedComponent implements OnInit {
   navigateToMainPage() {
     this.router.navigateByUrl('');
   }
+  onSubmit() {
+    this.requests = [];
+    this.requestPublicationService.filterRequest(this.filterForm.value.status).then(x => {
+        x.forEach(b => {
+          this.requests.push(b);
+        });
+        this.returnedRequest = this.requests.slice(0, this.itemsPerPage);
+      });
+  }
 
   loadData() {
     this.requests = [];
     if (this.created) {
       this.requestPublicationService
         .getCreatedAndAccepted()
+        .then(requests => {
+          console.log(requests);
+          requests.forEach(request => this.requests.push(request));
+          this.returnedRequest = this.requests.slice(0, this.itemsPerPage);
+        })
+        .catch(error => {
+          // console.log(error);
+          this.navigateToMainPage();
+        });
+      this.requestPublicationService
+        .getCreatedAndPending()
+        .then(requests => {
+          console.log(requests);
+          requests.forEach(request => this.requests.push(request));
+          this.returnedRequest = this.requests.slice(0, this.itemsPerPage);
+        })
+        .catch(error => {
+          // console.log(error);
+          this.navigateToMainPage();
+        });
+      this.requestPublicationService
+        .getCreatedAndRejected()
         .then(requests => {
           console.log(requests);
           requests.forEach(request => this.requests.push(request));

@@ -1,2 +1,9 @@
-<div class="crop"><img src="https://currentsvet.com/sites/default/files/CVET-web-Home-Banner-New4.jpg" class="top-banner" >
+<div *ngIf="advertisement.redirect_to==null">
+    <img src="{{env}}/{{advertisement.top_banner}}" class="img-fluid w-100 mt-n6" >
+</div>
+
+<div *ngIf="!(advertisement.redirect_to==null)">
+    <a href="{{advertisement.redirect_to}}" (click)="onClickAdvertisement()">
+    <img src="{{env}}/{{advertisement.top_banner}}" class="img-fluid w-100 mt-n6" >
+    </a>
 </div>

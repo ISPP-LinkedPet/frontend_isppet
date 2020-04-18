@@ -1,46 +1,55 @@
 <app-header></app-header>
+<app-horizontal-advertisement></app-horizontal-advertisement>
+<app-vertical-advertisements></app-vertical-advertisements>
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css" rel="stylesheet" />
-<div class="banner"><app-horizontal-advertisement></app-horizontal-advertisement></div>
 
+<div class="container">
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-header">Lista de veterinarios</h1>
+      <p class="lead text-muted">
+        Aquí podrás consultar todos los veterinarios, además te recomendamos algunos de ellos.
+      </p>
+    </div>
+  </section>
 
-<div class="mb-3">
-  <h1 class="display-4">Lista de veterinarios</h1>
-</div>
+  <div class="alert alert-dismissible alert-info" *ngIf="returnedVets.length<=0">
+    <h4 class="alert-heading"><fa-icon [icon]="faInfoCircle" class="mr-2"></fa-icon>No se han encontrado veterinarios</h4><br>
+    <p>Parece que no hay disponibles veterinarios en la página en estos momentos</p>
+  </div>
 
-<div class="card border-success mb-3" *ngFor="let vet of vets">
-  <h3 class="card-header">{{ vet.name }}</h3>
-  <div class="card-body">
-    <img
-      src="{{ env }}/{{ vet.optional_photo }}"
-      alt="Foto del veterinario"
-      onerror="this.onerror=null;this.src='../../../assets/icons/simple_icon.png';"
-    />
-    <p class="card-text">
-      <label><strong>Telefóno: </strong>{{ vet.telephone }}</label>
-    </p>
-    <p class="card-text">
-      <label><strong>Email de contacto: </strong>{{ vet.email }}</label>
-    </p>
-    <p *ngIf="vet.url == null" class="card-text">
-      <label><strong>Enlace: </strong> No disponible</label>
-    </p>
-    <p *ngIf="vet.url != null" class="card-text">
-      <label
-        ><strong>Enlace: </strong><a href="{{ vet.url }}">{{ vet.url }}</a>
-      </label>
-    </p>
-    <p class="card-text">
-      <label><strong>Dirección: </strong> {{ vet.address }}</label>
-    </p>
-    <div id="map{{vet.name}}"  style="height: 200px;">
-      <button class="btn btn-success" onclick="style.display = 'none'" (click)="onSubmit(vet.name,vet.longitude,vet.latitude)">Mostrar en mapa</button>
+  <div class="card mb-3" *ngFor="let vet of returnedVets">
+    <div class="row no-gutters">
+      <div class="col-md-8">
+        <div class="card-body">
+          <h2 class="card-title">{{vet.name}}</h2>
+          <hr>
+          <h5 class="card-text">Dirección: {{vet.address}}</h5>
+          <h5 class="card-text">Teléfono: {{vet.telephone}}</h5>
+          <h5 class="card-text">Email: {{vet.email}}</h5>
+        </div>
+        <div class="row mt-5 ml-2">
+          <div class="col-md-8 mb-3">
+            <button type="button" class="btn btn-success mr-2" (clic)="router.navigate([vet.url])" *ngIf="vet.url!=null">Sito web</button>
+           
+          </div>
+          
+          <div class="col-md-4">
+            <small>¡Recomendado!</small><fa-icon [icon]="faCrown" class="fa-2x mr-2 pb-4" ></fa-icon>
+          </div>
+        </div>
+        <div id="map{{vet.id}}" style="height:200px ;" >
+          <button  class="btn btn-secondary ml-4" onclick="style.display = 'none'"
+          (click)="onSubmit(vet.id,vet.longitude,vet.latitude)">Mostrar en mapa</button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <img src="{{ env }}/{{ vet.optional_photo }}" class="card-image" alt="Foto del veterinario"
+        onerror="this.onerror=null;this.src='../../../assets/icons/simple_icon.png';" />
+      </div>
     </div>
   </div>
+  <pagination class="justify-content-md-center" [totalItems]="vets.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)">
+  </pagination>
 </div>
-
-<div class="center">
-  <ngb-pagination [collectionSize]="allVets.length" [(page)]="page" [maxSize]="5" [pageSize]="pageSize" [boundaryLinks]="true" (pageChange)="pageChange()"></ngb-pagination>
-</div>
-
-<div class="foot-fixed" *ngIf="vets.length == 0"><app-footer></app-footer></div>
-<div class="foot" *ngIf="vets.length > 1"><app-footer></app-footer></div>
+<app-footer></app-footer>

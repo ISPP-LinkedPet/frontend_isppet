@@ -3,11 +3,11 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
-
+import { DatePipe } from '@angular/common';
 // Components
 import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
@@ -38,6 +38,8 @@ import {LoginService} from './services/login/login.service';
 import {AdoptionListComponent} from './components/adoption/adoption-list/adoption-list.component';
 import { AdotionFormComponent } from './components/adoption/adotion-form/adotion-form.component';
 import { LoginRegisterComponent } from './pages/login-register/login-register.component';
+import { RegisterUserPageComponent } from './pages/admin/register-user-page/register-user-page.component';
+import { RegisterUserComponent } from './components/admin/register-user/register-user.component';
 import { VetComponent } from './components/vet/vet.component';
 import { BreedingPendingListComponent } from './components/breeding/breeding-pending-list/breeding-pending-list.component';
 import { BreedingPendingListPageComponent } from './pages/breeding/pending-list/breeding-pending-list-page.component';
@@ -51,12 +53,15 @@ import { AdoptionPendingListComponent } from './components/adoption/adoption-pen
 import { EditAdoptionComponent } from './pages/adoption/edit-adoption/edit-adoption.component';
 import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-moderator/adoption-pending-list-page.component';
 import { RequestListAcceptedComponent } from './components/request/request-list-accepted/request-list-accepted.component';
+import { CreateAnimalComponent as CreateAnimalComponentBreeding } from './pages/breeding/create-animal/create-animal.component';
+import { EditAnimalComponent as EditAnimalComponentBreeding } from './pages/breeding/edit-animal/edit-animal.component';
 // tslint:disable-next-line: max-line-length
 import { RequestListAcceptedItemComponent } from './components/request/request-list-accepted/request-list-accepted-item/request-list-accepted-item.component';
 import { EditParticularComponent } from './pages/breeding/edit-particular/edit-particular.component';
 import {EditComponent as EditAnimalComponent} from './pages/animal/edit/edit.component';
 
 /*Bootstrap*/
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -70,14 +75,26 @@ import { PendingListComponent } from './pages/animal/pending-list/pending-list.c
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RatingComponent } from './components/rating/rating.component';
-import { VetAdvertisementComponent } from './components/vet-advertisement/vet-advertisement.component';
 // tslint:disable-next-line: max-line-length
 import { HorizontalAdvertisementComponent } from './components/vets-advertisements/horizontal-advertisement/horizontal-advertisement.component';
-// tslint:disable-next-line: max-line-length
-import { VerticalLeftAdvertisementComponent } from './components/vets-advertisements/vertical-left-advertisement/vertical-left-advertisement.component';
-// tslint:disable-next-line: max-line-length
-import { VerticalRightAdvertisementComponent } from './components/vets-advertisements/vertical-right-advertisement/vertical-right-advertisement.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { BreedingAnimalFormComponent } from './components/breeding/breeding-animal-form/breeding-animal-form.component';
+// tslint:disable-next-line: max-line-length
+import { VerticalAdvertisementsComponent } from './components/vets-advertisements/vertical-advertisements/vertical-advertisements.component';
+import { AllPersonalAdsComponent } from './components/all-personal-ads/all-personal-ads.component';
+import { StatisticsPageComponent } from './pages/admin/statistics-page/statistics-page.component';
+import { StatisticsComponent } from './components/admin/statistics/statistics.component';
+import { PageAllPersonalAdsComponent } from './pages/page-all-personal-ads/page-all-personal-ads.component';
+import { AlertComponent } from './components/admin/alert/alert.component';
+import { AlertPageComponent } from './pages/admin/alert-page/alert-page.component';
+import { UsersNbanComponent } from './components/users/users-nban/users-nban.component';
+import { UsersNbanPageComponent } from './pages/users/users-nban-page/users-nban-page.component';
+import { AdsListComponent } from './components/ads/ads-list/ads-list.component';
+import { AdsListPageComponent } from './pages/ads/ads-list-page/ads-list-page.component';
+import { AdFormComponent } from './components/ads/ad-form/ad-form.component';
+import { AdsEditPageComponent } from './pages/ads/ads-edit-page/ads-edit-page.component';
+import { VetPremiumComponent } from './components/vet/vet-premium/vet-premium.component';
+import { RegisterVetComponent } from './components/vet/register-vet/register-vet.component';
 
 
 @NgModule({
@@ -125,12 +142,29 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
     AnimalPendingListComponent,
     PendingListComponent,
     RatingComponent,
-    VetAdvertisementComponent,
     HorizontalAdvertisementComponent,
-    VerticalLeftAdvertisementComponent,
-    VerticalRightAdvertisementComponent,
     ProfileComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    BreedingAnimalFormComponent,
+    CreateAnimalComponentBreeding,
+    EditAnimalComponentBreeding,
+    VerticalAdvertisementsComponent,
+    AllPersonalAdsComponent,
+    StatisticsPageComponent,
+    StatisticsComponent,
+    PageAllPersonalAdsComponent,
+    AlertComponent,
+    AlertPageComponent,
+    RegisterUserPageComponent,
+    RegisterUserComponent,
+    UsersNbanComponent,
+    UsersNbanPageComponent,
+    AdsListComponent,
+    AdsListPageComponent,
+    AdFormComponent,
+    AdsEditPageComponent,
+    VetPremiumComponent,
+    RegisterVetComponent
   ],
   imports: [
     BrowserModule,
@@ -140,6 +174,7 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    CarouselModule.forRoot(),
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
@@ -153,7 +188,10 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
     AnimalService,
     BreedingService,
     ConfigService,
-    LoginService],
+    LoginService,
+    HttpClientModule,
+    HttpClient,
+    DatePipe],
   bootstrap: [AppComponent]
 
 })

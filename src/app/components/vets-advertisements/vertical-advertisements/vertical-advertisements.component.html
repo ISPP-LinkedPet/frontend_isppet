@@ -1,0 +1,13 @@
+<div class="float-left">
+<div *ngFor="let advertisement of advertisements" class="sidenav">
+    <div class="img-fluid overflow-hidden" *ngIf="advertisement.redirect_to!=null">
+        <a href="{{advertisement.redirect_to}}" (click)="onClickAdvertisement(advertisement)">
+            <img src="{{env}}/{{advertisement.lateral_banner}}">
+        </a>
+    </div>
+    <div class="img-fluid overflow-hidden sidenav" *ngIf="advertisement.redirect_to==null">
+        <img src="{{env}}/{{advertisement.lateral_banner}}">
+    </div>
+</div>
+</div>
+  

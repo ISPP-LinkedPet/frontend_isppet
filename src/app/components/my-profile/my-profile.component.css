@@ -1,33 +1,5 @@
-.foot-fixed{
-    margin: 0;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
+.img-fluid {
+   height: 250px;
+   width: inherit;
+   object-fit: cover;
  }
-
- .foot{
-    margin: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
- }
-
- #first{
-   margin-top: 100px;
-}
-
-#profile{
-   width: 27%;
-   float: left;
-   border-radius: 20px;
-   margin-right: 20px;
-   margin-bottom: 20px;
-}
-
-img{
-    width: 100%;
-    display: block;
-}

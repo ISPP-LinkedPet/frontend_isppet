@@ -1,0 +1,90 @@
+button{
+    font-size: x-large;
+}
+
+img{
+    width: 30%;
+}
+
+
+  @media (min-width: 600px) {
+      .formDiv{
+        margin-top: 150px;
+        margin-left: 10%;
+      }
+      img{
+        width: 20%;
+      }
+
+      input{
+          margin-left: 15%;
+      }
+
+      label{
+          margin-left: 15%;
+          font-size: 23px;
+      }
+
+      .card-title {
+        font-size: 80px;
+        text-align: center;
+        font-style: oblique;
+    }
+
+    .right{
+        float: right;
+        margin-right: 10%;
+    }
+
+    .right-next{
+        float: right;
+        margin-right: 2%;
+
+    }
+    .reg-button-div{
+        margin-left: 15%;
+        margin-bottom: 3%;
+    }
+  }
+
+  /*Formato móvil*/
+
+  @media (max-width: 400px) { 
+    button{
+        margin-top: 5%;
+    }
+    .right{
+        margin-right: 30%;
+    }
+  }
+
+
+
+  @media (max-width: 600px) { 
+    img{
+        width: 30%;
+      }
+
+    .card-title {
+        font-size: 50px;
+        text-align: center;
+        font-style: oblique;
+    }
+
+    button{
+        width:100%;
+        margin-top: 3%;
+    }
+
+    input{
+        width:100%;
+    }
+    
+    .right-next{
+        margin-right: 10%;
+    }
+     .body {
+        text-align: center;
+    }
+
+  }

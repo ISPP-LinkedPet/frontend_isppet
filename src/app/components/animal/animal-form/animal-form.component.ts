@@ -1,11 +1,12 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { environment } from '../../../../environments/environment';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { ConfigService } from '../../../services/config/config.service';
 import { AnimalService } from '../../../services/animal/animal.service';
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-animal-form',
@@ -27,6 +28,7 @@ export class AnimalFormComponent implements OnInit {
   isValidGenre: boolean;
   isValidAge: boolean;
   isValidType: boolean;
+  isValidName: boolean;
   isValidPedigri: boolean;
   isValidAnimalPhoto: boolean;
   isValidIdentificationPhoto: boolean;
@@ -45,6 +47,10 @@ export class AnimalFormComponent implements OnInit {
   animalPhotos: any[] = [];
   identification_photos: any[] = [];
   vaccine_photos: any[] = [];
+  id: number;
+  private sub: any;
+  canDelete: any;
+
 
   // Icons
   faTimes = faTimes;
@@ -52,27 +58,58 @@ export class AnimalFormComponent implements OnInit {
   checkType = true;
   checkGenre = true;
   checkPedigree = true;
+  title: string;
 
   constructor(
     private animalService: AnimalService,
-    private router: Router,
-    public configService: ConfigService
+    public router: Router,
+    public route: ActivatedRoute,
+    public configService: ConfigService,
+    public datepipe: DatePipe
   ) { }
 
   ngOnInit(): void {
+    this.title = "Registra tu mascota";
+    if (!this.creating && this.rol == 'particular') {
+      this.title = "Edite su mascota";
+      this.animalService.notEditableAnimals()(x => {
+        if (Array.from(x.keys()).includes(this.editAnimal.id)) {
+          this.router.navigate(['/my-profile'])
+        }
+      });
+
+      this.sub = this.route.params.subscribe(params => {
+        this.id = +params['id']; // (+) converts string 'id' to a number
+        this.animalService.canDeleteAnimal(this.id).then(res=> this.canDelete = res).then(res=>console.log(this.canDelete));
+      });
+
+      this.checkType = false;
+      this.checkGenre = false;
+      this.checkPedigree = false;
+    } else if (!this.creating && this.rol == 'moderator') {
+      this.title = "Revisión de la mascota"
+    }
     this.editAnimal = this.editAnimal || {};
     this.animalForm = new FormGroup({
       birth_date: new FormControl(
-        this.editAnimal.birth_date || '', this.requiredInput()
+        this.datepipe.transform(this.editAnimal.birth_date, 'yyyy-MM-dd')
+        || '', this.requiredInput()
       ),
-      genre: new FormControl('', this.requiredInput()),
+      genre: new FormControl(
+        this.editAnimal.genre || '', this.requiredInput()
+      ),
       breed: new FormControl(
         this.editAnimal.breed || '', this.requiredInput()
       ),
       type: new FormControl(
         this.editAnimal.type || '', this.requiredInput()
       ),
-      pedigree: new FormControl('', this.requiredInput()),
+      pedigree: new FormControl(
+        this.editAnimal.pedigree || '', this.requiredInput()
+      ),
+      name: new FormControl(
+        this.editAnimal.name || '', [Validators.required]
+      ),
       animal_photo: new FormControl(
         this.editAnimal.animal_photo || '', [Validators.required]
       ),
@@ -83,7 +120,7 @@ export class AnimalFormComponent implements OnInit {
         this.editAnimal.vaccine_passport || '', [Validators.required]
       ),
     });
-
+    console.log(this.animalForm)
     this.validationFields('default');
   }
 
@@ -122,6 +159,11 @@ export class AnimalFormComponent implements OnInit {
     if (!this.creating && this.rol == 'moderator') {
       this.isValidPedigri = ['1', '0'].includes(this.animalForm.get('pedigree').value);
       this.checkPedigree = this.animalForm.get('pedigree').value === '';
+    }
+  }
+  validateName() {
+    if (this.rol == 'particular') {
+      this.isValidName = this.animalForm.get('name').valid;
     }
   }
   validateAnimalPhoto() {
@@ -180,9 +222,13 @@ export class AnimalFormComponent implements OnInit {
       for (let i = 0; i < vaccinePassport.length; i++) formData.append('vaccine_passport', vaccinePassport[i], vaccinePassport[i].name);
       for (let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
 
+      formData.append('name', this.animalForm.value.name);
+      console.log(formData);
+      console.log(this.animalForm.value);
+
       this.animalService.createAnimal(formData).then(x => {
         alert("¡Tu animal se ha creado correctamente! \n Ahora debe de revisarlo un moderador")
-        this.router.navigate(['/profile'])
+        this.router.navigate(['/my-profile'])
       }).catch(error => {
         this.backError = error.error.error
       });
@@ -198,9 +244,10 @@ export class AnimalFormComponent implements OnInit {
       for (let i = 0; i < vaccinePassport.length; i++) formData.append('vaccine_passport', vaccinePassport[i], vaccinePassport[i].name);
       for (let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
 
-      this.animalService.editAnimal(this.editAnimal.animalId, formData).then(x => {
+      formData.append('name', this.animalForm.value.name);
+      this.animalService.editAnimal(this.editAnimal.id, formData).then(x => {
         alert("¡Tu animal se ha editado correctamente! \n Ahora debe de revisarlo un moderador")
-        this.router.navigate(['/profile'])
+        this.router.navigate(['/my-profile'])
       }).catch(error => {
         this.backError = error.error.error
       });
@@ -237,6 +284,7 @@ export class AnimalFormComponent implements OnInit {
     this.validateGenre();
     this.validateIdentificationPhoto();
     this.validateType();
+    this.validateName();
     this.validateVaccinePassport();
     this.validatePedigree();
 
@@ -246,6 +294,7 @@ export class AnimalFormComponent implements OnInit {
       this.isValidGenre = true;
       this.isValidAge = true;
       this.isValidType = true;
+      this.isValidName = true;
       this.isValidPedigri = true;
       this.isValidAnimalPhoto = true;
       this.isValidIdentificationPhoto = true;
@@ -281,6 +330,13 @@ export class AnimalFormComponent implements OnInit {
         break;
       }
     }
+  }
+
+  deleteAnimal(id: number) {
+    this.animalService.deleteAnimal(id).then(res => {
+      alert('Tu mascota ha sido eliminada correctamente');
+      this.router.navigate(['/my-profile']);
+    });
   }
 
 }

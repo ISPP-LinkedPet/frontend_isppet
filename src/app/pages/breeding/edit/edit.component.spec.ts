@@ -1,7 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
-import { EditComponent } from './edit.component';
-import { RouterTestingModule } from "@angular/router/testing";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {HttpClient, HttpHandler} from '@angular/common/http';
+import {EditComponent} from './edit.component';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('EditComponent', () => {
   let component: EditComponent;
@@ -9,19 +10,16 @@ describe('EditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterTestingModule],
-      declarations: [ EditComponent ]
+      declarations: [ EditComponent ],
+      providers: [ HttpClient, HttpHandler ],
+      imports: [ RouterTestingModule, HttpClientTestingModule ]
     })
-    .compileComponents();
+        .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(EditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 });

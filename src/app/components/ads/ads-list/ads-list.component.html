@@ -1,0 +1,31 @@
+<div class="container my-4">
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-header">
+            Lista de anuncios publicitarios</h1>
+        <p class="lead text-muted">
+            En esta página podrás ver y editar todos los anuncios publicitarios publicados en LinkedPets.
+        </p>
+      </div>
+    </section>
+  
+    <div class="card mb-3" *ngFor="let ad of returnedAds">
+        <div class="row no-gutters">
+          <div class="col-md-8">
+            <div class="card-body">
+              <img class="card-img-top" src="{{ env }}/{{ ad.top_banner.split(',')[0] }}" alt="Topo Banner"/>
+              <hr>
+              <h5 class="card-text">Tipo de anuncio: {{ad.ad_type}}</h5>
+              <h5 class="card-text">Precio: {{ad.price}} €</h5>
+            </div>
+            <div class="col-md-8 mb-3" *ngIf="ad.id != null">
+                <button type="button"
+                class="btn btn-success" [routerLink]="['/adEdit', ad.id]">Editar</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    <!--End Foreach-->
+    <pagination class="justify-content-md-center" [totalItems]="ads.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)">
+    </pagination>
+</div>

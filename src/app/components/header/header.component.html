@@ -2,120 +2,149 @@
   <title></title>
 </head>
 
-<header>
-  <nav
-    class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
-    id="navbar"
-  >
-    <a class="navbar-brand" routerLink="/"
-      ><img src="../../../assets/icons/simple_icon.png" alt="Icono de empresa"
-    /></a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      (click)="toggleNavbar()"
-      data-toggle="collapse"
-      data-target="#navbar"
-      aria-controls="navbarColor01"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+<div class="container mb-10">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
+    <!-- logo -->
+    <a class="navbar-brand" routerLink="/">
+      <img src="../../../assets/icons/simple_icon.png" alt="Icono de empresa" />
+    </a>
+    <!-- .end logo -->
+
+    <!-- dropdown control -->
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse" data-target="#navbar"
+      aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <div class="collapse navbar-collapse" id="navbar" [ngClass]="{ show: navbarOpen }">
+      <!-- .end dropdown control-->
 
-    <div
-      class="collapse navbar-collapse"
-      id="navbar"
-      [ngClass]="{ show: navbarOpen }"
-    >
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" id="prub" routerLink="/"
-            >Inicio<span class="sr-only">(current)</span></a
-          >
+      <!-- principal content (Left side) -->
+      <ul class="navbar-nav">
+        <li class="nav-item ml-5">
+          <a class="nav-link" id="prub" routerLink="/">
+            <fa-icon [icon]="faHome" class="mr-3"></fa-icon>Inicio<span class="sr-only">(current)</span>
+          </a>
         </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            *ngIf="rol == 'particular'"
-            routerLink="/breeding-list"
-            (click)="breedingList()"
-            >Crianza</a
-          >
+        <li class="nav-item ml-5" *ngIf="rol == 'particular'">
+          <a class="nav-link" routerLink="/breeding-list" (click)="breedingList()">
+            <fa-icon [icon]="faHeart" class="mr-3"></fa-icon>Crianza
+          </a>
         </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            *ngIf="rol == 'particular' || rol == 'shelter'"
-            routerLink="/adoption-list"
-            >Adopciones</a
-          >
+        <li class="nav-item ml-5" *ngIf="rol == 'particular' || rol == 'shelter'">
+          <a class="nav-link" routerLink="/adoption-list">
+            <fa-icon [icon]="faPaw" class="mr-3"></fa-icon>Adopciones
+          </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" *ngIf="rol == 'particular'" routerLink="/vet"
-            >Veterinarios</a
-          >
+        <li class="nav-item ml-5" *ngIf="rol == 'particular'">
+          <a class="nav-link" routerLink="/vet">
+            <fa-icon [icon]="faStethoscope" class="mr-3"></fa-icon>Veterinarios
+          </a>
         </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            *ngIf="rol == 'moderator'"
-            routerLink="/breeding-pending"
-            >Crianzas Pendientes</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            *ngIf="rol == 'moderator'"
-            routerLink="/adoption-pending"
-            >Adopciones Pendientes</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            *ngIf="rol == 'moderator'"
-            routerLink="/animal-pending"
-            >Animales Pendientes</a
-          >
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" *ngIf="rol == 'particular'">Panel</a>
+
+        <!-- vet admin-->
+        <li class="nav-item dropdown ml-5" *ngIf="rol== 'administrator'">
+          <a class="nav-link" href="/vet">
+            <fa-icon [icon]="faStethoscope" class="mr-3"></fa-icon>Veterinarios
+          </a>
           <div class="dropdown-content">
-            <a class="nav-link" routerLink="/my-profile"
-            >Mi perfil</a
-            >
-            <a class="nav-link" routerLink="/breeding-personal-list"
-              >Mis Anuncios de Crianza</a
-            >
-            <a class="nav-link" routerLink="/adoption-personal-list"
-              >Mis Anuncios de Adopciones</a
-            >
-            <a class="nav-link" routerLink="/request">Ofertas recibidas</a>
-            <a class="nav-link" routerLink="/request/accepted/created"
-              >Peticiones que me han aceptado</a
-            >
-            <a class="nav-link" routerLink="/request/accepted/received"
-              >Peticiones aceptadas</a
-            >
+            <a class="nav-link" *ngIf="rol== 'administrator'" routerLink="/vet-premium">Veterinarios premium</a>
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" *ngIf="rol == 'disconnected'" routerLink="/login"
-            >Login</a
-          >
+        <!-- moderator dropdown -->
+        <li class="nav-item dropdown ml-5" *ngIf="rol == 'moderator'">
+          <a class="nav-link">
+            <fa-icon [icon]="faBalanceScale" class="mr-3"></fa-icon>Moderar
+          </a>
+          <div class="dropdown-content">
+            <a class="nav-link" routerLink="/breeding-pending">Crianzas pendientes</a>
+            <a class="nav-link" routerLink="/adoption-pending">Adopciones pendientes</a>
+            <a class="nav-link" routerLink="/animal-pending">Mascotas pendientes</a>
+          </div>
         </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            *ngIf="rol != 'disconnected'"
-            routerLink="/"
-            (click)="disconnect()"
-            >Logout</a
-          >
+        <!-- .end moderator dropdown-->
+        <!-- admin -->
+        <li class="nav-item ml-5" *ngIf="rol== 'administrator'">
+          <a class="nav-link" routerLink="/statitics">
+            <fa-icon [icon]="faChartPie" class="mr-3"></fa-icon>Estadísticas
+          </a>
+        </li>
+        <li class="nav-item dropdown ml-5" *ngIf="rol == 'administrator'">
+          <a class="nav-link">
+            <fa-icon [icon]="faBalanceScale" class="mr-3"></fa-icon>Panel
+          </a>
+          <div class="dropdown-content">
+            <a class="nav-link" routerLink="/userlist">Usuarios</a>
+            <a class="nav-link" routerLink="/adsList">Publicidad</a>
+            <a class="nav-link" routerLink="/vet-create">Crear veterinario</a>
+            <a class="nav-link" routerLink="/alert">Comunicado de alerta</a>
+          </div>
         </li>
       </ul>
+      <!-- .end principal content-->
+
+      <!-- user content (Right side) -->
+      <!-- profile -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown mr-3 avatar" *ngIf="rol == 'particular'">
+          <a class="nav-link" href="/my-profile">
+            <img *ngIf="user.optional_photo!=null" src="{{env}}/{{user.optional_photo}}"
+              class="rounded-circle img-fluid" alt="Mi perfil">
+            {{ user.user_name }}
+          </a>
+          <div class="dropdown-content">
+            <a class="nav-link" routerLink="/pallAds">Mis Anuncios</a>
+            <a class="nav-link" routerLink="/request/accepted/created">Mis peticiones a otros usuarios</a>
+
+          </div>
+        </li>
+        <li class="nav-item mr-3 avatar" *ngIf="rol != 'particular' && rol!= 'disconnected'">
+          <a class="nav-link"><img src="{{env}}/{{user.optional_photo}}" class="rounded-circle img-fluid" alt="">
+            {{ user.user_name }}
+          </a>
+        </li>
+      </ul>
+      <!-- .end profile -->
+
+      <!-- notifications -->
+      <ul class="navbar-nav">
+        <li class="nav-item mr-3" *ngIf="rol == 'particular' && requests.length > 0">
+          <a class="nav-link" title="Tienes {{ requests.length }} nueva/s oferta/s de crianza" href="/pallAds">
+            <fa-icon [icon]="faEnvelope"></fa-icon><span class="notification-counter">{{ requests.length }}</span>
+          </a>
+        </li>
+        <li class="nav-item mr-3" *ngIf="rol == 'moderator' && breedings.length > 0">
+          <a class="nav-link" title="Tienes {{ breedings.length }} oferta/s que moderar" href="/breeding-pending">
+            <fa-icon [icon]="faHeart"></fa-icon><span class="notification-counter">{{ breedings.length }}</span>
+          </a>
+        </li>
+        <li class="nav-item mr-3" *ngIf="rol == 'moderator' && adoptions.length > 0">
+          <a class="nav-link" title="Tienes {{ adoptions.length }} adopcion/es que moderar" href="/adoption-pending">
+            <fa-icon [icon]="faPaw"></fa-icon><span class="notification-counter">{{ adoptions.length }}</span>
+          </a>
+        </li>
+        <li class="nav-item mr-3" *ngIf="rol == 'moderator' && animals.length > 0">
+          <a class="nav-link" title="Tienes {{ animals.length }} mascota/s que moderar" href="/animal-pending">
+            <fa-icon [icon]="faCat"></fa-icon><span class="notification-counter">{{ animals.length }}</span>
+          </a>
+        </li>
+      </ul>
+      <!-- .end notifications -->
+      <!-- .end user content -->
+
+      <!-- access control content (Right side) -->
+      <ul class="navbar-nav ml-3">
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="rol == 'disconnected'" routerLink="/login">
+            <fa-icon [icon]="faSignInAlt" class="mr-3"></fa-icon>Login
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="rol != 'disconnected'" routerLink="/" (click)="disconnect()">
+            <fa-icon [icon]="faSignOutAlt" class="mr-3"></fa-icon>Logout
+          </a>
+        </li>
+      </ul>
+      <!-- .end access control-->
     </div>
   </nav>
-</header>
+</div>

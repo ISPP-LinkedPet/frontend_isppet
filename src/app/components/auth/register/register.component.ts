@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginRegisterComponent } from 'src/app/pages/login-register/login-register.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService } from '../../../services/login/login.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   isValidTelephone: boolean;
   isValidOptionalPhoto: boolean;
   isValidSurname: boolean;
+  isChecked: boolean;
 
   optionalPhotoUrl: string; // Para la preview
   optionalPhoto: any;
@@ -49,6 +50,7 @@ export class RegisterComponent implements OnInit {
     this.isValidTelephone = true;
     this.isValidOptionalPhoto = true;
     this.isValidSurname = true;
+    this.isChecked =true;
     this.showParticularInputs = this.registerForm.value.role === 'particular';
   }
 
@@ -67,7 +69,8 @@ export class RegisterComponent implements OnInit {
       optional_photo: new FormControl('', [
         Validators.required,
       ]),
-      surname: new FormControl('', [Validators.required])
+      surname: new FormControl('', [Validators.required]),
+      check: new FormControl(false, Validators.requiredTrue)
     });
   }
 
@@ -76,6 +79,7 @@ export class RegisterComponent implements OnInit {
     this.cleanError();
     this.isValid = true;
     this.validationFields();
+    console.log(this.registerForm.value.check);
     if (this.isValid) {
 
       const formData: FormData = new FormData();
@@ -89,6 +93,7 @@ export class RegisterComponent implements OnInit {
       formData.append('telephone', this.registerForm.value.telephone);
       formData.append('optional_photo', this.optionalPhoto);
       formData.append('surname', this.registerForm.value.surname);
+
 
       this.loginService
         .register(formData)
@@ -122,7 +127,13 @@ export class RegisterComponent implements OnInit {
     this.validateTelephone();
     this.validateUsername();
     this.validateRole();
+    this.validateCheck();
   }
+  validateCheck() {
+    this.isChecked = this.registerForm.get('check').valid;
+    if (this.isChecked==false) {
+      this.isValid = false;
+    }  }
 
   validateUsername() {
     this.isValidUserName = this.registerForm.get('user_name').valid;
@@ -184,6 +195,8 @@ export class RegisterComponent implements OnInit {
       this.isValidSurname = true;
     }
   }
+
+
   validateRole() {
     this.isValidRole = ['particular', 'shelter'].includes(this.registerForm.get('role').value);
     if (!this.isValidRole) {

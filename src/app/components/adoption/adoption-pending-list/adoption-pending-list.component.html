@@ -1,100 +1,82 @@
-<h1 class="display-5">Lista de adopciones pendientes</h1>
-<!--Foreach Advertisement-->
+<div class="container">
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-header">Lista de adopciones</h1>
+      <p class="lead text-muted">
+        Esta es la lista de todas las adopciones pendientes de revisión. <br> 
+        Compruebe los detalles del animal y acepte la adopción para que sea publicada.
+      </p>
+    </div>
+  </section>
+  
+  <div class="alert alert-dismissible alert-info" *ngIf="returnedAdoptions.length<=0">
+    <h4 class="alert-heading"><fa-icon [icon]="faInfoCircle" class="mr-2"></fa-icon>No se han encontrado anuncios</h4><br>
+    <p>Todos los anuncios han sido moderados</p>
+  </div>
 
-<div class="card border-success mb-3" *ngFor="let adoption of returnedAdoptions">
-  <h3 class="card-header">{{ adoption.breed }} en {{ adoption.location }}</h3>
-  <div class="card-body">
-    <div class="description-content">
-      <!-- Animal Documentation-->
-
-      <div class="column">
-        <div class="gallery" *ngIf="adoption.identification_photo">
-          <a
-            target="_blank"
-            href="{{ env }}/{{ adoption.identification_photo.split(',')[0] }}"
-          >
-            <img
-              src="{{ env }}/{{ adoption.identification_photo.split(',')[0] }}"
-              alt="Foto de identificación"
-              width="800"
-              height="400"
-            />
-          </a>
-          <div class="desc">Foto de identificación</div>
+  <div class="row">
+    <div class="col-sm-6 d-flex flex-column align-items-center justify-content-center my-4" *ngFor="let adoptionAd of returnedAdoptions">
+      <img class="rounded" src="{{ env }}/{{ adoptionAd.animal_photo.split(',')[0] }}" alt="Foto/s del animal"/>
+      <div class="card mt-n5 w-75">
+        <div class="card-header bg-success text-white">
+          <h4 class="primary-card-title">{{adoptionAd.name}}
+            <fa-icon *ngIf="adoptionAd.pedigree" class="ml-2" [icon]="FaAward"></fa-icon>
+          </h4>
         </div>
-        <div class="gallery" *ngIf="!adoption.identification_photo">
-          <div class="desc">Sin foto de identificación</div>
+        <div class="card-body bg-white">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4>Ubicación:</h4> <h5>{{adoptionAd.location}}</h5></li>
+          <li class="list-group-item"><h4>Tasas: {{adoptionAd.taxes}}</h4></li>
+          </ul>
         </div>
-
-        <div class="gallery" *ngIf="adoption.vaccine_passport">
-          <a
-            target="_blank"
-            href="{{ env }}/{{ adoption.vaccine_passport.split(',')[0] }}"
-          >
-            <img
-              src="{{ env }}/{{ adoption.vaccine_passport.split(',')[0] }}"
-              alt="Documento de vacunas"
-              width="800"
-              height="400"
-            />
-          </a>
-          <div class="desc">Documento de vacunas</div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-success left" (click)="acceptAdoption(adoptionAd.adoption_id)">
+                Aceptar
+              </button>
+              <button type="button" class="btn btn-danger right" (click)="rejectAdoption(adoptionAd.adoption_id)">
+                Rechazar
+              </button>
+            </div>
+            <button type="button" class="btn btn-secondary mx-2" *ngIf="!details" (click)="showDetails('show')">Ver datos
+              <fa-icon *ngIf="adoptionAd.type=='Cat'" [icon]="faCat" class="ml-2"></fa-icon>
+              <fa-icon *ngIf="adoptionAd.type=='Dog'" [icon]="faDog" class="ml-2"></fa-icon>
+              <fa-icon  *ngIf="adoptionAd.type=='Horse'" [icon]="faHorse" class="ml-2"></fa-icon>
+            </button>
+            <button type="button" class="btn btn-secondary mx-2" *ngIf="details" (click)="showDetails('hide')">Ocultar
+            </button>
+          </div>
+          <div *ngIf="details" class="mt-4">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><h5>Edad: {{ this.configService.calculateAge(adoptionAd.birth_date) }}</h5></li>
+              <li class="list-group-item"><h5>Raza: {{ adoptionAd.breed }}</h5></li>
+              <li class="list-group-item"><h5>Género: 
+                <fa-icon *ngIf="adoptionAd.genre=='Male'" class="ml-2" [icon]="faMars"></fa-icon>
+                <fa-icon *ngIf="adoptionAd.genre=='Female'" class="ml-2" [icon]="faVenus"></fa-icon>
+              </h5></li>
+              <li class="list-group-item"><h5>Pedigrí: {{ adoptionAd.pedigree==1 ? 'Sí' : 'No' }}</h5></li>
+              <li class="list-group-item">
+                <carousel>
+                  <slide>
+                    <a href="{{ env }}/{{ adoptionAd.identification_photo.split(',')[0] }}" target="_blank">
+                      <img class="img-fluid" src="{{ env }}/{{ adoptionAd.identification_photo.split(',')[0] }}" alt="Foto de identificación"/>
+                    </a>
+                    </slide>
+                  <slide>
+                    <a href="{{ env }}/{{ adoptionAd.vaccine_passport.split(',')[0] }} " target="_blank">
+                      <img class="img-fluid" src="{{ env }}/{{ adoptionAd.vaccine_passport.split(',')[0] }}" alt="Foto de cartilla"/>
+                    </a>
+                  </slide>
+                </carousel>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="gallery" *ngIf="!adoption.vaccine_passport">
-          <div class="desc">Sin foto de cartilla de vacunación</div>
-        </div>
-      </div>
-
-      <!-- Animal Documentation-->
-
-      <div class="column">
-        <strong>Datos del animal:</strong>
-        <hr />
-        <ul>
-          <li>
-            <label><strong>Pedigree:</strong> {{ adoption.pedigree==1 ? 'Sí' : 'No' }}</label>
-          </li>
-          <li>
-            <label><strong>Nombre:</strong> {{ adoption.name }}</label>
-          </li>
-          <li>
-            <label><strong>Edad: </strong></label> {{ this.configService.calculateAge(adoption.birth_date) }}
-          </li>
-          <li>
-            <label><strong>Raza: </strong></label> {{ adoption.breed }}
-          </li>
-          <li>
-            <label><strong>Ubicación: </strong></label> {{ adoption.location }}
-          </li>
-        </ul>
-      </div>
-
-      <!-- Animal Photo-->
-
-      <div class="column">
-        <img
-          class="animal_photo"
-          src="{{ env }}/{{ adoption.animal_photo.split(',')[0] }}"
-          alt="Foto/s del animal"
-        />
       </div>
     </div>
   </div>
-  <button
-    type="button"
-    class="btn btn-success left"
-    (click)="acceptAdoption(adoption.adoption_id)"
-  >
-    Aceptar
-  </button>
-  <button
-    type="button"
-    class="btn btn-danger right"
-    (click)="rejectAdoption(adoption.adoption_id)"
-  >
-    Rechazar
-  </button>
+  <!--End Foreach-->
+  <pagination class="justify-content-md-center" [totalItems]="pendingAdoptions.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)">
+  </pagination>
 </div>
-
-<!--End Foreach-->
-<pagination class="center" [totalItems]="pendingAdoptions.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
