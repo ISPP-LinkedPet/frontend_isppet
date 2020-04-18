@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-  
+
   @Input() price: any;
   @Input() breedingId: any;
 
@@ -23,8 +23,8 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {}
 
   async paypal() {
-    // const redirectUrl = await this.paymentService.userCreatePayMePaypal({breedingId: this.breedingId, returnUrl: "https://" + window.location.hostname + "request/accepted/created"});
-    const redirectUrl = await this.paymentService.userCreatePayMePaypal({breedingId: this.breedingId, returnUrl: "http://" + window.location.hostname + ":4200/request/accepted/created"});
+    const redirectUrl = await this.paymentService.userCreatePayMePaypal({breedingId: this.breedingId, returnUrl: "https://" + window.location.hostname + "request/accepted/created"});
+    // const redirectUrl = await this.paymentService.userCreatePayMePaypal({breedingId: this.breedingId, returnUrl: "http://" + window.location.hostname + ":4200/request/accepted/created"});
     window.location.href = redirectUrl.links[1].href;
   }
 
@@ -37,8 +37,8 @@ export class PaymentComponent implements OnInit {
       currency: 'eur',
       locale: 'es',
       token: (token) => {
-          // this.paymentService.createPaymentToMyself({token: token.id, breedingId: this.breedingId, returnUrl: "https://" + window.location.hostname + "request/accepted/created"}).then(response => {
-          this.paymentService.createPaymentToMyself({token: token.id, breedingId: this.breedingId, returnUrl: "http://" + window.location.hostname + ":4200/request/accepted/created"}).then(response => {
+          this.paymentService.createPaymentToMyself({token: token.id, breedingId: this.breedingId, returnUrl: "https://" + window.location.hostname + "request/accepted/created"}).then(response => {
+          // this.paymentService.createPaymentToMyself({token: token.id, breedingId: this.breedingId, returnUrl: "http://" + window.location.hostname + ":4200/request/accepted/created"}).then(response => {
             if(response.status != 'succeeded') {
               window.location.href = response.url;
             } else {
