@@ -15,26 +15,6 @@
                     (change)="validateUsername()">
                 <div class="invalid-feedback">Nombre de usuario no válido</div>
             </div>
-
-            <div class="form-group col-md-6" *ngIf="isValidRole">
-                <label for="role">Rol de usuario</label>
-                <select class="form-control" id="role" formControlName="role"
-                    (change)="onChangeRole($event.target.value)">
-                    <option value=''>Rol de usuario</option>
-                    <option value='particular'>Particular</option>
-                    <option value='shelter'>Refugio</option>
-                </select>
-            </div>
-            <div class="form-group has-danger col-md-6" *ngIf="!isValidRole">     
-                <label for="role">Rol de usuario</label>
-                <select class="form-control is-invalid" id="role" formControlName="role"
-                    (change)="onChangeRole($event.target.value)">
-                    <option value=''>Rol de usuario</option>
-                    <option value='particular'>Particular</option>
-                    <option value='shelter'>Refugio</option>
-                </select>
-                <div class="invalid-feedback">Rol no válido</div>
-            </div>
         </div>
 
         <div class="row d-flex">
@@ -91,21 +71,21 @@
                     <img id="img-upload" [src]="optionalPhotoUrl" alt="asd">
                 </div>
             </div>
-
-            <div class="form-group col-md-6" *ngIf="showParticularInputs && isValidSurname">
+        </div>
+        <div class="row d-flex">
+            <div class="form-group col-md-6" *ngIf="isValidSurname">
                 <label for="surname">Apellido</label>
                 <input type="text" class="form-control" id="surname" required formControlName="surname"
                     (change)="validateSurname()">
             </div>
-            <div class="form-group has-danger col-md-6" *ngIf="(!isValidSurname) && showParticularInputs">
+            
+            <div class="form-group has-danger col-md-6" *ngIf="(!isValidSurname)">
                 <label class="form-control-label" for="surname">Apellido</label>
                 <input type="text" class="form-control is-invalid" id="surname" formControlName="surname"
                     (change)="validateSurname()">
                 <div class="invalid-feedback">Apellido no válido</div>
             </div>
-        </div>
 
-        <div class="row d-flex">
             <div class="form-group col-md-6" *ngIf="isValidAddress">
                 <label for="address">Dirección</label>
                 <input type="text" class="form-control" id="address" required formControlName="address"
@@ -117,7 +97,8 @@
                     (change)="validateAddress()">
                 <div class="invalid-feedback">Dirección no válida</div>
             </div>
-
+        </div>
+        <div class="row d-flex">
             <div class="form-group col-md-6" *ngIf="isValidTelephone">
                 <label for="telephone">Teléfono</label>
                 <input type="text" class="form-control" id="telephone" required formControlName="telephone" maxlength="9"
@@ -130,9 +111,7 @@
                     (change)="validateTelephone()">
                 <div class="invalid-feedback">Teléfono no válido</div>
             </div>
-        </div>
 
-        <div class="row d-flex">
             <div class="form-group col-md-6" *ngIf="isValidEmail">
                 <label for="email">Correo electrónico</label>
                 <input type="email" class="form-control" id="email" required formControlName="email"
