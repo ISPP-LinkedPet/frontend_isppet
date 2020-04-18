@@ -75,11 +75,9 @@ export class RequestListAcceptedComponent implements OnInit {
         if (response.status === 'succeeded') {
           // abrir modal
           this.toastr.success('Payment Completed!')
-          location.reload();
         } else {
           // error
           this.toastr.error('Payment not complete!');
-          location.reload();
         }
       });
     }
