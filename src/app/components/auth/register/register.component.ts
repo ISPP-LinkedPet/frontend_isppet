@@ -51,7 +51,6 @@ export class RegisterComponent implements OnInit {
     this.isValidOptionalPhoto = true;
     this.isValidSurname = true;
     this.isChecked =true;
-    this.showParticularInputs = this.registerForm.value.role === 'particular';
   }
 
   initializeForm() {
@@ -84,7 +83,7 @@ export class RegisterComponent implements OnInit {
 
       const formData: FormData = new FormData();
       formData.append('user_name', this.registerForm.value.user_name);
-      formData.append('role', this.registerForm.value.role);
+      formData.append('role', 'particular');
       formData.append('password', this.registerForm.value.password);
       formData.append('repeat_password', this.registerForm.value.repeat_password);
       formData.append('name', this.registerForm.value.name);
@@ -112,10 +111,6 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  onChangeRole(e: Event) {
-    this.showParticularInputs = e.toString() === 'particular';
-    this.validateRole();
-  }
 
   validationFields() {
     this.validateAddress();
@@ -126,7 +121,6 @@ export class RegisterComponent implements OnInit {
     this.validateSurname();
     this.validateTelephone();
     this.validateUsername();
-    this.validateRole();
     this.validateCheck();
   }
   validateCheck() {
@@ -186,22 +180,10 @@ export class RegisterComponent implements OnInit {
   }
 
   validateSurname() {
-    if (this.registerForm.value.role === 'particular') {
-      this.isValidSurname = this.registerForm.get('surname').valid;
+    this.isValidSurname = this.registerForm.get('surname').valid;
       if (!this.isValidSurname) {
         this.isValid = false;
       }
-    } else {
-      this.isValidSurname = true;
-    }
-  }
-
-
-  validateRole() {
-    this.isValidRole = ['particular', 'shelter'].includes(this.registerForm.get('role').value);
-    if (!this.isValidRole) {
-      this.isValid = false;
-    }
   }
 
   getOptionalPhotoAndValidate($event: Event) {

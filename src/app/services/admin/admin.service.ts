@@ -36,6 +36,9 @@ export class AdminService {
   getAllAds() {
     return this.requestService.request('GET', `${environment.endpoint}/administrator/allAds`, {}, {}, true);
   }
+  editVet(id:number, data: any) {
+    return this.requestService.request('PUT', `${environment.endpoint}/administrator/vet/edit/${id}`, data, {}, true);
+  }
   registerShelter(data: any) {
     return this.requestService.request(
       'POST',
