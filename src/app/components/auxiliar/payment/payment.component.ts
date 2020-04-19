@@ -24,7 +24,7 @@ export class PaymentComponent implements OnInit {
 
   async paypal() {
     const redirectUrl = await this.paymentService.userCreatePayMePaypal({breedingId: this.breedingId, returnUrl: "https://" + window.location.hostname + "/request/accepted/created"});
-    // const redirectUrl = await this.paymentService.userCreatePayMePaypal({breedingId: this.breedingId, returnUrl: "http://" + window.location.hostname + ":4200/request/accepted/created"});
+    // const redirectUrl = await this.paymentService.userCreatePayMePaypal({breedingId: this.breedingId, returnUrl: "http://" + window.location.hostname + ":4200/request/accepted/created"}).catch(error => console.log(error));
     window.location.href = redirectUrl.links[1].href;
   }
 
