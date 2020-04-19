@@ -249,7 +249,7 @@ export class BreedingCreateComponent implements OnInit {
 
       this.breedingService.editBreeding(this.editBreeding.breedingId, formData).then(x => {
         alert("¡La crianza se ha editado correctamente! \n Ahora debe de revisarlo un moderador")
-        this.router.navigate(['/breeding-personal-list'])
+        this.router.navigate(['/pallAds'])
       }).catch (error => {
         this.backError = error.error.error
       });

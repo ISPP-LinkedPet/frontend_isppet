@@ -280,7 +280,7 @@ export class AdotionFormComponent implements OnInit {
     } else if (!this.creating) {
       this.adoptionService.editAdoption(formData, +this.id).then(x => {
         alert('¡La adopción se ha editado correctamente!')
-        this.router.navigate(['/adoption-list']);
+        this.router.navigate(['/pallAds']);
       }).catch(error => {
         console.log(error);
       });
@@ -320,7 +320,7 @@ export class AdotionFormComponent implements OnInit {
   deleteAdoption(id: string) {
     this.adoptionService.deleteAdoption(id).then(res => {
       alert('Tu adopción ha sido eliminada correctamente');
-      this.router.navigate(['/adoption-list']);
+      this.router.navigate(['/pallAds']);
     });
   }
 }
