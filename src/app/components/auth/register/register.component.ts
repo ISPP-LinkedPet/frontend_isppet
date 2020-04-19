@@ -200,6 +200,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  
   showPreview(file: any) {
     const reader = new FileReader();
     reader.onload = () => {
