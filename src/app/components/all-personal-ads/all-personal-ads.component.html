@@ -95,19 +95,19 @@
                   Editar Anuncio
                 </button>
               </div>
-              <button type="button" class="btn btn-secondary mx-2" *ngIf="!requests && mapBreedingRequestId.get(adv.breeding_id)!=null 
-              && adv.transaction_status == 'Offered' && adv.document_status == 'Accepted'" (click)="showRequests('show')">Ver peticiones
+              <button type="button" class="btn btn-secondary mx-2" *ngIf="!mapShowRequestBreeding.get(adv.breeding_id) && mapBreedingRequestId.get(adv.breeding_id)!=null 
+              && adv.transaction_status == 'Offered' && adv.document_status == 'Accepted'" (click)="showRequests(adv,'show')">Ver peticiones
                 <fa-icon *ngIf="adv.type=='Cat'" [icon]="faCat" class="ml-2"></fa-icon>
                 <fa-icon *ngIf="adv.type=='Dog'" [icon]="faDog" class="ml-2"></fa-icon>
                 <fa-icon  *ngIf="adv.type=='Horse'" [icon]="faHorse" class="ml-2"></fa-icon>
               </button>
-              <button type="button" class="btn btn-secondary mx-2" *ngIf="requests && mapBreedingRequestId.get(adv.breeding_id)!=null 
-              && adv.transaction_status == 'Offered' && adv.document_status == 'Accepted'" (click)="showRequests('hide')">Ocultar
+              <button type="button" class="btn btn-secondary mx-2" *ngIf="mapShowRequestBreeding.get(adv.breeding_id) && mapBreedingRequestId.get(adv.breeding_id)!=null 
+              && adv.transaction_status == 'Offered' && adv.document_status == 'Accepted'" (click)="showRequests(adv,'hide')">Ocultar
               </button>
             </div>
             
             <!-- Pending requests -->
-            <div *ngIf="requests && mapBreedingRequestId.get(adv.breeding_id)!=null 
+            <div *ngIf="mapShowRequestBreeding.get(adv.breeding_id)  && mapBreedingRequestId.get(adv.breeding_id)!=null 
              && adv.transaction_status == 'Offered' && adv.document_status == 'Accepted'" class="my-3">
               <h3>Peticiones recibidas</h3>
               <div *ngFor="let request of mapBreedingRequestId.get(adv.breeding_id)" class="row my-3">

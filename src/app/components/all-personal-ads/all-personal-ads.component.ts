@@ -41,6 +41,9 @@ export class AllPersonalAdsComponent implements OnInit {
   /* Map request_id & user */
   mapBreedingReqIdUser = new Map();
 
+  /* Map request_id & show or not */
+  mapShowRequestBreeding = new Map();
+
   /*ReviewForm*/
   reviewForm: FormGroup;
 
@@ -111,8 +114,7 @@ export class AllPersonalAdsComponent implements OnInit {
                                                              // tslint:disable-next-line: no-shadowed-variable
                                                              .then(res => particularInfo.push(res.particular));
                                                              this.mapBreedingReqIdUser.set(element.id, particularInfo);
-                                                             console.log(this.mapBreedingRequestId);
-
+                                                             this.mapShowRequestBreeding.set(element.breeding_id, false);
                                                              // console.log(this.mapBreedingReqIdUser);
                                                              }));
         this.mapBreedingRequestId.set(element.breeding_id, rqsbrd);
@@ -165,11 +167,11 @@ export class AllPersonalAdsComponent implements OnInit {
     location.reload();
   }
 
-  showRequests(string){
+  showRequests(element, string){
     if(string=='show'){
-      this.requests = true;
+      this.mapShowRequestBreeding.set(element.breeding_id, true);
     } else {
-      this.requests = false;
+      this.mapShowRequestBreeding.set(element.breeding_id, false);
     }
   }
 

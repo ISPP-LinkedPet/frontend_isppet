@@ -26,7 +26,6 @@
         <div class="card-body bg-white">
           <ul class="list-group list-group-flush">
             <li class="list-group-item"><h4>Ubicación:</h4> <h5>{{adoptionAd.location}}</h5></li>
-          <li class="list-group-item"><h4>Tasas: {{adoptionAd.taxes}}</h4></li>
           </ul>
         </div>
         <div class="card-footer">
@@ -39,31 +38,31 @@
                 Rechazar
               </button>
             </div>
-            <button type="button" class="btn btn-secondary mx-2" *ngIf="!details" (click)="showDetails('show')">Ver datos
+            <button type="button" class="btn btn-secondary mx-2" *ngIf="!mapShowAdoption.get(adoptionAd.adoption_id)" (click)="showDetails(adoptionAd,'show')">Ver datos
               <fa-icon *ngIf="adoptionAd.type=='Cat'" [icon]="faCat" class="ml-2"></fa-icon>
               <fa-icon *ngIf="adoptionAd.type=='Dog'" [icon]="faDog" class="ml-2"></fa-icon>
               <fa-icon  *ngIf="adoptionAd.type=='Horse'" [icon]="faHorse" class="ml-2"></fa-icon>
             </button>
-            <button type="button" class="btn btn-secondary mx-2" *ngIf="details" (click)="showDetails('hide')">Ocultar
+            <button type="button" class="btn btn-secondary mx-2" *ngIf="mapShowAdoption.get(adoptionAd.adoption_id)" (click)="showDetails(adoptionAd,'hide')">Ocultar
             </button>
           </div>
-          <div *ngIf="details" class="mt-4">
+          <div *ngIf="mapShowAdoption.get(adoptionAd.adoption_id)" class="mt-4">
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><h5>Edad: {{ this.configService.calculateAge(adoptionAd.birth_date) }}</h5></li>
               <li class="list-group-item"><h5>Raza: {{ adoptionAd.breed }}</h5></li>
-              <li class="list-group-item"><h5>Género: 
+              <li class="list-group-item"><h5>Género:
                 <fa-icon *ngIf="adoptionAd.genre=='Male'" class="ml-2" [icon]="faMars"></fa-icon>
                 <fa-icon *ngIf="adoptionAd.genre=='Female'" class="ml-2" [icon]="faVenus"></fa-icon>
               </h5></li>
               <li class="list-group-item"><h5>Pedigrí: {{ adoptionAd.pedigree==1 ? 'Sí' : 'No' }}</h5></li>
-              <li class="list-group-item">
+              <li class="list-group-item" >
                 <carousel>
-                  <slide>
+                  <slide *ngIf="adoptionAd.identification_photo!=null">
                     <a href="{{ env }}/{{ adoptionAd.identification_photo.split(',')[0] }}" target="_blank">
                       <img class="img-fluid" src="{{ env }}/{{ adoptionAd.identification_photo.split(',')[0] }}" alt="Foto de identificación"/>
                     </a>
                     </slide>
-                  <slide>
+                  <slide *ngIf="adoptionAd.vaccine_passport!=null">
                     <a href="{{ env }}/{{ adoptionAd.vaccine_passport.split(',')[0] }} " target="_blank">
                       <img class="img-fluid" src="{{ env }}/{{ adoptionAd.vaccine_passport.split(',')[0] }}" alt="Foto de cartilla"/>
                     </a>

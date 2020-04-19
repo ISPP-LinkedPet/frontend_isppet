@@ -53,4 +53,16 @@ export class UsersNbanComponent implements OnInit {
       });
   }
 
+  translateRol(rol){
+    if(rol=="moderator"){
+      return "Validador"
+    }else if(rol=="administrator"){
+      return "Administrador"
+    }else if(rol=="particular"){
+      return "Particular"
+    }else if(rol=="shelter"){
+      return "Refugio"
+    }
+  }
+
 }
