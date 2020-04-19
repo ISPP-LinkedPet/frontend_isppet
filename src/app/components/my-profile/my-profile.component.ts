@@ -108,8 +108,8 @@ export class MyProfileComponent implements OnInit {
       this.stars.push(0)
     }
 
-    if (Math.abs(Math.floor(rating) - rating) < 0.5) {
-      for (var i = 1; i <= 5 - Math.floor(rating); i++) {
+    if (5 - rating > 0.6) {
+      for (var i = 1; i <= 5 - Math.ceil(rating); i++) {
         this.stars.push(2)
       }
     }

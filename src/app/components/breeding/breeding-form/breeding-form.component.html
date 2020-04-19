@@ -211,6 +211,7 @@
                                   <label class="custom-file-label" for="animal_photo">Seleccionar imagenes</label>
                               </div>
                           </div>
+                          <small>Las imagenes deben ser .png, .jpg o .jpeg</small>
                           <div class="invalid-feedback" *ngIf="!isValidAnimalPhoto">Debe subir al menos 2 imágenes del animal</div>
 
                         <!-- File names -->
@@ -240,6 +241,7 @@
                                   <label class="custom-file-label" for="identification_photo">Seleccionar imagenes</label>
                               </div>
                           </div>
+                          <small>Las imagenes deben ser .png, .jpg o .jpeg</small>
                           <div class="invalid-feedback" *ngIf="!isValidIdentificationPhoto">Debe subir una imagen de la identificación</div>
                       </div>
                     </div>
@@ -267,6 +269,7 @@
                                   <label class="custom-file-label" for="vaccine_passaport">Seleccionar imagenes</label>
                               </div>
                           </div>
+                          <small>Las imagenes deben ser .png, .jpg o .jpeg</small>
                           <div class="invalid-feedback" *ngIf="!isValidVaccinePassaport">Debe subir una imagen de la cartilla de vacunación</div>
                       </div>
                       <div class="form-group col-4" *ngIf="rol=='moderator'">
@@ -287,7 +290,8 @@
 
               <button *ngIf="rol == 'particular' && !creating" (click)="deleteBreeding(id)" class="btn btn-secondary btn-lg button-form">Eliminar</button>
               <button *ngIf="rol == 'particular' && creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Crear</button>
-              <button type="button" class="btn btn-secondary btn-lg button-form right" routerLink="/pallAds">Cancelar</button>
+              <button type="button" *ngIf="rol == 'particular' && creating" class="btn btn-secondary btn-lg button-form right" routerLink="/breeding-list">Cancelar</button>
+              <button type="button" *ngIf="rol == 'particular' && !creating" class="btn btn-secondary btn-lg button-form right" routerLink="/pallAds">Cancelar</button>
               <button *ngIf="rol == 'moderator'" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Aceptar</button>
               <button *ngIf="rol == 'moderator'" (click)="rejectPublication()" class="btn btn-secondary btn-lg button-form right">Rechazar</button>
           </form>

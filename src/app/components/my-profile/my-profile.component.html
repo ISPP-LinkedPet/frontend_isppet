@@ -30,7 +30,7 @@
                 <h1>{{particular.particular.user_name}} </h1>
                 <p class="card-text">Fecha de registro: {{particular.particular.register_date | date:'MM/dd/yyyy'}}</p>
                 <div class="row mt-4 mb-2" *ngIf="rating">
-                    <h1 class="col-2 mr-n5">{{rating}}</h1>
+                    <h1 class="col-2 mr-n5">{{rating | number: '1.0-1'}}</h1>
                     <div class="col-1" *ngFor="let star of stars">
                         <fa-icon class="fa-2x" [icon]="faStar" style="color:#ffd700;" *ngIf="star==1"></fa-icon>
                         <fa-icon class="fa-2x" [icon]="faStarHalfAlt" style="color:#ffd700;" *ngIf="star==0"></fa-icon>

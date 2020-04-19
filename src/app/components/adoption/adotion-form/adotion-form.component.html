@@ -245,7 +245,8 @@
         </div>
         <button type="submit" class="btn btn-primary btn-lg button-form">Crear</button>
         <button type="submit" class="btn btn-secondary btn-lg button-form" *ngIf="(rol == 'particular'||rol == 'shelter') && !creating" (click)="deleteAdoption(id)">Eliminar</button>
-        <button type="button" class="btn btn-secondary btn-lg button-form right" routerLink="/pallAds">Cancelar</button>
+        <button type="button" *ngIf="(rol == 'particular' || rol == 'shelter') && creating" class="btn btn-secondary btn-lg button-form right" routerLink="/adoption-list">Cancelar</button>
+        <button type="button" *ngIf="(rol == 'particular') && !creating" class="btn btn-secondary btn-lg button-form right" routerLink="/pallAds">Cancelar</button>
       </form>
     </div>
   </div>

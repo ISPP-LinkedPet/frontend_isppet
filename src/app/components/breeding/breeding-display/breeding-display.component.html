@@ -10,9 +10,9 @@
       <div class="card-body">
         <div class="card-section p-4 m-4">
           <h3 class="secondary-card-title">Información</h3>
+          <div class="ml-4">{{configService.translateType(breedingListPageComponent.selectedBreeding.type)}}</div>
           <div class="row">
             <div class="col-8">
-              <div class="small">{{configService.translateType(breedingListPageComponent.selectedBreeding.type)}}</div>
               <h5 class="my-4">Raza: <strong>{{breedingListPageComponent.selectedBreeding.breed}}</strong></h5>
               <h5 class="my-4">Género: <strong>{{breedingListPageComponent.selectedBreeding.genre == 'Male' ? 'Macho' : 'Hembra'}}</strong></h5>
               <h5 class="my-4">Fecha de nacimiento: <strong>{{breedingListPageComponent.selectedBreeding.birth_date | date:'MM/dd/yyyy'}}</strong> ({{breedingListPageComponent.configService.calculateAge(breedingListPageComponent.selectedBreeding.birth_date)}})</h5>
@@ -24,7 +24,7 @@
             </div>
           </div>
         </div>
-      <button *ngIf="!breedingListPageComponent.hasreq.hasRequest" class="btn btn-success float-right" (click)="onSubmit(breedingListPageComponent.selectedBreeding.breedingId)" >Me interesa</button>
+      <button *ngIf="!breedingListPageComponent.hasreq.hasRequest && !personalBreedings.includes(breedingListPageComponent.selectedBreeding.publicationId)" class="btn btn-success float-right" (click)="onSubmit(breedingListPageComponent.selectedBreeding.breedingId)" >Me interesa</button>
       <button class="btn btn-danger mx-3" (click)="backToTheList()">Volver a anuncios</button> 
     </div>
     <div class="card-footer text-muted text-right">

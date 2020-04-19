@@ -75,7 +75,7 @@ export class BreedingCreateComponent implements OnInit {
     if(!this.creating && this.rol == 'particular'){
     this.breedingService.getPersonalBreedings(this.userlogged.id).then(res=>{
       if(!res.map(o=>o.id).includes(this.editBreeding.publication_id)){
-        this.router.navigate(['/breeding-personal-list'])
+        this.router.navigate(['/pallAds'])
       }
     })
   }
@@ -228,7 +228,7 @@ export class BreedingCreateComponent implements OnInit {
 
       this.breedingService.createBreeding(formData).then(x => {
         alert("¡La crianza se ha creado correctamente! \n Ahora debe de revisarlo un moderador")
-        this.router.navigate(['/breeding-personal-list'])
+        this.router.navigate(['/pallAds'])
       }).catch (error => {
         this.backError = error.error.error
       });
@@ -329,7 +329,7 @@ export class BreedingCreateComponent implements OnInit {
   deleteBreeding(id: number){
     this.breedingService.deleteBreeding(id).then(res=> {
       alert('Tu oferta de crianza ha sido eliminada correctamente');
-      this.router.navigate(['/breeding-personal-list']);
+      this.router.navigate(['/pallAds']);
     });
   }
 
