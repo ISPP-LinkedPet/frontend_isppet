@@ -213,7 +213,6 @@ export class BreedingCreateComponent implements OnInit {
     this.validationFields();
 
     const formData: FormData = new FormData();
-
     // si se está creando
     if(this.creating && this.rol == 'particular' && this.isValidPrice && this.isValidAnimalPhoto && this.isValidLocation && this.isValidIdentificationPhoto && this.isValidVaccinePassaport){
       const animalPhoto = this.animalPhotos
@@ -258,9 +257,10 @@ export class BreedingCreateComponent implements OnInit {
     // si lo está editando un moderador
     if(!this.creating && this.rol == 'moderator' && this.isValidBreed && this.isValidGenre && this.isValidAge && this.isValidType && this.isValidPedigri){
 
+      console.log(this.breedingForm.value.age)
       formData.append('genre', this.breedingForm.value.genre);
       formData.append('breed', this.breedingForm.value.breed);
-      formData.append('age', this.breedingForm.value.birth_date);
+      formData.append('birth_date', this.breedingForm.value.age);
       formData.append('type', this.breedingForm.value.type);
       formData.append('pedigree', this.breedingForm.value.pedigree);
       
