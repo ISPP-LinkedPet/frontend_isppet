@@ -122,6 +122,7 @@ export class AllPersonalAdsComponent implements OnInit {
     ));
     /***Slice***/
     this.returnedAds = this.allads.slice(0, this.itemsPerPage);
+    console.log(this.returnedAds)
   }
 
   pageChanged(event: PageChangedEvent): void {
