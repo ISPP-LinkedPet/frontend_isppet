@@ -33,7 +33,6 @@ export class RequestListAcceptedItemComponent implements OnInit {
     private requestBreedingService: RequestBreedingService) { }
 
   ngOnInit(): void {
-
     this.photo = `${environment.endpoint}/${
       this.request.animal_photo.split(',')[0]
       }`;
