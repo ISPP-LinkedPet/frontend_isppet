@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { VetService } from 'src/app/services/vet/vet.service';
 import * as mapboxgl from 'mapbox-gl';
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-vet',
@@ -36,7 +36,7 @@ export class VetComponent implements OnInit {
   userlogged = this.configService.getUserLogged();
   rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
 
-  constructor(private vetService: VetService, public configService: ConfigService, public router: Router) {
+  constructor(@Inject(DOCUMENT) private document: any, private vetService: VetService, public configService: ConfigService, public router: Router) {
     this.mapbox.accessToken = environment.mapbox_key;
 
   }
@@ -71,7 +71,9 @@ export class VetComponent implements OnInit {
     const endItem = event.page * event.itemsPerPage;
     this.returnedVets = this.vets.slice(startItem, endItem);
   }
-
+  onNavigate(url: string){
+    this.document.location.href = url;
+  }
   onPremium(id: number) {
     this.vetService.changePremium(id).then(res => {
       setTimeout(() => {

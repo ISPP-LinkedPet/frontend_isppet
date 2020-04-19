@@ -271,7 +271,8 @@ export class AdotionFormComponent implements OnInit {
     if (this.creating) {
       this.adoptionService.createAdoption(formData).then(x => {
         console.log(x);
-        this.router.navigate(['/adoption-personal-list']);
+        alert('¡La adopción se ha creado correctamente!')
+        this.router.navigate(['/adoption-list']);
       }).catch(error => {
         console.log(error);
       });
@@ -279,7 +280,7 @@ export class AdotionFormComponent implements OnInit {
     } else if (!this.creating) {
       this.adoptionService.editAdoption(formData, +this.id).then(x => {
         alert('¡La adopción se ha editado correctamente!')
-        this.router.navigate(['/adoption-personal-list']);
+        this.router.navigate(['/pallAds']);
       }).catch(error => {
         console.log(error);
       });
@@ -319,7 +320,7 @@ export class AdotionFormComponent implements OnInit {
   deleteAdoption(id: string) {
     this.adoptionService.deleteAdoption(id).then(res => {
       alert('Tu adopción ha sido eliminada correctamente');
-      this.router.navigate(['/adoption-personal-list']);
+      this.router.navigate(['/pallAds']);
     });
   }
 }
