@@ -32,12 +32,30 @@ export class UsersNbanComponent implements OnInit {
   }
   banUser(id: number) {
     this.adminService.banUser(id).then(res => {
-      alert('¡Has baneado con éxito al usuario!')
-      this.router.navigate(['/userList']);
-      this.ngOnInit();
+      alert('¡Has baneado con éxito al usuario!');
+      this.loadData();
     });
-
   }
+
+  loadData() {
+    this.users = [];
+    const role = this.filterForm.value.role;
+    if (role !== ''){
+      this.adminService.filterAdmin(this.filterForm.value.role).then(x => {
+          x.forEach(b => {
+            this.users.push(b);
+          });
+          this.returnedUsers = this.users.slice(0, this.itemsPerPage);
+        });
+    }
+    else{
+      this.adminService.getUsersNotBan().then(res => {
+        this.users.push(...res);
+        this.returnedUsers = this.users.slice(0, this.itemsPerPage);
+      })
+    }
+  }
+
   pageChanged(event: PageChangedEvent): void {
     const startItem = (event.page - 1) * event.itemsPerPage;
     const endItem = event.page * event.itemsPerPage;
@@ -66,3 +84,4 @@ export class UsersNbanComponent implements OnInit {
   }
 
 }
+
