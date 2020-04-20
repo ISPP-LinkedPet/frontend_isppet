@@ -74,7 +74,8 @@
               <h5>Código de confirmación: {{ adv.codenumber }}</h5>
             </li>
           </ul>
-          <button *ngIf="adv.transaction_status=='Awaiting payment'" type="button" class="btn btn-secondary" (click)="acceptMoney(adv.breeding_id)">
+          <p></p>
+          <button *ngIf="adv.transaction_status=='Awaiting payment'" type="button" class="btn btn-secondary float-center" (click)="acceptMoney(adv.breeding_id)">
             Recibir el pago
           </button>
         </div>
