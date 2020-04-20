@@ -76,6 +76,7 @@ export class RequestListAcceptedComponent implements OnInit {
         if (response.status === 'succeeded') {
           // abrir modal
           this.toastr.success('Payment Completed!')
+          this.loadData();
         } else {
           // error
           this.toastr.error('Payment not complete!');
