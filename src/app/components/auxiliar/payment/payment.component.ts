@@ -3,6 +3,7 @@ import { environment } from '../../../../environments/environment';
 import { PaymentService } from '../../../services/payment/payment.service';
 import { ToastrService } from 'ngx-toastr';
 import {Router} from "@angular/router";
+import {RequestListAcceptedComponent} from "../../request/request-list-accepted/request-list-accepted.component"
 
 @Component({
   selector: 'app-payment',
