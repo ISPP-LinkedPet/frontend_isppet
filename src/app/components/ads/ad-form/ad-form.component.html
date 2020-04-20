@@ -41,10 +41,12 @@
                             <div class="invalid-feedback">Redirección inválida</div>
                         </div>
 
-                        <div class="form-group  col-md-6" > 
+                        <div class="form-group  col-md-6">
                             <label class="form-control-label" for="price">Precio</label>
-                            <input *ngIf="this.registerForm.get('ad_type').value === 'CPM'"  type="text" disabled="true" class="form-control" id="price" formControlName="price" value="9.99"> 
-                            <input *ngIf="this.registerForm.get('ad_type').value !== 'CPM'"  type="text" disabled="true" class="form-control" id="price" formControlName="price" value="0.99"> 
+                            <input *ngIf="this.registerForm.get('ad_type').value === 'CPM'" type="text" disabled="true"
+                                class="form-control" id="price" formControlName="price" value="9.99">
+                            <input *ngIf="this.registerForm.get('ad_type').value !== 'CPM'" type="text" disabled="true"
+                                class="form-control" id="price" formControlName="price" value="0.99">
                         </div>
 
                         <div class="form-group col-md-6" *ngIf="isValidVet && create">
@@ -79,18 +81,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group has-danger col-md-6" *ngIf="!isValidActive && create">
-                            <label class="form-control-label" for="active">Activo</label>
-                            <div></div>
-                            <select class="form-control is-invalid" id="active" formControlName="active"
-                                (change)="validateActivo()">
-                                <option value=''></option>
-                                <option value='1'>Si</option>
-                                <option value='0'>No</option>
-                            </select>
-                        </div>
                     </div>
-
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="top_banner">Top Banner</label>

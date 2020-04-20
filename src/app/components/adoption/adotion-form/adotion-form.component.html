@@ -3,6 +3,7 @@
     <div class="card-body">
         <h1 class="card-title">{{title}}</h1>
         <form [formGroup]="adoptionForm" (ngSubmit)="onSubmit()">
+          <em class="text-secondary">Para agregar varias imagenes, seleccionalas con el botón CTRL pulsado</em>
             <fieldset>
               <legend class="card-title">Información básica</legend>
 
@@ -139,6 +140,7 @@
 
                     </div>
                   </div>
+                  <small>Las imagenes deben ser .png, .jpg o .jpeg</small>
                   <div class="invalid-feedback" *ngIf="!isValidAnimalPhoto">Debe subir al menos 2 imágenes del animal
                   </div>
                   <!-- File names -->
@@ -205,6 +207,7 @@
                   <label class="custom-file-label" for="identification_photo">Seleccionar imagenes</label>
                 </div>
               </div>
+              <small>Las imagenes deben ser .png, .jpg o .jpeg</small>
               <!-- File names -->
               <div class="row">
                 <ul>
@@ -228,6 +231,7 @@
                   <label class="custom-file-label" for="vaccine_passaport">Seleccionar imagenes</label>
                 </div>
               </div>
+              <small>Las imagenes deben ser .png, .jpg o .jpeg</small>
 
               <!-- File names -->
               <div class="row">

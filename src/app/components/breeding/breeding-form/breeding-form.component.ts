@@ -164,7 +164,8 @@ export class BreedingCreateComponent implements OnInit {
   }
 
   validateAnimalPhoto(){
-    this.isValidAnimalPhoto = this.breedingForm.get('animal_photo').valid;
+    const animalPhoto = this.animalPhoto.nativeElement.files;
+    this.isValidAnimalPhoto = this.breedingForm.get('animal_photo').valid && animalPhoto.length >= 2;
   }
 
   validateLocation() {
