@@ -33,7 +33,7 @@ export class PaymentComponent implements OnInit {
       key: environment.stripe_key,
       image: 'https://i.imgur.com/ZgXl1tn.png',
       name: 'LinkedPet',
-      description: 'No se realizará ningún cobro hasta que la otra persona acepte',
+      description: '',
       currency: 'eur',
       locale: 'es',
       token: (token) => {

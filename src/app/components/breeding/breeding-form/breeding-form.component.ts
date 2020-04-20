@@ -135,11 +135,15 @@ export class BreedingCreateComponent implements OnInit {
   }
   validatePrice() {
     this.isValidPrice = this.breedingForm.get('price').valid;
-    try {
-      this.isValidPrice = this.isValidPrice && Number.isInteger(Number(this.breedingForm.get('price').value));
-    } catch (e) {
+    if(this.breedingForm.get('price').value>999999.99){
       this.isValidPrice = false;
-    }
+    }else{
+      try {
+        this.isValidPrice = this.isValidPrice && Number.isInteger(Number(this.breedingForm.get('price').value));
+      } catch (e) {
+        this.isValidPrice = false;
+      }
+  }
   }
   validateGenre() {
     if(!this.creating && this.rol=='moderator'){
