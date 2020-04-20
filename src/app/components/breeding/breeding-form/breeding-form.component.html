@@ -4,8 +4,7 @@
           <h1 class="card-title*n">{{title}} publicacion</h1>
           <form [formGroup]="breedingForm">
 
-              <em *ngIf="creating" class="text-secondary">Los campos en gris están deshabilitados</em><br>
-              <em class="text-secondary">Para agregar varias imagenes, seleccionalas con el botón CTRL pulsado</em>
+              <em *ngIf="creating" class="text-secondary">Los campos en gris están deshabilitados</em>
               <fieldset>
                   <legend class="card-title">Información básica</legend>
 
@@ -70,7 +69,7 @@
                       <div class="form-group has-danger col-4" *ngIf="!isValidAge">
                           <label class="form-control-label" for="age">Edad</label>
                           <input type="date" class="form-control is-invalid" id="age" [readOnly]="rol=='particular'" formControlName="age" (change)="validateAge()">
-                          <div class="invalid-feedback">No olvide seleccionar la edad</div>
+                          <div class="invalid-feedback">La fecha de nacimiento no puede ser posterior a la actual y es un campo obligatorio</div>
                       </div>
                   </div>
 

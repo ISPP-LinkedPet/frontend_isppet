@@ -51,7 +51,7 @@
                   <label for="birth_date">Edad</label>
                   <input type="date" class="form-control is-invalid" id="birth_date" formControlName="birth_date"
                     (change)="validateAge()">
-                  <div class="invalid-feedback">La fecha de nacimiento no puede estar en blanco</div>
+                  <div class="invalid-feedback">La fecha de nacimiento no puede estar en blanco y no puede ser posterior a la fecha actual</div>
                 </div>
               </div>
 
