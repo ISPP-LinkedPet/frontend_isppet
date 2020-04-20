@@ -27,7 +27,7 @@ export class VerticalAdvertisementsComponent implements OnInit {
     /*Varía la altura de la página según el número de elementos en la lista*/
 
     this.vetService.getVetAdvertisements(this.nBredAds).then(res => this.advertisements = res.ads)
-    .then();
+    .then().catch(err => {});
 
   }
 
