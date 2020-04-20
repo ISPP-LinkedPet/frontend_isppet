@@ -181,6 +181,11 @@ export class AdotionFormComponent implements OnInit {
   }
   validateAge() {
     this.isValidAge = this.adoptionForm.get('birth_date').valid;
+    var date = new Date(this.adoptionForm.get('birth_date').value)
+    var now = new Date()
+    if(date>now){
+      this.isValidAge = false
+    }
   }
   validateType() {
     this.isValidType = this.adoptionForm.get('type').valid;
