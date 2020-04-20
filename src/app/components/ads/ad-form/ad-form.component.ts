@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/services/admin/admin.service';
 import { ConfigService } from '../../../services/config/config.service';
 import { ActivatedRoute } from '@angular/router';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-ad-form',
@@ -29,7 +30,8 @@ export class AdFormComponent implements OnInit {
   topBanner: any;
   lateralBannerUrl: string; // Para la preview
   lateralBanner: any;
-  
+  env = environment.endpoint
+
   showError = false;
   errorMessage = '';
   registerSuccess = false;
@@ -49,14 +51,15 @@ export class AdFormComponent implements OnInit {
     this.isValidLateralBanner = true;
   }
   initializeForm() {
+    this.editAd = this.editAd || {};
     this.registerForm = new FormGroup({
-      ad_type: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      redirect_to: new FormControl('', [Validators.required, Validators.minLength(10)]),
-      price: new FormControl('', [Validators.required]),
-      top_banner: new FormControl('', [
+      ad_type: new FormControl(this.editAd.ad_type || '', [Validators.required, Validators.minLength(6)]),
+      redirect_to: new FormControl(this.editAd.redirect_to || '', [Validators.required, Validators.minLength(10)]),
+      price: new FormControl(this.editAd.price || '', [Validators.required]),
+      top_banner: new FormControl(this.editAd.top_banner || '', [
         Validators.required,
       ]),
-      lateral_banner: new FormControl('', [
+      lateral_banner: new FormControl(this.editAd.lateral_banner || '', [
         Validators.required,
       ]),
     });

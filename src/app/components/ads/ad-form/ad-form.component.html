@@ -6,15 +6,14 @@
             <div class="col-md-8 mx-auto">
                 <form [formGroup]="registerForm">
                     <fieldset>
-                        <legend></legend>
                         <div class="row">
-                            <div class="form-group col-md-6" *ngIf="isValidAdType">
-                                <label for="ad_type">Tipo de Anuncio</label>
-                                <select class="form-control" id="ad_type" formControlName="ad_type">
-                                    <option value=''>Tipo de Anuncio</option>
-                                    <option value='CPM'>CPM</option>
-                                    <option value='DXC'>DXC</option>
-                                </select>
+                            <div class="form-group has-danger col-md-6">
+                                <label  class="form-control-label" for="ad_type">Tipo de Anuncio</label>
+                                    <select class="form-control" id="ad_type" formControlName="ad_type">
+                                        <option value=''>Tipo de Anuncio</option>
+                                        <option value='CPM'>CPM</option>
+                                        <option value='DXC'>DXC</option>
+                                    </select>
                             </div>
                             <div class="form-group has-danger col-md-6">
                                 <label class="form-control-label" for="redirect_to">Redirección</label>
@@ -54,6 +53,12 @@
                                 <div class="imagePreview" *ngIf="lateralBannerUrl && lateralBannerUrl !== ''">
                                     <img id="img-upload" [src]="lateralBannerUrl" alt="asd">
                                 </div>
+                            </div>
+                            <div class="form-group col-4">
+                                <img style="height: 250px; width: 100%; display: block;" src="{{env}}/{{editAd.top_banner.split(',')[0]}}" alt="Card image">
+                            </div>
+                            <div class="form-group col-4">
+                                <img style="height: 250px; width: 100%; display: block;" src="{{env}}/{{editAd.lateral_banner.split(',')[0]}}" alt="Card image">
                             </div>
                         </div>
                     </fieldset>
