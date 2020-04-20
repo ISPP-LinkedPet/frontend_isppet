@@ -35,9 +35,9 @@
                                         <label class="custom-file-label" for="optional_photo">Seleccionar imagen</label>
                                     </div>
                                 </div>
-                                <div class="invalid-feedback" *ngIf="!isValidTopBanner">La foto debe tener una extensión jpg, jpeg o png</div>
-                                <div class="imagePreview" *ngIf="topBannerUrl && topBannerUrl !== ''">
-                                    <img id="img-upload" [src]="topBannerUrl" alt="asd">
+                                <div class="invalid-feedback" *ngIf="!isValidTopBanner">La foto debe tener una extensión jpg, jpeg o png y tener de dimensiones 1449 x 85 o proporcionales</div>
+                                <div class="imagePreview w-100" *ngIf="topBannerUrl && topBannerUrl !== ''">
+                                    <img id="img-upload" class="h-auto" [src]="topBannerUrl" alt="asd">
                                 </div>
                             </div>
 
@@ -50,8 +50,8 @@
                                         <label class="custom-file-label" for="lateral_banner">Seleccionar imagen</label>
                                     </div>
                                 </div>
-                                <div class="invalid-feedback" *ngIf="!isValidLateralBanner">La foto debe tener una extensión jpg, jpeg o png</div>
-                                <div class="imagePreview" *ngIf="lateralBannerUrl && lateralBannerUrl !== ''">
+                                <div class="invalid-feedback" *ngIf="!isValidLateralBanner">La foto debe tener una extensión jpg, jpeg o png y tener de dimensiones 150 x 1750 o proporcionales</div>
+                                <div class="imagePreview w-auto h-100" *ngIf="lateralBannerUrl && lateralBannerUrl !== ''">
                                     <img id="img-upload" [src]="lateralBannerUrl" alt="asd">
                                 </div>
                             </div>
