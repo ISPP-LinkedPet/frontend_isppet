@@ -52,6 +52,7 @@ const routes: Routes = [
 {path: 'userlist', component: UsersNbanPageComponent},
 {path: 'adsList', component: AdsListPageComponent},
 {path: 'adEdit/:id', component: AdsEditPageComponent},
+{path: 'adEdit', component: AdsEditPageComponent},
 {path: 'vet', component: VetComponent},
 {path: 'breeding-pending', component: BreedingPendingListPageComponent},
 {path: 'breeding-edit/:id', component: EditComponentBreeding},

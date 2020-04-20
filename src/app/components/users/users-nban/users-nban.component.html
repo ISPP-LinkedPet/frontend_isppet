@@ -38,7 +38,7 @@
               <h5 class="card-text">Email: {{userAd.email}}</h5>
               <h5 class="card-text">Rol: {{translateRol(userAd.role)}}</h5>
             </div>
-            <div class="col-md-8 mb-3">
+            <div *ngIf="userAd.role != 'administrator'" class="col-md-8 mb-3">
                 <button type="button" class="btn btn-success mr-2" (click)="banUser(userAd.id)">Banear</button>
               </div>
           </div>
