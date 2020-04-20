@@ -49,7 +49,7 @@ export class PaymentComponent implements OnInit {
     });
 
     handler.open({
-      amount: (this.price * 100) - (this.price * 100 * 0.025),
+      amount: (this.price * 100) + (this.price * 100 * 0.025),
       email: 'info@linkedpet.com',
     });
 
