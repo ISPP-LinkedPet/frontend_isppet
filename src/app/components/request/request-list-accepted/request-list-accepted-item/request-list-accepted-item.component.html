@@ -1,12 +1,16 @@
 <div class="card mb-3">
   <img class="card-img-top" src="{{ photo }}" alt="Foto/s del animal"/>
   <div class="card-header bg-success text-white">
-    <h5 class="primary-card-title">{{name}}
-    </h5>
+    <h4 class="primary-card-title text-center"> {{ name }}
+    </h4>
   </div>
   <div class="card-body bg-white">
+    <span *ngIf="publicationType=='Petición de adopción'" class="badge badge-info text-white mr-2">ADOPCIÓN</span>
+    <span *ngIf="publicationType=='Petición de crianza'" class="badge badge-secondary text-white mr-2">CRIANZA</span>
+    
     <span *ngIf="requestStatus=='Pending'" class="badge badge-warning text-white">PENDIENTE DE ACEPTACIÓN</span>
     <span *ngIf="requestStatus=='Rejected'" class="badge badge-danger text-white">RECHAZADA</span>
+    
     <div *ngIf="requestStatus=='Accepted'">
       <span *ngIf="transactionStatus=='Offered'" class="badge badge-success text-white">CREADA</span>
       <span *ngIf="transactionStatus=='In payment'" class="badge badge-light">PENDIENTE DE PAGO</span>
@@ -16,9 +20,13 @@
       <span *ngIf="transactionStatus=='Reviewed'" class="badge badge-dark text-white">FINALIZADA</span>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item"><h5>Telefono: {{ phone }}</h5></li>
-      <li class="list-group-item"><h5>Email: {{ email }}</h5></li>
-      <li class="list-group-item"><h5>Dirección: {{ address }}</h5></li>
+      <li class="list-group-item"><h5>
+        {{genre == 'Male' ? 'Macho' : 'Hembra'}}  de {{ this.configService.calculateAge(birth_date) }} 
+        <strong>{{ pedigree ? "con" : "sin" }}</strong> pedigrí en {{ location }}
+      </h5></li>
+      <li class="list-group-item"><h6><strong>Teléfono de contacto:</strong> {{ phone }}</h6></li>
+      <li class="list-group-item"><h6><strong>Email:</strong> {{ email }}</h6></li>
+      <li class="list-group-item"><h6><strong>Dirección del propietario:</strong> {{ address }}</h6></li>
     </ul>
   </div>
   <div class="card-footer">
