@@ -17,7 +17,8 @@ export class PaymentComponent implements OnInit {
   constructor(
     private paymentService: PaymentService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private requestList: RequestListAcceptedComponent
   ) {}
 
   ngOnInit() {}
@@ -43,6 +44,7 @@ export class PaymentComponent implements OnInit {
               window.location.href = response.url;
             } else {
               this.toastr.success('Payment Completed!');
+              this.requestList.loadData();
             }
           });
       }
