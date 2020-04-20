@@ -45,7 +45,6 @@ export class AdoptionListComponent implements OnInit {
       });
     }
     this.loadAdoptions();
-    console.log(this.rol, this.returnedAdoptions)
 
     this.filterForm = new FormGroup({
       location: new FormControl(''),
