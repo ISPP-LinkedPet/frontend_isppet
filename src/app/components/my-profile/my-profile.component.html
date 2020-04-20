@@ -67,11 +67,14 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="alert alert-dismissible alert-info" *ngIf="numReviews<=0 && reviews">
+                <div class="alert alert-dismissible alert-info" *ngIf="numReviews<=0 && valoraciones">
                     <h5>Aún no tienes valoraciones</h5>
                 </div>
                 <div class="card-section" *ngIf="mascotas">
                     <h1 class="my-4">Mascotas registradas</h1>
+                    <div class="alert alert-dismissible alert-info" *ngIf="numPets<=0">
+                        <h5>Aún no tienes mascotas registradas</h5>
+                    </div>
                     <button type="button" class="btn btn-secondary mb-2 my-2" [routerLink]="['/animal']">Añadir una mascota</button>
                     <div class="row" *ngIf="numPets>0">
                         <div class="col-md-6" *ngFor="let pet of returnedPets;">
