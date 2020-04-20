@@ -43,6 +43,7 @@ export class VetComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.vets = new Array();
     this.vetService.getAllVets().then(res => {
       res.forEach(vet => {
         this.vets.push(vet);
@@ -76,17 +77,13 @@ export class VetComponent implements OnInit {
   }
   onPremium(id: number) {
     this.vetService.changePremium(id).then(res => {
-      setTimeout(() => {
-        this.router.navigate(['/vet']);
-      }, 2000);      this.ngOnInit();
+      this.ngOnInit();
     });
 
   }
   onNormal(id: number) {
     this.vetService.changeNormal(id).then(res => {
-      setTimeout(() => {
-        this.router.navigate(['/vet']);
-      }, 2000);
+
       this.ngOnInit();
     });
   }

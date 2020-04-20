@@ -10,6 +10,9 @@
       <p class="lead text-muted">
         Aquí podrás consultar todos los veterinarios, además te recomendamos algunos de ellos.
       </p>
+      <p *ngIf="rol == 'administrator'" >
+        <button routerLink="/vet-create" type="button" class="btn btn-success">Crear veterinario</button>
+      </p>
     </div>
   </section>
 
@@ -24,7 +27,7 @@
       <div class="col-md-8">
         <div class="card-body bg-white">
           <div class="premium float-right">
-            <small *ngIf="vet.is_premium" >¡Recomendado!</small><fa-icon *ngIf="vet.is_premium" [icon]="faCrown" class="badge badge-info text-white mr-2" alt="image" ></fa-icon>
+            <small *ngIf="vet.is_premium">¡Recomendado!</small><fa-icon *ngIf="vet.is_premium" [icon]="faCrown" class="badge badge-info text-white mr-2" alt="image" ></fa-icon>
             <a class="card-text badge badge-light text-black mr-2" style="font-size: 17px ;" href="{{vet.url}}" *ngIf="vet.url!=null">Sitio web</a>
           </div>
           <h2 class="card-title">{{vet.name}}           
