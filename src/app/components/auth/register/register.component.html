@@ -67,8 +67,8 @@
                 </div>
 
                 <div class="invalid-feedback" *ngIf="!isValidOptionalPhoto">La foto debe tener una extensión jpg, jpeg o png</div>
-                <div class="imagePreview" *ngIf="optionalPhotoUrl && optionalPhotoUrl !== ''">
-                    <img id="img-upload" [src]="optionalPhotoUrl" alt="asd">
+                <div class="mt-4" *ngIf="optionalPhotoUrl && optionalPhotoUrl !== ''">
+                    <img class="img-fluid" [src]="optionalPhotoUrl" alt="asd">
                 </div>
             </div>
         </div>
