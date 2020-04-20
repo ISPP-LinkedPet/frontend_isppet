@@ -10,7 +10,7 @@
       <p class="lead text-muted">
         Aquí podrás consultar todos los veterinarios, además te recomendamos algunos de ellos.
       </p>
-      <p>
+      <p *ngIf="rol == 'administrator'" >
         <button routerLink="/vet-create" type="button" class="btn btn-success">Crear veterinario</button>
       </p>
     </div>
