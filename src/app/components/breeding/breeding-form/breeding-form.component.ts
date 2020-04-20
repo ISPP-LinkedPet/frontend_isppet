@@ -135,7 +135,7 @@ export class BreedingCreateComponent implements OnInit {
   }
   validatePrice() {
     this.isValidPrice = this.breedingForm.get('price').valid;
-    if(this.breedingForm.get('price').value>999999.99){
+    if(this.breedingForm.get('price').value>950000){
       this.isValidPrice = false;
     }else{
       try {
