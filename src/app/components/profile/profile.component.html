@@ -104,7 +104,8 @@
                         </div>
                     </div>
                     <pagination class="justify-content-md-center" [totalItems]="pets.length"
-                        [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)">
+                        [itemsPerPage]="itemsPerPage" previousText="Anterior" firstText="Primera" nextText="Siguiente"
+                        lastText="Último" (pageChanged)="pageChanged($event)">
                     </pagination>
                 </div>
             </div>
