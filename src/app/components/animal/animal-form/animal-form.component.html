@@ -70,7 +70,7 @@
                         <div class="form-group has-danger col-4" *ngIf="!isValidAge">
                             <label class="form-control-label" for="birth_date">Edad</label>
                             <input type="date" class="form-control is-invalid" id="birth_date" [readOnly]="rol=='particular'" formControlName="birth_date" (change)="validateAge()">
-                            <div class="invalid-feedback">No olvide seleccionar la edad</div>
+                            <div class="invalid-feedback">No olvide seleccionar la edad y no puede ser posterior a la acutal</div>
                         </div>
                     </div>
   
@@ -187,6 +187,8 @@
                                 </div>
                             </div>
                             <small>Las imagenes deben ser .png, .jpg o .jpeg</small>
+                            
+
                             <div class="invalid-feedback" *ngIf="!isValidAnimalPhoto">Debe subir al menos 2 imágenes del animal</div>
                         </div>
                       </div>
@@ -269,7 +271,7 @@
                 <button *ngIf="rol == 'particular'" (click)="router.navigate(['/my-profile']);" class="btn btn-danger">Volver a mi perfil</button> 
             </form>
 
-            <div class="invalid-feedback">{{backError}} {{backError|json}}</div>
+            <div class="invalid-feedback" *ngIf="backError!=undefined">Parece que ha habido un error</div>
         </div>
     </div>
   </div>

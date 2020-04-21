@@ -74,11 +74,11 @@ export class RequestListAcceptedItemComponent implements OnInit {
       reviewarea: new FormControl(''),
       star: new FormControl([Validators.required])
     });
-    console.log(this.request.status);
+    // console.log(this.request.status);
 
-    console.log(this.request);
+    // console.log(this.request);
 
-    console.log(this.requestStatus, this.transactionStatus);
+    // console.log(this.requestStatus, this.transactionStatus);
   }
 
   onClick(e: Event) {
@@ -97,7 +97,7 @@ export class RequestListAcceptedItemComponent implements OnInit {
   onSubmitReviewForm() {
     const review = this.reviewForm.get('reviewarea').value;
     const star = this.reviewForm.get('star').value;
-    console.log(star)
+    // console.log(star)
     this.requestBreedingService.writeReview({ star: star, review_description: review, publication_id: this.publicationId }).then(x => {
       alert('Tu review se ha enviado correctamente');
     }).then(x => {

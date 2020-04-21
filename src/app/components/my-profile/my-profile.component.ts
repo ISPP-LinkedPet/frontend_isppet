@@ -61,12 +61,12 @@ export class MyProfileComponent implements OnInit {
     this.animalService.notEditableAnimals()(x => {
       this.notEditableAnimals = Array.from(x.keys())
       this.mapNotEditableAnimals = x;
-      console.log(this.mapNotEditableAnimals);
+      // console.log(this.mapNotEditableAnimals);
     });
 
     this.profileService.getParticularLogged().then(res => {
       this.particular = res;
-      console.log(this.particular);
+      // console.log(this.particular);
       this.profileService.getReviewsByParticularId(this.particular.particular.id).then(element => {
         this.reviews = element;
         this.numReviews = this.reviews.length;
@@ -151,7 +151,7 @@ export class MyProfileComponent implements OnInit {
   deleteMyAccountParticular() {
     if (window.confirm('¿Esta seguro de que quiere eliminar su cuenta?')) {
       this.profileService.deleteMyAccountParticular().then(res => {
-        console.log(res);
+        // console.log(res);
         this.disconnect();
       });
     }
@@ -160,7 +160,7 @@ export class MyProfileComponent implements OnInit {
   deleteMyAccountShelter() {
     if (window.confirm('¿Esta seguro de que quiere eliminar su cuenta?')) {
       this.profileService.deleteMyAccountShelter().then(res => {
-        console.log(res);
+        // console.log(res);
         this.disconnect();
       });
     }

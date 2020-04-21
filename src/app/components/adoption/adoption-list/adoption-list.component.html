@@ -89,5 +89,6 @@
       </div>
     </div>
   
-<pagination class="justify-content-md-center" [totalItems]="adoptions.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
+<pagination class="justify-content-md-center" [totalItems]="adoptions.length" previousText="Anterior" firstText="Primera"
+nextText="Siguiente" lastText="Último"  [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
   </div>

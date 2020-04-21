@@ -27,7 +27,8 @@
         <hr>
         <h5 class="card-text">Tipo de anuncio: {{ad.ad_type}}</h5>
         <h5 class="card-text">Precio: {{ad.price}} €</h5>
-        <button *ngIf="ad.id != null" type="button" class="btn btn-success" [routerLink]="['/adEdit', ad.id]">Editar</button>
+        <button *ngIf="ad.id != null" type="button" class="btn btn-success"
+          [routerLink]="['/adEdit', ad.id]">Editar</button>
       </div>
 
 
@@ -35,6 +36,7 @@
   </div>
   <!--End Foreach-->
   <pagination class="justify-content-md-center" [totalItems]="ads.length" [itemsPerPage]="itemsPerPage"
+    previousText="Anterior" firstText="Primera" nextText="Siguiente" lastText="Último"
     (pageChanged)="pageChanged($event)">
   </pagination>
 </div>

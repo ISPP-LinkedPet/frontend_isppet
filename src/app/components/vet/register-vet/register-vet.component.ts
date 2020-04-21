@@ -74,7 +74,7 @@ export class RegisterVetComponent implements OnInit {
       surname: new FormControl(this.editVet.surname || '', [Validators.required]),
       is_premium: new FormControl(this.editVet.is_premium || this.is_premium, [Validators.required])
     });
-    console.log(this.registerForm);
+    // console.log(this.registerForm);
   }
 
   onSubmit() {
@@ -140,7 +140,7 @@ export class RegisterVetComponent implements OnInit {
 
 
   validationFields() {
-    console.log(this.registerForm.get('is_premium').value);
+    // console.log(this.registerForm.get('is_premium').value);
     this.validateAddress();
     this.validateEmail();
     this.validateName();

@@ -80,7 +80,8 @@ export class AnimalFormComponent implements OnInit {
 
       this.sub = this.route.params.subscribe(params => {
         this.id = +params['id']; // (+) converts string 'id' to a number
-        this.animalService.canDeleteAnimal(this.id).then(res=> this.canDelete = res).then(res=>console.log(this.canDelete));
+        this.animalService.canDeleteAnimal(this.id).then(res=> this.canDelete = res);
+        
       });
 
       this.checkType = false;
@@ -111,16 +112,16 @@ export class AnimalFormComponent implements OnInit {
         this.editAnimal.name || '', [Validators.required]
       ),
       animal_photo: new FormControl(
-        this.editAnimal.animal_photo || '', [Validators.required]
+         '', [Validators.required]
       ),
       identification_photo: new FormControl(
-        this.editAnimal.identification_photo || '', [Validators.required]
+        '', [Validators.required]
       ),
       vaccine_passport: new FormControl(
-        this.editAnimal.vaccine_passport || '', [Validators.required]
+        '', [Validators.required]
       ),
     });
-    console.log(this.animalForm)
+    // console.log(this.animalForm)
     this.validationFields('default');
   }
 
@@ -142,11 +143,17 @@ export class AnimalFormComponent implements OnInit {
       this.isValidGenre = ['Male', 'Female'].includes(this.animalForm.get('genre').value);
       this.checkGenre = this.animalForm.get('genre').value === '';
     }
-    console.log(this.animalForm.get('genre').value);
+    // console.log(this.animalForm.get('genre').value);
   }
+
   validateAge() {
     if (!this.creating && this.rol == 'moderator') {
       this.isValidAge = this.animalForm.get('birth_date').valid;
+      var date = new Date(this.animalForm.get('birth_date').value)
+      var now = new Date()
+      if(date>now){
+        this.isValidAge = false
+      }
     }
   }
   validateType() {
@@ -167,7 +174,15 @@ export class AnimalFormComponent implements OnInit {
     }
   }
   validateAnimalPhoto() {
-    this.isValidAnimalPhoto = this.animalForm.get('animal_photo').valid;
+    /*this.isValidAnimalPhoto = this.animalForm.get('animal_photo').valid;
+    Solo comprueba que la foto no sea NULL*/
+
+    if (this.animalPhotos.length < 2) {
+      this.isValidAnimalPhoto = false;
+    } else {
+      this.isValidAnimalPhoto = true;
+    }
+    // console.log(this.isValidAnimalPhoto);
   }
   validateIdentificationPhoto() {
     this.isValidIdentificationPhoto = this.animalForm.get('identification_photo').valid;
@@ -223,8 +238,8 @@ export class AnimalFormComponent implements OnInit {
       for (let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
 
       formData.append('name', this.animalForm.value.name);
-      console.log(formData);
-      console.log(this.animalForm.value);
+      // console.log(formData);
+      // console.log(this.animalForm.value);
 
       this.animalService.createAnimal(formData).then(x => {
         alert("¡Tu animal se ha creado correctamente! \n Ahora debe de revisarlo un moderador")
@@ -289,7 +304,7 @@ export class AnimalFormComponent implements OnInit {
     this.validatePedigree();
 
     // create and edit
-    if (type === 'default' && this.rol == 'particular') {
+    if (type === 'default') {
       this.isValidBreed = true;
       this.isValidGenre = true;
       this.isValidAge = true;

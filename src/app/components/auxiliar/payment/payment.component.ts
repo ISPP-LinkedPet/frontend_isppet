@@ -3,6 +3,7 @@ import { environment } from '../../../../environments/environment';
 import { PaymentService } from '../../../services/payment/payment.service';
 import { ToastrService } from 'ngx-toastr';
 import {Router} from "@angular/router";
+import {RequestListAcceptedComponent} from "../../request/request-list-accepted/request-list-accepted.component"
 
 @Component({
   selector: 'app-payment',
@@ -17,7 +18,8 @@ export class PaymentComponent implements OnInit {
   constructor(
     private paymentService: PaymentService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private requestList: RequestListAcceptedComponent
   ) {}
 
   ngOnInit() {}
@@ -33,7 +35,7 @@ export class PaymentComponent implements OnInit {
       key: environment.stripe_key,
       image: 'https://i.imgur.com/ZgXl1tn.png',
       name: 'LinkedPet',
-      description: 'No se realizará ningún cobro hasta que la otra persona acepte',
+      description: '',
       currency: 'eur',
       locale: 'es',
       token: (token) => {
@@ -43,13 +45,14 @@ export class PaymentComponent implements OnInit {
               window.location.href = response.url;
             } else {
               this.toastr.success('Payment Completed!');
+              this.requestList.loadData();
             }
           });
       }
     });
 
     handler.open({
-      amount: (this.price * 100) - (this.price * 100 * 0.025),
+      amount: (this.price * 100) + (this.price * 100 * 0.025),
       email: 'info@linkedpet.com',
     });
 

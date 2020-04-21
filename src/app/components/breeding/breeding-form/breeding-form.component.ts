@@ -102,13 +102,13 @@ export class BreedingCreateComponent implements OnInit {
         this.editBreeding.price || '', [Validators.required, Validators.min(0)]
       ),
       animal_photo: new FormControl(
-        this.editBreeding.animal_photo || '', [Validators.required]
+        '', [Validators.required]
       ),
       identification_photo: new FormControl(
-        this.editBreeding.identification_photo || '', [Validators.required]
+        '', [Validators.required]
       ),
       vaccine_passaport: new FormControl(
-        this.editBreeding.vaccine_passaport || '', [Validators.required]
+        '', [Validators.required]
       ),
     });
     
@@ -135,11 +135,15 @@ export class BreedingCreateComponent implements OnInit {
   }
   validatePrice() {
     this.isValidPrice = this.breedingForm.get('price').valid;
-    try {
-      this.isValidPrice = this.isValidPrice && Number.isInteger(Number(this.breedingForm.get('price').value));
-    } catch (e) {
+    if(this.breedingForm.get('price').value>950000){
       this.isValidPrice = false;
-    }
+    }else{
+      try {
+        this.isValidPrice = this.isValidPrice && Number.isInteger(Number(this.breedingForm.get('price').value));
+      } catch (e) {
+        this.isValidPrice = false;
+      }
+  }
   }
   validateGenre() {
     if(!this.creating && this.rol=='moderator'){
@@ -150,6 +154,11 @@ export class BreedingCreateComponent implements OnInit {
   validateAge() {
     if(!this.creating && this.rol=='moderator'){
       this.isValidAge = this.breedingForm.get('age').valid;
+      var date = new Date(this.breedingForm.get('age').value)
+      var now = new Date()
+      if(date>now){
+        this.isValidAge = false
+      }
     }
   }
   validateType() {
@@ -164,7 +173,12 @@ export class BreedingCreateComponent implements OnInit {
   }
 
   validateAnimalPhoto(){
-    this.isValidAnimalPhoto = this.breedingForm.get('animal_photo').valid;
+    if(this.animalPhoto!=undefined){
+      const animalPhoto = this.animalPhoto.nativeElement.files;
+      this.isValidAnimalPhoto = this.breedingForm.get('animal_photo').valid && animalPhoto.length >= 2;
+    }else{
+      this.isValidAnimalPhoto = this.breedingForm.get('animal_photo').valid
+    }
   }
 
   validateLocation() {
@@ -257,7 +271,7 @@ export class BreedingCreateComponent implements OnInit {
     // si lo está editando un moderador
     if(!this.creating && this.rol == 'moderator' && this.isValidBreed && this.isValidGenre && this.isValidAge && this.isValidType && this.isValidPedigri){
 
-      console.log(this.breedingForm.value.age)
+      // console.log(this.breedingForm.value.age)
       formData.append('genre', this.breedingForm.value.genre);
       formData.append('breed', this.breedingForm.value.breed);
       formData.append('birth_date', this.breedingForm.value.age);
@@ -291,8 +305,8 @@ export class BreedingCreateComponent implements OnInit {
     this.validateVaccinePassaport();
     this.validatePedigree();
 
-    // create and edit
-    if (type === 'default' && this.rol == 'particular') {
+    // create or edit
+    if (type === 'default') {
       this.isValidBreed = true;
       this.isValidPrice = true;
       this.isValidGenre = true;
