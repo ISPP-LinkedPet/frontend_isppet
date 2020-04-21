@@ -93,7 +93,7 @@ export class AdoptionListComponent implements OnInit {
           this.adoptions.push(b);
         });
         this.returnedAdoptions = this.adoptions.slice(0, this.itemsPerPage);
-        console.log('aaaaaaaa', this.returnedAdoptions);
+        // console.log('aaaaaaaa', this.returnedAdoptions);
       });
   }
 }

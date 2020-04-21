@@ -185,7 +185,7 @@ export class AdotionFormComponent implements OnInit {
   validateType() {
     this.isValidType = this.adoptionForm.get('type').valid;
     this.check = this.adoptionForm.get('type').value === '';
-    console.log(this.adoptionForm.get('type'));
+    // console.log(this.adoptionForm.get('type'));
   }
   validatePedigree() {
     this.isValidPedigri = this.adoptionForm.get('pedigree').valid;
@@ -270,11 +270,11 @@ export class AdotionFormComponent implements OnInit {
 
     if (this.creating) {
       this.adoptionService.createAdoption(formData).then(x => {
-        console.log(x);
+        // console.log(x);
         alert('¡La adopción se ha creado correctamente!')
         this.router.navigate(['/adoption-list']);
       }).catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     } else if (!this.creating) {
@@ -282,7 +282,7 @@ export class AdotionFormComponent implements OnInit {
         alert('¡La adopción se ha editado correctamente!')
         this.router.navigate(['/pallAds']);
       }).catch(error => {
-        console.log(error);
+        // console.log(error);
       });
     }
   }

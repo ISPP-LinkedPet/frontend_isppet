@@ -257,7 +257,7 @@ export class BreedingCreateComponent implements OnInit {
     // si lo está editando un moderador
     if(!this.creating && this.rol == 'moderator' && this.isValidBreed && this.isValidGenre && this.isValidAge && this.isValidType && this.isValidPedigri){
 
-      console.log(this.breedingForm.value.age)
+      // console.log(this.breedingForm.value.age)
       formData.append('genre', this.breedingForm.value.genre);
       formData.append('breed', this.breedingForm.value.breed);
       formData.append('birth_date', this.breedingForm.value.age);

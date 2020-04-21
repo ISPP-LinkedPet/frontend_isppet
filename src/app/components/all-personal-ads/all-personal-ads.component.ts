@@ -124,7 +124,7 @@ export class AllPersonalAdsComponent implements OnInit {
     ));
     /***Slice***/
     this.returnedAds = this.allads.slice(0, this.itemsPerPage);
-    console.log(this.returnedAds)
+    // console.log(this.returnedAds)
   }
 
   pageChanged(event: PageChangedEvent): void {
@@ -177,8 +177,8 @@ export class AllPersonalAdsComponent implements OnInit {
 
   onSubmitReviewForm(publicationId: string) {
     const review = this.reviewForm.get('reviewarea').value;
-    console.log(review);
-    console.log(publicationId);
+    // console.log(review);
+    // console.log(publicationId);
     this.requestBreedingService.writeReview({star: 3 , review_description: review, publication_id: publicationId}).then(x => {
       alert('Tu review se ha enviado correctamente'); } ).then(x => {
         location.reload();

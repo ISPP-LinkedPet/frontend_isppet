@@ -69,10 +69,10 @@ export class AdFormComponent implements OnInit {
     this.validationFields();
 
     if (this.isValid) {
-      console.log(this.route.snapshot.params.id);
+      // console.log(this.route.snapshot.params.id);
       const topBanner = this.topBanner;
       const lateralBanner = this.lateralBanner;
-      console.log(topBanner);
+      // console.log(topBanner);
 
       const formData: FormData = new FormData();
       formData.append('ad_type', this.registerForm.value.ad_type);

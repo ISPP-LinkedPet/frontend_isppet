@@ -78,7 +78,7 @@ export class RegisterComponent implements OnInit {
     this.cleanError();
     this.isValid = true;
     this.validationFields();
-    console.log(this.registerForm.value.check);
+    // console.log(this.registerForm.value.check);
     if (this.isValid) {
 
       const formData: FormData = new FormData();
