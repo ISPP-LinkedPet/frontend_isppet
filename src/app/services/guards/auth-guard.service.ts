@@ -101,8 +101,44 @@ export class ShelterParticularGuardService implements CanActivate {
   constructor(private authService: ConfigService, private router: Router) { }
 
   canActivate() {
-    if ((this.authService.getUserLogged().role !== 'shelter') || (this.authService.getUserLogged().role !== 'particular')) {
+    if (!['shelter', 'particular'].includes(this.authService.getUserLogged().role)) {
         console.log('No estás logueado como protectora o particular');
+        this.router.navigate(['/']);
+        return false;
+    }
+
+    return true;
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ValidatorShelterParticularGuardService implements CanActivate {
+
+  constructor(private authService: ConfigService, private router: Router) { }
+
+  canActivate() {
+    if (!['moderator', 'shelter', 'particular'].includes(this.authService.getUserLogged().role)) {
+        console.log('No estás logueado como validaro, protectora o particular');
+        this.router.navigate(['/']);
+        return false;
+    }
+
+    return true;
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ValidatorParticularGuardService implements CanActivate {
+
+  constructor(private authService: ConfigService, private router: Router) { }
+
+  canActivate() {
+    if (!['moderator', 'particular'].includes(this.authService.getUserLogged().role)) {
+        console.log('No estás logueado como validaro, protectora o particular');
         this.router.navigate(['/']);
         return false;
     }

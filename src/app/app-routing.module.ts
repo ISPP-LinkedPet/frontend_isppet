@@ -37,7 +37,7 @@ import { VetPremiumComponent } from './components/vet/vet-premium/vet-premium.co
 import { RegisterVetComponent } from './components/vet/register-vet/register-vet.component';
 import { VetEditPageComponent } from './pages/admin/vet-edit-page/vet-edit-page.component';
 import { RegisterVetPageComponent } from './pages/admin/register-vet-page/register-vet-page.component';
-import { AuthGuardService, AdminGuardService, ValidatorGuardService, ParticularGuardService, ShelterGuardService, ShelterParticularGuardService } from './services/guards/auth-guard.service';
+import { AuthGuardService, AdminGuardService, ValidatorGuardService, ParticularGuardService, ShelterGuardService, ShelterParticularGuardService, ValidatorParticularGuardService, ValidatorShelterParticularGuardService } from './services/guards/auth-guard.service';
 
 
 const routes: Routes = [
@@ -59,15 +59,15 @@ const routes: Routes = [
 {path: 'breeding-edit/:id', component: EditComponentBreeding, canActivate: [ValidatorGuardService]},
 {path: 'breeding-edit-particular/:id', component: EditParticularComponent, canActivate: [ParticularGuardService]},
 {path: 'adoption-pending', component: AdoptionPendingListPageComponent, canActivate: [ValidatorGuardService]},
-{path: 'adoption-edit/:id', component: EditAdoptionComponent, canActivate: [ValidatorGuardService, ShelterParticularGuardService]},
+{path: 'adoption-edit/:id', component: EditAdoptionComponent, canActivate: [ValidatorShelterParticularGuardService]},
 {path: 'request/accepted/:createdOrReceived', component: RequestListAcceptedComponent, canActivate: [ParticularGuardService]},
 {path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuardService]},
 {path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuardService]},
 {path: 'animal', component: CreateComponentAnimal, canActivate: [ParticularGuardService]},
-{path: 'animal-edit/:id', component: EditComponentAnimal, canActivate: [ParticularGuardService, ValidatorGuardService]},
+{path: 'animal-edit/:id', component: EditComponentAnimal, canActivate: [ValidatorParticularGuardService]},
 {path: 'animal-pending', component: PendingListComponent, canActivate: [ValidatorGuardService]},
 {path: 'breeding-animal', component: CreateAnimalComponentBreeding, canActivate: [ParticularGuardService]},
-{path: 'breeding-animal-edit/:id', component: EditAnimalComponentBreeding, canActivate: [ParticularGuardService ,ValidatorGuardService]},
+{path: 'breeding-animal-edit/:id', component: EditAnimalComponentBreeding, canActivate: [ValidatorParticularGuardService]},
 {path: 'topAd', component: HorizontalAdvertisementComponent, canActivate: [AuthGuardService]},
 {path: 'lateralAd', component: VerticalAdvertisementsComponent, canActivate: [AuthGuardService]},
 {path: 'pallAds', component: PageAllPersonalAdsComponent, canActivate: [ParticularGuardService]},
