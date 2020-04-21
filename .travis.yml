@@ -16,20 +16,12 @@ script:
   # - webdriver-manager update
   # - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
   - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-# deploy:
-  # - provider: heroku
-    # app: frontend-linkedpet-dev
-    # strategy: git
-    # api_key:
-      # secure: FenKPa+8vheWHA4uZXRncBtHhm40HQUt7d3giLN0ldfmLwBS12G6PHLuG9qepMXD32mFquWI7AkS3O1OAq0qM1w1aKmIICvIE1ea/q6yz7kmBoLEBUedIAAc5UWG6P+PGjLO0YJ01Rwhx/o27BTBHWDtSBUWOYFcwvk20sPxhzmG4JfuosgfdgX3QS5GJFIDCqYf32M8bsw2nSJR3hHtABbh7fCR17eSIKOYifEbovjrhidpJhYFdHibqQOjyBIzeUSdEetzWolgI5drhRG234HZiv2ATKygS9CYvUsCzGqLwgJ/WVGdCTGYDDLS18hxa0L3AlG2NvL4LkZd/Z5mifvM+vxyrmIi1TCfdHGjSApxGXN+86gjBjZ9Aat5m5tvejWD6nukG9N70u1Eo2FYSs1t77RNkf+uv3T/AFkRYLF2RxLRqtd13z2zup9zklyORDKp2rPM7/hNvfmZg765nBje0oD7OVE2tKb8v/KfImIt6grF90ZjK0sUu/rBO1xxfLLLrd95T6wHxwsZGcD94RLlf6N/ByJH/KBVeqRLae5QGZwNaZKZuTZCPBwKZqzbVyzuKReuU7Q2RmmxTGOGu8CnJcFl1Ai/LRokA4SacaCa1+gpV438hLuJ0zTXTdUOYbjsfRc8YyGkxBk6KFdrCm0ywioV7F1zT2KB071DvG8=
-    # on:
-      # branch: develop
-
-  # - provider: heroku
-    # app: frontend-linkedpet-prod-$TRAVIS_TAG
-    # strategy: git
-    # api_key:
-      # secure: FenKPa+8vheWHA4uZXRncBtHhm40HQUt7d3giLN0ldfmLwBS12G6PHLuG9qepMXD32mFquWI7AkS3O1OAq0qM1w1aKmIICvIE1ea/q6yz7kmBoLEBUedIAAc5UWG6P+PGjLO0YJ01Rwhx/o27BTBHWDtSBUWOYFcwvk20sPxhzmG4JfuosgfdgX3QS5GJFIDCqYf32M8bsw2nSJR3hHtABbh7fCR17eSIKOYifEbovjrhidpJhYFdHibqQOjyBIzeUSdEetzWolgI5drhRG234HZiv2ATKygS9CYvUsCzGqLwgJ/WVGdCTGYDDLS18hxa0L3AlG2NvL4LkZd/Z5mifvM+vxyrmIi1TCfdHGjSApxGXN+86gjBjZ9Aat5m5tvejWD6nukG9N70u1Eo2FYSs1t77RNkf+uv3T/AFkRYLF2RxLRqtd13z2zup9zklyORDKp2rPM7/hNvfmZg765nBje0oD7OVE2tKb8v/KfImIt6grF90ZjK0sUu/rBO1xxfLLLrd95T6wHxwsZGcD94RLlf6N/ByJH/KBVeqRLae5QGZwNaZKZuTZCPBwKZqzbVyzuKReuU7Q2RmmxTGOGu8CnJcFl1Ai/LRokA4SacaCa1+gpV438hLuJ0zTXTdUOYbjsfRc8YyGkxBk6KFdrCm0ywioV7F1zT2KB071DvG8=
-    # on:
-      # branch: master
-      # tags: true
+deploy:
+  - provider: heroku
+    app: frontend-linkedpet-prod-v2
+    strategy: git
+    api_key:
+      secure: YcUGxwklQI6BCWNMdAULyB5ajqEhIaJprwI/jXFgJVPqaMMIcYmeLcN9fPcWiEW+N5GQ3+Q5FA5E+HHXzy65/YnrvvbRGlbi2aFUNmJtxXSqjb8TYlrUKsioPW5N6UY0EM2AqEaumR6UEk6esqv2zVp99l1mzAzMtMiundPIynmWksggkwxCMBf75F7RRGOyaXp+ie33Umlq+IiWKVNCKLyjcQ/79lxt8T6mJQPde1gbATk/U8qwftdXxjBTdJq/1Wp+6Q3Iw98U60xeesUuK5XpB33ifSGv/hStfcM1au0rr96tWxi+SJk9vrDV3Miu3Tu9rmGrGq9d1a/Lnwo1W8osT6VDGUMpqNnNXOETEthTlmgXYEbvR4d66piHJTHzSjo8jQM8UbSxhHv4US/u6QYoumyvO9a4y+SrKZrtS4X+yRshGrC6NIcHAoWcEmsnptE0fayiu9lpPgKUtRb5mIm8pWkTcsfh0d3nucL6IBqp5bSbykt+KitdzYCrlkoj9yciZe59G81YXtuVRlg87PFvsUViImlxsKpC7XVQRKksrDofazeI0r6di02A2JLlS5CWUvuQMQO5/qsQ40EdDSBPvlOZIFmYE2mEAHEOPS9UrA7Pl213Gnz4zsg0NAYlSRbovTrBcJA226bgQVIQnCdNG99TWNbaM/EYMpv1KUQ=
+    on:
+      branch: master
+      tags: true
