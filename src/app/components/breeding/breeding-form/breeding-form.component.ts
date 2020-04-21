@@ -102,13 +102,13 @@ export class BreedingCreateComponent implements OnInit {
         this.editBreeding.price || '', [Validators.required, Validators.min(0)]
       ),
       animal_photo: new FormControl(
-        this.editBreeding.animal_photo || '', [Validators.required]
+        '', [Validators.required]
       ),
       identification_photo: new FormControl(
-        this.editBreeding.identification_photo || '', [Validators.required]
+        '', [Validators.required]
       ),
       vaccine_passaport: new FormControl(
-        this.editBreeding.vaccine_passaport || '', [Validators.required]
+        '', [Validators.required]
       ),
     });
     
