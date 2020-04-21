@@ -16,6 +16,10 @@ export class AdoptionService {
     return this.requestService.request('GET', `${environment.endpoint}/adoption/available`, {}, {}, true);
   }
 
+  getPublication(id: string){
+    return this.requestService.request('GET', `${environment.endpoint}/publication/${id}`, {}, {}, true);
+  }
+
   getAdoptionById(token: string, id: string) {
     return this.requestService.request('GET', `${environment.endpoint}/adoption/${id}`, {}, {access_token: token}, true);
   }
