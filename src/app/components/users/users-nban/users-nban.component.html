@@ -1,54 +1,51 @@
 <div class="container my-4">
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="jumbotron-header">Lista de usuarios</h1>
-        <p class="lead text-muted">
-          Esta es la lista de todos los usuarios no baneados del sistema.
-        </p>
-        <p>
-          <button routerLink="/register" type="button" class="btn btn-success">Registrar Usuario</button>
-        </p>
-        <form [formGroup]="filterForm">
-          <label for="role">Puedes filtrar por rol de usuario</label>
-          <select
-            class="form-control"
-            id="role"
-            formControlName="role"
-            (change)="onSubmit()">
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-header">Lista de usuarios</h1>
+      <p class="lead text-muted">
+        Esta es la lista de todos los usuarios no baneados del sistema.
+      </p>
+      <p>
+        <button routerLink="/register" type="button" class="btn btn-success">Registrar Usuario</button>
+      </p>
+      <form [formGroup]="filterForm">
+        <label for="role">Puedes filtrar por rol de usuario</label>
+        <select class="form-control" id="role" formControlName="role" (change)="onSubmit()">
 
-            <option value="" [defaultSelected]="true">Seleccione Rol</option>
-            <option value="particular">Particular</option>
-            <option value="shelter">Refugio</option>
-            <option value="moderator">Validador</option>
-            <option value="administrator">Administrador</option>
+          <option value="" [defaultSelected]="true">Seleccione Rol</option>
+          <option value="particular">Particular</option>
+          <option value="shelter">Refugio</option>
+          <option value="moderator">Validador</option>
+          <option value="administrator">Administrador</option>
 
-          </select>
-        </form>
-      </div>
-    </section>
-  
-    <div class="card mb-3" *ngFor="let userAd of returnedUsers">
-        <div class="row no-gutters">
-          <div class="col-md-8">
-            <div class="card-body">
-                <h2 class="card-title">{{userAd.name}}</h2>
-              <hr>
-              <h5 class="card-text">Dirección: {{userAd.address}}</h5>
-              <h5 class="card-text">Teléfono: {{userAd.telephone}}</h5>
-              <h5 class="card-text">Email: {{userAd.email}}</h5>
-              <h5 class="card-text">Rol: {{translateRol(userAd.role)}}</h5>
-            </div>
-            <div *ngIf="userAd.role != 'administrator'" class="col-md-8 mb-3">
-                <button type="button" class="btn btn-success mr-2" (click)="banUser(userAd.id)">Banear</button>
-              </div>
-          </div>
-            <div class="col-md-4">
-                    <img src="{{ env }}/{{ userAd.optional_photo }}" class="rounded" alt="Foto del usuario"
-                     onerror="this.onerror=null;this.src='../../../assets/icons/simple_icon.png';" />
-            </div>
+        </select>
+      </form>
+    </div>
+  </section>
+
+  <div class="card mb-3" *ngFor="let userAd of returnedUsers">
+    <div class="row no-gutters">
+      <div class="col-md-8">
+        <div class="card-body">
+          <h2 class="card-title">{{userAd.name}}</h2>
+          <hr>
+          <h5 class="card-text">Dirección: {{userAd.address}}</h5>
+          <h5 class="card-text">Teléfono: {{userAd.telephone}}</h5>
+          <h5 class="card-text">Email: {{userAd.email}}</h5>
+          <h5 class="card-text">Rol: {{translateRol(userAd.role)}}</h5>
+        </div>
+        <div *ngIf="userAd.role != 'administrator'" class="col-md-8 mb-3">
+          <button type="button" class="btn btn-success mr-2" (click)="banUser(userAd.id)">Banear</button>
         </div>
       </div>
-    <!--End Foreach-->
-    <pagination class="justify-content-md-center" [totalItems]="users.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)">
-    </pagination>
+      <div class="col-md-4">
+        <img src="{{ env }}/{{ userAd.optional_photo }}" class="rounded" alt="Foto del usuario"
+          onerror="this.onerror=null;this.src='../../../assets/icons/simple_icon.png';" />
+      </div>
+    </div>
+  </div>
+  <!--End Foreach-->
+  <pagination class="justify-content-md-center" [totalItems]="users.length" previousText="Anterior" firstText="Primera"
+    nextText="Siguiente" lastText="Último" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)">
+  </pagination>
 </div>
