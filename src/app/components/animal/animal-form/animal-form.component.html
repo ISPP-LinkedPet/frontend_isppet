@@ -269,7 +269,7 @@
                 <button *ngIf="rol == 'particular'" (click)="router.navigate(['/my-profile']);" class="btn btn-danger">Volver a mi perfil</button> 
             </form>
 
-            <div class="invalid-feedback">{{backError}} {{backError|json}}</div>
+            <div class="invalid-feedback" *ngIf="backError!=undefined">Parece que ha habido un error</div>
         </div>
     </div>
   </div>
