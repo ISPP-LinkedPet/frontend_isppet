@@ -12,6 +12,13 @@
     </div>
   </section>
 
+  <div class="alert alert-dismissible alert-info my-5" *ngIf="returnedAds.length==0">
+    <h4 class="alert-heading">
+      <fa-icon [icon]="faInfoCircle" class="mr-2"></fa-icon>No se han encontrado anuncios
+    </h4>
+    <p>Por el momento no se ha añadido ningun anuncio para la página</p>
+  </div>
+
   <div class="card mb-3" *ngFor="let ad of returnedAds">
     <div class="row no-gutters">
 

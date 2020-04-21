@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin/admin.service';
 import { environment } from 'src/environments/environment';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-ads-list',
@@ -10,6 +11,8 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
   styleUrls: ['./ads-list.component.css']
 })
 export class AdsListComponent implements OnInit {
+
+  faInfoCircle = faInfoCircle;
   ads = new Array();
   returnedAds = new Array();
   env = environment.endpoint
