@@ -1,11 +1,11 @@
 <div class="float-left">
 <div *ngFor="let advertisement of advertisements" class="">
-    <div class="overflow-hidden " *ngIf="advertisement.redirect_to!=null">
+    <div class="overflow-hidden sidenav" *ngIf="advertisement.redirect_to!=null">
         <a href="{{advertisement.redirect_to}}" (click)="onClickAdvertisement(advertisement)">
             <img src="{{env}}/{{advertisement.lateral_banner}}" style="position: absolute;  width: 9% !important; padding-right: 3rem !important;">
         </a>
     </div>
-    <div class="overflow-hidden " *ngIf="advertisement.redirect_to==null" style="position: absolute;  width: 9% !important; padding-right: 3rem !important;">
+    <div class="overflow-hidden sidenav" *ngIf="advertisement.redirect_to==null" style="position: absolute;  width: 9% !important; padding-right: 3rem !important;">
         <img src="{{env}}/{{advertisement.lateral_banner}}">
     </div>
 </div>
