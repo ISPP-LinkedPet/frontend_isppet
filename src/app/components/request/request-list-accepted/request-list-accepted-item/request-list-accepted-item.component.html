@@ -20,13 +20,13 @@
       <span *ngIf="transactionStatus=='Reviewed'" class="badge badge-dark text-white">FINALIZADA</span>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item"><h5>
+      <li class="list-group-item"  ><h5>
         {{genre == 'Male' ? 'Macho' : 'Hembra'}}  de {{ this.configService.calculateAge(birth_date) }} 
         <strong>{{ pedigree ? "con" : "sin" }}</strong> pedigrí en {{ location }}
       </h5></li>
-      <li class="list-group-item"><h6><strong>Teléfono de contacto:</strong> {{ phone }}</h6></li>
-      <li class="list-group-item"><h6><strong>Email:</strong> {{ email }}</h6></li>
-      <li class="list-group-item"><h6><strong>Dirección del propietario:</strong> {{ address }}</h6></li>
+      <li class="list-group-item" *ngIf="(transactionStatus=='Completed') || (transactionStatus=='Reviewed')"><h6><strong>Teléfono de contacto:</strong> {{ phone }}</h6></li>
+      <li class="list-group-item" *ngIf="(transactionStatus=='Completed') || (transactionStatus=='Reviewed')"><h6><strong>Email:</strong> {{ email }}</h6></li>
+      <li class="list-group-item" *ngIf="(transactionStatus=='Completed') || (transactionStatus=='Reviewed')"><h6><strong>Dirección del propietario:</strong> {{ address }}</h6></li>
     </ul>
   </div>
   <div class="card-footer">
