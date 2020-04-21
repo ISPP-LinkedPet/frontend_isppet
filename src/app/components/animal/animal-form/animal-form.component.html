@@ -70,7 +70,7 @@
                         <div class="form-group has-danger col-4" *ngIf="!isValidAge">
                             <label class="form-control-label" for="birth_date">Edad</label>
                             <input type="date" class="form-control is-invalid" id="birth_date" [readOnly]="rol=='particular'" formControlName="birth_date" (change)="validateAge()">
-                            <div class="invalid-feedback">No olvide seleccionar la edad</div>
+                            <div class="invalid-feedback">No olvide seleccionar la edad y no puede ser posterior a la acutal</div>
                         </div>
                     </div>
   

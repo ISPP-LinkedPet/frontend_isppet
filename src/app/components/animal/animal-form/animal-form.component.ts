@@ -145,9 +145,15 @@ export class AnimalFormComponent implements OnInit {
     }
     // console.log(this.animalForm.get('genre').value);
   }
+
   validateAge() {
     if (!this.creating && this.rol == 'moderator') {
       this.isValidAge = this.animalForm.get('birth_date').valid;
+      var date = new Date(this.animalForm.get('birth_date').value)
+      var now = new Date()
+      if(date>now){
+        this.isValidAge = false
+      }
     }
   }
   validateType() {
@@ -290,7 +296,7 @@ export class AnimalFormComponent implements OnInit {
     this.validatePedigree();
 
     // create and edit
-    if (type === 'default' && this.rol == 'particular') {
+    if (type === 'default') {
       this.isValidBreed = true;
       this.isValidGenre = true;
       this.isValidAge = true;
