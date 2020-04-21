@@ -306,7 +306,7 @@ export class BreedingCreateComponent implements OnInit {
     this.validatePedigree();
 
     // create or edit
-    if (type === 'default' || this.rol == 'particular') {
+    if (type === 'default') {
       this.isValidBreed = true;
       this.isValidPrice = true;
       this.isValidGenre = true;
