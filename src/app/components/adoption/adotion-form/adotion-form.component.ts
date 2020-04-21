@@ -181,6 +181,11 @@ export class AdotionFormComponent implements OnInit {
   }
   validateAge() {
     this.isValidAge = this.adoptionForm.get('birth_date').valid;
+    var date = new Date(this.adoptionForm.get('birth_date').value)
+    var now = new Date()
+    if(date>now){
+      this.isValidAge = false
+    }
   }
   validateType() {
     this.isValidType = this.adoptionForm.get('type').valid;
@@ -191,7 +196,8 @@ export class AdotionFormComponent implements OnInit {
     this.isValidPedigri = this.adoptionForm.get('pedigree').valid;
   }
   validateAnimalPhoto() {
-    this.isValidAnimalPhoto = this.adoptionForm.get('animal_photo').valid;
+    const animalPhoto = this.animalPhoto.nativeElement.files;
+    this.isValidAnimalPhoto = this.adoptionForm.get('animal_photo').valid && animalPhoto.length >= 2;
   }
   validateLocation() {
     this.isValidLocation = this.adoptionForm.get('location').valid;
