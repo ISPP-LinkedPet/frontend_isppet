@@ -49,13 +49,14 @@ export class RequestListAcceptedComponent implements OnInit {
      const paymentId = this.route.snapshot.queryParamMap.get('paymentId')
      const breedingId = this.route.snapshot.queryParamMap.get('breedingId')
      const payerId = this.route.snapshot.queryParamMap.get('PayerID')
-     console.log(paymentId, 'ppp')
+     // console.log(paymentId, 'ppp')
      if (paymentId != undefined) {
       // Hacer peticion de confirmPayment
       this.paymentService.checkPaypalPayment(paymentId, {breedingId, payerId}).then(response => {
         if (response.state === 'approved') {
           // abrir modal
           this.toastr.success('Payment Completed!');
+          this.loadData();
         } else {
           // error
           this.toastr.error('Payment not complete!');
@@ -75,11 +76,10 @@ export class RequestListAcceptedComponent implements OnInit {
         if (response.status === 'succeeded') {
           // abrir modal
           this.toastr.success('Payment Completed!')
-          location.reload();
+          this.loadData();
         } else {
           // error
           this.toastr.error('Payment not complete!');
-          location.reload();
         }
       });
     }
@@ -116,7 +116,7 @@ export class RequestListAcceptedComponent implements OnInit {
       this.requestPublicationService
         .getCreatedAndAccepted()
         .then(requests => {
-          console.log(requests);
+          // console.log(requests);
           requests.forEach(request => this.requests.push(request));
           this.returnedRequest = this.requests.slice(0, this.itemsPerPage);
         })
@@ -127,7 +127,7 @@ export class RequestListAcceptedComponent implements OnInit {
       this.requestPublicationService
         .getCreatedAndPending()
         .then(requests => {
-          console.log(requests);
+          // console.log(requests);
           requests.forEach(request => this.requests.push(request));
           this.returnedRequest = this.requests.slice(0, this.itemsPerPage);
         })
@@ -138,7 +138,7 @@ export class RequestListAcceptedComponent implements OnInit {
       this.requestPublicationService
         .getCreatedAndRejected()
         .then(requests => {
-          console.log(requests);
+          // console.log(requests);
           requests.forEach(request => this.requests.push(request));
           this.returnedRequest = this.requests.slice(0, this.itemsPerPage);
         })

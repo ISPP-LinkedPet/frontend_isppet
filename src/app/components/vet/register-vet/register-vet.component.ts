@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AdminService } from 'src/app/services/admin/admin.service';
 import { VetService } from '../../../services/vet/vet.service';
-import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-register-vet',
   templateUrl: './register-vet.component.html',
   styleUrls: ['./register-vet.component.css']
 })
 export class RegisterVetComponent implements OnInit {
+  @Input() creating: boolean;
+
+
   showParticularInputs: boolean;
   isValid: boolean;
   isValidUserName: boolean;
@@ -24,6 +29,7 @@ export class RegisterVetComponent implements OnInit {
   optionalPhotoUrl: string; // Para la preview
   optionalPhoto: any;
   is_premium: any;
+  editVet: any;
   showError = false;
   errorMessage = '';
   registerSuccess = false;
@@ -31,9 +37,16 @@ export class RegisterVetComponent implements OnInit {
   expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
   registerForm: any;
   role: string;
-  constructor(public vetService: VetService, private router: Router) { }
+  constructor(public vetService: VetService, public adminService: AdminService, private router: Router, private route: ActivatedRoute) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    try {
+      this.editVet = await this.vetService.getVetById(this.route.snapshot.params.id);
+    } catch (error) {
+    }
+    if (!this.editVet) {
+      this.editVet = {};
+    }
     this.initializeForm();
 
     this.isValid = false;
@@ -48,18 +61,20 @@ export class RegisterVetComponent implements OnInit {
   }
 
   initializeForm() {
+    this.editVet = this.editVet || {};
     this.registerForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      address: new FormControl('', [Validators.required]),
-      url: new FormControl('', [Validators.required, Validators.pattern(this.expression)]),
-      telephone: new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]),
-      optional_photo: new FormControl('', [
+      name: new FormControl(this.editVet.name || '', [Validators.required, Validators.minLength(3)]),
+      email: new FormControl(this.editVet.email || '', [Validators.required, Validators.email]),
+      address: new FormControl(this.editVet.address || '', [Validators.required]),
+      url: new FormControl(this.editVet.url || '', [Validators.required, Validators.pattern(this.expression)]),
+      telephone: new FormControl(this.editVet.telephone || '', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]),
+      optional_photo: new FormControl(this.editVet.optional_photo || '', [
         Validators.required,
       ]),
-      surname: new FormControl('', [Validators.required]),
-      is_premium: new FormControl(this.is_premium, [Validators.required])
+      surname: new FormControl(this.editVet.surname || '', [Validators.required]),
+      is_premium: new FormControl(this.editVet.is_premium || this.is_premium, [Validators.required])
     });
+    // console.log(this.registerForm);
   }
 
   onSubmit() {
@@ -69,34 +84,63 @@ export class RegisterVetComponent implements OnInit {
     this.validationFields();
     if (this.isValid) {
 
-      const formData: FormData = new FormData();
-      formData.append('name', this.registerForm.value.name);
-      formData.append('email', this.registerForm.value.email);
-      formData.append('address', this.registerForm.value.address);
-      formData.append('telephone', this.registerForm.value.telephone);
-      formData.append('optional_photo', this.optionalPhoto);
-      formData.append('surname', this.registerForm.value.surname);
-      formData.append('url', this.registerForm.value.url);
-      formData.append('is_premium', this.registerForm.value.is_premium);
-      this.vetService
-        .create(formData)
-        .then(res => {
-          this.registerSuccess = true;
-          this.successMessage = 'Creación veterinario. Redirigiendo a la página home';
-          setTimeout(() => {
-            this.router.navigate(['/']);
-            this.cleanData();
-          }, 2000);
-        })
-        .catch(error => {
-          this.errorMessage = (error.error.error && typeof error.error.error === 'string') ? error.error.error : 'Something went wrong';
-          this.showError = true;
-        });
+      if (this.creating) {
+        const formData: FormData = new FormData();
+        formData.append('name', this.registerForm.value.name);
+        formData.append('email', this.registerForm.value.email);
+        formData.append('address', this.registerForm.value.address);
+        formData.append('telephone', this.registerForm.value.telephone);
+        formData.append('optional_photo', this.optionalPhoto);
+        formData.append('surname', this.registerForm.value.surname);
+        formData.append('url', this.registerForm.value.url);
+        formData.append('is_premium', this.registerForm.value.is_premium);
+
+        this.vetService
+          .create(formData)
+          .then(res => {
+            this.registerSuccess = true;
+            this.successMessage = 'Creación veterinario. Redirigiendo a la página de veterinarios';
+            setTimeout(() => {
+              this.router.navigate(['/vet']);
+              this.cleanData();
+            }, 2000);
+          })
+          .catch(error => {
+            this.errorMessage = (error.error.error && typeof error.error.error === 'string') ? error.error.error : 'Something went wrong';
+            this.showError = true;
+          });
+      } else if (!this.creating) {
+        const formData: FormData = new FormData();
+        formData.append('name', this.registerForm.value.name);
+        formData.append('email', this.registerForm.value.email);
+        formData.append('address', this.registerForm.value.address);
+        formData.append('telephone', this.registerForm.value.telephone);
+        formData.append('optional_photo', this.optionalPhoto);
+        formData.append('surname', this.registerForm.value.surname);
+        formData.append('url', this.registerForm.value.url);
+        formData.append('is_premium', this.registerForm.value.is_premium);
+
+        this.adminService
+          .editVet(this.route.snapshot.params.id, formData)
+          .then(res => {
+            this.registerSuccess = true;
+            this.successMessage = 'Edición de veterinario. Redirigiendo a la página de veterinarios';
+            setTimeout(() => {
+              this.router.navigate(['/vet']);
+              this.cleanData();
+            }, 2000);
+          })
+          .catch(error => {
+            this.errorMessage = (error.error.error && typeof error.error.error === 'string') ? error.error.error : 'Something went wrong';
+            this.showError = true;
+          });
+      }
     }
   }
 
 
   validationFields() {
+    // console.log(this.registerForm.get('is_premium').value);
     this.validateAddress();
     this.validateEmail();
     this.validateName();
@@ -127,7 +171,7 @@ export class RegisterVetComponent implements OnInit {
     }
   }
   validatePremium() {
-    this.isValidPremium = ['1', '0'].includes(this.registerForm.get('is_premium').value);
+    this.isValidPremium = ['1', '0', 1, 0].includes(this.registerForm.get('is_premium').value);
     if (!this.isValidPremium) {
       this.isValid = false;
     }

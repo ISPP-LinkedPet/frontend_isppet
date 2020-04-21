@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RequestBreedingService } from 'src/app/services/requestBreeding/request-breeding.service';
+import { ConfigService } from 'src/app/services/config/config.service';
 
 @Component({
   selector: 'app-request-list-accepted-item',
@@ -16,7 +17,13 @@ export class RequestListAcceptedItemComponent implements OnInit {
   publicationType: string;
   name: string;
   phone: string;
+  location: string;
+  genre: string;
+  breed: string;
   email: string;
+  pedigree: string;
+  price: string;
+  birth_date: Date;
   address: string;
   requestStatus: string;
   transactionStatus: string;
@@ -30,7 +37,9 @@ export class RequestListAcceptedItemComponent implements OnInit {
   star: number;
 
   constructor(private router: Router,
-    private requestBreedingService: RequestBreedingService) { }
+    private requestBreedingService: RequestBreedingService,
+    public configService: ConfigService
+    ) { }
 
   ngOnInit(): void {
 
@@ -45,8 +54,13 @@ export class RequestListAcceptedItemComponent implements OnInit {
     this.phone = this.request.contactData.telephone;
     this.email = this.request.contactData.email;
     this.address = this.request.contactData.address;
-
+    this.birth_date = this.request.birth_date;
     this.breedingId = this.request.contactData.breedingId;
+    this.location = this.request.location;
+    this.genre = this.request.genre;
+    this.breed = this.request.breed;
+    this.pedigree = this.request.pedigree;
+    this.price = this.request.price;
     this.publicationId = this.request.publication_id;
     this.requestStatus = this.request.status;
     this.transactionStatus = this.request.transaction_status;
@@ -60,11 +74,11 @@ export class RequestListAcceptedItemComponent implements OnInit {
       reviewarea: new FormControl(''),
       star: new FormControl([Validators.required])
     });
-    console.log(this.request.status);
+    // console.log(this.request.status);
 
-    console.log(this.request);
+    // console.log(this.request);
 
-    console.log(this.requestStatus, this.transactionStatus);
+    // console.log(this.requestStatus, this.transactionStatus);
   }
 
   onClick(e: Event) {
@@ -83,7 +97,7 @@ export class RequestListAcceptedItemComponent implements OnInit {
   onSubmitReviewForm() {
     const review = this.reviewForm.get('reviewarea').value;
     const star = this.reviewForm.get('star').value;
-    console.log(star)
+    // console.log(star)
     this.requestBreedingService.writeReview({ star: star, review_description: review, publication_id: this.publicationId }).then(x => {
       alert('Tu review se ha enviado correctamente');
     }).then(x => {

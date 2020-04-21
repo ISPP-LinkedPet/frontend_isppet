@@ -11,10 +11,7 @@ import { LoginRegisterComponent } from './pages/login-register/login-register.co
 import { RegisterUserPageComponent } from './pages/admin/register-user-page/register-user-page.component';
 import { VetComponent } from './components/vet/vet.component';
 import { BreedingPendingListPageComponent } from './pages/breeding/pending-list/breeding-pending-list-page.component';
-import { PersonalListComponent } from './pages/breeding/personal-list/personal-list.component';
-import { PersonalListAdoptionComponent } from './pages/adoption/personal-list-adoption/personal-list-adoption.component';
 import { EditComponent as EditComponentBreeding} from './pages/breeding/edit/edit.component';
-import { RequestListComponent } from './components/request/request-list/request-list.component';
 import { EditAdoptionComponent} from './pages/adoption/edit-adoption/edit-adoption.component';
 import { AdoptionPendingListPageComponent } from './pages/adoption/adoption-moderator/adoption-pending-list-page.component';
 import { RequestListAcceptedComponent } from './components/request/request-list-accepted/request-list-accepted.component';
@@ -31,7 +28,6 @@ import { CreateAnimalComponent as CreateAnimalComponentBreeding } from './pages/
 import { EditAnimalComponent as EditAnimalComponentBreeding } from './pages/breeding/edit-animal/edit-animal.component';
 // tslint:disable-next-line: max-line-length
 import { VerticalAdvertisementsComponent } from './components/vets-advertisements/vertical-advertisements/vertical-advertisements.component';
-import { AllPersonalAdsComponent } from './components/all-personal-ads/all-personal-ads.component';
 import { PageAllPersonalAdsComponent } from './pages/page-all-personal-ads/page-all-personal-ads.component';
 import { AlertPageComponent } from './pages/admin/alert-page/alert-page.component';
 import { UsersNbanPageComponent } from './pages/users/users-nban-page/users-nban-page.component';
@@ -39,45 +35,47 @@ import { AdsListPageComponent } from './pages/ads/ads-list-page/ads-list-page.co
 import { AdsEditPageComponent } from './pages/ads/ads-edit-page/ads-edit-page.component';
 import { VetPremiumComponent } from './components/vet/vet-premium/vet-premium.component';
 import { RegisterVetComponent } from './components/vet/register-vet/register-vet.component';
+import { VetEditPageComponent } from './pages/admin/vet-edit-page/vet-edit-page.component';
+import { RegisterVetPageComponent } from './pages/admin/register-vet-page/register-vet-page.component';
+import { AuthGuardService, AdminGuardService, ValidatorGuardService, ParticularGuardService, ShelterGuardService, ShelterParticularGuardService, ValidatorParticularGuardService, ValidatorShelterParticularGuardService } from './services/guards/auth-guard.service';
 
 
 const routes: Routes = [
 {path: '', component: HomeComponent},
-{path: 'breeding-display', component: BreedingDisplayComponent},
-{path: 'adoption-display', component: AdoptionDisplayComponent},
-{path: 'breeding-list', component: BreedingListPageComponent},
-{path: 'adoption-list', component: AdoptionListPageComponent},
-{path: 'breeding-personal-list', component: PersonalListComponent},
-{path: 'adoption-personal-list', component: PersonalListAdoptionComponent},
-{path: 'breeding', component: CreateComponentBreeding},
-{path: 'adoption', component: CreateComponentAdoption},
+{path: 'breeding-display', component: BreedingDisplayComponent, canActivate: [AuthGuardService]},
+{path: 'adoption-display', component: AdoptionDisplayComponent, canActivate: [AuthGuardService]},
+{path: 'breeding-list', component: BreedingListPageComponent, canActivate: [AuthGuardService]},
+{path: 'adoption-list', component: AdoptionListPageComponent, canActivate: [AuthGuardService]},
+{path: 'breeding', component: CreateComponentBreeding , canActivate: [ParticularGuardService]},
+{path: 'adoption', component: CreateComponentAdoption, canActivate: [ShelterParticularGuardService]},
 {path: 'login', component: LoginRegisterComponent},
 {path: 'register', component: RegisterUserPageComponent},
-{path: 'userlist', component: UsersNbanPageComponent},
-{path: 'adsList', component: AdsListPageComponent},
-{path: 'adEdit/:id', component: AdsEditPageComponent},
-{path: 'vet', component: VetComponent},
-{path: 'breeding-pending', component: BreedingPendingListPageComponent},
-{path: 'breeding-edit/:id', component: EditComponentBreeding},
-{path: 'breeding-edit-particular/:id', component: EditParticularComponent},
-{path: 'request', component: RequestListComponent},
-{path: 'adoption-pending', component: AdoptionPendingListPageComponent},
-{path: 'adoption-edit/:id', component: EditAdoptionComponent},
-{path: 'request/accepted/:createdOrReceived', component: RequestListAcceptedComponent},
-{path: 'profile/:id', component: ProfileComponent},
-{path: 'my-profile', component: MyProfileComponent},
-{path: 'animal', component: CreateComponentAnimal},
-{path: 'animal-edit/:id', component: EditComponentAnimal},
-{path: 'animal-pending', component: PendingListComponent},
-{path: 'breeding-animal', component: CreateAnimalComponentBreeding},
-{path: 'breeding-animal-edit/:id', component: EditAnimalComponentBreeding},
-{path: 'topAd', component: HorizontalAdvertisementComponent},
-{path: 'lateralAd', component: VerticalAdvertisementsComponent},
-{path: 'pallAds', component: PageAllPersonalAdsComponent},
-{path: 'statitics', component: StatisticsPageComponent},
-{path: 'alert', component: AlertPageComponent},
-{path: 'vet-premium', component: VetPremiumComponent},
-{path: 'vet-create', component: RegisterVetComponent}
+{path: 'userlist', component: UsersNbanPageComponent, canActivate: [AdminGuardService]},
+{path: 'adsList', component: AdsListPageComponent, canActivate: [AdminGuardService]},
+{path: 'adEdit/:id', component: AdsEditPageComponent, canActivate: [AdminGuardService]},
+{path: 'adEdit', component: AdsEditPageComponent, canActivate: [AdminGuardService]},
+{path: 'vet', component: VetComponent, canActivate: [AuthGuardService]},
+{path: 'breeding-pending', component: BreedingPendingListPageComponent, canActivate: [ValidatorGuardService]},
+{path: 'breeding-edit/:id', component: EditComponentBreeding, canActivate: [ValidatorGuardService]},
+{path: 'breeding-edit-particular/:id', component: EditParticularComponent, canActivate: [ParticularGuardService]},
+{path: 'adoption-pending', component: AdoptionPendingListPageComponent, canActivate: [ValidatorGuardService]},
+{path: 'adoption-edit/:id', component: EditAdoptionComponent, canActivate: [ValidatorShelterParticularGuardService]},
+{path: 'request/accepted/:createdOrReceived', component: RequestListAcceptedComponent, canActivate: [ParticularGuardService]},
+{path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuardService]},
+{path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuardService]},
+{path: 'animal', component: CreateComponentAnimal, canActivate: [ParticularGuardService]},
+{path: 'animal-edit/:id', component: EditComponentAnimal, canActivate: [ValidatorParticularGuardService]},
+{path: 'animal-pending', component: PendingListComponent, canActivate: [ValidatorGuardService]},
+{path: 'breeding-animal', component: CreateAnimalComponentBreeding, canActivate: [ParticularGuardService]},
+{path: 'breeding-animal-edit/:id', component: EditAnimalComponentBreeding, canActivate: [ValidatorParticularGuardService]},
+{path: 'topAd', component: HorizontalAdvertisementComponent, canActivate: [AuthGuardService]},
+{path: 'lateralAd', component: VerticalAdvertisementsComponent, canActivate: [AuthGuardService]},
+{path: 'pallAds', component: PageAllPersonalAdsComponent, canActivate: [ParticularGuardService]},
+{path: 'statitics', component: StatisticsPageComponent, canActivate: [AdminGuardService]},
+{path: 'alert', component: AlertPageComponent, canActivate: [AdminGuardService]},
+{path: 'vet-premium', component: VetPremiumComponent, canActivate: [AdminGuardService]},
+{path: 'vet-create', component: RegisterVetPageComponent, canActivate: [AdminGuardService]},
+{path: 'vet-edit/:id', component: VetEditPageComponent, canActivate: [AdminGuardService]}
 ];
 
 @NgModule({

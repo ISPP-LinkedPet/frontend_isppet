@@ -10,46 +10,68 @@
       <p class="lead text-muted">
         Aquí podrás consultar todos los veterinarios, además te recomendamos algunos de ellos.
       </p>
+      <p *ngIf="rol == 'administrator'">
+        <button routerLink="/vet-create" type="button" class="btn btn-success">Crear veterinario</button>
+      </p>
     </div>
   </section>
 
   <div class="alert alert-dismissible alert-info" *ngIf="returnedVets.length<=0">
-    <h4 class="alert-heading"><fa-icon [icon]="faInfoCircle" class="mr-2"></fa-icon>No se han encontrado veterinarios</h4><br>
+    <h4 class="alert-heading">
+      <fa-icon [icon]="faInfoCircle" class="mr-2"></fa-icon>No se han encontrado veterinarios
+    </h4><br>
     <p>Parece que no hay disponibles veterinarios en la página en estos momentos</p>
   </div>
 
-  <div class="card mb-3" *ngFor="let vet of returnedVets">
-    <div class="row no-gutters">
+  <div class="card mb-3 float-center" *ngFor="let vet of returnedVets">
+
+    <div class="row justify-content-center mr-2">
       <div class="col-md-8">
-        <div class="card-body">
-          <h2 class="card-title">{{vet.name}}</h2>
+        <div class="card-body bg-white">
+          <div class="premium float-right">
+            <small *ngIf="vet.is_premium">¡Recomendado!</small>
+            <fa-icon *ngIf="vet.is_premium" [icon]="faCrown" class="badge badge-info text-white mr-2" alt="image">
+            </fa-icon>
+            <a class="card-text badge badge-light text-black mr-2" style="font-size: 17px ;" href="{{vet.url}}"
+              *ngIf="vet.url!=null">Sitio web</a>
+          </div>
+          <h2 class="card-title">{{vet.name}}
+
+          </h2>
           <hr>
+          <div class="col-sm-6 d-flex flex-column align-items-center justify-content-center my-4 float-right">
+            <img src="{{ env }}/{{ vet.optional_photo }}" class="rounded float-right" alt="Foto del veterinario"
+              onerror="this.onerror=null;this.src='../../../assets/icons/simple_icon.png';" />
+            <hr>
+
+            <div class="d-flex justify-content-between align-items-center float-right text-white">
+              <a type="button" style="font-size: 16px ;" class="btn  badge badge-info text-white mr-2"
+                (click)="onPremium(vet.id)" *ngIf="!vet.is_premium && rol=='administrator'">Hacer Premium</a>
+              <a type="button" style="font-size: 16px ;" class="btn  badge badge-secondary text-white mr-2"
+                (click)="onNormal(vet.id)" *ngIf="vet.is_premium && rol=='administrator'">Quitar Premium</a>
+            </div>
+          </div>
+
           <h5 class="card-text">Dirección: {{vet.address}}</h5>
           <h5 class="card-text">Teléfono: {{vet.telephone}}</h5>
           <h5 class="card-text">Email: {{vet.email}}</h5>
         </div>
-        <div class="row mt-5 ml-2">
-          <div class="col-md-8 mb-3">
-            <button type="button" class="btn btn-success mr-2" (clic)="router.navigate([vet.url])" *ngIf="vet.url!=null">Sito web</button>
-           
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center float-left">
+            <a type="button" class="btn btn-primary mb-2 ml-2" [routerLink]="['//vet-edit', vet.id]"
+              *ngIf="rol=='administrator'">Editar Veterinario</a>
           </div>
-          
-          <div class="col-md-4">
-            <small>¡Recomendado!</small><fa-icon [icon]="faCrown" class="fa-2x mr-2 pb-4" ></fa-icon>
+          <div id="map{{vet.id}}" style="height:200px ; width:400px ">
+            <button class="btn btn-secondary mb-2 ml-2" onclick="style.display = 'none'"
+              (click)="onSubmit(vet.id,vet.longitude,vet.latitude)">Mostrar en mapa</button>
           </div>
         </div>
-        <div id="map{{vet.id}}" style="height:200px ;" >
-          <button  class="btn btn-secondary ml-4" onclick="style.display = 'none'"
-          (click)="onSubmit(vet.id,vet.longitude,vet.latitude)">Mostrar en mapa</button>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <img src="{{ env }}/{{ vet.optional_photo }}" class="card-image" alt="Foto del veterinario"
-        onerror="this.onerror=null;this.src='../../../assets/icons/simple_icon.png';" />
+
       </div>
     </div>
   </div>
-  <pagination class="justify-content-md-center" [totalItems]="vets.length" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)">
-  </pagination>
 </div>
+<pagination class="justify-content-md-center" [totalItems]="vets.length" previousText="Anterior" firstText="Primera"
+  nextText="Siguiente" lastText="Último" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)">
+</pagination>
 <app-footer></app-footer>

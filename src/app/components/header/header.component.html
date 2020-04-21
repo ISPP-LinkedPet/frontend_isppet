@@ -40,16 +40,6 @@
             <fa-icon [icon]="faStethoscope" class="mr-3"></fa-icon>Veterinarios
           </a>
         </li>
-
-        <!-- vet admin-->
-        <li class="nav-item dropdown ml-5" *ngIf="rol== 'administrator'">
-          <a class="nav-link" href="/vet">
-            <fa-icon [icon]="faStethoscope" class="mr-3"></fa-icon>Veterinarios
-          </a>
-          <div class="dropdown-content">
-            <a class="nav-link" *ngIf="rol== 'administrator'" routerLink="/vet-premium">Veterinarios premium</a>
-          </div>
-        </li>
         <!-- moderator dropdown -->
         <li class="nav-item dropdown ml-5" *ngIf="rol == 'moderator'">
           <a class="nav-link">
@@ -75,7 +65,7 @@
           <div class="dropdown-content">
             <a class="nav-link" routerLink="/userlist">Usuarios</a>
             <a class="nav-link" routerLink="/adsList">Publicidad</a>
-            <a class="nav-link" routerLink="/vet-create">Crear veterinario</a>
+            <a class="nav-link" routerLink="/vet">Veterinarios</a>
             <a class="nav-link" routerLink="/alert">Comunicado de alerta</a>
           </div>
         </li>

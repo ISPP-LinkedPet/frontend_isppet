@@ -56,7 +56,7 @@ export class BreedingAnimalFormComponent implements OnInit {
     if(!this.creating && this.rol == 'particular'){
     this.breedingService.getPersonalBreedings(this.userlogged.id).then(res=>{
       if(!res.map(o=>o.id).includes(this.editBreeding.publication_id)){
-        this.router.navigate(['/breeding-personal-list'])
+        this.router.navigate(['/pallAds'])
         }
       });
     }
@@ -127,7 +127,7 @@ export class BreedingAnimalFormComponent implements OnInit {
 
       this.breedingService.createBreedingAnimal(formData).then(x => {
         alert("¡La crianza se ha creado correctamente!")
-        this.router.navigate(['/breeding-personal-list'])
+        this.router.navigate(['/pallAds'])
       }).catch (error => {
         this.backError = error.error.error
       });
@@ -142,7 +142,7 @@ export class BreedingAnimalFormComponent implements OnInit {
 
       this.breedingService.editAnimalBreeding(this.editBreeding.breedingId, formData).then(x => {
         alert("¡La crianza se ha editado correctamente!")
-        this.router.navigate(['/breeding-personal-list'])
+        this.router.navigate(['/pallAds'])
       }).catch (error => {
         this.backError = error.error.error
       });

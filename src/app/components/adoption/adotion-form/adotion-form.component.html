@@ -3,6 +3,7 @@
     <div class="card-body">
         <h1 class="card-title">{{title}}</h1>
         <form [formGroup]="adoptionForm" (ngSubmit)="onSubmit()">
+          <em class="text-secondary">Para agregar varias imagenes, seleccionalas con el botón CTRL pulsado</em>
             <fieldset>
               <legend class="card-title">Información básica</legend>
 
@@ -50,7 +51,7 @@
                   <label for="birth_date">Edad</label>
                   <input type="date" class="form-control is-invalid" id="birth_date" formControlName="birth_date"
                     (change)="validateAge()">
-                  <div class="invalid-feedback">La fecha de nacimiento no puede estar en blanco</div>
+                  <div class="invalid-feedback">La fecha de nacimiento no puede estar en blanco y no puede ser posterior a la fecha actual</div>
                 </div>
               </div>
 
@@ -139,6 +140,7 @@
 
                     </div>
                   </div>
+                  <small>Las imagenes deben ser .png, .jpg o .jpeg</small>
                   <div class="invalid-feedback" *ngIf="!isValidAnimalPhoto">Debe subir al menos 2 imágenes del animal
                   </div>
                   <!-- File names -->
@@ -205,6 +207,7 @@
                   <label class="custom-file-label" for="identification_photo">Seleccionar imagenes</label>
                 </div>
               </div>
+              <small>Las imagenes deben ser .png, .jpg o .jpeg</small>
               <!-- File names -->
               <div class="row">
                 <ul>
@@ -228,6 +231,7 @@
                   <label class="custom-file-label" for="vaccine_passaport">Seleccionar imagenes</label>
                 </div>
               </div>
+              <small>Las imagenes deben ser .png, .jpg o .jpeg</small>
 
               <!-- File names -->
               <div class="row">
@@ -240,16 +244,13 @@
               </div>
             </div>
 
-
-
-
-
           </fieldset>
 
         </div>
         <button type="submit" class="btn btn-primary btn-lg button-form">Crear</button>
         <button type="submit" class="btn btn-secondary btn-lg button-form" *ngIf="(rol == 'particular'||rol == 'shelter') && !creating" (click)="deleteAdoption(id)">Eliminar</button>
-        <button type="button" class="btn btn-secondary btn-lg button-form right" routerLink="/adoption-personal-list">Cancelar</button>
+        <button type="button" *ngIf="(rol == 'particular' || rol == 'shelter') && creating" class="btn btn-secondary btn-lg button-form right" routerLink="/adoption-list">Cancelar</button>
+        <button type="button" *ngIf="(rol == 'particular') && !creating" class="btn btn-secondary btn-lg button-form right" routerLink="/pallAds">Cancelar</button>
       </form>
     </div>
   </div>

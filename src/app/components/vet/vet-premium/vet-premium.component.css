@@ -1,53 +1,14 @@
-
-.banner{
-    margin-left: 0px;
-    margin-top: 80px;
-    width: 100%;
-}
-
-
-h1{
-    margin: 0px 10px 10px 10px;
-}
-
-div{
-    width: 90%;
-    margin: 20px 0px 0px 20px;
-    color: black;
-}
-
 img{
-    width: 17%;
-    float: right;
-    border-radius: 20px;
-    margin-right: 20px;
-    margin-bottom: 2%;
+    height: 300px; 
+    width: inherit; 
+    display: block;
+    object-fit: cover;
 }
 
-.card-body{
-    margin-top: auto;
+.img-fluid{
+    height:50px;
+    width: 50px;
 }
-
-.description-content{
-    margin: 0;
-    list-style-type: none;
-}
-
-button{
-    margin: 20px 0px 0px 0px;
-}
-
- .premium{
-    height: 4%;
-    width: 4%;
-    float: inherit;
-}
-
-.center{
-    display: flex;
-    justify-content: center;
-}
-
 
 .horizontal-advertisement{
     margin-left: 0px;
@@ -66,30 +27,6 @@ button{
     padding-bottom: 3%;
 }
 
-.list-style{
-    margin-top: 3%;
-    display:inline-block;
-    height: 100%;
-    width: 80%;
-}
-
-.foot{
-    margin-left: 0px;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
- }
- 
- .foot-fixed{
-    margin-left: 0px;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
- }
-
  @media (max-width:1220px){
     .vertical-advertisement{
         display: none;
@@ -98,9 +35,14 @@ button{
     .list-style{
         margin-left: 10%;
     }
-
     .premium{
-        height: auto;
-        width: 10%;
+        text-align: right;
+        height: 4%;
+        width: 4%;
+        float: right;
+    
     }
+    
  }
+
+ 

@@ -75,7 +75,7 @@ export class BreedingCreateComponent implements OnInit {
     if(!this.creating && this.rol == 'particular'){
     this.breedingService.getPersonalBreedings(this.userlogged.id).then(res=>{
       if(!res.map(o=>o.id).includes(this.editBreeding.publication_id)){
-        this.router.navigate(['/breeding-personal-list'])
+        this.router.navigate(['/pallAds'])
       }
     })
   }
@@ -135,11 +135,15 @@ export class BreedingCreateComponent implements OnInit {
   }
   validatePrice() {
     this.isValidPrice = this.breedingForm.get('price').valid;
-    try {
-      this.isValidPrice = this.isValidPrice && Number.isInteger(Number(this.breedingForm.get('price').value));
-    } catch (e) {
+    if(this.breedingForm.get('price').value>950000){
       this.isValidPrice = false;
-    }
+    }else{
+      try {
+        this.isValidPrice = this.isValidPrice && Number.isInteger(Number(this.breedingForm.get('price').value));
+      } catch (e) {
+        this.isValidPrice = false;
+      }
+  }
   }
   validateGenre() {
     if(!this.creating && this.rol=='moderator'){
@@ -150,6 +154,11 @@ export class BreedingCreateComponent implements OnInit {
   validateAge() {
     if(!this.creating && this.rol=='moderator'){
       this.isValidAge = this.breedingForm.get('age').valid;
+      var date = new Date(this.breedingForm.get('age').value)
+      var now = new Date()
+      if(date>now){
+        this.isValidAge = false
+      }
     }
   }
   validateType() {
@@ -164,7 +173,12 @@ export class BreedingCreateComponent implements OnInit {
   }
 
   validateAnimalPhoto(){
-    this.isValidAnimalPhoto = this.breedingForm.get('animal_photo').valid;
+    if(this.animalPhoto!=undefined){
+      const animalPhoto = this.animalPhoto.nativeElement.files;
+      this.isValidAnimalPhoto = this.breedingForm.get('animal_photo').valid && animalPhoto.length >= 2;
+    }else{
+      this.isValidAnimalPhoto = this.breedingForm.get('animal_photo').valid
+    }
   }
 
   validateLocation() {
@@ -213,7 +227,6 @@ export class BreedingCreateComponent implements OnInit {
     this.validationFields();
 
     const formData: FormData = new FormData();
-
     // si se está creando
     if(this.creating && this.rol == 'particular' && this.isValidPrice && this.isValidAnimalPhoto && this.isValidLocation && this.isValidIdentificationPhoto && this.isValidVaccinePassaport){
       const animalPhoto = this.animalPhotos
@@ -228,7 +241,7 @@ export class BreedingCreateComponent implements OnInit {
 
       this.breedingService.createBreeding(formData).then(x => {
         alert("¡La crianza se ha creado correctamente! \n Ahora debe de revisarlo un moderador")
-        this.router.navigate(['/breeding-personal-list'])
+        this.router.navigate(['/pallAds'])
       }).catch (error => {
         this.backError = error.error.error
       });
@@ -249,7 +262,7 @@ export class BreedingCreateComponent implements OnInit {
 
       this.breedingService.editBreeding(this.editBreeding.breedingId, formData).then(x => {
         alert("¡La crianza se ha editado correctamente! \n Ahora debe de revisarlo un moderador")
-        this.router.navigate(['/breeding-personal-list'])
+        this.router.navigate(['/pallAds'])
       }).catch (error => {
         this.backError = error.error.error
       });
@@ -258,9 +271,10 @@ export class BreedingCreateComponent implements OnInit {
     // si lo está editando un moderador
     if(!this.creating && this.rol == 'moderator' && this.isValidBreed && this.isValidGenre && this.isValidAge && this.isValidType && this.isValidPedigri){
 
+      // console.log(this.breedingForm.value.age)
       formData.append('genre', this.breedingForm.value.genre);
       formData.append('breed', this.breedingForm.value.breed);
-      formData.append('age', this.breedingForm.value.birth_date);
+      formData.append('birth_date', this.breedingForm.value.age);
       formData.append('type', this.breedingForm.value.type);
       formData.append('pedigree', this.breedingForm.value.pedigree);
       
@@ -291,8 +305,8 @@ export class BreedingCreateComponent implements OnInit {
     this.validateVaccinePassaport();
     this.validatePedigree();
 
-    // create and edit
-    if (type === 'default' && this.rol == 'particular') {
+    // create or edit
+    if (type === 'default') {
       this.isValidBreed = true;
       this.isValidPrice = true;
       this.isValidGenre = true;
@@ -329,7 +343,7 @@ export class BreedingCreateComponent implements OnInit {
   deleteBreeding(id: number){
     this.breedingService.deleteBreeding(id).then(res=> {
       alert('Tu oferta de crianza ha sido eliminada correctamente');
-      this.router.navigate(['/breeding-personal-list']);
+      this.router.navigate(['/pallAds']);
     });
   }
 

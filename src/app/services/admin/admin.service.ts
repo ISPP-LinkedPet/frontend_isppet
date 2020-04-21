@@ -8,6 +8,8 @@ import { FormGroup } from '@angular/forms';
 })
 export class AdminService {
 
+
+
   constructor(private requestService: RequestService) { }
 
   getAllStatictics() {
@@ -20,9 +22,6 @@ export class AdminService {
         subject: breachForm.value.subject,
         body: breachForm.value.body
       }, {}, true);
-
-
-
   }
   getUsersNotBan() {
     return this.requestService.request('GET', `${environment.endpoint}/administrator/unban/list`, {}, {}, true);
@@ -35,6 +34,12 @@ export class AdminService {
   }
   getAllAds() {
     return this.requestService.request('GET', `${environment.endpoint}/administrator/allAds`, {}, {}, true);
+  }
+  editVet(id: number, data: any) {
+    return this.requestService.request('PUT', `${environment.endpoint}/administrator/vet/edit/${id}`, data, {}, true);
+  }
+  createAd(data: any) {
+    return this.requestService.request('POST', `${environment.endpoint}/administrator/ad/create/`, data, {}, true);
   }
   registerShelter(data: any) {
     return this.requestService.request(
@@ -55,7 +60,9 @@ export class AdminService {
     );
   }
 
-
+  async gettAdbyId(id: any) {
+    return this.requestService.request('GET', `${environment.endpoint}/administrator/ad/${id}`, {}, {}, true);
+  }
   registerModerator(data: any) {
     return this.requestService.request(
       'POST',

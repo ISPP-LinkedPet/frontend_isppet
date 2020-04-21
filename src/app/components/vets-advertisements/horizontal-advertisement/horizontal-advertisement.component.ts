@@ -16,8 +16,8 @@ export class HorizontalAdvertisementComponent implements OnInit {
   constructor(private vetService: VetService) { }
 
   ngOnInit(): void {
-    this.vetService.getVetAdvertisements(1).then(res => this.advertisement = res.ads[0])
-    .then();
+      this.vetService.getVetAdvertisements(1).then(res => this.advertisement = res.ads[0])
+      .then().catch(err => {});
   }
 
   onClickAdvertisement() {

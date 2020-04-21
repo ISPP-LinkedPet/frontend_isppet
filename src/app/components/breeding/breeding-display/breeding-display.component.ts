@@ -14,11 +14,19 @@ import {ConfigService} from 'src/app/services/config/config.service';
 
 export class BreedingDisplayComponent implements OnInit {
 
+  personalBreedings = new Array();
+  userlogged = this.configService.getUserLogged();
+  rol: string = this.userlogged ? this.userlogged.role : 'disconnected';
   env = environment.endpoint;
   constructor(public breedingListPageComponent: BreedingListPageComponent, public breedingService: BreedingService, private router: Router,
               public configService: ConfigService) { }
 
   ngOnInit(): void {
+    this.breedingService.getPersonalBreedings(this.userlogged.id).then(res => {
+      res.forEach(breeding => {
+        this.personalBreedings.push(breeding.id);
+      });
+    });
   }
 
   onSubmit(id: string){

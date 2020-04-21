@@ -181,17 +181,23 @@ export class AdotionFormComponent implements OnInit {
   }
   validateAge() {
     this.isValidAge = this.adoptionForm.get('birth_date').valid;
+    var date = new Date(this.adoptionForm.get('birth_date').value)
+    var now = new Date()
+    if(date>now){
+      this.isValidAge = false
+    }
   }
   validateType() {
     this.isValidType = this.adoptionForm.get('type').valid;
     this.check = this.adoptionForm.get('type').value === '';
-    console.log(this.adoptionForm.get('type'));
+    // console.log(this.adoptionForm.get('type'));
   }
   validatePedigree() {
     this.isValidPedigri = this.adoptionForm.get('pedigree').valid;
   }
   validateAnimalPhoto() {
-    this.isValidAnimalPhoto = this.adoptionForm.get('animal_photo').valid;
+    const animalPhoto = this.animalPhoto.nativeElement.files;
+    this.isValidAnimalPhoto = this.adoptionForm.get('animal_photo').valid && animalPhoto.length >= 2;
   }
   validateLocation() {
     this.isValidLocation = this.adoptionForm.get('location').valid;
@@ -270,18 +276,19 @@ export class AdotionFormComponent implements OnInit {
 
     if (this.creating) {
       this.adoptionService.createAdoption(formData).then(x => {
-        console.log(x);
-        this.router.navigate(['/adoption-personal-list']);
+        // console.log(x);
+        alert('¡La adopción se ha creado correctamente!')
+        this.router.navigate(['/adoption-list']);
       }).catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     } else if (!this.creating) {
       this.adoptionService.editAdoption(formData, +this.id).then(x => {
         alert('¡La adopción se ha editado correctamente!')
-        this.router.navigate(['/adoption-personal-list']);
+        this.router.navigate(['/pallAds']);
       }).catch(error => {
-        console.log(error);
+        // console.log(error);
       });
     }
   }
@@ -319,7 +326,7 @@ export class AdotionFormComponent implements OnInit {
   deleteAdoption(id: string) {
     this.adoptionService.deleteAdoption(id).then(res => {
       alert('Tu adopción ha sido eliminada correctamente');
-      this.router.navigate(['/adoption-personal-list']);
+      this.router.navigate(['/pallAds']);
     });
   }
 }

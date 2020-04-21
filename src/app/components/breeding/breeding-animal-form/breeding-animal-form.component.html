@@ -66,6 +66,8 @@
   
                 <button *ngIf="rol == 'particular' && !creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Editar</button>
                 <button *ngIf="rol == 'particular' && creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Crear</button>
+                <button type="button" *ngIf="creating" class="btn btn-secondary btn-lg button-form right" routerLink="/breeding-list">Cancelar</button>
+                <button type="button" *ngIf="!creating" class="btn btn-secondary btn-lg button-form right" routerLink="/pallAds">Cancelar</button>
             </form>
             <div class="invalid-feedback">{{backError}} {{backError|json}}</div>
         </div>

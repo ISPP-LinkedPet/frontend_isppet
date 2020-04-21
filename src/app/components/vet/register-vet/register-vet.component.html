@@ -3,7 +3,8 @@
     <!-- Default form login -->
     <form class="text-center border rounded border-gray p-5 w-50" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-        <h1 class="mb-4">Crear veterinario</h1>
+        <h1 class="mb-4" *ngIf="creating">Registrar veterinario</h1>
+        <h1 class="mb-4" *ngIf="!creating">Editar veterinario</h1>
         <div class="row d-flex">
             <div class="form-group col-md-6" *ngIf="isValidName">
                 <label for="name">Nombre</label>
@@ -126,7 +127,8 @@
 
 
         <!-- Sign in button -->
-        <button class="btn btn-primary btn-block my-4" type="submit">Crear</button>
+        <button class="btn btn-primary btn-block my-4" *ngIf="creating" type="submit">Registrar</button>
+        <button class="btn btn-primary btn-block my-4" *ngIf="!creating" type="submit">Editar</button>
 
         <div class="alert alert-danger" role="alert" *ngIf="showError">
             {{ errorMessage }}
@@ -142,4 +144,4 @@
     <!-- Default form login -->
 </div>
 
-<app-footer class="foot-fixed"></app-footer>
+<app-footer></app-footer>

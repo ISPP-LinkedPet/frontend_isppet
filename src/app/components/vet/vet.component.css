@@ -35,11 +35,14 @@ img{
     .list-style{
         margin-left: 10%;
     }
-
     .premium{
-        height: auto;
-        width: 10%;
+        text-align: right;
+        height: 4%;
+        width: 4%;
+        float: right;
+    
     }
+    
  }
 
  

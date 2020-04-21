@@ -26,6 +26,7 @@ export class AdoptionPendingListComponent implements OnInit {
   returnedAdoptions = new Array();
   itemsPerPage = 5;
   mapAdoption = new Map();
+  mapShowAdoption = new Map();
   pendingAdoptions = new Array();
   env = environment.endpoint;
   details: boolean;
@@ -37,6 +38,7 @@ export class AdoptionPendingListComponent implements OnInit {
       res.forEach(adoptionAd => {
         this.pendingAdoptions.push(adoptionAd);
         this.mapAdoption.set(adoptionAd.adoption_id, adoptionAd);
+        this.mapShowAdoption.set(adoptionAd.adoption_id, false)
       });
       this.returnedAdoptions = this.pendingAdoptions.slice(0, this.itemsPerPage);
     });
@@ -46,6 +48,7 @@ export class AdoptionPendingListComponent implements OnInit {
     this.adoptionService.acceptAdoption(id).then(res => {
       this.returnedAdoptions = new Array();
       this.pendingAdoptions = new Array();
+      window.alert("Se ha aceptado correctamente la adopción");
       this.ngOnInit();
     });
   }
@@ -54,6 +57,7 @@ export class AdoptionPendingListComponent implements OnInit {
     this.adoptionService.rejectAdoption(id).then(res => {
       this.returnedAdoptions = new Array();
       this.pendingAdoptions = new Array();
+      window.alert("Se ha rechazado correctamente la adopción");
       this.ngOnInit();
     });
   }
@@ -64,11 +68,11 @@ export class AdoptionPendingListComponent implements OnInit {
     this.returnedAdoptions = this.pendingAdoptions.slice(startItem, endItem);
   }
 
-  showDetails(string){
+  showDetails(adoptionAd, string){
     if(string=='show'){
-      this.details = true;
+      this.mapShowAdoption.set(adoptionAd.adoption_id, true)
     } else {
-      this.details = false;
+      this.mapShowAdoption.set(adoptionAd.adoption_id, false)
     }
   }
 }

@@ -41,6 +41,9 @@ export class AllPersonalAdsComponent implements OnInit {
   /* Map request_id & user */
   mapBreedingReqIdUser = new Map();
 
+  /* Map request_id & show or not */
+  mapShowRequestBreeding = new Map();
+
   /*ReviewForm*/
   reviewForm: FormGroup;
 
@@ -111,8 +114,7 @@ export class AllPersonalAdsComponent implements OnInit {
                                                              // tslint:disable-next-line: no-shadowed-variable
                                                              .then(res => particularInfo.push(res.particular));
                                                              this.mapBreedingReqIdUser.set(element.id, particularInfo);
-                                                             console.log(this.mapBreedingRequestId);
-
+                                                             this.mapShowRequestBreeding.set(element.breeding_id, false);
                                                              // console.log(this.mapBreedingReqIdUser);
                                                              }));
         this.mapBreedingRequestId.set(element.breeding_id, rqsbrd);
@@ -122,6 +124,7 @@ export class AllPersonalAdsComponent implements OnInit {
     ));
     /***Slice***/
     this.returnedAds = this.allads.slice(0, this.itemsPerPage);
+    // console.log(this.returnedAds)
   }
 
   pageChanged(event: PageChangedEvent): void {
@@ -164,18 +167,18 @@ export class AllPersonalAdsComponent implements OnInit {
     location.reload();
   }
 
-  showRequests(string){
+  showRequests(element, string){
     if(string=='show'){
-      this.requests = true;
+      this.mapShowRequestBreeding.set(element.breeding_id, true);
     } else {
-      this.requests = false;
+      this.mapShowRequestBreeding.set(element.breeding_id, false);
     }
   }
 
   onSubmitReviewForm(publicationId: string) {
     const review = this.reviewForm.get('reviewarea').value;
-    console.log(review);
-    console.log(publicationId);
+    // console.log(review);
+    // console.log(publicationId);
     this.requestBreedingService.writeReview({star: 3 , review_description: review, publication_id: publicationId}).then(x => {
       alert('Tu review se ha enviado correctamente'); } ).then(x => {
         location.reload();
