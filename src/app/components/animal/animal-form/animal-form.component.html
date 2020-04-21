@@ -187,6 +187,8 @@
                                 </div>
                             </div>
                             <small>Las imagenes deben ser .png, .jpg o .jpeg</small>
+                            
+
                             <div class="invalid-feedback" *ngIf="!isValidAnimalPhoto">Debe subir al menos 2 imágenes del animal</div>
                         </div>
                       </div>
@@ -268,8 +270,6 @@
                 <button *ngIf="rol == 'moderator'" (click)="rejectPublication()" class="btn btn-secondary btn-lg button-form right">Rechazar</button>
                 <button *ngIf="rol == 'particular'" (click)="router.navigate(['/my-profile']);" class="btn btn-danger">Volver a mi perfil</button> 
             </form>
-
-            <div class="invalid-feedback">{{backError}} {{backError|json}}</div>
         </div>
     </div>
   </div>
