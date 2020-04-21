@@ -112,13 +112,13 @@ export class AnimalFormComponent implements OnInit {
         this.editAnimal.name || '', [Validators.required]
       ),
       animal_photo: new FormControl(
-        this.editAnimal.animal_photo || '', [Validators.required]
+         '', [Validators.required]
       ),
       identification_photo: new FormControl(
-        this.editAnimal.identification_photo || '', [Validators.required]
+        '', [Validators.required]
       ),
       vaccine_passport: new FormControl(
-        this.editAnimal.vaccine_passport || '', [Validators.required]
+        '', [Validators.required]
       ),
     });
     // console.log(this.animalForm)
@@ -145,9 +145,15 @@ export class AnimalFormComponent implements OnInit {
     }
     // console.log(this.animalForm.get('genre').value);
   }
+
   validateAge() {
     if (!this.creating && this.rol == 'moderator') {
       this.isValidAge = this.animalForm.get('birth_date').valid;
+      var date = new Date(this.animalForm.get('birth_date').value)
+      var now = new Date()
+      if(date>now){
+        this.isValidAge = false
+      }
     }
   }
   validateType() {
@@ -168,7 +174,15 @@ export class AnimalFormComponent implements OnInit {
     }
   }
   validateAnimalPhoto() {
-    this.isValidAnimalPhoto = this.animalForm.get('animal_photo').valid;
+    /*this.isValidAnimalPhoto = this.animalForm.get('animal_photo').valid;
+    Solo comprueba que la foto no sea NULL*/
+
+    if (this.animalPhotos.length < 2) {
+      this.isValidAnimalPhoto = false;
+    } else {
+      this.isValidAnimalPhoto = true;
+    }
+    // console.log(this.isValidAnimalPhoto);
   }
   validateIdentificationPhoto() {
     this.isValidIdentificationPhoto = this.animalForm.get('identification_photo').valid;
@@ -290,7 +304,7 @@ export class AnimalFormComponent implements OnInit {
     this.validatePedigree();
 
     // create and edit
-    if (type === 'default' && this.rol == 'particular') {
+    if (type === 'default') {
       this.isValidBreed = true;
       this.isValidGenre = true;
       this.isValidAge = true;
