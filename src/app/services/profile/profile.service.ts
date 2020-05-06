@@ -37,6 +37,14 @@ export class ProfileService {
     return this.requestService.request('GET', `${environment.endpoint}/pet/user/${id}`, {}, {}, true);
   }
 
+  getShelterLogged() {
+    return this.requestService.request('GET', `${environment.endpoint}/shelter/user/profile`, {}, {}, true);
+  }
+
+  getPetsByShelterId(id: string) {
+    return this.requestService.request('GET', `${environment.endpoint}/pet/shelter/${id}`, {}, {}, true);
+  }
+
   getMyData() {
     const accessToken = localStorage.getItem('access_token');
     const headers = new HttpHeaders()
