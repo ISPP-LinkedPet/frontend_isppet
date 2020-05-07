@@ -33,8 +33,8 @@ export class ProfileService {
     return this.requestService.request('GET', `${environment.endpoint}/particular/user/profile`, {}, {}, true);
   }
 
-  getPetsByParticularId(id: string) {
-    return this.requestService.request('GET', `${environment.endpoint}/pet/user/${id}`, {}, {}, true);
+  getPetsByParticularId(id: string, data: any) {
+    return this.requestService.request('GET', `${environment.endpoint}/pet/user/${id}`, data, {}, true);
   }
 
   getMyData() {

@@ -78,7 +78,7 @@ export class ProfileComponent implements OnInit {
           this.rating = this.rating / this.numReviews;
           this.starRating(this.rating);
         });
-        this.profileService.getPetsByParticularId(this.id).then(element => {
+        this.profileService.getPetsByParticularId(this.id, {breeding: 'false'}).then(element => {
           this.pets = element;
           this.numPets = this.pets.length;
           this.returnedPets = this.pets.slice(0, this.itemsPerPage);
