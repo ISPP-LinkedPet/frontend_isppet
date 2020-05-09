@@ -34,7 +34,7 @@ export class MyProfileComponent implements OnInit {
   rating: number = 0;
   valoraciones: boolean;
   mascotas: boolean;
-  particular: any;
+  user: any;
   env = environment.endpoint;
   reviews: any;
   pets: any;
@@ -53,35 +53,46 @@ export class MyProfileComponent implements OnInit {
     private animalService: AnimalService, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
-    this.valoraciones = true;
-    this.mascotas = false;
+    this.valoraciones = this.rol == 'particular' ? true : false;
+    this.mascotas = this.rol == 'particular' ? false : true;
 
     this.profileService.canDelete().then(res => this.canDelete = res).then(res => console.log(this.canDelete));
 
-    this.animalService.notEditableAnimals()(x => {
+    this.animalService.notEditableAnimals(this.rol)(x => {
       this.notEditableAnimals = Array.from(x.keys())
       this.mapNotEditableAnimals = x;
       // console.log(this.mapNotEditableAnimals);
     });
 
-    this.profileService.getParticularLogged().then(res => {
-      this.particular = res;
-      // console.log(this.particular);
-      this.profileService.getReviewsByParticularId(this.particular.particular.id).then(element => {
-        this.reviews = element;
-        this.numReviews = this.reviews.length;
-        this.reviews.forEach(element => {
-          this.rating = element.star + this.rating;
+    if(this.rol=='particular'){
+      this.profileService.getParticularLogged().then(res => {
+        this.user = res.particular;
+        // console.log(this.particular);
+        this.profileService.getReviewsByParticularId(this.user.id).then(element => {
+          this.reviews = element;
+          this.numReviews = this.reviews.length;
+          this.reviews.forEach(element => {
+            this.rating = element.star + this.rating;
+          });
+          this.rating = this.rating / this.numReviews;
+          this.starRating(this.rating);
         });
-        this.rating = this.rating / this.numReviews;
-        this.starRating(this.rating);
+        this.profileService.getPetsByParticularId(this.user.id, {breeding: 'false'}).then(element => {
+          this.pets = element;
+          this.numPets = this.pets.length;
+          this.returnedPets = this.pets.slice(0, this.itemsPerPage);
+        }).then(x => console.log(this.pets));
       });
-      this.profileService.getPetsByParticularId(this.particular.particular.id, {breeding: 'false'}).then(element => {
-        this.pets = element;
-        this.numPets = this.pets.length;
-        this.returnedPets = this.pets.slice(0, this.itemsPerPage);
-      }).then(x => console.log(this.pets));
-    });
+    } else if(this.rol == 'shelter'){
+      this.profileService.getShelterLogged().then(res => {
+        this.user = res.shelter;
+        this.profileService.getPetsByShelterId(this.user.id).then(element => {
+          this.pets = element;
+          this.numPets = this.pets.length;
+          this.returnedPets = this.pets.slice(0, this.itemsPerPage);
+        }).then(x => console.log(this.pets));
+      });
+    }
   }
   pageChanged(event: PageChangedEvent): void {
     const startItem = (event.page - 1) * event.itemsPerPage;

@@ -38,7 +38,7 @@ import { RegisterVetComponent } from './components/vet/register-vet/register-vet
 import { VetEditPageComponent } from './pages/admin/vet-edit-page/vet-edit-page.component';
 import { RegisterVetPageComponent } from './pages/admin/register-vet-page/register-vet-page.component';
 import { AuthGuardService, AdminGuardService, ValidatorGuardService, ParticularGuardService, ShelterGuardService, ShelterParticularGuardService, ValidatorParticularGuardService, ValidatorShelterParticularGuardService } from './services/guards/auth-guard.service';
-
+import { AdoptionAnimalFormComponent } from './components/adoption/adoption-animal-form/adoption-animal-form.component'
 
 const routes: Routes = [
 {path: '', component: HomeComponent},
@@ -63,8 +63,8 @@ const routes: Routes = [
 {path: 'request/accepted/:createdOrReceived', component: RequestListAcceptedComponent, canActivate: [ParticularGuardService]},
 {path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuardService]},
 {path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuardService]},
-{path: 'animal', component: CreateComponentAnimal, canActivate: [ParticularGuardService]},
-{path: 'animal-edit/:id', component: EditComponentAnimal, canActivate: [ValidatorParticularGuardService]},
+{path: 'animal', component: CreateComponentAnimal, canActivate: [ShelterParticularGuardService]},
+{path: 'animal-edit/:id', component: EditComponentAnimal, canActivate: [ValidatorShelterParticularGuardService]},
 {path: 'animal-pending', component: PendingListComponent, canActivate: [ValidatorGuardService]},
 {path: 'breeding-animal', component: CreateAnimalComponentBreeding, canActivate: [ParticularGuardService]},
 {path: 'breeding-animal-edit/:id', component: EditAnimalComponentBreeding, canActivate: [ValidatorParticularGuardService]},
@@ -75,7 +75,8 @@ const routes: Routes = [
 {path: 'alert', component: AlertPageComponent, canActivate: [AdminGuardService]},
 {path: 'vet-premium', component: VetPremiumComponent, canActivate: [AdminGuardService]},
 {path: 'vet-create', component: RegisterVetPageComponent, canActivate: [AdminGuardService]},
-{path: 'vet-edit/:id', component: VetEditPageComponent, canActivate: [AdminGuardService]}
+{path: 'vet-edit/:id', component: VetEditPageComponent, canActivate: [AdminGuardService]},
+{path: 'adoption-animal', component: AdoptionAnimalFormComponent, canActivate: [ShelterGuardService]}
 ];
 
 @NgModule({

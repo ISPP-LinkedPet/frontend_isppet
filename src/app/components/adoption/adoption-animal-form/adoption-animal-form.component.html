@@ -1,33 +1,34 @@
-<div class="container" *ngIf="breedingForm != undefined">
+<app-header></app-header>
+<div class="container" *ngIf="adoptionForm != undefined">
     <div class="card p-3 bg-white rounded shadow-sm">
         <div class="card-body">
             <h1 class="card-title*n">{{title}} publicacion</h1>
-            <form [formGroup]="breedingForm">
+            <form [formGroup]="adoptionForm">
   
                     <div class="row">
   
-                        <!-- Precio -->
+                        <!-- Tasas -->
   
-                        <div class="form-group col-sm" *ngIf="isValidPrice">
-                            <label for="age">Precio</label>
+                        <div class="form-group col-sm" *ngIf="isValidTaxes">
+                            <label for="age">Tasas</label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">€</span>
                                 </div>
-                                <input type="number" class="form-control" formControlName="price" aria-label="Amount (to the nearest dollar)" (change)="validatePrice()">
+                                <input type="number" class="form-control" formControlName="taxes" aria-label="Amount (to the nearest dollar)" (change)="validateTaxes()">
                                 <div class="input-group-append">
                                     <span class="input-group-text">.00</span>
                                 </div>
                             </div>
                         </div>
   
-                        <div class="form-group has-danger col-sm" *ngIf="!isValidPrice">
-                            <label class="form-control-label" for="age">Precio</label>
+                        <div class="form-group has-danger col-sm" *ngIf="!isValidTaxes">
+                            <label class="form-control-label" for="age">Tasas</label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">€</span>
                                 </div>
-                                <input type="number" class="form-control is-invalid" formControlName="price" aria-label="Amount (to the nearest dollar)" (change)="validatePrice()">
+                                <input type="number" class="form-control is-invalid" formControlName="taxes" aria-label="Amount (to the nearest dollar)" (change)="validateTaxes()">
                                 <div class="input-group-append">
                                     <span class="input-group-text">.00</span>
                                 </div>
@@ -64,12 +65,11 @@
                       </div>
                     </div>
   
-                <button *ngIf="rol == 'particular' && !creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Editar</button>
-                <button *ngIf="rol == 'particular' && creating" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Crear</button>
-                <button type="button" *ngIf="creating" class="btn btn-secondary btn-lg button-form right" routerLink="/breeding-list">Cancelar</button>
-                <button type="button" *ngIf="!creating" class="btn btn-secondary btn-lg button-form right" routerLink="/pallAds">Cancelar</button>
+                <button (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Crear</button>
+                <button type="button" class="btn btn-secondary btn-lg button-form right" routerLink="/adoption-list">Cancelar</button>
             </form>
-            <div class="invalid-feedback">{{backError|json}}</div>
+            <div class="invalid-feedback">{{backError}} {{backError|json}}</div>
         </div>
     </div>
   </div>
+<app-footer class="fixed-bottom"></app-footer>
