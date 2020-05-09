@@ -5,7 +5,7 @@
             <form [formGroup]="animalForm">
   
                 <em *ngIf="creating" class="text-secondary">Los campos en gris están deshabilitados</em><br>
-                <em class="text-secondary">Para agregar varias imagenes, seleccionalas con el botón CTRL pulsado</em>
+                <em *ngIf="rol!='moderator'" class="text-secondary">Para agregar varias imagenes, seleccionalas con el botón CTRL pulsado</em>
                 <fieldset>
                     <legend class="card-title">Información básica</legend>
   
@@ -16,10 +16,11 @@
                             <label for="breed">Raza</label>
                             <input type="text" class="form-control" id="breed" [readOnly]="rol=='particular'" formControlName="breed" (change)="validateBreed()">
                         </div>
+  
                         <div class="form-group has-danger col-4" *ngIf="!isValidBreed">
-                            <label class="form-control-label" for="breed">Raza</label>
+                            <label for="breed">Raza</label>
                             <input type="text" class="form-control is-invalid" id="breed" [readOnly]="rol=='particular'" formControlName="breed" (change)="validateBreed()">
-                            <div class="invalid-feedback">Parece que se ha equivocado</div>
+                            <div class="invalid-feedback">Debe indicar la raza</div>
                         </div>
   
                         <!-- Genre -->
@@ -170,7 +171,7 @@
   
                         <div class="form-group has-danger col-4" *ngIf="!isValidName">
                             <label for="name">Nombre</label>
-                            <input type="text" class="form-control" id="name" [readOnly]="rol=='moderator'" formControlName="name" (change)="validateName()">
+                            <input type="text" class="form-control is-invalid" id="name" [readOnly]="rol=='moderator'" formControlName="name" (change)="validateName()">
                             <div class="invalid-feedback">Debe indicar el nombre</div>
                         </div>
                                           

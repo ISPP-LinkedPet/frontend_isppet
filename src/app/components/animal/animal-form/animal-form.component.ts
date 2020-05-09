@@ -128,6 +128,8 @@ export class AnimalFormComponent implements OnInit {
   requiredInput() {
     if (!this.creating) {
       return [Validators.required]
+    } else if(this.rol=='shelter'){
+      return [Validators.required]
     }
     return []
   }

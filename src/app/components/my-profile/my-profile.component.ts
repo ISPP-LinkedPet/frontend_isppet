@@ -128,7 +128,7 @@ export class MyProfileComponent implements OnInit {
   }
 
   getMyData() {
-    this.profileService.getMyData()
+    this.profileService.getMyData(this.rol)
       .subscribe(x => {
         // It is necessary to create a new blob object with mime-type explicitly set
         // otherwise only Chrome works like it should
