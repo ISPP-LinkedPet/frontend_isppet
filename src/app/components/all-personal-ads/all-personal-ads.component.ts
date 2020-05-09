@@ -10,6 +10,7 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 import { RequestBreedingService } from 'src/app/services/requestBreeding/request-breeding.service';
 import { faCat, faDog, faHorse, faAward, faInfoCircle, faMars, faVenus } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormControl } from '@angular/forms';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-all-personal-ads',
@@ -85,34 +86,35 @@ export class AllPersonalAdsComponent implements OnInit {
     this.getList(pubType, animalType);
   }
 
-  getList(pubType = '', animalType = '') {
+  async getList(pubType = '', animalType = '') {
     /*Personal Adoptions*/
-    this.adoptionService.getPersonalAdoptions(this.userId).then(res => res.forEach((element: any) => {
+    const res = await this.adoptionService.getPersonalAdoptions(this.userId);
+    (res.forEach((element: any) => {
       if ((pubType === '' || pubType === 'Adoption') && (animalType === '' || animalType === element.type)) {
         this.allads.push(element);
       }
     }));
     /*Personal Breedings*/
-    this.breedingService.getPersonalBreedings(this.userId).then(res => res.forEach((element: any) => {
+    const res2 = await this.breedingService.getPersonalBreedings(this.userId);
+    (res2.forEach((element: any) => {
       if ((pubType === '' || pubType === 'Breeding') && (animalType === '' || animalType === element.type)) {
         this.allads.push(element);
       }
-      this.returnedAds = this.allads.slice(0, this.itemsPerPage);
       }))
-    .then(res => this.shuffle(this.allads))
-    .then(res => this.allads.forEach(element => {
+    this.shuffle(this.allads)
+    this.allads.forEach(async element => {
       /*Create Map (Id - Requests(id)) */
       if (element.breeding_id != null) {
         const rqsbrd = new Array();
-        this.requestPublicationService.getRequestsBreedingAd(element.breeding_id)
+        const res3 = await this.requestPublicationService.getRequestsBreedingAd(element.breeding_id);
         // tslint:disable-next-line: no-shadowed-variable
-        .then(res => res.requests.forEach((element: any) => {rqsbrd.push(element);
+        (res3.requests.forEach(async (element: any) => {rqsbrd.push(element);
                                                              // tslint:disable-next-line: max-line-length
                                                              const particularInfo =  new Array();
                                                              // tslint:disable-next-line: max-line-length
-                                                             this.profileService.getParticularById(element.particular_id)
+                                                             const res4 = await this.profileService.getParticularById(element.particular_id);
                                                              // tslint:disable-next-line: no-shadowed-variable
-                                                             .then(res => particularInfo.push(res.particular));
+                                                             (particularInfo.push(res4.particular));
                                                              this.mapBreedingReqIdUser.set(element.id, particularInfo);
                                                              this.mapShowRequestBreeding.set(element.breeding_id, false);
                                                              // console.log(this.mapBreedingReqIdUser);
@@ -121,10 +123,9 @@ export class AllPersonalAdsComponent implements OnInit {
       }
     }
 
-    ));
+    );
     /***Slice***/
     this.returnedAds = this.allads.slice(0, this.itemsPerPage);
-    // console.log(this.returnedAds)
   }
 
   pageChanged(event: PageChangedEvent): void {
