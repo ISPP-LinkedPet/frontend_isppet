@@ -7,6 +7,8 @@
       </p>
       <p>
         <button routerLink="/adoption" type="button" *ngIf="rol == 'shelter' || rol == 'particular'"  class="btn btn-success">Crear Anuncio</button>
+        <button routerLink="/adoption-animal" type="button" *ngIf="rol=='shelter'" class="btn ml-3 btn-success">Crear
+          Adopción con una mascota registrada</button>
       </p>
     </div>
   </section>

@@ -91,6 +91,7 @@ import { VetPremiumComponent } from './components/vet/vet-premium/vet-premium.co
 import { RegisterVetComponent } from './components/vet/register-vet/register-vet.component';
 import { VetEditPageComponent } from './pages/admin/vet-edit-page/vet-edit-page.component';
 import { RegisterVetPageComponent } from './pages/admin/register-vet-page/register-vet-page.component';
+import { AdoptionAnimalFormComponent } from './components/adoption/adoption-animal-form/adoption-animal-form.component';
 
 
 @NgModule({
@@ -156,7 +157,8 @@ import { RegisterVetPageComponent } from './pages/admin/register-vet-page/regist
     VetPremiumComponent,
     RegisterVetComponent,
     VetEditPageComponent,
-    RegisterVetPageComponent
+    RegisterVetPageComponent,
+    AdoptionAnimalFormComponent
   ],
   imports: [
     BrowserModule,
