@@ -91,11 +91,15 @@
                                         <fa-icon *ngIf="pet.genre=='Female'" class="ml-2" [icon]="faVenus"></fa-icon>
                                     </h5>
                                 </div>
+                               
                                 <div class="card-body bg-white">
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" *ngIf="pet.breed!=null">Raza: {{pet.breed}}</li>
+                                        <li class="list-group-item" *ngIf="pet.breed!=null">Raza: {{pet}}</li>
                                         <li class="list-group-item" *ngIf="pet.birth_date!=null">Edad:
                                             {{configService.calculateAge(pet.birth_date)}}</li>
+                                        <li class="list-group-item" *ngIf="pet.number_breeding > 3 && pet.genre === 'Female'">
+                                            <em class="text-secondary"> Esta mascota no puede criar más. No aparecerá en el listado para asociar a una crianza. </em>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="card-footer">

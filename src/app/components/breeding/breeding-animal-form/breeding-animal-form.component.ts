@@ -63,7 +63,7 @@ export class BreedingAnimalFormComponent implements OnInit {
 
     this.profileService.getParticularLogged().then(res => {
       this.particular = res;
-      this.profileService.getPetsByParticularId(this.particular.particular.id).then(element =>{
+      this.profileService.getPetsByParticularId(this.particular.particular.id, {breeding: 'true'}).then(element =>{
         this.pets=element;
       });
     });
