@@ -115,7 +115,8 @@
                                             <li class="list-group-item" *ngIf="pet.breed!=null">Raza: {{pet.breed}}</li>
                                             <li class="list-group-item" *ngIf="pet.birth_date!=null">Edad:
                                                 {{configService.calculateAge(pet.birth_date)}}</li>
-                                            <li class="list-group-item" *ngIf="pet.number_breeding > 3 && pet.genre === 'Female'">
+                                            <li class="list-group-item" *ngIf="pet.number_breeding <= 2 && pet.genre === 'Female'">Número de crianzas: {{pet.number_breeding}}</li>
+                                            <li class="list-group-item" *ngIf="pet.number_breeding > 2 && pet.genre === 'Female'">
                                                 <em class="text-secondary"> Esta mascota no puede criar más. No aparecerá en el listado para asociar a una crianza. </em>
                                             </li>
                                         </ul>
