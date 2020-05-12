@@ -64,7 +64,7 @@ export class AdoptionListComponent implements OnInit {
         this.returnedAdoptions = this.adoptions.slice(0, this.itemsPerPage);
       });
     } else {
-      this.adoptionService.getAllAdoptions().then(res => {
+      this.adoptionService.filterAdoptions().then(res => {
         res.forEach(element => {
           this.adoptions.push(element);
         });

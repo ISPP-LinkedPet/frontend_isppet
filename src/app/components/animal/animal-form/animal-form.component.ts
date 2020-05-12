@@ -70,9 +70,9 @@ export class AnimalFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.title = "Registra tu mascota";
-    if (!this.creating && this.rol == 'particular') {
-      this.title = "Edite su mascota";
-      this.animalService.notEditableAnimals()(x => {
+    if (!this.creating && (this.rol == 'particular' || this.rol == 'shelter')) {
+    this.title = "Edite su mascota";
+      this.animalService.notEditableAnimals(this.rol)(x => {
         if (Array.from(x.keys()).includes(this.editAnimal.id)) {
           this.router.navigate(['/my-profile'])
         }
@@ -128,18 +128,20 @@ export class AnimalFormComponent implements OnInit {
   requiredInput() {
     if (!this.creating) {
       return [Validators.required]
+    } else if(this.rol=='shelter'){
+      return [Validators.required]
     }
     return []
   }
 
   // validations
   validateBreed() {
-    if (!this.creating && this.rol == 'moderator') {
+    if (this.rol != 'particular') {
       this.isValidBreed = this.animalForm.get('breed').valid;
     }
   }
   validateGenre() {
-    if (!this.creating && this.rol == 'moderator') {
+    if (this.rol != 'particular') {
       this.isValidGenre = ['Male', 'Female'].includes(this.animalForm.get('genre').value);
       this.checkGenre = this.animalForm.get('genre').value === '';
     }
@@ -147,7 +149,7 @@ export class AnimalFormComponent implements OnInit {
   }
 
   validateAge() {
-    if (!this.creating && this.rol == 'moderator') {
+    if (this.rol != 'particular') {
       this.isValidAge = this.animalForm.get('birth_date').valid;
       var date = new Date(this.animalForm.get('birth_date').value)
       var now = new Date()
@@ -157,19 +159,19 @@ export class AnimalFormComponent implements OnInit {
     }
   }
   validateType() {
-    if (!this.creating && this.rol == 'moderator') {
+    if (this.rol != 'particular') {
       this.isValidType = ['Dog', 'Cat', 'Horse'].includes(this.animalForm.get('type').value);
       this.checkType = this.animalForm.get('type').value === '';
     }
   }
   validatePedigree() {
-    if (!this.creating && this.rol == 'moderator') {
+    if (this.rol != 'particular') {
       this.isValidPedigri = ['1', '0'].includes(this.animalForm.get('pedigree').value);
       this.checkPedigree = this.animalForm.get('pedigree').value === '';
     }
   }
   validateName() {
-    if (this.rol == 'particular') {
+    if (this.rol != 'moderator') {
       this.isValidName = this.animalForm.get('name').valid;
     }
   }
@@ -281,6 +283,56 @@ export class AnimalFormComponent implements OnInit {
         alert("¡El animal a publicar se ha aceptado correctamente! \n Se ha publicado en la lista de crianzas")
         this.router.navigate(['/animal-pending'])
       }).catch(error => this.backError = error.error.error);
+    }
+
+    // si lo está creando un shelter
+    if (this.creating && this.rol == 'shelter' && this.isValidBreed && this.isValidGenre && this.isValidAge && this.isValidType && this.isValidPedigri) {
+      const animalPhoto = this.animalPhotos
+      const vaccinePassport = this.vaccine_photos
+      const identificationPhoto = this.identification_photos;
+
+      for (let i = 0; i < animalPhoto.length; i++) formData.append('animal_photo', animalPhoto[i], animalPhoto[i].name);
+      for (let i = 0; i < vaccinePassport.length; i++) formData.append('vaccine_passport', vaccinePassport[i], vaccinePassport[i].name);
+      for (let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
+
+      formData.append('genre', this.animalForm.value.genre);
+      formData.append('name', this.animalForm.value.name);
+      formData.append('breed', this.animalForm.value.breed);
+      formData.append('birth_date', this.animalForm.value.birth_date);
+      formData.append('type', this.animalForm.value.type);
+      formData.append('pedigree', this.animalForm.value.pedigree);
+
+      this.animalService.createAnimal(formData).then(x => {
+        alert("¡Tu animal se ha creado correctamente!")
+        this.router.navigate(['/my-profile'])
+      }).catch(error => {
+        this.backError = error.error.error
+      });
+    }
+
+    // si lo está editando un shelter
+    if (!this.creating && this.rol == 'shelter' && this.isValidBreed && this.isValidGenre && this.isValidAge && this.isValidType && this.isValidPedigri) {
+      const animalPhoto = this.animalPhotos
+      const vaccinePassport = this.vaccine_photos
+      const identificationPhoto = this.identification_photos;
+
+      for (let i = 0; i < animalPhoto.length; i++) formData.append('animal_photo', animalPhoto[i], animalPhoto[i].name);
+      for (let i = 0; i < vaccinePassport.length; i++) formData.append('vaccine_passport', vaccinePassport[i], vaccinePassport[i].name);
+      for (let i = 0; i < identificationPhoto.length; i++) formData.append('identification_photo', identificationPhoto[i], identificationPhoto[i].name);
+
+      formData.append('genre', this.animalForm.value.genre);
+      formData.append('name', this.animalForm.value.name);
+      formData.append('breed', this.animalForm.value.breed);
+      formData.append('birth_date', this.animalForm.value.birth_date);
+      formData.append('type', this.animalForm.value.type);
+      formData.append('pedigree', this.animalForm.value.pedigree);
+
+      this.animalService.editAnimal(this.editAnimal.id, formData).then(x => {
+        alert("¡Tu animal se ha editado correctamente!")
+        this.router.navigate(['/my-profile'])
+      }).catch(error => {
+        this.backError = error.error.error
+      });
     }
   }
 

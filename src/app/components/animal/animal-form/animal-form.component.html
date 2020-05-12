@@ -5,7 +5,7 @@
             <form [formGroup]="animalForm">
   
                 <em *ngIf="creating" class="text-secondary">Los campos en gris están deshabilitados</em><br>
-                <em class="text-secondary">Para agregar varias imagenes, seleccionalas con el botón CTRL pulsado</em>
+                <em *ngIf="rol!='moderator'" class="text-secondary">Para agregar varias imagenes, seleccionalas con el botón CTRL pulsado</em>
                 <fieldset>
                     <legend class="card-title">Información básica</legend>
   
@@ -16,10 +16,11 @@
                             <label for="breed">Raza</label>
                             <input type="text" class="form-control" id="breed" [readOnly]="rol=='particular'" formControlName="breed" (change)="validateBreed()">
                         </div>
+  
                         <div class="form-group has-danger col-4" *ngIf="!isValidBreed">
-                            <label class="form-control-label" for="breed">Raza</label>
+                            <label for="breed">Raza</label>
                             <input type="text" class="form-control is-invalid" id="breed" [readOnly]="rol=='particular'" formControlName="breed" (change)="validateBreed()">
-                            <div class="invalid-feedback">Parece que se ha equivocado</div>
+                            <div class="invalid-feedback">Debe indicar la raza</div>
                         </div>
   
                         <!-- Genre -->
@@ -32,7 +33,7 @@
                                     <option value='Female'>Hembra</option>
                                 </select>
                             </div>
-                            <div *ngIf="rol=='moderator'">
+                            <div *ngIf="rol!='particular'">
                                 <select class="form-control" id="genre" formControlName="genre" (change)="validateGenre()">
                                     <option value='' [defaultSelected]=checkGenre>Seleccione genero</option>
                                     <option value='Male'>Macho</option>
@@ -51,7 +52,7 @@
                                 </select>
                             </div>
   
-                            <div *ngIf="rol=='moderator'">
+                            <div *ngIf="rol!='particular'">
                                 <select class="form-control is-invalid" id="genre" formControlName="genre" (change)="validateGenre()">
                                     <option value='' [defaultSelected]=checkGenre>Seleccione genero</option>
                                     <option value='Male'>Macho</option>
@@ -88,7 +89,7 @@
                                     <option value='Horse'>Caballo</option>
                                 </select>
                             </div>
-                            <div *ngIf="rol=='moderator'">
+                            <div *ngIf="rol!='particular'">
                                 <select class="form-control" id="type" formControlName="type" (change)="validateType()">
                                     <option value='' [defaultSelected]=checkType>Seleccione tipo animal</option>
                                     <option value='Dog'>Perro</option>
@@ -109,7 +110,7 @@
                                 </select>
                             </div>
   
-                            <div *ngIf="rol=='moderator'">
+                            <div *ngIf="rol!='particular'">
                                 <select class="form-control is-invalid" id="type" formControlName="type" (change)="validateType()">
                                     <option value='' [defaultSelected]=checkType>Seleccione tipo animal</option>
                                     <option value='Dog'>Perro</option>
@@ -132,7 +133,7 @@
                                 </select>
                             </div>
   
-                            <div *ngIf="rol=='moderator'">
+                            <div *ngIf="rol!='particular'">
                                 <select class="form-control" id="pedigree" formControlName="pedigree" (change)="validatePedigree()">
                                     <option value='' ></option>
                                     <option value='1'>Si</option>
@@ -151,7 +152,7 @@
                                 </select>
                             </div>
   
-                            <div *ngIf="rol=='moderator'">
+                            <div *ngIf="rol!='particular'">
                                 <select class="form-control is-invalid" id="pedigree" formControlName="pedigree"(change)="validatePedigree()">
                                     <option value='' [defaultSelected]=checkPedigree>Seleccione un pedigrí</option>
                                     <option value='1'>Si</option>
@@ -170,7 +171,7 @@
   
                         <div class="form-group has-danger col-4" *ngIf="!isValidName">
                             <label for="name">Nombre</label>
-                            <input type="text" class="form-control" id="name" [readOnly]="rol=='moderator'" formControlName="name" (change)="validateName()">
+                            <input type="text" class="form-control is-invalid" id="name" [readOnly]="rol=='moderator'" formControlName="name" (change)="validateName()">
                             <div class="invalid-feedback">Debe indicar el nombre</div>
                         </div>
                                           
@@ -263,12 +264,12 @@
                       </div>
   
                 </fieldset>
-                <button *ngIf="rol == 'particular' && !creating" (click)="onSubmit()" class="btn btn-primary button-form mr-2">Editar</button>
-                <button *ngIf="rol == 'particular' && !creating && canDelete" (click)="deleteAnimal(id)" class="btn btn-secondary button-form mr-2" >Eliminar</button>
-                <button *ngIf="rol == 'particular' && creating" (click)="onSubmit()" class="btn btn-primary button-form mr-2">Crear</button>
+                <button *ngIf="rol != 'moderator' && !creating" (click)="onSubmit()" class="btn btn-primary button-form mr-2">Editar</button>
+                <button *ngIf="rol != 'moderator' && !creating && canDelete" (click)="deleteAnimal(id)" class="btn btn-secondary button-form mr-2" >Eliminar</button>
+                <button *ngIf="rol != 'moderator' && creating" (click)="onSubmit()" class="btn btn-primary button-form mr-2">Crear</button>
                 <button *ngIf="rol == 'moderator'" (click)="onSubmit()" class="btn btn-primary btn-lg button-form">Aceptar</button>
                 <button *ngIf="rol == 'moderator'" (click)="rejectPublication()" class="btn btn-secondary btn-lg button-form right">Rechazar</button>
-                <button *ngIf="rol == 'particular'" (click)="router.navigate(['/my-profile']);" class="btn btn-danger">Volver a mi perfil</button> 
+                <button *ngIf="rol != 'moderator'" (click)="router.navigate(['/my-profile']);" class="btn btn-danger">Volver a mi perfil</button> 
             </form>
 
             <div class="invalid-feedback" *ngIf="backError!=undefined">Parece que ha habido un error</div>

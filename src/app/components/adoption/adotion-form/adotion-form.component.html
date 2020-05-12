@@ -3,7 +3,7 @@
     <div class="card-body">
         <h1 class="card-title">{{title}}</h1>
         <form [formGroup]="adoptionForm" (ngSubmit)="onSubmit()">
-          <em class="text-secondary">Para agregar varias imagenes, seleccionalas con el botón CTRL pulsado</em>
+          <em *ngIf="rol!='moderator'" class="text-secondary">Para agregar varias imagenes, seleccionalas con el botón CTRL pulsado</em>
             <fieldset>
               <legend class="card-title">Información básica</legend>
 

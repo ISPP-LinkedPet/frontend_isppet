@@ -33,15 +33,28 @@ export class ProfileService {
     return this.requestService.request('GET', `${environment.endpoint}/particular/user/profile`, {}, {}, true);
   }
 
-  getPetsByParticularId(id: string) {
-    return this.requestService.request('GET', `${environment.endpoint}/pet/user/${id}`, {}, {}, true);
+  getPetsByParticularId(id: string, data: any) {
+    return this.requestService.request('GET', `${environment.endpoint}/pet/user/${id}`, data, {}, true);
   }
 
-  getMyData() {
+  getShelterLogged() {
+    return this.requestService.request('GET', `${environment.endpoint}/shelter/user/profile`, {}, {}, true);
+  }
+
+  getPetsByShelterId(id: string) {
+    return this.requestService.request('GET', `${environment.endpoint}/pet/shelter/${id}`, {}, {}, true);
+  }
+
+  getMyData(rol) {
     const accessToken = localStorage.getItem('access_token');
+    console.log(accessToken)
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + accessToken);
-    return this.httpClient.get(`${environment.endpoint}/particular/myData`, { headers, responseType: 'arraybuffer' });
+    if(rol=='particular'){
+      return this.httpClient.get(`${environment.endpoint}/particular/myData`, { headers, responseType: 'arraybuffer' });
+    } else if (rol=='shelter'){
+      return this.httpClient.get(`${environment.endpoint}/shelter/myData`, { headers, responseType: 'arraybuffer' });
+    }
   }
 
   deleteMyAccountParticular(){

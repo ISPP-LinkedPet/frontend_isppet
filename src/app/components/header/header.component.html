@@ -87,7 +87,14 @@
 
           </div>
         </li>
-        <li class="nav-item mr-3 avatar" *ngIf="rol != 'particular' && rol!= 'disconnected'">
+        <li class="nav-item dropdown mr-3 avatar" *ngIf="rol == 'shelter'">
+          <a class="nav-link" href="/my-profile">
+            <img *ngIf="user.optional_photo!=null" src="{{env}}/{{user.optional_photo}}"
+              class="rounded-circle img-fluid" alt="Mi perfil">
+            {{ user.user_name }}
+          </a>
+        </li>
+        <li class="nav-item mr-3 avatar" *ngIf="rol != 'particular' && rol != 'shelter' && rol!= 'disconnected'">
           <a class="nav-link"><img src="{{env}}/{{user.optional_photo}}" class="rounded-circle img-fluid" alt="">
             {{ user.user_name }}
           </a>
