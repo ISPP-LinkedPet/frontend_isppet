@@ -25,8 +25,8 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {}
 
   async paypal() {
-    // const redirectUrl = await this.paymentService.userCreatePayMePaypal({breedingId: this.breedingId, returnUrl: "https://" + window.location.hostname + "/request/accepted/created"});
-    const redirectUrl = await this.paymentService.userCreatePayMePaypal({breedingId: this.breedingId, returnUrl: "http://" + window.location.hostname + ":4200/request/accepted/created"}).catch(error => console.log(error));
+    const redirectUrl = await this.paymentService.userCreatePayMePaypal({breedingId: this.breedingId, returnUrl: "https://" + window.location.hostname + "/request/accepted/created"});
+    // const redirectUrl = await this.paymentService.userCreatePayMePaypal({breedingId: this.breedingId, returnUrl: "http://" + window.location.hostname + ":4200/request/accepted/created"}).catch(error => console.log(error));
     window.location.href = redirectUrl.links[1].href;
   }
 
@@ -39,8 +39,8 @@ export class PaymentComponent implements OnInit {
       currency: 'eur',
       locale: 'es',
       token: (token) => {
-          // this.paymentService.createPaymentToMyself({token: token.id, breedingId: this.breedingId, returnUrl: "https://" + window.location.hostname + "/request/accepted/created"}).then(response => {
-          this.paymentService.createPaymentToMyself({token: token.id, breedingId: this.breedingId, returnUrl: "http://" + window.location.hostname + ":4200/request/accepted/created"}).then(response => {
+          this.paymentService.createPaymentToMyself({token: token.id, breedingId: this.breedingId, returnUrl: "https://" + window.location.hostname + "/request/accepted/created"}).then(response => {
+          // this.paymentService.createPaymentToMyself({token: token.id, breedingId: this.breedingId, returnUrl: "http://" + window.location.hostname + ":4200/request/accepted/created"}).then(response => {
             if(response.status != 'succeeded') {
               window.location.href = response.url;
             } else {
