@@ -4,6 +4,7 @@ import {BreedingService} from 'src/app/services/breeding/breeding.service';
 import {environment} from 'src/environments/environment';
 import {Router} from '@angular/router';
 import {ConfigService} from 'src/app/services/config/config.service';
+import swal from 'src/sweetalert';
 
 @Component({
   selector: 'app-breeding-display',
@@ -33,7 +34,8 @@ export class BreedingDisplayComponent implements OnInit {
     this.breedingService
         .createRequest(id)
         .then(res => {
-          alert('¡Has realizado una petición a esta oferta! \n En la siguiente página podrás revisar si el usuario la ha aceptado')
+          swal("Perfecto", "Petición realizada a la oferta  correctamente, en la siguiente lista verás si ha sido aceptada", "success");
+
           this.router.navigate(['/request/accepted/created']);
         })
         .catch(error => {

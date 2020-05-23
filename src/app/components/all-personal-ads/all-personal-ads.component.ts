@@ -11,6 +11,7 @@ import { RequestBreedingService } from 'src/app/services/requestBreeding/request
 import { faCat, faDog, faHorse, faAward, faInfoCircle, faMars, faVenus } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormControl } from '@angular/forms';
 import { async } from '@angular/core/testing';
+import swal from 'src/sweetalert';
 
 @Component({
   selector: 'app-all-personal-ads',
@@ -140,9 +141,10 @@ export class AllPersonalAdsComponent implements OnInit {
     this.getList();
     })
     .then(x => {
-      alert('Tu pago se ha recibido correctamente'); } ).then(x => {
+      swal("Perfecto", "Pago recibido correctamente", "success").then(x => {
         location.reload();
       });
+    });
   }
 
   /****Auxiliar methods*** */
@@ -160,12 +162,16 @@ export class AllPersonalAdsComponent implements OnInit {
 
   onSubmitRequest(id: string, publicationId: string, accept: boolean) {
     if (accept) {
-      this.requestBreedingService.acceptRequest(id, publicationId);
+      this.requestBreedingService.acceptRequest(id, publicationId)
+      .then(x => {
+        swal("Perfecto", "Petición aceptada correctamente", "success").then(x => {location.reload();});
+      });
     } else {
-      this.requestBreedingService.rejectRequest(id);
+      this.requestBreedingService.rejectRequest(id)
+      .then(x => {
+        swal("Perfecto", "Petición rechazada correctamente", "success").then(x => {location.reload();});
+    });
     }
-
-    location.reload();
   }
 
   showRequests(element, string){
@@ -181,7 +187,8 @@ export class AllPersonalAdsComponent implements OnInit {
     // console.log(review);
     // console.log(publicationId);
     this.requestBreedingService.writeReview({star: 3 , review_description: review, publication_id: publicationId}).then(x => {
-      alert('Tu review se ha enviado correctamente'); } ).then(x => {
+      swal("Perfecto", "Review enviada correctamente", "success");
+    } ).then(x => {
         location.reload();
       });
   }

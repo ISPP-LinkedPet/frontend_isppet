@@ -3,6 +3,8 @@ import {Router} from "@angular/router";
 import { LoginService } from '../../../services/login/login.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/services/admin/admin.service';
+import swal from 'src/sweetalert';
+
 
 @Component({
   selector: 'app-register-user',
@@ -101,8 +103,8 @@ export class RegisterUserComponent implements OnInit {
         .then(res => {
           this.registerSuccess = true;
           this.successMessage = 'Registro exitoso';
-          alert('Registro exitoso!')
-           this.router.navigate(['/userlist']);
+          swal("Perfecto", "Usuario registrado correctamente", "success");
+          this.router.navigate(['/userlist']);
           setTimeout(() => {
             this.cleanData();
           }, 2000);
@@ -115,7 +117,7 @@ export class RegisterUserComponent implements OnInit {
         this.adminService.registerShelter(formData).then(res => {
           this.registerSuccess = true;
           this.successMessage = 'Registro exitoso';
-          alert('Registro exitoso!')
+          swal("Perfecto", "Usuario registrado correctamente", "success");
            this.router.navigate(['/userlist']);
           setTimeout(() => {
             this.cleanData();
@@ -129,7 +131,7 @@ export class RegisterUserComponent implements OnInit {
         this.adminService.registerModerator(formData).then(res => {
           this.registerSuccess = true;
           this.successMessage = 'Registro exitoso';
-          alert('Registro exitoso!')
+          swal("Perfecto", "Usuario registrado correctamente", "success");
            this.router.navigate(['/userlist']);
           setTimeout(() => {
             this.cleanData();
@@ -143,8 +145,8 @@ export class RegisterUserComponent implements OnInit {
         this.adminService.registerAdministrator(formData).then(res => {
           this.registerSuccess = true;
           this.successMessage = 'Registro exitoso';
-          alert('Registro exitoso!')
-           this.router.navigate(['/userlist']);
+          swal("Perfecto", "Usuario registrado correctamente", "success");
+          this.router.navigate(['/userlist']);
           setTimeout(() => {
             this.cleanData();
           }, 2000);
