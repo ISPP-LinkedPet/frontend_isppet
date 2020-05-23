@@ -8,6 +8,7 @@ import { ConfigService } from '../../../services/config/config.service';
 import { ProfileService } from '../../../services/profile/profile.service';
 
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import swal from 'src/sweetalert';
 
 @Component({
   selector: 'app-breeding-animal-form',
@@ -126,7 +127,7 @@ export class BreedingAnimalFormComponent implements OnInit {
       formData.append('petId', this.breedingForm.value.pet_id);
 
       this.breedingService.createBreedingAnimal(formData).then(x => {
-        alert("¡La crianza se ha creado correctamente!")
+        swal("Perfecto", "El anuncio de crianza ha sido creado correctamente.", "success");
         this.router.navigate(['/pallAds'])
       }).catch (error => {
         this.backError = error.error.error
@@ -141,7 +142,7 @@ export class BreedingAnimalFormComponent implements OnInit {
       formData.append('petId', this.breedingForm.value.pet_id);
 
       this.breedingService.editAnimalBreeding(this.editBreeding.breedingId, formData).then(x => {
-        alert("¡La crianza se ha editado correctamente!")
+        swal("Perfecto", "La crianza ha sido editada correctamente", "success");
         this.router.navigate(['/pallAds'])
       }).catch (error => {
         this.backError = error.error.error

@@ -8,6 +8,7 @@ import { ConfigService } from '../../../services/config/config.service';
 
 
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import swal from 'src/sweetalert';
 
 @Component({
   selector: 'app-breeding-form',
@@ -240,7 +241,7 @@ export class BreedingCreateComponent implements OnInit {
       formData.append('location', this.breedingForm.value.location);
 
       this.breedingService.createBreeding(formData).then(x => {
-        alert("¡La crianza se ha creado correctamente! \n Ahora debe de revisarlo un moderador")
+        swal("Perfecto", "Anuncio de crianza creado correctamente, a la espera de ser moderado.", "success");
         this.router.navigate(['/pallAds'])
       }).catch (error => {
         this.backError = error.error.error
@@ -261,7 +262,7 @@ export class BreedingCreateComponent implements OnInit {
       formData.append('location', this.breedingForm.value.location);
 
       this.breedingService.editBreeding(this.editBreeding.breedingId, formData).then(x => {
-        alert("¡La crianza se ha editado correctamente! \n Ahora debe de revisarlo un moderador")
+        swal("Perfecto", "Anuncio de crianza editado correctamente, a la espera de ser moderado.", "success");
         this.router.navigate(['/pallAds'])
       }).catch (error => {
         this.backError = error.error.error
@@ -279,7 +280,7 @@ export class BreedingCreateComponent implements OnInit {
       formData.append('pedigree', this.breedingForm.value.pedigree);
       
       this.breedingService.acceptBreeding(formData, this.editBreeding.breedingId).then(x => {
-        alert("¡La crianza se ha aceptado correctamente! \n Se ha publicado en la lista de crianzas")
+        swal("Perfecto", "Crianza aceptada correctamente, publicada en la lista de crianza.", "success");
         this.router.navigate(['/breeding-pending'])
       }).catch (error => this.backError = error.error.error);
     }
@@ -287,7 +288,7 @@ export class BreedingCreateComponent implements OnInit {
 
   rejectPublication() {
     this.breedingService.rejectBreeding(this.editBreeding.breedingId).then(x => {
-      alert("¡La crianza se ha rechazado correctamente!")
+      swal("Perfecto", "Crianza rechazada correctamente.", "success");
 
       this.router.navigate(['/breeding-pending'])
     }).catch (error => this.backError = error.error.error);
@@ -342,7 +343,7 @@ export class BreedingCreateComponent implements OnInit {
 
   deleteBreeding(id: number){
     this.breedingService.deleteBreeding(id).then(res=> {
-      alert('Tu oferta de crianza ha sido eliminada correctamente');
+      swal("Perfecto", "Oferta de crianza eliminada correctamente.", "success");
       this.router.navigate(['/pallAds']);
     });
   }
