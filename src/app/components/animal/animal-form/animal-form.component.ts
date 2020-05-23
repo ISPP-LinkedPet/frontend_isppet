@@ -6,7 +6,8 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { ConfigService } from '../../../services/config/config.service';
 import { AnimalService } from '../../../services/animal/animal.service';
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-animal-form',
@@ -244,7 +245,7 @@ export class AnimalFormComponent implements OnInit {
       // console.log(this.animalForm.value);
 
       this.animalService.createAnimal(formData).then(x => {
-        alert("¡Tu animal se ha creado correctamente! \n Ahora debe de revisarlo un moderador")
+        swal("Perfecto", "Animal creado correctamente, a la espera de ser moderado.", "success");
         this.router.navigate(['/my-profile'])
       }).catch(error => {
         this.backError = error.error.error
@@ -263,7 +264,7 @@ export class AnimalFormComponent implements OnInit {
 
       formData.append('name', this.animalForm.value.name);
       this.animalService.editAnimal(this.editAnimal.id, formData).then(x => {
-        alert("¡Tu animal se ha editado correctamente! \n Ahora debe de revisarlo un moderador")
+        swal("Perfecto", "Animal editado correctamente, a la espera de ser moderado.", "success");
         this.router.navigate(['/my-profile'])
       }).catch(error => {
         this.backError = error.error.error
@@ -280,7 +281,7 @@ export class AnimalFormComponent implements OnInit {
       formData.append('pedigree', this.animalForm.value.pedigree);
 
       this.animalService.acceptAnimal(formData, this.editAnimal.id).then(x => {
-        alert("¡El animal a publicar se ha aceptado correctamente! \n Se ha publicado en la lista de crianzas")
+        swal("Perfecto", "El animal para publicar ha sido aceptado correctamente", "success");
         this.router.navigate(['/animal-pending'])
       }).catch(error => this.backError = error.error.error);
     }
@@ -303,7 +304,7 @@ export class AnimalFormComponent implements OnInit {
       formData.append('pedigree', this.animalForm.value.pedigree);
 
       this.animalService.createAnimal(formData).then(x => {
-        alert("¡Tu animal se ha creado correctamente!")
+        swal("Perfecto", "Tu animal ha sido creado correctamente", "success");
         this.router.navigate(['/my-profile'])
       }).catch(error => {
         this.backError = error.error.error
@@ -328,7 +329,7 @@ export class AnimalFormComponent implements OnInit {
       formData.append('pedigree', this.animalForm.value.pedigree);
 
       this.animalService.editAnimal(this.editAnimal.id, formData).then(x => {
-        alert("¡Tu animal se ha editado correctamente!")
+        swal("Perfecto", "Animal editado correctamente", "success");
         this.router.navigate(['/my-profile'])
       }).catch(error => {
         this.backError = error.error.error
@@ -338,7 +339,7 @@ export class AnimalFormComponent implements OnInit {
 
   rejectPublication() {
     this.animalService.rejectAnimal(this.editAnimal.id).then(x => {
-      alert("¡El animal a publicar rechazado correctamente!")
+      swal("Perfecto", "El animal a publicar ha sido rechazado correctamente", "success");
 
       this.router.navigate(['/animal-pending'])
     }).catch(error => this.backError = error.error.error);
@@ -401,7 +402,7 @@ export class AnimalFormComponent implements OnInit {
 
   deleteAnimal(id: number) {
     this.animalService.deleteAnimal(id).then(res => {
-      alert('Tu mascota ha sido eliminada correctamente');
+      swal("Perfecto", "Animal eliminado correctamente", "success");
       this.router.navigate(['/my-profile']);
     });
   }

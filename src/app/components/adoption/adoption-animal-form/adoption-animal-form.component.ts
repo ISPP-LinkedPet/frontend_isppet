@@ -8,6 +8,8 @@ import { ConfigService } from '../../../services/config/config.service';
 import { ProfileService } from '../../../services/profile/profile.service';
 
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import swal from 'sweetalert';
+
 
 @Component({
   selector: 'app-adoption-animal-form',
@@ -105,7 +107,7 @@ export class AdoptionAnimalFormComponent implements OnInit {
       formData.append('petId', this.adoptionForm.value.pet_id);
 
       this.adoptionService.createAdoptionAnimal(formData).then(x => {
-        alert("¡La adoption se ha creado correctamente!")
+        swal("Good job!", "You clicked the button!", "success");
         this.router.navigate(['/adoption-list'])
       }).catch (error => {
         this.backError = error.error.error

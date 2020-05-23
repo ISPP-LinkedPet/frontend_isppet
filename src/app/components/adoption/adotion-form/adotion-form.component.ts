@@ -11,6 +11,8 @@ registerLocaleData(localeES, 'es');
 import { formatDate } from '@angular/common';
 
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import swal from 'sweetalert';
+
 
 @Component({
   selector: 'app-adotion-form',
@@ -277,7 +279,7 @@ export class AdotionFormComponent implements OnInit {
     if (this.creating) {
       this.adoptionService.createAdoption(formData).then(x => {
         // console.log(x);
-        alert('¡La adopción se ha creado correctamente!')
+        swal("Perfecto", "Has creado tu anuncio con éxito", "success");
         this.router.navigate(['/adoption-list']);
       }).catch(error => {
         // console.log(error);
@@ -285,7 +287,7 @@ export class AdotionFormComponent implements OnInit {
 
     } else if (!this.creating) {
       this.adoptionService.editAdoption(formData, +this.id).then(x => {
-        alert('¡La adopción se ha editado correctamente!')
+        swal("Perfecto", "Has editado tu anuncio correctamente", "success");
         this.router.navigate(['/pallAds']);
       }).catch(error => {
         // console.log(error);
@@ -325,7 +327,7 @@ export class AdotionFormComponent implements OnInit {
 
   deleteAdoption(id: string) {
     this.adoptionService.deleteAdoption(id).then(res => {
-      alert('Tu adopción ha sido eliminada correctamente');
+      swal("Perfecto", "Has eliminado tu anuncio correctamente", "success");
       this.router.navigate(['/pallAds']);
     });
   }

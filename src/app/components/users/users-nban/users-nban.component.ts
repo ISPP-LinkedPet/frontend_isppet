@@ -4,6 +4,7 @@ import { AdminService } from 'src/app/services/admin/admin.service';
 import { environment } from 'src/environments/environment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-users-nban',
@@ -32,7 +33,7 @@ export class UsersNbanComponent implements OnInit {
   }
   banUser(id: number) {
     this.adminService.banUser(id).then(res => {
-      alert('¡Has baneado con éxito al usuario!');
+      swal("Perfecto", "Usuario baneado correctamente.", "success");
       this.loadData();
     });
   }
