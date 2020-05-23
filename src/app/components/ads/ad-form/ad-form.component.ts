@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AdminService } from 'src/app/services/admin/admin.service';
 import { ConfigService } from '../../../services/config/config.service';
 import { VetService } from 'src/app/services/vet/vet.service';
-import swal from 'sweetalert';
+import swal from 'src/sweetalert';
 @Component({
   selector: 'app-ad-form',
   templateUrl: './ad-form.component.html',

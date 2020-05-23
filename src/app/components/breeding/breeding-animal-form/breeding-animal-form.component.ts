@@ -8,7 +8,7 @@ import { ConfigService } from '../../../services/config/config.service';
 import { ProfileService } from '../../../services/profile/profile.service';
 
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import swal from 'sweetalert';
+import swal from 'src/sweetalert';
 
 @Component({
   selector: 'app-breeding-animal-form',

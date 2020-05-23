@@ -11,7 +11,7 @@ registerLocaleData(localeES, 'es');
 import { formatDate } from '@angular/common';
 
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import swal from 'sweetalert';
+import swal from 'src/sweetalert';
 
 
 @Component({

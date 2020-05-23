@@ -4,7 +4,7 @@ import { AdminService } from 'src/app/services/admin/admin.service';
 import { environment } from 'src/environments/environment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
-import swal from 'sweetalert';
+import swal from 'src/sweetalert';
 
 @Component({
   selector: 'app-users-nban',

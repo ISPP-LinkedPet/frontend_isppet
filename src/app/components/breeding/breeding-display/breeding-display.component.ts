@@ -4,7 +4,7 @@ import {BreedingService} from 'src/app/services/breeding/breeding.service';
 import {environment} from 'src/environments/environment';
 import {Router} from '@angular/router';
 import {ConfigService} from 'src/app/services/config/config.service';
-import swal from 'sweetalert';
+import swal from 'src/sweetalert';
 
 @Component({
   selector: 'app-breeding-display',

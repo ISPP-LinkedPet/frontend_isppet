@@ -7,7 +7,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ConfigService } from '../../../services/config/config.service';
 import { AnimalService } from '../../../services/animal/animal.service';
 import { DatePipe } from '@angular/common';
-import swal from 'sweetalert';
+import swal from 'src/sweetalert';
 
 @Component({
   selector: 'app-animal-form',

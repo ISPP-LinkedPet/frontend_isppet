@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RequestBreedingService } from 'src/app/services/requestBreeding/request-breeding.service';
 import { ConfigService } from 'src/app/services/config/config.service';
-import swal from 'sweetalert';
+import swal from 'src/sweetalert';
 
 @Component({
   selector: 'app-request-list-accepted-item',
@@ -89,10 +89,10 @@ export class RequestListAcceptedItemComponent implements OnInit {
   onSubmitCodeForm() {
     const confirmationCode = this.requestForm.get('confirmationCode').value;
     this.requestBreedingService.finishBreedingConfirmation(this.breedingId, { codenumber: confirmationCode }).then(x => {
-      swal("Perfecto", "Código enviado correctamente", "success");
-    }).then(x => {
-      location.reload();
-    });
+      swal("Perfecto", "Código enviado correctamente", "success").then(x => {
+        location.reload();
+      });
+    }).catch(x => {swal("Error", "El código introducido no es correcto", "error");});
   }
 
   onSubmitReviewForm() {
@@ -100,17 +100,17 @@ export class RequestListAcceptedItemComponent implements OnInit {
     const star = this.reviewForm.get('star').value;
     // console.log(star)
     this.requestBreedingService.writeReview({ star: star, review_description: review, publication_id: this.publicationId }).then(x => {
-      swal("Perfecto", "Review enviada correctamente.", "success");
-    }).then(x => {
-      location.reload();
+      swal("Perfecto", "Review enviada correctamente.", "success").then(x => {
+        location.reload();
+      });
     });
   }
 
   onSubmitdeleteRequest(id: string) {
     this.requestBreedingService.deleteRequest(id).then(x => {
-      swal("Perfecto", "Oferta eliminada correctamente", "success");
-    }).then(x => {
-      location.reload();
+      swal("Perfecto", "Oferta eliminada correctamente", "success").then(x => {
+        location.reload();
+      });
     });
   }
 

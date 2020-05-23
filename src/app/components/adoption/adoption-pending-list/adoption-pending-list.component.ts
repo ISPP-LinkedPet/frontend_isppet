@@ -6,7 +6,7 @@ import { ConfigService } from 'src/app/services/config/config.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { Router } from '@angular/router';
 import { faCat, faDog, faHorse, faInfoCircle, faMars, faVenus, faAward } from '@fortawesome/free-solid-svg-icons';
-import swal from 'sweetalert';
+import swal from 'src/sweetalert';
 @Component({
   selector: 'app-adoption-pending-list',
   templateUrl: './adoption-pending-list.component.html',
