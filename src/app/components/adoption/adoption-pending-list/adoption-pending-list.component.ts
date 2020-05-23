@@ -6,7 +6,7 @@ import { ConfigService } from 'src/app/services/config/config.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { Router } from '@angular/router';
 import { faCat, faDog, faHorse, faInfoCircle, faMars, faVenus, faAward } from '@fortawesome/free-solid-svg-icons';
-
+import swal from 'sweetalert';
 @Component({
   selector: 'app-adoption-pending-list',
   templateUrl: './adoption-pending-list.component.html',
@@ -48,7 +48,7 @@ export class AdoptionPendingListComponent implements OnInit {
     this.adoptionService.acceptAdoption(id).then(res => {
       this.returnedAdoptions = new Array();
       this.pendingAdoptions = new Array();
-      window.alert("Se ha aceptado correctamente la adopción");
+      swal("Perfecto", "Adopción rechazada correctamente.", "success");
       this.ngOnInit();
     });
   }
@@ -57,7 +57,7 @@ export class AdoptionPendingListComponent implements OnInit {
     this.adoptionService.rejectAdoption(id).then(res => {
       this.returnedAdoptions = new Array();
       this.pendingAdoptions = new Array();
-      window.alert("Se ha rechazado correctamente la adopción");
+      swal("Perfecto", "Adopción rechazada correctamente.", "success");
       this.ngOnInit();
     });
   }
