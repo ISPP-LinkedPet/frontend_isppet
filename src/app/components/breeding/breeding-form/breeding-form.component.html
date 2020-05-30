@@ -204,12 +204,12 @@
                       </div>
 
                     <!-- Animal photo -->
-                      <div class="form-group col-4" *ngIf="rol != 'moderator'">
-                          <label for="animal_photo">Imagenes</label>
+                      <div class="form-group col-10" *ngIf="rol != 'moderator'">
+                          <label for="animal_photo">Imágenes</label>
                           <div class="input-group mb-3">
                               <div class="custom-file">
-                                  <input #animalPhoto type="file" class="custom-file-input" formControlName="animal_photo" name="animal_photo" id="animal_photo" ng-model-options="{ debounce: 50 }" (change)="getAnimalPhotoAndValidate($event)" multiple>
-                                  <label class="custom-file-label" for="animal_photo">Seleccionar imagenes</label>
+                                  <input #animalPhoto type="file" class="custom-file-input col-25" formControlName="animal_photo" name="animal_photo" id="animal_photo" ng-model-options="{ debounce: 50 }" (change)="getAnimalPhotoAndValidate($event)" multiple>
+                                  <label class="custom-file-label col-75" for="animal_photo">Seleccionar imagenes</label>
                               </div>
                           </div>
                           <small>Las imagenes deben ser .png, .jpg o .jpeg</small>
@@ -234,7 +234,7 @@
 
                     <div class="row">
                       <!-- Identification photo -->
-                      <div class="form-group col-6" *ngIf="rol != 'moderator'">
+                      <div class="form-group col-10" *ngIf="rol != 'moderator'">
                           <label for="identification_photo">Identificacion de mascota</label>
                           <div class="input-group mb-3">
                               <div class="custom-file">
@@ -262,7 +262,7 @@
                   <div class="row">
 
                       <!-- Vaccine passaport -->
-                      <div class="form-group col-6" *ngIf="rol != 'moderator'">
+                      <div class="form-group col-10" *ngIf="rol != 'moderator'">
                           <label for="vaccine_passaport">Cartilla de vacunacion</label>
                           <div class="input-group mb-3">
                               <div class="custom-file">
