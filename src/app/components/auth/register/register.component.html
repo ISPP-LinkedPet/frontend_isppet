@@ -1,6 +1,6 @@
 <div class="container d-flex justify-content-around">
     <!-- Default form login -->
-    <form class="text-center border rounded border-gray p-5 w-50" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <form class="text-center border rounded border-gray p-5 w-500" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
       <h1 class="mb-4">Registro</h1>
 
@@ -62,7 +62,7 @@
                     <div class="custom-file">
                         <input #optionalPhoto type="file" class="custom-file-input" formControlName="optional_photo" name="optional_photo" id="optional_photo"
                             (change)="getOptionalPhotoAndValidate($event)">
-                        <label class="custom-file-label" for="optional_photo">Seleccionar imagen</label>
+                        <label style="float:left;"class="custom-file-label" for="optional_photo">Seleccionar imagen</label>
                     </div>
                 </div>
 
