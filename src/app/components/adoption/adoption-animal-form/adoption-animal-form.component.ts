@@ -107,7 +107,7 @@ export class AdoptionAnimalFormComponent implements OnInit {
       formData.append('petId', this.adoptionForm.value.pet_id);
 
       this.adoptionService.createAdoptionAnimal(formData).then(x => {
-        swal("Good job!", "You clicked the button!", "success");
+        swal('Perfecto', 'Anuncio creado correctamente', 'success');
         this.router.navigate(['/adoption-list'])
       }).catch (error => {
         this.backError = error.error.error
