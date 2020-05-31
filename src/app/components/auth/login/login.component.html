@@ -1,15 +1,32 @@
 <div class="container d-flex justify-content-around my-5 py-5">
-    <!-- Default form login -->
-    <form class="text-center border rounded border-gray p-5 w-50" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <!-- Default form login -->
+  <form class="text-center border rounded border-gray p-5 w-50" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 
-      <h1 class="mb-4">Inicia sesión</h1>
+    <h1 class="mb-4">Inicia sesión</h1>
 
-      <!-- Email -->
-      <input type="text" *ngIf="isValid" id="username" formControlName="username" class="form-control mb-4" placeholder="Nombre" required />
-      <input type="text" *ngIf="!isValid" value="Incorrecto" class="form-control is-invalid mb-4 " id="username" required formControlName="username" required />
+    <!-- Email -->
+    <div class=" mb-4" *ngIf="isValidUserName">
+      <input type="text" class="form-control " id="username" placeholder="Nombre"required formControlName="username"
+        (change)="validateUsername()">
+    </div>
+    <div class="form-group has-danger mb-4" *ngIf="!isValidUserName">
+      <input type="text" class="form-control is-invalid" placeholder="Nombre" id="username" formControlName="username"
+        (change)="validateUsername()">
+      <div class="invalid-feedback">Nombre de usuario no válido</div>
+    </div>
 
-      <!-- Password -->
-      <input type="password" id="password" formControlName="password" class="form-control mb-4" placeholder="Contraseña">
+
+    
+      <div class=" mb-4" *ngIf="isValidPassword" >
+        <input type="password" class="form-control  " placeholder="Contraseña" id="password_register" required formControlName="password"
+          (change)="validatePassword()">
+      </div>
+      <div class="form-group has-danger mb-4" *ngIf="!isValidPassword">
+        <input type="password" class="form-control is-invalid  " placeholder="Contraseña"  id="password_register" formControlName="password"
+          (change)="validatePassword()">
+        <div class="invalid-feedback">La contraseña debe tener al menos 8 caracteres</div>
+      </div>
+
 
       <!-- Sign in button -->
       <button class="btn btn-primary btn-block my-4" type="submit">Iniciar sesión</button>
@@ -21,11 +38,12 @@
 
       <!-- Register -->
       <p class="mt-5">¿Aún no eres miembro?
-        <button type="button" class="btn btn-secondary btn-block my-4" (click)="homeComponent.isLeftVisible = !homeComponent.isLeftVisible">
+        <button type="button" class="btn btn-secondary btn-block my-4"
+          (click)="homeComponent.isLeftVisible = !homeComponent.isLeftVisible">
           Regístrese
         </button>
       </p>
 
-    </form>
-    <!-- Default form login -->
+  </form>
+  <!-- Default form login -->
 </div>
