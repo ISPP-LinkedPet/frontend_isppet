@@ -102,12 +102,16 @@ export class RequestListAcceptedComponent implements OnInit {
   }
   onSubmit() {
     this.requests = [];
-    this.requestPublicationService.filterRequest(this.filterForm.value.status).then(x => {
+    if(this.filterForm.value.status == ''){
+      this.loadData()
+    } else {
+      this.requestPublicationService.filterRequest(this.filterForm.value.status).then(x => {
         x.forEach(b => {
           this.requests.push(b);
         });
         this.returnedRequest = this.requests.slice(0, this.itemsPerPage);
       });
+    }
   }
 
   loadData() {
