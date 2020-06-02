@@ -2,3 +2,7 @@
   width: inherit;
   max-height: 300px;
 }
+
+label.custom-file-label {
+  text-align: left;
+}
